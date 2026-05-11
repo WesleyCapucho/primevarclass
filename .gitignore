@@ -55,6 +55,7 @@ primevarclass_job_history/
 
 # Generated duplicate exports and historical heavy experiment runs.
 output/
+release_assets/
 primevarclass_results/
 primevarclass_results_cli/
 primevarclass_results_demo/
