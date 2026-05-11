@@ -1,0 +1,16 @@
+cohort_name,role,source_name,display_name,recognized_public_source,release_value,release_coverage_percent,schema_coverage_percent,catalog_readiness_percent,ready_for_public_use,citation_url
+public_brca_training,train,clinvar_variant_summary,ClinVar,True,2026-04-03,92,100,96,True,https://www.ncbi.nlm.nih.gov/clinvar/
+public_brca_training,train,gnomad_brca_annotations,gnomAD,True,gnomad_r4_graphql_2026-04-16,92,100,96,True,https://gnomad.broadinstitute.org/
+public_brca_training,train,mavedb_brca_scores,MaveDB,True,mavedb-dump.20260206153444,92,100,96,True,https://www.mavedb.org/
+clinvar_expert_external_validation_brca1,external_test,clinvar_expert_validation_brca1,ClinVar,True,2026-04-03,92,100,96,True,https://www.ncbi.nlm.nih.gov/clinvar/
+clinvar_expert_external_validation_brca1,external_test,gnomad_validation_annotations,gnomAD,True,gnomad_r4_graphql_2026-04-16,92,100,96,True,https://gnomad.broadinstitute.org/
+clinvar_expert_external_validation_brca1,external_test,mavedb_validation_scores,MaveDB,True,mavedb-dump.20260206153444,92,100,96,True,https://www.mavedb.org/
+clinvar_expert_external_validation_brca2,external_test,clinvar_expert_validation_brca2,ClinVar,True,2026-04-03,92,100,96,True,https://www.ncbi.nlm.nih.gov/clinvar/
+clinvar_expert_external_validation_brca2,external_test,gnomad_validation_annotations,gnomAD,True,gnomad_r4_graphql_2026-04-16,92,100,96,True,https://gnomad.broadinstitute.org/
+clinvar_expert_external_validation_brca2,external_test,mavedb_validation_scores,MaveDB,True,mavedb-dump.20260206153444,92,100,96,True,https://www.mavedb.org/
+bridges_like_external_validation_brca1,external_test,bridges_like_validation_brca1,ClinVar,True,2026-01-05,92,100,96,True,https://www.ncbi.nlm.nih.gov/clinvar/
+bridges_like_external_validation_brca1,external_test,gnomad_validation_annotations,gnomAD,True,gnomad_r4_graphql_2026-04-16,92,100,96,True,https://gnomad.broadinstitute.org/
+bridges_like_external_validation_brca1,external_test,mavedb_validation_scores,MaveDB,True,mavedb-dump.20260206153444,92,100,96,True,https://www.mavedb.org/
+bridges_like_external_validation_brca2,external_test,bridges_like_validation_brca2,ClinVar,True,2026-01-05,92,100,96,True,https://www.ncbi.nlm.nih.gov/clinvar/
+bridges_like_external_validation_brca2,external_test,gnomad_validation_annotations,gnomAD,True,gnomad_r4_graphql_2026-04-16,92,100,96,True,https://gnomad.broadinstitute.org/
+bridges_like_external_validation_brca2,external_test,mavedb_validation_scores,MaveDB,True,mavedb-dump.20260206153444,92,100,96,True,https://www.mavedb.org/

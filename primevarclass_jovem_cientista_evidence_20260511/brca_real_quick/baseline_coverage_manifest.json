@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-05-11T05:09:16Z",
+  "summary": {
+    "generated_at": "2026-05-11T05:09:16Z",
+    "baseline_experiment": "external_predictors_only",
+    "overall_coverage_percent": 74,
+    "overall_status": "partial",
+    "core_ablation_coverage_percent": 100,
+    "pairwise_external_coverage_percent": 100,
+    "best_prime_experiment": "hybrid__logistic_regression",
+    "best_prime_delta_auc_roc": 0.5174950511338897,
+    "supported_prime_delta": true
+  },
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\baseline_coverage_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\baseline_coverage_report.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\baseline_coverage_criteria.csv",
+  "feature_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\baseline_coverage_feature_sets.csv",
+  "prime_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\baseline_coverage_prime_vs_baseline.csv"
+}

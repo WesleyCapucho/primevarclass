@@ -1,0 +1,5 @@
+cohort,best_experiment,feature_set,auc_roc,auc_pr,mcc,n_variants
+bridges_like_external_validation_brca1,external_predictors_only__logistic_regression,external_predictors_only,0.5904,0.1782,0.0923,168
+bridges_like_external_validation_brca2,hybrid__logistic_regression,hybrid,0.7509,0.1539,0.1612,289
+clinvar_expert_external_validation_brca1,gene_balanced_specialist,gene_balanced_specialist,0.9223,0.864,0.617,204
+clinvar_expert_external_validation_brca2,biochemical_only__logistic_regression,biochemical_only,0.7764,0.5427,0.4173,175

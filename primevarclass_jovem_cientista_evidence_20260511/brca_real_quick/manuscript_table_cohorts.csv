@@ -1,0 +1,6 @@
+cohort_name,role,valid_rows,n_classes,n_source_tables,release_coverage_percent,schema_coverage_percent,public_catalog_readiness_percent,benchmark_readiness_percent
+public_brca_training,train,869,2,3,92,100,96,48
+clinvar_expert_external_validation_brca1,external_test,204,2,3,92,100,96,48
+clinvar_expert_external_validation_brca2,external_test,175,2,3,92,100,96,48
+bridges_like_external_validation_brca1,external_test,168,2,3,92,100,96,48
+bridges_like_external_validation_brca2,external_test,289,2,3,92,100,96,48

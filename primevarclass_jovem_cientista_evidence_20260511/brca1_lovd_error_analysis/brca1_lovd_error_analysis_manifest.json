@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-11T05:09:35Z",
+  "cohort": "bridges_like_external_validation_brca1",
+  "score_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\study_scores_bridges_like_external_validation_brca1.csv",
+  "metrics_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\study_external_metrics_bridges_like_external_validation_brca1.csv",
+  "integrated_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\cohorts\\bridges_like_external_validation_brca1_ingestion\\integrated_sources.csv",
+  "selected_experiment": "external_predictors_only__logistic_regression",
+  "variant_count": 168,
+  "selected_model_error_count": 32,
+  "selected_model_false_positives": 15,
+  "selected_model_false_negatives": 17,
+  "feature_coverage": {
+    "integrated_rows": 168,
+    "gnomad_rows_with_af": 61,
+    "mavedb_rows_with_score": 11,
+    "gnomad_af_coverage_percent": 36.31,
+    "mavedb_score_coverage_percent": 6.55
+  },
+  "model_error_summary_path": "primevarclass_jovem_cientista_evidence_20260511\\brca1_lovd_error_analysis\\brca1_lovd_model_error_summary.csv",
+  "selected_model_errors_path": "primevarclass_jovem_cientista_evidence_20260511\\brca1_lovd_error_analysis\\brca1_lovd_selected_model_errors.csv",
+  "all_model_errors_path": "primevarclass_jovem_cientista_evidence_20260511\\brca1_lovd_error_analysis\\brca1_lovd_all_model_errors.csv",
+  "report_path": "primevarclass_jovem_cientista_evidence_20260511\\brca1_lovd_error_analysis\\brca1_lovd_error_analysis.md"
+}

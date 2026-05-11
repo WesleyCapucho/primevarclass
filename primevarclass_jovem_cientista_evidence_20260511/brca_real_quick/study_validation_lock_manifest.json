@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-11T05:09:17Z",
+  "summary": {
+    "title": "Jovem Cientista BRCA Real Evidence Quick Pass - Validation Lock",
+    "generated_at": "2026-05-11T05:09:17Z",
+    "study_name": "Jovem Cientista BRCA Real Evidence Quick Pass",
+    "overall_validation_lock_percent": 94,
+    "overall_status": "ready",
+    "claim_tier": "strong",
+    "ready_for_statistical_validation": false,
+    "ready_for_submission_lock": false,
+    "ready_for_translational_pilot": true,
+    "publication_readiness_percent": 95,
+    "comparative_evidence_percent": 85,
+    "claim_strength_percent": 98,
+    "cohort_independence_percent": 100,
+    "baseline_coverage_percent": 74,
+    "artifact_bundle_percent": 100,
+    "n_critical_gaps": 0
+  },
+  "critical_gaps": [],
+  "recommended_actions": [
+    "Garantir que a narrativa de ablation e baseline esteja completa na rodada final."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\study_validation_lock.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\study_validation_lock.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\study_validation_lock_criteria.csv"
+}

@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-05-11T05:09:35Z",
+  "official_hg38_url": "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_hg38.tsv.gz",
+  "official_gene_url": "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_gene_hg38.tsv.gz",
+  "target_local_subset_path": "data/raw/alphamissense/target_gene_alphamissense.tsv",
+  "target_genes": [
+    "BRCA1",
+    "BRCA2",
+    "TP53",
+    "PTEN",
+    "MSH2",
+    "KRAS",
+    "GCK",
+    "F9"
+  ],
+  "source_config_template_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_subset_plan\\alphamissense_target_gene_source_config.toml",
+  "plan_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_subset_plan\\alphamissense_subset_plan.md"
+}

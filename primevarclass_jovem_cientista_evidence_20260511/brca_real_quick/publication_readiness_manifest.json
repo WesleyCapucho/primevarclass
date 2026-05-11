@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-05-11T05:09:16Z",
+  "summary": {
+    "title": "Jovem Cientista BRCA Real Evidence Quick Pass - Publication Readiness",
+    "generated_at": "2026-05-11T05:09:16Z",
+    "study_name": "Jovem Cientista BRCA Real Evidence Quick Pass",
+    "n_cohorts": 5,
+    "n_external_cohorts": 4,
+    "overall_readiness_percent": 95,
+    "overall_status": "ready",
+    "claim_tier": "strong",
+    "claim_strength_percent": 98,
+    "external_robustness_percent": 75,
+    "real_data_freeze_percent": 100,
+    "ready_for_submission": false,
+    "n_strengths": 10,
+    "n_critical_gaps": 0,
+    "best_external_cohort": "clinvar_expert_external_validation_brca1",
+    "best_external_experiment": "gene_balanced_specialist",
+    "best_external_auc_roc": 0.9222758990874933,
+    "best_pairwise_evidence": "supported_gain"
+  },
+  "strengths": [
+    "Cohort design and labels",
+    "Data versioning and manifests",
+    "Public source traceability",
+    "Cohort independence",
+    "Real-data cohort freeze",
+    "Internal validation package",
+    "External validation coverage",
+    "Comparative evidence strength",
+    "Claim strength and framing",
+    "Artifact package completeness"
+  ],
+  "critical_gaps": [],
+  "recommended_actions": [
+    "Consolidar wins de calibracao, seguranca e estabilidade cross-cohort antes de ampliar a alegacao translacional."
+  ],
+  "report_context": {},
+  "criteria_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_criteria.csv",
+  "cohorts_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_cohorts.csv",
+  "sources_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_sources.csv",
+  "external_evidence_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_external_evidence.csv",
+  "artifacts_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_artifacts.csv",
+  "markdown_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_report.md",
+  "html_path": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\publication_readiness_report.html"
+}

@@ -1,0 +1,9 @@
+feature_set,is_prime_signal,best_experiment,n_experiments,max_supported_gain_rate_percent,max_positive_gain_rate_percent,best_mean_delta_auc_roc,best_aggregate_supported_gain,best_aggregate_directional_confidence_percent,best_aggregate_delta_auc_roc,best_internal_rank
+gene_balanced_specialist,False,gene_balanced_specialist,1,50,75,0.17922120623212048,True,100,0.15036491812254474,6.0
+consensus_top3,False,consensus_top3,1,50,75,0.1512503198550687,True,100,0.07949009212858349,
+hybrid_plus_external,True,hybrid_plus_external__logistic_regression,1,50,75,0.1508563398997281,True,100,0.08175526370486012,1.0
+biochemical_only,False,biochemical_only__logistic_regression,1,50,50,0.15375187875659238,True,100,0.08382869980444231,5.0
+hybrid_plus_conservation_structure,True,hybrid_plus_conservation_structure__logistic_regression,1,50,50,0.15144150921822414,True,100,0.08169746672011292,4.0
+hybrid,True,hybrid__logistic_regression,1,50,50,0.15138568184398773,True,100,0.08168187565382802,2.0
+hybrid_plus_conservation,True,hybrid_plus_conservation__logistic_regression,1,50,50,0.15138568184398773,True,100,0.08168187565382802,3.0
+prime_only,True,prime_only__logistic_regression,1,25,50,0.03905605942343927,False,22,-0.02699792356147175,7.0

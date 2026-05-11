@@ -1,0 +1,11 @@
+item,status,evidence
+Study config declared,yes,Jovem Cientista BRCA Real Evidence Quick Pass
+Training metrics exported,yes,primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\study_training_metrics.csv
+Repeated holdout exported,yes,primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\study_repeated_holdout.csv
+External evaluation exported,yes,primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\study_external_evaluation.csv
+Pairwise comparison exported,yes,primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\study_external_pairwise.csv
+Cohort independence audit exported,yes,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\cohort_independence_manifest.json
+Real-data cohort freeze exported,yes,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\study_cohort_freeze_manifest.json
+Claim strength package exported,yes,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\claim_strength_manifest.json
+Model registry exported,yes,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_jovem_cientista_evidence_20260511\brca_real_quick\models\model_registry.csv
+Per-cohort data release manifests exported,yes,5

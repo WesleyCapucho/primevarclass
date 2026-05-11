@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-11T05:09:16Z",
+  "summary": {
+    "generated_at": "2026-05-11T05:09:16Z",
+    "selected_experiment": "hybrid_plus_external__logistic_regression",
+    "selection_basis": "claim_strength",
+    "baseline_experiment": "external_predictors_only__logistic_regression",
+    "overall_external_robustness_percent": 75,
+    "overall_status": "partial",
+    "calibration_coverage_percent": 100,
+    "discrimination_coverage_percent": 100,
+    "brier_win_rate_percent": 75,
+    "ece_win_rate_percent": 75,
+    "separation_win_rate_percent": 100,
+    "pooled_calibration_support_percent": 100,
+    "calibration_no_regression_rate_percent": 50,
+    "auc_roc_win_rate_percent": 75,
+    "auc_pr_win_rate_percent": 75,
+    "mcc_win_rate_percent": 75,
+    "pooled_discrimination_support_percent": 100,
+    "discrimination_no_regression_rate_percent": 75,
+    "exact_sign_confidence_percent": 100,
+    "high_conf_brier_win_rate_percent": 100,
+    "high_conf_ece_win_rate_percent": 50,
+    "high_conf_separation_win_rate_percent": 100,
+    "high_conf_auc_roc_win_rate_percent": 100,
+    "high_conf_auc_pr_win_rate_percent": 100,
+    "high_conf_mcc_win_rate_percent": 100,
+    "high_conf_discrimination_no_regression_rate_percent": 100,
+    "pooled_high_confidence_clinical_support_percent": 100,
+    "high_confidence_clinical_robustness_percent": 93,
+    "effective_high_confidence_clinical_robustness_percent": 98,
+    "heterogeneity_stability_percent": 0,
+    "n_critical_gaps": 1
+  },
+  "critical_gaps": [
+    "Calibration safety"
+  ],
+  "recommended_actions": [
+    "Reduce calibration regressions before claiming stronger translational use.",
+    "Consolidate external wins across the core benchmark metrics.",
+    "Reduce heterogeneity across external cohorts and genes before framing the result as stable."
+  ],
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_criteria.csv",
+  "calibration_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_calibration.csv",
+  "discrimination_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_discrimination.csv",
+  "pooled_support_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_pooled_support.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick\\external_robustness_report.html"
+}

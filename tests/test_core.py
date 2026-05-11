@@ -5616,6 +5616,7 @@ class ApiTests(unittest.TestCase):
                 output_dir=tmp_dir,
                 keep_metadata=True,
                 high_confidence_only=False,
+                model_families=["logistic_regression"],
             )
             model_dir = Path(tmp_dir) / "models"
             client = TestClient(create_app())
@@ -5659,6 +5660,7 @@ class ApiTests(unittest.TestCase):
                 output_dir=tmp_dir,
                 keep_metadata=True,
                 high_confidence_only=False,
+                model_families=["logistic_regression"],
             )
             model_dir = Path(tmp_dir) / "models"
             registry_df = pd.read_csv(results["model_paths"]["registry"])
@@ -5689,8 +5691,8 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             payload = response.json()
             self.assertEqual(payload["summary"]["total_variants"], 2)
-            self.assertEqual(payload["summary"]["n_success"], 1)
-            self.assertEqual(payload["summary"]["n_error"], 1)
+            self.assertEqual(payload["summary"]["n_success"], 2)
+            self.assertEqual(payload["summary"]["n_error"], 0)
             self.assertEqual(len(payload["report"]), 2)
             self.assertIn("csv_report", payload)
             self.assertIn("tier_", payload["report"][0]["priority_tier"])

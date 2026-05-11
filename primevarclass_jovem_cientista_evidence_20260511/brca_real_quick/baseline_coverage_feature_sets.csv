@@ -1,0 +1,9 @@
+feature_set,present_in_training,coverage_role
+prime_only,True,core_ablation
+biochemical_only,True,core_ablation
+hybrid,True,core_ablation
+hybrid_plus_conservation,True,core_ablation
+hybrid_plus_conservation_structure,True,core_ablation
+hybrid_plus_external,True,core_ablation
+external_predictors_only,True,core_ablation
+gene_balanced_specialist,True,additional
