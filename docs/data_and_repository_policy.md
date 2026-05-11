@@ -3,7 +3,7 @@
 This repository stores source code, configuration templates, documentation, reproducible scripts, manifests, and lightweight evidence reports.
 
 It intentionally does not store raw public database downloads or large generated artifacts.
-Canonical large assets are published through GitHub Releases, starting with tag `data-artifacts-2026-05-11`.
+Canonical large assets are published through GitHub Releases, starting with tag `data-artifacts-2026-05-11`: https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11.
 
 ## Included in Git
 
