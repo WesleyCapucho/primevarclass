@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-11T15:19:28Z`
-- Git commit: `7a7038f6d9faa2c993dd1c6a97f40d4f99c94310`
+- Generated at: `2026-05-11T15:29:48Z`
+- Git commit: `e25495512d8a47bbf397d092cc55806b16ff3ef6`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
@@ -18,7 +18,8 @@
 - Diagnostic calibration safety: `50%` -> `100%`
 - Locked calibration holdout safety: `50%` -> `100%` on `417` held-out variants
 - Competition readiness: `91.6%`
-- Targeted automated tests: `38/38` passed
+- AlphaMissense priority staging: `30.0%` coordinate-ready; `0.0%` local coverage
+- Targeted automated tests: `39/39` passed
 
 ## Best external results by cohort
 
@@ -36,9 +37,10 @@
 - Calibration rescue: 100.0% (ready) - safety 50% -> 100%
 - Locked calibration holdout: 100.0% (ready) - heldout n=417; safety 50% -> 100%
 - Competition readiness: 91.6% (ready) - paper 89.6%; priority variants 50
+- AlphaMissense priority staging: 30.0% (ready_to_extract) - targets 50; local coverage 0.0%
 - Cohort independence: 100.0% (ready) - 0% train/external overlap in frozen cohorts
 - Baseline and ablation: 74.0% (partial) - needs final ablation narrative and full-campaign confirmation
-- Targeted automated tests: 100.0% (passed) - 38/38 targeted tests passed in 799.5s
+- Targeted automated tests: 100.0% (passed) - 39/39 targeted tests passed in 799.6s
 
 ## Automated test evidence
 
@@ -49,6 +51,7 @@
 - targeted_calibration_rescue_tests: passed, 1 tests, 0.711s
 - targeted_locked_calibration_holdout_tests: passed, 1 tests, 0.959s
 - targeted_competition_readiness_tests: passed, 1 tests, 0.181s
+- targeted_alphamissense_enrichment_tests: passed, 1 tests, 0.147s
 
 ## Main strengths for the article
 
@@ -59,6 +62,7 @@
 - A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.
 - A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.
 - A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.
+- An AlphaMissense priority-staging package now creates exact target lists and a safe streaming extraction command for persistent BRCA1/LOVD variants.
 - The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.
 
 ## Honest gaps to close before a top-tier paper
@@ -69,6 +73,7 @@
 - MaveDB coverage in the weak BRCA1 LOVD cohort: `6.55%`.
 - External robustness is still `75%`; diagnostic recalibration and locked holdout both support `100%` calibration safety, but this must be repeated in a larger blinded/prospective holdout.
 - Locked holdout status is `ready` with `57` persistent focus-cohort test errors; the next step is a larger blinded/prospective holdout.
+- AlphaMissense local coverage is still `0.0%`; run the generated extractor or provide a local subset before claiming functional-predictor validation.
 - Persistent BRCA1/LOVD errors after calibration: `64`.
 - Baseline/ablation coverage is `74%`; this needs a final ablation narrative before a high-impact submission.
 - The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.

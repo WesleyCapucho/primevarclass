@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-05-11T15:29:06Z",
+  "campaign_root": "primevarclass_jovem_cientista_evidence_20260511",
+  "priority_queue_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_priority_variant_queue.csv",
+  "target_count": 50,
+  "coordinate_ready_count": 15,
+  "coordinate_ready_percent": 30.0,
+  "local_alphamissense_subset_path": "data\\raw\\alphamissense\\target_gene_alphamissense.tsv",
+  "local_subset_exists": false,
+  "local_subset_coverage_percent": 0.0,
+  "matched_alphamissense_count": 0,
+  "missing_alphamissense_count": 50,
+  "target_genes": [
+    "BRCA1",
+    "BRCA2"
+  ],
+  "official_alphamissense_hg38_url": "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_hg38.tsv.gz",
+  "status": "ready_to_extract",
+  "next_action": "Run the generated PowerShell extractor or provide a local AlphaMissense subset, then rerun this package.",
+  "protein_targets_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_protein_targets.tsv",
+  "coordinate_targets_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_coordinate_targets.csv",
+  "matched_coverage_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_matched_coverage.csv",
+  "missing_targets_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_missing_targets.csv",
+  "source_config_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_source_config.toml",
+  "extractor_script_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\extract_priority_alphamissense.ps1",
+  "markdown_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_enrichment_report.md",
+  "html_path": "primevarclass_jovem_cientista_evidence_20260511\\alphamissense_priority_enrichment\\alphamissense_priority_enrichment_report.html"
+}

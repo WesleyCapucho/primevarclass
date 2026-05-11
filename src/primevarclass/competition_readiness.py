@@ -96,6 +96,7 @@ def _load_campaign_inputs(campaign_root: Path, prospective_manifest_path: str | 
     calibration_manifest = _read_json(campaign_root / "calibration_rescue" / "calibration_rescue_manifest.json")
     brca_error_manifest = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
     alpha_manifest = _read_json(campaign_root / "alphamissense_subset_plan" / "alphamissense_subset_plan_manifest.json")
+    alpha_enrichment_manifest = _read_json(campaign_root / "alphamissense_priority_enrichment" / "alphamissense_priority_enrichment_manifest.json")
     competition_manifest = _read_json(campaign_root / "competition_evidence_manifest.json")
     prospective_manifest = _read_json(
         prospective_manifest_path
@@ -110,6 +111,7 @@ def _load_campaign_inputs(campaign_root: Path, prospective_manifest_path: str | 
         "calibration": calibration_manifest,
         "brca_error": brca_error_manifest,
         "alpha": alpha_manifest,
+        "alpha_enrichment": alpha_enrichment_manifest,
         "competition": competition_manifest,
         "prospective": prospective_manifest,
         "locked_error_queue": _read_table(locked_manifest.get("error_queue_path")),
@@ -194,6 +196,15 @@ def _build_strategy_matrix(inputs: dict[str, Any]) -> pd.DataFrame:
     brca_error = inputs["brca_error"]
     prospective_summary = _summary(inputs["prospective"])
     alpha = inputs["alpha"]
+    alpha_enrichment = inputs["alpha_enrichment"]
+    alpha_current = (
+        f"{alpha_enrichment.get('target_count', 0)} priority targets; "
+        f"{alpha_enrichment.get('coordinate_ready_percent', 0)}% coordinate-ready; "
+        f"{alpha_enrichment.get('local_subset_coverage_percent', 0)}% local AlphaMissense coverage."
+        if alpha_enrichment
+        else f"AlphaMissense subset plan for {len(alpha.get('target_genes', []))} target genes."
+    )
+    alpha_status = alpha_enrichment.get("status") if alpha_enrichment else ("ready_to_stage" if alpha else "missing")
     rows = [
         {
             "front": "Locked external validation",
@@ -205,11 +216,11 @@ def _build_strategy_matrix(inputs: dict[str, Any]) -> pd.DataFrame:
         },
         {
             "front": "Functional predictor expansion",
-            "current_evidence": f"AlphaMissense subset plan for {len(alpha.get('target_genes', []))} target genes.",
+            "current_evidence": alpha_current,
             "gap_to_close": "Stage target-gene AlphaMissense rows and rerun benchmark with external functional predictor.",
-            "action": "Use streaming extraction from official AlphaMissense table; do not load full table into memory.",
+            "action": "Use the generated priority target list and streaming extractor; do not load the full table into memory.",
             "impact_for_prize": "Adds independent functional evidence to weak BRCA1/LOVD calls.",
-            "status": "ready_to_stage" if alpha else "missing",
+            "status": alpha_status,
         },
         {
             "front": "BRCA1 LOVD error mechanism",
@@ -295,7 +306,18 @@ def _readiness_scores(inputs: dict[str, Any]) -> dict[str, Any]:
     if total_tests:
         tests = 100.0 * _safe_float(inputs["competition"].get("passed_targeted_tests")) / max(total_tests, 1)
     prospective = _safe_float(_summary(inputs["prospective"]).get("prospective_validation_readiness_percent"), 0)
+    alpha_enrichment = inputs["alpha_enrichment"]
     alpha_plan = 85.0 if inputs["alpha"] else 0.0
+    if alpha_enrichment:
+        alpha_plan = max(
+            alpha_plan,
+            min(
+                100.0,
+                55.0
+                + _safe_float(alpha_enrichment.get("coordinate_ready_percent")) * 0.25
+                + _safe_float(alpha_enrichment.get("local_subset_coverage_percent")) * 0.20,
+            ),
+        )
     competition_readiness = min(
         96,
         round(
@@ -418,6 +440,9 @@ def build_competition_readiness_package(
             "external_robustness_percent": inputs["robustness"].get("overall_external_robustness_percent"),
             "prospective_readiness_percent": _summary(inputs["prospective"]).get("prospective_validation_readiness_percent"),
             "alphamissense_target_genes": inputs["alpha"].get("target_genes", []),
+            "alphamissense_priority_status": inputs["alpha_enrichment"].get("status"),
+            "alphamissense_priority_coordinate_ready_percent": inputs["alpha_enrichment"].get("coordinate_ready_percent"),
+            "alphamissense_priority_local_subset_coverage_percent": inputs["alpha_enrichment"].get("local_subset_coverage_percent"),
         },
     }
 

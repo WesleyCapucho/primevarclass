@@ -95,6 +95,8 @@ def build_summary(campaign_root: Path) -> dict:
     locked_holdout = _read_json(locked_holdout_path) if locked_holdout_path.exists() else {}
     competition_readiness_path = campaign_root / "competition_readiness" / "competition_readiness_manifest.json"
     competition_readiness = _read_json(competition_readiness_path) if competition_readiness_path.exists() else {}
+    alphamissense_enrichment_path = campaign_root / "alphamissense_priority_enrichment" / "alphamissense_priority_enrichment_manifest.json"
+    alphamissense_enrichment = _read_json(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else {}
     brca_error = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
 
     cohort_manifest = pd.read_csv(brca_dir / "study_cohort_manifest.csv")
@@ -115,6 +117,7 @@ def build_summary(campaign_root: Path) -> dict:
         campaign_root / "test_logs" / "targeted_calibration_rescue_tests.log",
         campaign_root / "test_logs" / "targeted_locked_calibration_holdout_tests.log",
         campaign_root / "test_logs" / "targeted_competition_readiness_tests.log",
+        campaign_root / "test_logs" / "targeted_alphamissense_enrichment_tests.log",
     ]
     test_matrix = pd.DataFrame([_parse_unittest_log(path) for path in log_paths])
     test_matrix_path = output_dir / "competition_test_matrix.csv"
@@ -166,6 +169,12 @@ def build_summary(campaign_root: Path) -> dict:
             "score_percent": competition_readiness.get("competition_readiness_percent"),
             "status": "ready" if competition_readiness.get("ready_for_competition_dossier") else "partial",
             "evidence": f"paper {competition_readiness.get('paper_readiness_percent')}%; priority variants {competition_readiness.get('priority_variant_count')}",
+        },
+        {
+            "area": "AlphaMissense priority staging",
+            "score_percent": alphamissense_enrichment.get("coordinate_ready_percent"),
+            "status": alphamissense_enrichment.get("status"),
+            "evidence": f"targets {alphamissense_enrichment.get('target_count')}; local coverage {alphamissense_enrichment.get('local_subset_coverage_percent')}%",
         },
         {
             "area": "Cohort independence",
@@ -228,6 +237,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Diagnostic calibration safety: `{calibration_rescue.get('raw_calibration_safety_rate_percent')}%` -> `{calibration_rescue.get('calibrated_safety_rate_percent')}%`",
             f"- Locked calibration holdout safety: `{locked_holdout.get('raw_test_calibration_safety_rate_percent')}%` -> `{locked_holdout.get('locked_calibrated_test_safety_rate_percent')}%` on `{locked_holdout.get('n_heldout_test_variants')}` held-out variants",
             f"- Competition readiness: `{competition_readiness.get('competition_readiness_percent')}%`",
+            f"- AlphaMissense priority staging: `{alphamissense_enrichment.get('coordinate_ready_percent')}%` coordinate-ready; `{alphamissense_enrichment.get('local_subset_coverage_percent')}%` local coverage",
             f"- Targeted automated tests: `{passed_tests}/{total_targeted_tests}` passed",
             "",
             "## Best external results by cohort",
@@ -251,6 +261,7 @@ def build_summary(campaign_root: Path) -> dict:
             "- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.",
             "- A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.",
             "- A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.",
+            "- An AlphaMissense priority-staging package now creates exact target lists and a safe streaming extraction command for persistent BRCA1/LOVD variants.",
             "- The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.",
             "",
             "## Honest gaps to close before a top-tier paper",
@@ -261,6 +272,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- MaveDB coverage in the weak BRCA1 LOVD cohort: `{brca_error.get('feature_coverage', {}).get('mavedb_score_coverage_percent')}%`.",
             f"- External robustness is still `{robustness.get('overall_external_robustness_percent')}%`; diagnostic recalibration and locked holdout both support `{calibration_rescue.get('calibrated_safety_rate_percent')}%` calibration safety, but this must be repeated in a larger blinded/prospective holdout.",
             f"- Locked holdout status is `{locked_holdout.get('status')}` with `{locked_holdout.get('persistent_focus_errors')}` persistent focus-cohort test errors; the next step is a larger blinded/prospective holdout.",
+            f"- AlphaMissense local coverage is still `{alphamissense_enrichment.get('local_subset_coverage_percent')}%`; run the generated extractor or provide a local subset before claiming functional-predictor validation.",
             f"- Persistent BRCA1/LOVD errors after calibration: `{calibration_rescue.get('persistent_focus_errors')}`.",
             f"- Baseline/ablation coverage is `{validation.get('baseline_coverage_percent')}%`; this needs a final ablation narrative before a high-impact submission.",
             "- The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.",
@@ -295,6 +307,7 @@ def build_summary(campaign_root: Path) -> dict:
         "total_targeted_tests": total_targeted_tests,
         "locked_calibration_holdout_manifest_path": str(locked_holdout_path) if locked_holdout_path.exists() else None,
         "competition_readiness_manifest_path": str(competition_readiness_path) if competition_readiness_path.exists() else None,
+        "alphamissense_priority_enrichment_manifest_path": str(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else None,
         "scorecard_path": str(scorecard_path),
         "external_best_metrics_path": str(external_best_path),
         "test_matrix_path": str(test_matrix_path),

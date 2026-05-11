@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from primevarclass import (
+    export_alphamissense_priority_enrichment_package,
     export_biological_discovery_package,
     build_dataset_from_dataframe,
     build_dataset_from_source_config,
@@ -3837,6 +3838,88 @@ class StudyBenchmarkTests(unittest.TestCase):
             self.assertIn("not_yet", set(claims["status"]))
             strategy = pd.read_csv(exported["competition_strategy_matrix_path"])
             self.assertIn("Locked external validation", set(strategy["front"]))
+
+    def test_export_alphamissense_priority_enrichment_prepares_targets_and_local_coverage(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            campaign = tmp_path / "campaign"
+            readiness_dir = campaign / "competition_readiness"
+            cohort_dir = campaign / "brca_real_quick" / "cohorts"
+            readiness_dir.mkdir(parents=True)
+            cohort_dir.mkdir(parents=True)
+            priority_path = readiness_dir / "competition_priority_variant_queue.csv"
+            pd.DataFrame(
+                [
+                    {
+                        "competition_priority_score": 4.1,
+                        "variant": "BRCA1 p.C1501Y",
+                        "gene": "BRCA1",
+                        "hgvs_p": "p.C1501Y",
+                        "label": 0,
+                        "cohort": "bridges_like_external_validation_brca1",
+                        "calibration_effect": "persistent_on_locked_test",
+                    },
+                    {
+                        "competition_priority_score": 3.2,
+                        "variant": "BRCA1 p.R213M",
+                        "gene": "BRCA1",
+                        "hgvs_p": "p.R213M",
+                        "label": 0,
+                        "cohort": "bridges_like_external_validation_brca1",
+                        "calibration_effect": "persistent_on_locked_test",
+                    },
+                ]
+            ).to_csv(priority_path, index=False)
+            (readiness_dir / "competition_readiness_manifest.json").write_text(
+                json.dumps({"priority_queue_path": str(priority_path)}),
+                encoding="utf-8",
+            )
+            pd.DataFrame(
+                [
+                    {
+                        "variant": "BRCA1 p.C1501Y",
+                        "gene": "BRCA1",
+                        "variant_id": "12345",
+                        "meta_gnomad_variant_id": "17-43000001-G-A",
+                        "meta_gnomad_reference_genome": "GRCh38",
+                    },
+                    {
+                        "variant": "BRCA1 p.R213M",
+                        "gene": "BRCA1",
+                        "variant_id": "67890",
+                        "meta_gnomad_variant_id": "",
+                        "meta_gnomad_reference_genome": "",
+                    },
+                ]
+            ).to_csv(cohort_dir / "bridges_like_external_validation_brca1_processed_dataset.csv", index=False)
+            alpha_subset = tmp_path / "target_gene_alphamissense.tsv"
+            pd.DataFrame(
+                [
+                    {
+                        "gene": "BRCA1",
+                        "hgvs_p": "p.C1501Y",
+                        "feature_alphamissense_pathogenicity": 0.91,
+                        "feature_alphamissense_class": "likely_pathogenic",
+                    }
+                ]
+            ).to_csv(alpha_subset, sep="\t", index=False)
+
+            exported = export_alphamissense_priority_enrichment_package(
+                campaign_root=str(campaign),
+                output_dir=str(tmp_path / "alpha_enrichment"),
+                local_alphamissense_subset_path=str(alpha_subset),
+                max_targets=2,
+            )
+
+            manifest = json.loads(Path(exported["alphamissense_priority_enrichment_manifest_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(manifest["target_count"], 2)
+            self.assertEqual(manifest["coordinate_ready_count"], 1)
+            self.assertEqual(manifest["matched_alphamissense_count"], 1)
+            coordinate_targets = pd.read_csv(exported["alphamissense_priority_coordinate_targets_path"])
+            self.assertEqual(coordinate_targets.iloc[0]["chromosome"], "chr17")
+            matched = pd.read_csv(exported["alphamissense_priority_matched_coverage_path"])
+            self.assertIn("feature_alphamissense_pathogenicity", matched.columns)
+            self.assertTrue(Path(exported["alphamissense_priority_extractor_script_path"]).exists())
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

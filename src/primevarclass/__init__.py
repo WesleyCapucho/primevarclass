@@ -1,4 +1,8 @@
 from .api import app, create_app
+from .alphamissense_enrichment import (
+    build_alphamissense_priority_enrichment_package,
+    export_alphamissense_priority_enrichment_package,
+)
 from .analytics import build_team_dashboard
 from .audit import PrimeVarClassAuditLogger
 from .biological_discovery import build_biological_discovery_package, export_biological_discovery_package
@@ -144,6 +148,7 @@ from .versioning import export_data_release_manifest, export_study_release_manif
 __all__ = [
     "app",
     "create_app",
+    "build_alphamissense_priority_enrichment_package",
     "build_biological_discovery_package",
     "build_calibration_rescue_package",
     "build_locked_calibration_holdout_package",
@@ -204,6 +209,7 @@ __all__ = [
     "build_real_data_handoff_package",
     "build_study_execution_board",
     "execute_public_source_bootstrap_bundle",
+    "export_alphamissense_priority_enrichment_package",
     "export_biological_discovery_package",
     "export_calibration_rescue_package",
     "export_locked_calibration_holdout_package",

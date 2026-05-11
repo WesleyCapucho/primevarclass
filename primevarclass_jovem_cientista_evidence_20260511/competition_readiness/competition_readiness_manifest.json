@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T15:18:43Z",
+  "generated_at": "2026-05-11T15:29:34Z",
   "campaign_root": "primevarclass_jovem_cientista_evidence_20260511",
   "competition_readiness_percent": 91.6,
   "paper_readiness_percent": 89.6,
@@ -39,7 +39,10 @@
       "KRAS",
       "GCK",
       "F9"
-    ]
+    ],
+    "alphamissense_priority_status": "ready_to_extract",
+    "alphamissense_priority_coordinate_ready_percent": 30.0,
+    "alphamissense_priority_local_subset_coverage_percent": 0.0
   },
   "priority_queue_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_priority_variant_queue.csv",
   "strategy_matrix_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_strategy_matrix.csv",

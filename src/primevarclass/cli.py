@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 
+from .alphamissense_enrichment import export_alphamissense_priority_enrichment_package
 from .api import run_api
 from .biological_discovery import export_biological_discovery_package
 from .calibration_rescue import export_calibration_rescue_package, export_locked_calibration_holdout_package
@@ -65,6 +66,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-calibration-rescue", action="store_true", help="Gerar recalibracao diagnostica, limiares e triagem de erros externos")
     parser.add_argument("--build-locked-calibration-holdout", action="store_true", help="Gerar holdout travado de calibracao/teste para evidencia externa sem vazamento")
     parser.add_argument("--build-competition-readiness", action="store_true", help="Consolidar estrategia, claims permitidos e variantes prioritarias para artigo/competicao")
+    parser.add_argument("--build-alphamissense-priority-enrichment", action="store_true", help="Gerar alvos AlphaMissense prioritarios e cobertura local sem baixar arquivo gigante")
     parser.add_argument("--build-continuous-learning", action="store_true", help="Gerar o pacote de aprendizado continuo com sync publico, resolucao e retraining automatizavel")
     parser.add_argument("--build-independent-data-expansion", action="store_true", help="Gerar plano e templates para ampliar treino/validacao com bancos reais independentes")
     parser.add_argument("--autostage-open-independent-sources", action="store_true", help="Baixar/stagear fontes publicas abertas independentes via APIs oficiais")
@@ -128,6 +130,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--split-seed-prime", type=int, default=104729, help="Semente prima para divisao deterministica e auditavel do holdout")
     parser.add_argument("--campaign-root", type=str, default=None, help="Raiz do pacote de evidencias da campanha para readiness de competicao/artigo")
     parser.add_argument("--max-priority-variants", type=int, default=40, help="Numero maximo de variantes priorizadas no pacote de readiness")
+    parser.add_argument("--priority-queue-path", type=str, default=None, help="Fila de variantes prioritarias para enriquecimento AlphaMissense")
+    parser.add_argument("--local-alphamissense-subset-path", type=str, default="data/raw/alphamissense/target_gene_alphamissense.tsv", help="Subset local AlphaMissense ja extraido, quando disponivel")
+    parser.add_argument("--max-alpha-targets", type=int, default=50, help="Numero maximo de alvos AlphaMissense a preparar")
     parser.add_argument("--public-study-run", action="store_true", help="Executar o fluxo integrado de estudo publico: resolucao + preflight + benchmark + execution board")
     parser.add_argument("--candidate-public-study-run", action="store_true", help="Executar a rerrodada controlada a partir de um candidate study config")
     parser.add_argument("--candidate-promotion-manifest", type=str, default=None, help="Manifesto opcional do candidate-promotion package")
@@ -430,6 +435,20 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Competition readiness manifest: {results['competition_readiness_manifest_path']}")
         print(f"Competition readiness report: {results['competition_readiness_report_markdown_path']}")
         print(f"Priority variant queue: {results['competition_priority_variant_queue_path']}")
+        return 0
+    if args.build_alphamissense_priority_enrichment:
+        campaign_root = args.campaign_root or "primevarclass_jovem_cientista_evidence_20260511"
+        results = export_alphamissense_priority_enrichment_package(
+            campaign_root=campaign_root,
+            output_dir=args.output_dir,
+            priority_queue_path=args.priority_queue_path,
+            local_alphamissense_subset_path=args.local_alphamissense_subset_path,
+            max_targets=args.max_alpha_targets,
+        )
+        print("PrimeVarClass AlphaMissense priority enrichment package finished.")
+        print(f"AlphaMissense enrichment manifest: {results['alphamissense_priority_enrichment_manifest_path']}")
+        print(f"AlphaMissense enrichment report: {results['alphamissense_priority_enrichment_report_markdown_path']}")
+        print(f"Coordinate targets: {results['alphamissense_priority_coordinate_targets_path']}")
         return 0
     if args.build_development_progress:
         results = export_development_progress_dashboard(
