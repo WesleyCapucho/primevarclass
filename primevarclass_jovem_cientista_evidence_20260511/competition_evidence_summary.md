@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-11T14:52:38Z`
-- Git commit: `8d6785328d49a3fff961659d56c29370fa501071`
+- Generated at: `2026-05-11T15:04:58Z`
+- Git commit: `f6d354d65b7d371d87d04e0a08d0455f07e14a4c`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
@@ -16,7 +16,8 @@
 - Claim strength: `98%` (`strong`)
 - External robustness: `75%`
 - Diagnostic calibration safety: `50%` -> `100%`
-- Targeted automated tests: `36/36` passed
+- Locked calibration holdout safety: `50%` -> `100%` on `417` held-out variants
+- Targeted automated tests: `37/37` passed
 
 ## Best external results by cohort
 
@@ -32,9 +33,10 @@
 - Claim strength: 98.0% (strong) - hybrid_plus_external__logistic_regression
 - External robustness: 75.0% (partial) - pooled calibration/discrimination support with remaining calibration-safety gap
 - Calibration rescue: 100.0% (ready) - safety 50% -> 100%
+- Locked calibration holdout: 100.0% (ready) - heldout n=417; safety 50% -> 100%
 - Cohort independence: 100.0% (ready) - 0% train/external overlap in frozen cohorts
 - Baseline and ablation: 74.0% (partial) - needs final ablation narrative and full-campaign confirmation
-- Targeted automated tests: 100.0% (passed) - 36/36 targeted tests passed in 798.3s
+- Targeted automated tests: 100.0% (passed) - 37/37 targeted tests passed in 799.3s
 
 ## Automated test evidence
 
@@ -43,6 +45,7 @@
 - targeted_study_benchmark_tests: passed, 9 tests, 670.078s
 - targeted_api_operational_tests_fixed: passed, 5 tests, 123.264s
 - targeted_calibration_rescue_tests: passed, 1 tests, 0.711s
+- targeted_locked_calibration_holdout_tests: passed, 1 tests, 0.959s
 
 ## Main strengths for the article
 
@@ -51,6 +54,7 @@
 - The central prime-aware hybrid claim is strong in the current quick-pass evidence package.
 - The API and user-facing documentation endpoints are covered by targeted operational tests.
 - A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.
+- A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.
 - The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.
 
 ## Honest gaps to close before a top-tier paper
@@ -59,7 +63,8 @@
 - BRCA1 LOVD selected-model errors: `32` errors across `168` variants.
 - gnomAD coverage in the weak BRCA1 LOVD cohort: `36.31%`.
 - MaveDB coverage in the weak BRCA1 LOVD cohort: `6.55%`.
-- External robustness is still `75%`; diagnostic recalibration improves safety to `100%`, but this must be confirmed in a locked calibration holdout.
+- External robustness is still `75%`; diagnostic recalibration and locked holdout both support `100%` calibration safety, but this must be repeated in a larger blinded/prospective holdout.
+- Locked holdout status is `ready` with `57` persistent focus-cohort test errors; the next step is a larger blinded/prospective holdout.
 - Persistent BRCA1/LOVD errors after calibration: `64`.
 - Baseline/ablation coverage is `74%`; this needs a final ablation narrative before a high-impact submission.
 - The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.
@@ -68,7 +73,8 @@
 
 - Run the full BRCA campaign with 200 bootstraps and multiple model families overnight or in CI/HPC.
 - Add AlphaMissense target-gene subsets to improve weak BRCA1/LOVD functional coverage.
-- Calibrate external probabilities by cohort and report calibration curves, Brier score, and expected calibration error.
+- Expand the locked calibration protocol to the full BRCA campaign and report calibration curves, Brier score, expected calibration error and decision thresholds.
+- Promote the locked holdout protocol into a frozen prospective validation plan with no post-hoc threshold changes.
 - Prioritize the BRCA1/LOVD false positives and false negatives for structural review and functional confirmation.
 - Convert this summary, the methods package, and the manuscript tables into the LaTeX paper scaffold after the full campaign is locked.
 

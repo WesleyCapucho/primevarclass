@@ -4,7 +4,7 @@ import argparse
 
 from .api import run_api
 from .biological_discovery import export_biological_discovery_package
-from .calibration_rescue import export_calibration_rescue_package
+from .calibration_rescue import export_calibration_rescue_package, export_locked_calibration_holdout_package
 from .candidate_public_runner import run_candidate_public_benchmark_pipeline
 from .continuous_learning import export_continuous_learning_package
 from .core import demo_full_pipeline_run, print_usage_guide, run_full_training_pipeline
@@ -62,6 +62,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-development-progress", action="store_true", help="Recalcular tabela global de progresso da plataforma")
     parser.add_argument("--build-validation-credibility-closure", action="store_true", help="Consolidar evidencias de validacao, credibilidade e lacunas restantes")
     parser.add_argument("--build-calibration-rescue", action="store_true", help="Gerar recalibracao diagnostica, limiares e triagem de erros externos")
+    parser.add_argument("--build-locked-calibration-holdout", action="store_true", help="Gerar holdout travado de calibracao/teste para evidencia externa sem vazamento")
     parser.add_argument("--build-continuous-learning", action="store_true", help="Gerar o pacote de aprendizado continuo com sync publico, resolucao e retraining automatizavel")
     parser.add_argument("--build-independent-data-expansion", action="store_true", help="Gerar plano e templates para ampliar treino/validacao com bancos reais independentes")
     parser.add_argument("--autostage-open-independent-sources", action="store_true", help="Baixar/stagear fontes publicas abertas independentes via APIs oficiais")
@@ -121,6 +122,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--candidate-experiment", type=str, default=None, help="Experimento candidato para pacotes de evidencia pos-estudo")
     parser.add_argument("--baseline-experiment", type=str, default=None, help="Experimento baseline para pacotes de evidencia pos-estudo")
     parser.add_argument("--focus-cohort", type=str, default="bridges_like_external_validation_brca1", help="Coorte foco para triagem detalhada de erros")
+    parser.add_argument("--calibration-fraction", type=float, default=0.5, help="Fracao estratificada usada para ajuste no holdout travado")
+    parser.add_argument("--split-seed-prime", type=int, default=104729, help="Semente prima para divisao deterministica e auditavel do holdout")
     parser.add_argument("--public-study-run", action="store_true", help="Executar o fluxo integrado de estudo publico: resolucao + preflight + benchmark + execution board")
     parser.add_argument("--candidate-public-study-run", action="store_true", help="Executar a rerrodada controlada a partir de um candidate study config")
     parser.add_argument("--candidate-promotion-manifest", type=str, default=None, help="Manifesto opcional do candidate-promotion package")
@@ -393,6 +396,23 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Calibration rescue manifest: {results['calibration_rescue_manifest_path']}")
         print(f"Calibration rescue report: {results['calibration_rescue_report_markdown_path']}")
         print(f"Error triage queue: {results['calibration_rescue_error_triage_queue_path']}")
+        return 0
+    if args.build_locked_calibration_holdout:
+        if not args.study_dir:
+            parser.error("--build-locked-calibration-holdout exige --study-dir.")
+        results = export_locked_calibration_holdout_package(
+            study_dir=args.study_dir,
+            output_dir=args.output_dir,
+            candidate_experiment=args.candidate_experiment,
+            baseline_experiment=args.baseline_experiment,
+            focus_cohort=args.focus_cohort,
+            calibration_fraction=args.calibration_fraction,
+            split_seed_prime=args.split_seed_prime,
+        )
+        print("PrimeVarClass locked calibration holdout package finished.")
+        print(f"Locked holdout manifest: {results['locked_calibration_holdout_manifest_path']}")
+        print(f"Locked holdout report: {results['locked_calibration_holdout_report_markdown_path']}")
+        print(f"Locked holdout error queue: {results['locked_calibration_holdout_error_queue_path']}")
         return 0
     if args.build_development_progress:
         results = export_development_progress_dashboard(

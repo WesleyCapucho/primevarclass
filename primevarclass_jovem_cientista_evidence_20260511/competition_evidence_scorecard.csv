@@ -4,6 +4,7 @@ Validation lock,94.0,ready,claim=strong; translational pilot=True
 Claim strength,98.0,strong,hybrid_plus_external__logistic_regression
 External robustness,75.0,partial,pooled calibration/discrimination support with remaining calibration-safety gap
 Calibration rescue,100.0,ready,safety 50% -> 100%
+Locked calibration holdout,100.0,ready,heldout n=417; safety 50% -> 100%
 Cohort independence,100.0,ready,0% train/external overlap in frozen cohorts
 Baseline and ablation,74.0,partial,needs final ablation narrative and full-campaign confirmation
-Targeted automated tests,100.0,passed,36/36 targeted tests passed in 798.3s
+Targeted automated tests,100.0,passed,37/37 targeted tests passed in 799.3s

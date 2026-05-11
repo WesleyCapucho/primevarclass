@@ -27,6 +27,7 @@ from primevarclass import (
     dataset_schema_template,
     encode_variant_features,
     export_calibration_rescue_package,
+    export_locked_calibration_holdout_package,
     export_claim_strength_package,
     export_brca1_engine_execution_package,
     export_brca1_fragment_preparation_package,
@@ -3667,6 +3668,65 @@ class StudyBenchmarkTests(unittest.TestCase):
             queue = pd.read_csv(results["calibration_rescue_error_triage_queue_path"])
             self.assertIn("priority_score", queue.columns)
             self.assertIn("calibration_effect", queue.columns)
+
+    def test_export_locked_calibration_holdout_uses_disjoint_test_split(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            study_dir = tmp_path / "study"
+            study_dir.mkdir()
+            (study_dir / "claim_strength_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "summary": {
+                            "selected_experiment": "hybrid__random_forest",
+                            "selected_baseline_experiment": "external_predictors_only__random_forest",
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pd.DataFrame(
+                [
+                    {"variant": "BRCA1 p.Ala1Val", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.82, "score__external_predictors_only__random_forest": 0.62},
+                    {"variant": "BRCA1 p.Ala2Val", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.75, "score__external_predictors_only__random_forest": 0.61},
+                    {"variant": "BRCA1 p.Ala3Val", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.70, "score__external_predictors_only__random_forest": 0.59},
+                    {"variant": "BRCA1 p.Ala4Val", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.64, "score__external_predictors_only__random_forest": 0.58},
+                    {"variant": "BRCA1 p.Gly1Ser", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.44, "score__external_predictors_only__random_forest": 0.47},
+                    {"variant": "BRCA1 p.Gly2Ser", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.39, "score__external_predictors_only__random_forest": 0.43},
+                    {"variant": "BRCA1 p.Gly3Ser", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.35, "score__external_predictors_only__random_forest": 0.41},
+                    {"variant": "BRCA1 p.Gly4Ser", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.29, "score__external_predictors_only__random_forest": 0.38},
+                ]
+            ).to_csv(study_dir / "study_scores_bridges_like_external_validation_brca1.csv", index=False)
+            pd.DataFrame(
+                [
+                    {"variant": "BRCA2 p.Ala1Val", "gene": "BRCA2", "label": 1, "score__hybrid__random_forest": 0.83, "score__external_predictors_only__random_forest": 0.65},
+                    {"variant": "BRCA2 p.Ala2Val", "gene": "BRCA2", "label": 1, "score__hybrid__random_forest": 0.77, "score__external_predictors_only__random_forest": 0.62},
+                    {"variant": "BRCA2 p.Ala3Val", "gene": "BRCA2", "label": 1, "score__hybrid__random_forest": 0.73, "score__external_predictors_only__random_forest": 0.60},
+                    {"variant": "BRCA2 p.Gly1Ser", "gene": "BRCA2", "label": 0, "score__hybrid__random_forest": 0.41, "score__external_predictors_only__random_forest": 0.45},
+                    {"variant": "BRCA2 p.Gly2Ser", "gene": "BRCA2", "label": 0, "score__hybrid__random_forest": 0.33, "score__external_predictors_only__random_forest": 0.42},
+                    {"variant": "BRCA2 p.Gly3Ser", "gene": "BRCA2", "label": 0, "score__hybrid__random_forest": 0.26, "score__external_predictors_only__random_forest": 0.39},
+                ]
+            ).to_csv(study_dir / "study_scores_clinvar_expert_external_brca2.csv", index=False)
+
+            results = export_locked_calibration_holdout_package(
+                study_dir=str(study_dir),
+                output_dir=str(tmp_path / "locked_holdout"),
+                focus_cohort="bridges_like_external_validation_brca1",
+                split_seed_prime=104729,
+            )
+
+            manifest = json.loads(Path(results["locked_calibration_holdout_manifest_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(manifest["split_algorithm"], "stratified_sha256_prime_seed")
+            self.assertGreaterEqual(manifest["n_cohorts"], 2)
+            self.assertGreater(manifest["n_heldout_test_variants"], 0)
+            summary = pd.read_csv(results["locked_calibration_holdout_summary_path"])
+            self.assertIn("locked_calibrated_test_ece", summary.columns)
+            self.assertTrue(summary["test_has_both_classes"].all())
+            assignments = pd.read_csv(results["locked_calibration_holdout_assignments_path"])
+            self.assertIn("split", assignments.columns)
+            self.assertTrue(set(assignments["split"]).issuperset({"calibration", "test"}))
+            overlap = assignments.groupby(["cohort", "variant"])["split"].nunique().max()
+            self.assertEqual(overlap, 1)
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
