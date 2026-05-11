@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-11T15:04:58Z",
+  "generated_at": "2026-05-11T15:07:10Z",
   "campaign_root": "primevarclass_jovem_cientista_evidence_20260511",
   "brca_quick_dir": "primevarclass_jovem_cientista_evidence_20260511\\brca_real_quick",
-  "git_commit": "f6d354d65b7d371d87d04e0a08d0455f07e14a4c",
+  "git_commit": "02dd63aec524ce4501e653edc06a79ed71cc3c7f",
   "train_variants": 869,
   "external_validation_variants": 836,
   "total_benchmarked_variants": 1705,
