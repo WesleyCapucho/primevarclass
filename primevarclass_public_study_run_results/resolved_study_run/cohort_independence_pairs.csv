@@ -1,0 +1,2 @@
+left_cohort,left_role,right_cohort,right_role,pair_role,shared_variant_count,shared_variant_examples,shared_variant_percent_smaller,shared_gene_count,shared_gene_examples,shared_gene_percent_smaller,label_conflict_count,has_exact_variant_overlap,has_label_conflict
+public_brca_training,train,bridges_like_external_validation,external_test,train_external,0,,0.0,2,"BRCA1, BRCA2",100.0,0,False,False

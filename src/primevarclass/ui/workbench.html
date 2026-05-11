@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrimeVarClass | Bancada científica</title>
+  <link rel="stylesheet" href="/workbench/assets/workbench.css?v=neonbio-20260510b">
+</head>
+<body>
+  <a class="skip-link" href="#main-workbench" data-i18n="skip.main">Ir para o conteúdo principal</a>
+  <div class="page-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="bio-circuit bio-circuit-a" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="bio-circuit bio-circuit-b" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="molecular-code-rain" aria-hidden="true">
+      <span>A-T</span><span>C-G</span><span>GLY</span><span>SER</span><span>LYS</span><span>U-A</span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-biochip" aria-hidden="true">
+        <span class="biochip-core"></span>
+        <span class="biochip-line line-a"></span>
+        <span class="biochip-line line-b"></span>
+        <span class="biochip-line line-c"></span>
+        <span class="biochip-node node-a"></span>
+        <span class="biochip-node node-b"></span>
+        <span class="biochip-node node-c"></span>
+        <span class="base-label base-a">A</span>
+        <span class="base-label base-t">T</span>
+        <span class="base-label base-c">C</span>
+        <span class="base-label base-g">G</span>
+        <span class="amino-label amino-gly">GLY</span>
+        <span class="amino-label amino-ser">SER</span>
+        <span class="amino-label amino-lys">LYS</span>
+      </div>
+      <div class="hero-topline">
+        <div>
+          <div class="eyebrow" data-i18n="hero.eyebrow">Bancada científica</div>
+          <h1>PrimeVarClass</h1>
+        </div>
+        <label class="language-switcher" for="language-select">
+          <span data-i18n="language.label">Idioma</span>
+          <select id="language-select" aria-label="Idioma / Language">
+            <option value="pt-BR">Português-BR</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+      </div>
+      <p class="hero-copy" data-i18n="hero.copy">
+        Plataforma operacional para o laboratório consultar modelos, classificar variantes missense,
+        expandir avaliações multigênicas e destacar a inteligência baseada em números primos.
+      </p>
+      <div class="hero-actions">
+        <a class="action-chip" href="/docs">Documentação da API</a>
+        <a id="manual-link" class="action-chip" href="/knowledge/manual.pdf" target="_blank" rel="noreferrer" data-i18n="hero.manual">Manual do usuário</a>
+        <a id="glossary-link" class="action-chip" href="/knowledge/glossary.pdf" target="_blank" rel="noreferrer" data-i18n="hero.glossary">Glossário</a>
+        <a id="feedback-link" class="action-chip" href="/knowledge/feedback" target="_blank" rel="noreferrer" data-i18n="hero.feedback">Guia de feedback</a>
+        <span class="action-chip muted" data-i18n="hero.stack">Inferência interpretável com dados reais</span>
+      </div>
+      <div class="hero-controls">
+        <label class="field field-inline">
+          <span data-i18n="api.key">Chave da API</span>
+          <input id="api-key-input" type="password" placeholder="Opcional; necessária se a autenticação estiver ativa" data-i18n-placeholder="api.key.placeholder">
+        </label>
+        <button id="save-api-key" type="button" class="button" data-i18n="api.save_key">Salvar chave</button>
+        <div id="auth-pill" class="status-pill" aria-live="polite">Autenticação desativada</div>
+        <div id="profile-pill" class="status-pill" aria-live="polite">Perfil local</div>
+        <div id="team-pill" class="status-pill" aria-live="polite">Equipe local</div>
+      </div>
+    </header>
+
+    <nav class="module-switcher" aria-label="Módulos da plataforma">
+      <button type="button" class="module-tab is-active" data-module-target="onboarding" data-i18n="module.onboarding">Início</button>
+      <button type="button" class="module-tab" data-module-target="models" data-i18n="module.models">Modelos</button>
+      <button type="button" class="module-tab" data-module-target="inference" data-i18n="module.inference">Predição</button>
+      <button type="button" class="module-tab" data-module-target="team" data-i18n="module.team">Equipe</button>
+      <button type="button" class="module-tab" data-module-target="data" data-i18n="module.data">Dados públicos</button>
+      <button type="button" class="module-tab" data-module-target="studies" data-i18n="module.studies">Estudos</button>
+      <button type="button" class="module-tab" data-module-target="science" data-i18n="module.science">Ciência</button>
+      <button type="button" class="module-tab" data-module-target="translation" data-i18n="module.translation">Impacto</button>
+      <button type="button" class="module-tab" data-module-target="operations" data-i18n="module.operations">Operação</button>
+    </nav>
+
+    <main id="main-workbench" class="workbench-grid">
+      <section class="panel panel-wide guide-panel module-panel is-active" data-module-panel="onboarding" aria-labelledby="quick-start-heading">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker" data-i18n="guide.kicker">Introdução</div>
+            <h2 id="quick-start-heading" data-i18n="guide.title">Guia rápido para usuários</h2>
+          </div>
+          <div class="status-pill status-pill-strong" data-i18n="guide.mode">Produto multiusuário bilíngue</div>
+        </div>
+        <p class="guide-lede" data-i18n="guide.lede">
+          Comece pelo fluxo abaixo. Ele foi desenhado para orientar tanto pesquisadores experientes quanto estudantes
+          que estão entrando agora em genômica translacional, sem esconder os limites científicos da plataforma.
+        </p>
+        <div class="guide-card-grid">
+          <article class="guide-card">
+            <div class="guide-step">01</div>
+            <h3 data-i18n="guide.card1.title">Configure acesso e equipe</h3>
+            <p data-i18n="guide.card1.copy">Salve a chave da API, escolha o perfil, associe a equipe científica e garanta auditoria para cada execução.</p>
+          </article>
+          <article class="guide-card">
+            <div class="guide-step">02</div>
+            <h3 data-i18n="guide.card2.title">Carregue modelos e dados reais</h3>
+            <p data-i18n="guide.card2.copy">Inspecione o catálogo de modelos, resolva catálogos públicos e acompanhe ClinVar, gnomAD, MaveDB e BRCA Exchange.</p>
+          </article>
+          <article class="guide-card">
+            <div class="guide-step">03</div>
+            <h3 data-i18n="guide.card3.title">Classifique, explique e compare</h3>
+            <p data-i18n="guide.card3.copy">Execute predição individual, triagem em lote, estudo congelado e comparação longitudinal entre estudos.</p>
+          </article>
+          <article class="guide-card">
+            <div class="guide-step">04</div>
+            <h3 data-i18n="guide.card4.title">Feche evidência translacional</h3>
+            <p data-i18n="guide.card4.copy">Use proteômica, estrutura 3D, módulo quântico, feedback de piloto e critérios de publicação antes de afirmações fortes.</p>
+          </article>
+        </div>
+        <div class="readiness-strip internal-readiness-hidden" aria-label="Resumo de prontidão científica e publicação">
+          <div class="readiness-tile">
+            <span data-i18n="readiness.validation">Validação científica</span>
+            <strong>88%</strong>
+            <small data-i18n="readiness.validation.copy">Forte para submissão computacional; ainda requer confirmação experimental independente.</small>
+          </div>
+          <div class="readiness-tile">
+            <span data-i18n="readiness.software">Fechamento de software</span>
+            <strong>93%</strong>
+            <small data-i18n="readiness.software.copy">Pipelines, artefatos, manifestos, gnomAD local e motores estruturais estão integrados.</small>
+          </div>
+          <div class="readiness-tile">
+            <span data-i18n="readiness.publication">Prontidão para publicação</span>
+            <strong data-i18n="readiness.publication.score">Quase pronta</strong>
+            <small data-i18n="readiness.publication.copy">Apta para preprint/manuscrito computacional; artigo de alto impacto exige validação externa final.</small>
+          </div>
+        </div>
+        <div class="audience-strip" aria-label="Perfis de usuário suportados">
+          <span class="audience-pill" data-i18n="audience.beginner">Iniciante de graduação</span>
+          <span class="audience-pill" data-i18n="audience.senior">Pesquisador sênior</span>
+          <span class="audience-pill" data-i18n="audience.clinical">Equipe clínico-científica</span>
+          <span class="audience-pill" data-i18n="audience.ops">Gestor translacional</span>
+        </div>
+      </section>
+      <section class="panel panel-wide module-panel" data-module-panel="models">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Registro</div>
+            <h2>Catálogo de modelos</h2>
+          </div>
+          <div id="health-pill" class="status-pill">API online</div>
+        </div>
+        <div class="control-row">
+          <label class="field">
+            <span>Diretório dos modelos</span>
+            <input id="models-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_results_public_brca\models">
+          </label>
+          <button id="load-models" class="button button-primary">Carregar modelos</button>
+        </div>
+        <div id="models-summary" class="summary-strip">Nenhum catálogo carregado.</div>
+        <div id="models-table-body" class="result-list">
+          <div class="empty-cell">Carregue um registro de modelos para inspecionar os artefatos exportados.</div>
+        </div>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="inference">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Inferência</div>
+            <h2>Predição de variante</h2>
+          </div>
+        </div>
+        <form id="predict-form" class="stack-form">
+          <label class="field">
+            <span>Diretório dos modelos</span>
+            <input id="predict-model-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_results_public_brca\models">
+          </label>
+          <label class="field">
+            <span>Experimento</span>
+            <select id="predict-experiment">
+              <option value="hybrid_plus_external">Híbrido + externo</option>
+            </select>
+          </label>
+          <div class="field-grid">
+            <label class="field">
+              <span>Gene</span>
+              <select id="predict-gene">
+                <option value="BRCA1">BRCA1</option>
+                <option value="BRCA2">BRCA2</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>HGVS proteico</span>
+              <input id="predict-hgvs" type="text" value="p.Cys61Gly">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Limiar</span>
+              <input id="predict-threshold" type="number" min="0" max="1" step="0.01" value="0.5">
+            </label>
+            <label class="field">
+              <span>Modo de codificação</span>
+              <select id="predict-mode">
+                <option value="">Auto</option>
+                <option value="hybrid">Híbrido</option>
+                <option value="codon">Códon</option>
+                <option value="prime_mass">Massa prima</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-grid field-grid-compact">
+            <label class="field"><span>PhyloP</span><input id="feat-phylop" type="number" step="0.01" value="7.2"></label>
+            <label class="field"><span>GERP</span><input id="feat-gerp" type="number" step="0.01" value="5.8"></label>
+            <label class="field"><span>SiPhy</span><input id="feat-siphy" type="number" step="0.01" value="12.4"></label>
+            <label class="field"><span>REVEL</span><input id="feat-revel" type="number" step="0.01" value="0.94"></label>
+            <label class="field"><span>gnomAD AF</span><input id="feat-gnomad" type="number" step="0.000001" value="0.000002"></label>
+            <label class="field"><span>MAVE</span><input id="feat-mave" type="number" step="0.01" value="-1.8"></label>
+          </div>
+          <button type="submit" class="button button-primary">Classificar variante</button>
+        </form>
+        <div id="prediction-card" class="result-card result-card-empty">
+          A resposta interpretável aparecerá aqui.
+        </div>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="team">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Perfis</div>
+            <h2>Perfil institucional</h2>
+          </div>
+        </div>
+        <form id="profile-form" class="stack-form">
+          <div class="field-grid">
+            <label class="field">
+              <span>ID do perfil</span>
+              <input id="profile-id" type="text" value="wesley-capucho">
+            </label>
+            <label class="field">
+              <span>Nome exibido</span>
+              <input id="profile-name" type="text" value="Wesley Capucho">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Papel</span>
+              <input id="profile-role" type="text" value="principal_investigator">
+            </label>
+            <label class="field">
+              <span>Instituição</span>
+              <input id="profile-institution" type="text" value="PrimeVarClass Laboratory">
+            </label>
+          </div>
+          <button type="submit" class="button">Salvar e ativar perfil</button>
+        </form>
+        <pre id="profile-summary" class="console-card">Nenhum perfil institucional ativo.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="team">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Equipes</div>
+            <h2>Equipe científica</h2>
+          </div>
+        </div>
+        <form id="team-form" class="stack-form">
+          <div class="field-grid">
+            <label class="field">
+              <span>ID do time</span>
+              <input id="team-id" type="text" value="oncogenomica-brca">
+            </label>
+            <label class="field">
+              <span>Nome do time</span>
+              <input id="team-name" type="text" value="Equipe Oncogenômica BRCA">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Instituição</span>
+              <input id="team-institution" type="text" value="Laboratório PrimeVarClass">
+            </label>
+            <label class="field">
+              <span>Descrição</span>
+              <input id="team-description" type="text" value="Equipe translacional focada em BRCA1 e BRCA2">
+            </label>
+          </div>
+          <button type="submit" class="button">Salvar e ativar time</button>
+        </form>
+        <pre id="team-summary" class="console-card">Nenhuma equipe científica ativa.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="data">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Treinamento</div>
+            <h2>Treino por catálogo</h2>
+          </div>
+        </div>
+        <form id="train-form" class="stack-form">
+          <label class="field">
+            <span>Arquivo TOML de fontes</span>
+            <input id="train-config" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_example.toml">
+          </label>
+          <label class="field">
+            <span>Diretório de saída</span>
+            <input id="train-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_results_public_brca">
+          </label>
+          <label class="field">
+            <span>Famílias de modelo</span>
+            <input id="train-families" type="text" value="random_forest,extra_trees,logistic_regression">
+          </label>
+          <button type="submit" class="button">Enfileirar treino</button>
+        </form>
+        <pre id="train-result" class="console-card">Pronto para enfileirar treino.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="data">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Dados públicos</div>
+            <h2>Catálogo público real</h2>
+          </div>
+          <div class="hero-actions">
+            <button id="inspect-public-catalog" type="button" class="button">Inspecionar catálogo</button>
+            <button id="bootstrap-public-catalog" type="button" class="button">Gerar pacote inicial</button>
+            <button id="resolve-public-catalog" type="button" class="button">Resolver catálogo</button>
+            <button id="execute-public-catalog-dry-run" type="button" class="button button-secondary">Executar simulação</button>
+            <button id="load-public-catalog-history" type="button" class="button button-secondary">Ver histórico</button>
+          </div>
+        </div>
+        <label class="field">
+          <span>Arquivo TOML de fontes públicas</span>
+          <input id="public-catalog-config" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_study_template.toml">
+        </label>
+        <label class="field">
+          <span>Diretório opcional para exportar relatório</span>
+          <input id="public-catalog-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_catalog_inspection">
+        </label>
+        <div id="public-catalog-summary" class="summary-strip">Inspecione o catálogo para verificar cobertura da versão e prontidão para estudo público.</div>
+        <div id="public-catalog-stage-list" class="progress-stage-list">
+          <div class="progress-stage-card">
+            <div class="progress-stage-head">
+              <strong>Catálogo não inspecionado</strong>
+              <span class="progress-stage-percent">0%</span>
+            </div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" style="width: 0%"></div>
+            </div>
+            <p class="progress-stage-copy">As fontes públicas reconhecidas aparecerão aqui com cobertura da versão.</p>
+          </div>
+        </div>
+        <pre id="public-catalog-detail" class="console-card">O diagnóstico do catálogo público aparecerá aqui.</pre>
+        <pre id="public-catalog-bootstrap-detail" class="console-card">O pacote inicial aparecerá aqui.</pre>
+        <pre id="public-catalog-resolution-detail" class="console-card">A resolução do catálogo público aparecerá aqui.</pre>
+        <pre id="public-catalog-history-detail" class="console-card">O histórico de sincronização pública aparecerá aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="inference">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Triagem em lote</div>
+            <h2>Triagem em lote</h2>
+          </div>
+        </div>
+        <form id="batch-form" class="stack-form">
+          <div class="field-grid">
+            <label class="field">
+              <span>Diretório dos modelos</span>
+              <input id="batch-model-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_results_public_brca\models">
+            </label>
+            <label class="field">
+              <span>Experimento</span>
+              <select id="batch-experiment">
+                <option value="hybrid_plus_external">Híbrido + externo</option>
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span>Variantes em CSV</span>
+            <textarea id="batch-input" class="textarea" rows="8">sample_id,gene,hgvs_p,phylop,gerp,siphy,revel,feature_gnomad_af,feature_mave_score
+BRCA1_001,BRCA1,p.Cys61Gly,7.2,5.8,12.4,0.94,0.000002,-1.8
+BRCA2_002,BRCA2,p.Gly2508Ser,5.9,4.7,8.2,0.88,0.000004,-1.1</textarea>
+          </label>
+          <label class="field">
+            <span>Título do relatório</span>
+            <input id="batch-report-title" type="text" value="PrimeVarClass: triagem BRCA em lote">
+          </label>
+          <div class="hero-actions">
+            <button type="submit" class="button button-primary">Triar lote</button>
+            <button id="download-batch-report" type="button" class="button">Baixar CSV</button>
+            <button id="download-batch-markdown" type="button" class="button">Baixar relatório</button>
+          </div>
+        </form>
+        <div id="batch-summary" class="summary-strip">Cole um CSV simples para gerar um ranking de priorização.</div>
+        <div id="batch-table-body" class="result-list">
+          <div class="empty-cell">Nenhuma triagem executada ainda.</div>
+        </div>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="studies">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Validação comparativa</div>
+            <h2>Estudo publicável</h2>
+          </div>
+        </div>
+        <form id="study-form" class="stack-form">
+          <label class="field">
+            <span>Arquivo TOML de estudo</span>
+            <input id="study-config" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_benchmark_advanced_example.toml">
+          </label>
+          <label class="field">
+            <span>Diretório de saída</span>
+            <input id="study-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results_advanced">
+          </label>
+          <label class="field">
+            <span>Título do dossiê científico</span>
+            <input id="study-report-title" type="text" value="Dossiê científico BRCA PrimeVarClass">
+          </label>
+          <button type="submit" class="button">Enfileirar validação</button>
+        </form>
+        <pre id="study-result" class="console-card">Pronto para enfileirar validação.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="studies">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Diagnóstico</div>
+            <h2>Pré-validação e inspeção</h2>
+          </div>
+        </div>
+        <div class="stack-form">
+          <label class="field">
+            <span>Arquivo TOML de estudo para pré-validação</span>
+            <input id="preflight-config" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_benchmark_example.toml">
+          </label>
+          <label class="field">
+            <span>Diretório de saída do preflight</span>
+            <input id="preflight-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_preflight_results">
+          </label>
+          <button id="run-study-preflight" type="button" class="button">Executar pré-validação</button>
+          <label class="field">
+            <span>Diretório de estudo exportado</span>
+            <input id="study-inspect-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results_publication">
+          </label>
+          <button id="inspect-study-bundle" type="button" class="button button-secondary">Inspecionar estudo</button>
+          <label class="field">
+            <span>Diretório da resolução pública do estudo</span>
+            <input id="study-public-resolution-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_resolution">
+          </label>
+          <label class="field">
+            <span>Diretório de entrega de dados reais</span>
+            <input id="study-delivery-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_resolution\delivery_drop">
+          </label>
+          <button id="resolve-study-public-config" type="button" class="button">Resolver estudo público</button>
+          <button id="autofill-real-data-handoff" type="button" class="button button-secondary">Autopreencher entrega</button>
+          <button id="run-public-study" type="button" class="button button-secondary">Executar estudo público final</button>
+          <button id="run-candidate-public-study" type="button" class="button button-secondary">Executar estudo candidato</button>
+        </div>
+        <div id="study-diagnostics-summary" class="summary-strip">Use a pré-validação para validar a análise antes da execução ou inspecione um estudo já exportado.</div>
+        <pre id="study-preflight-detail" class="console-card">O relatório de pré-validação aparecerá aqui.</pre>
+        <pre id="study-public-resolution-detail" class="console-card">A resolução pública do estudo aparecerá aqui.</pre>
+        <pre id="study-public-run-detail" class="console-card">A execução integrada do estudo público aparecerá aqui.</pre>
+        <pre id="study-bundle-detail" class="console-card">A inspeção do estudo exportado aparecerá aqui.</pre>
+        <pre id="study-validation-detail" class="console-card">A leitura consolidada de prontidão com dados reais, entrega ao laboratório, força das afirmações e trava de validação aparecerá aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="science">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Multigênico</div>
+            <h2>Expansão científica e números primos</h2>
+          </div>
+          <div class="hero-actions">
+            <button id="run-gene-expansion" type="button" class="button">Gerar expansão gênica</button>
+            <button id="run-biological-discovery" type="button" class="button">Gerar descoberta biológica</button>
+            <button id="run-protein-impact" type="button" class="button">Gerar impacto proteico</button>
+            <button id="run-quantum-proteomics" type="button" class="button">Gerar proteômica quântica</button>
+            <button id="run-prospective-validation-closure" type="button" class="button button-secondary">Fechar validação prospectiva</button>
+            <button id="run-validation-credibility-closure" type="button" class="button button-secondary">Fechar credibilidade</button>
+            <button id="run-independent-data-expansion" type="button" class="button">Mapear bancos independentes</button>
+            <button id="run-independent-open-source-autostage" type="button" class="button">Auto-stage fontes abertas</button>
+            <button id="run-independent-data-staging-closure" type="button" class="button button-secondary">Fechar staging independente</button>
+            <button id="run-multigene-rollout" type="button" class="button">Planejar expansão</button>
+            <button id="run-multigene-study-factory" type="button" class="button button-secondary">Gerar estruturas de estudo</button>
+          </div>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>ClinVar variant summary</span>
+            <input id="multigene-clinvar-path" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\clinvar\variant_summary.txt">
+          </label>
+          <label class="field">
+            <span>MaveDB dump</span>
+            <input id="multigene-mavedb-path" type="text" value="C:\Users\Wesley Capucho\Downloads\mavedb-dump.20260206153444.zip">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de dados reais</span>
+            <input id="multigene-real-data-manifest" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_real_data_preparation_results\real_data_preparation_manifest.json">
+          </label>
+          <label class="field">
+            <span>Manifesto de inteligência prima</span>
+            <input id="multigene-prime-intelligence-manifest" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results_real_multicohort_robust\prime_intelligence_manifest.json">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Saída da expansão gênica</span>
+            <input id="multigene-gene-expansion-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_gene_expansion_results">
+          </label>
+          <label class="field">
+            <span>Saída da descoberta biológica</span>
+            <input id="multigene-biological-discovery-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_biological_discovery_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Saída da expansão multigênica</span>
+            <input id="multigene-rollout-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_rollout_results">
+          </label>
+          <label class="field">
+            <span>Saída de bancos independentes</span>
+            <input id="multigene-independent-data-output" type="text" value="primevarclass_independent_data_expansion_results">
+          </label>
+          <label class="field">
+            <span>Saída do staging independente</span>
+            <input id="multigene-independent-staging-output" type="text" value="primevarclass_independent_data_staging_closure_results">
+          </label>
+          <label class="field">
+            <span>Saída do auto-stage aberto</span>
+            <input id="multigene-independent-autostage-output" type="text" value="primevarclass_independent_open_source_autostage_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Saída das estruturas de estudo</span>
+            <input id="multigene-study-factory-output" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_study_factory_results">
+          </label>
+          <label class="field">
+            <span>Manifesto dos bancos independentes</span>
+            <input id="multigene-independent-data-manifest" type="text" value="primevarclass_independent_data_expansion_results\independent_data_expansion_manifest.json">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de descoberta biológica</span>
+            <input id="multigene-biological-discovery-manifest" type="text" value="primevarclass_biological_discovery_results\biological_discovery_manifest.json">
+          </label>
+          <label class="field">
+            <span>Saída de impacto proteico</span>
+            <input id="multigene-protein-impact-output" type="text" value="primevarclass_protein_impact_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de impacto proteico</span>
+            <input id="multigene-protein-impact-manifest" type="text" value="primevarclass_protein_impact_results\protein_impact_manifest.json">
+          </label>
+          <label class="field">
+            <span>Saída de proteômica quântica</span>
+            <input id="multigene-quantum-proteomics-output" type="text" value="primevarclass_quantum_proteomics_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de proteômica quântica</span>
+            <input id="multigene-quantum-proteomics-manifest" type="text" value="primevarclass_quantum_proteomics_results\quantum_proteomics_manifest.json">
+          </label>
+          <label class="field">
+            <span>Saída de credibilidade científica</span>
+            <input id="multigene-validation-credibility-output" type="text" value="primevarclass_validation_credibility_closure_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de credibilidade científica</span>
+            <input id="multigene-validation-credibility-manifest" type="text" value="primevarclass_validation_credibility_closure_results\validation_credibility_closure_manifest.json">
+          </label>
+          <label class="field">
+            <span>Saída de validação prospectiva</span>
+            <input id="multigene-prospective-validation-output" type="text" value="primevarclass_prospective_validation_closure_results">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de validação prospectiva</span>
+            <input id="multigene-prospective-validation-manifest" type="text" value="primevarclass_prospective_validation_closure_results\prospective_validation_closure_manifest.json">
+          </label>
+          <label class="field">
+            <span>Manifesto de enriquecimento de anotações</span>
+            <input id="multigene-annotation-enrichment-manifest" type="text" value="primevarclass_multigene_annotation_enrichment_results\multigene_annotation_enrichment_manifest.json">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de sincronização pública</span>
+            <input id="multigene-public-sync-closure-manifest" type="text" value="primevarclass_public_sync_closure_results\public_sync_closure_manifest.json">
+          </label>
+          <label class="field">
+            <span>Manifesto de execução BRCA1</span>
+            <input id="multigene-brca1-engine-execution-manifest" type="text" value="primevarclass_brca1_engine_execution_results\brca1_engine_execution_manifest.json">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de mutantes pareados BRCA1</span>
+            <input id="multigene-brca1-paired-mutant-manifest" type="text" value="primevarclass_brca1_paired_mutant_execution_results\brca1_paired_mutant_execution_manifest.json">
+          </label>
+          <label class="field">
+            <span>Manifesto de geometria mutante BRCA1</span>
+            <input id="multigene-brca1-mutant-geometry-qc-manifest" type="text" value="primevarclass_brca1_mutant_geometry_qc_results\brca1_mutant_geometry_qc_manifest.json">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field">
+            <span>Manifesto de expansão</span>
+            <input id="multigene-rollout-manifest" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_rollout_results\multigene_rollout_manifest.json">
+          </label>
+          <label class="field">
+            <span>Raiz do workspace para estruturas de estudo</span>
+            <input id="multigene-workspace-root" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos">
+          </label>
+        </div>
+        <div id="multigene-summary" class="summary-strip">Use esta trilha para transformar o estudo centrado em BRCA em expansão multigênica com reforço explicativo dos números primos.</div>
+        <pre id="multigene-gene-expansion-detail" class="console-card">O painel de expansão gênica aparecerá aqui.</pre>
+        <pre id="multigene-biological-discovery-detail" class="console-card">A descoberta biológica aparecerá aqui.</pre>
+        <pre id="multigene-protein-impact-detail" class="console-card">A fila proteômica/3D e os mecanismos priorizados aparecerão aqui.</pre>
+        <pre id="multigene-quantum-proteomics-detail" class="console-card">Os alvos QM/QM-MM/MD/docking e planos de trabalho aparecerão aqui.</pre>
+        <pre id="multigene-prospective-validation-detail" class="console-card">O pacote prospectivo/experimental, os procedimentos operacionais, o plano estatístico e a entrega ao laboratório aparecerão aqui.</pre>
+        <pre id="multigene-validation-credibility-detail" class="console-card">O fechamento de validação, credibilidade e lacunas restantes aparecerá aqui.</pre>
+        <pre id="multigene-independent-data-detail" class="console-card">O plano de bancos independentes reais aparecerá aqui.</pre>
+        <pre id="multigene-rollout-detail" class="console-card">A expansão multigênica aparecerá aqui.</pre>
+        <pre id="multigene-study-factory-detail" class="console-card">As estruturas de estudo multigênico aparecerão aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="translation">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Piloto translacional</div>
+            <h2>Impacto social e translacional</h2>
+          </div>
+          <div class="hero-actions">
+            <button id="load-translational-dashboard" type="button" class="button">Atualizar painel</button>
+          </div>
+        </div>
+        <div class="stack-form">
+          <div class="field-grid">
+            <label class="field">
+              <span>Estudo</span>
+              <input id="pilot-study-name" type="text" value="Estudo público BRCA">
+            </label>
+            <label class="field">
+              <span>Site</span>
+              <input id="pilot-site-name" type="text" value="Laboratorio Translacional BRCA">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>ID da sessão</span>
+              <input id="pilot-session-id" type="text" value="shadow-session-001">
+            </label>
+            <label class="field">
+              <span>Modo do piloto</span>
+              <select id="pilot-mode">
+                <option value="shadow_mode">Modo sombra</option>
+                <option value="demo_mode">Demonstração</option>
+                <option value="internal_validation">Validação interna</option>
+                <option value="live_candidate">Candidato em uso real</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Status</span>
+              <select id="pilot-status">
+                <option value="planned">Planejada</option>
+                <option value="running">Em execução</option>
+                <option value="completed">Concluída</option>
+                <option value="cancelled">Cancelada</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Casos revisados</span>
+              <input id="pilot-cases-reviewed" type="number" min="0" value="12">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Variantes sinalizadas</span>
+              <input id="pilot-variants-flagged" type="number" min="0" value="4">
+            </label>
+            <label class="field">
+              <span>Resumo da sessão</span>
+              <input id="pilot-outcome-summary" type="text" value="Triagem assistida concluída com revisão humana.">
+            </label>
+          </div>
+          <div class="hero-actions">
+            <button id="save-pilot-session" type="button" class="button">Salvar sessão</button>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Confiança (0-5)</span>
+              <input id="pilot-feedback-confidence" type="number" min="0" max="5" value="4">
+            </label>
+            <label class="field">
+              <span>Acionabilidade (0-5)</span>
+              <input id="pilot-feedback-actionability" type="number" min="0" max="5" value="4">
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Tempo economizado (min)</span>
+              <input id="pilot-feedback-time-saved" type="number" min="0" value="25">
+            </label>
+            <label class="field">
+              <span>Recomendação</span>
+              <select id="pilot-feedback-adoption">
+                <option value="recommended">Recomendada</option>
+                <option value="conditional">Condicional</option>
+                <option value="not_recommended">Não recomendada</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Nível de incidente</span>
+              <select id="pilot-feedback-incident">
+                <option value="none">Nenhum</option>
+                <option value="low">Baixo</option>
+                <option value="medium">Médio</option>
+                <option value="high">Alto</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Notas de feedback</span>
+              <input id="pilot-feedback-notes" type="text" value="Fluxo claro para revisão do laboratório.">
+            </label>
+          </div>
+          <div class="hero-actions">
+            <button id="save-pilot-feedback" type="button" class="button button-secondary">Salvar feedback</button>
+          </div>
+        </div>
+        <div id="translational-impact-summary" class="summary-strip">Registre sessões de piloto e feedback para transformar uso de laboratório em impacto translacional medido.</div>
+        <pre id="translational-impact-detail" class="console-card">O painel translacional aparecerá aqui.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="studies">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Comparação</div>
+            <h2>Comparar estudos</h2>
+          </div>
+        </div>
+        <form id="study-compare-form" class="stack-form">
+          <label class="field">
+            <span>Estudo de referência</span>
+            <input id="compare-baseline-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results">
+          </label>
+          <label class="field">
+            <span>Estudo candidato</span>
+            <input id="compare-candidate-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results_advanced">
+          </label>
+          <label class="field">
+            <span>Diretório de saída</span>
+            <input id="compare-output-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_comparison_results">
+          </label>
+          <label class="field">
+            <span>Título do comparativo</span>
+            <input id="compare-report-title" type="text" value="Comparação de estudos PrimeVarClass">
+          </label>
+          <button type="submit" class="button">Comparar estudos</button>
+        </form>
+        <pre id="study-compare-result" class="console-card">Pronto para comparar estudos exportados.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="studies">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Acompanhamento</div>
+            <h2>Monitor longitudinal</h2>
+          </div>
+        </div>
+        <form id="study-monitor-form" class="stack-form">
+          <label class="field">
+            <span>Diretórios de estudo</span>
+            <textarea id="monitor-study-dirs" class="textarea" rows="6">C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results
+C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_results_advanced</textarea>
+          </label>
+          <label class="field">
+            <span>Diretório de saída</span>
+            <input id="monitor-output-dir" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_longitudinal_results">
+          </label>
+          <label class="field">
+            <span>Título do monitor</span>
+            <input id="monitor-report-title" type="text" value="Monitor longitudinal PrimeVarClass">
+          </label>
+          <button type="submit" class="button">Gerar monitor longitudinal</button>
+        </form>
+        <pre id="study-monitor-result" class="console-card">Pronto para monitorar a evolução longitudinal dos estudos.</pre>
+      </section>
+
+      <section class="panel module-panel" data-module-panel="data">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Proveniência</div>
+            <h2>Inspetor de manifesto</h2>
+          </div>
+          <button id="load-release-manifest" type="button" class="button">Inspecionar</button>
+        </div>
+        <label class="field">
+          <span>Caminho do manifesto</span>
+          <input id="release-manifest-path" type="text" value="C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_results_public_brca\data_release_manifest.json">
+        </label>
+        <div id="release-manifest-summary" class="summary-strip">Carregue um manifesto de versão para auditar origem, artefatos e assinaturas digitais.</div>
+        <pre id="release-manifest-detail" class="console-card">A proveniência da versão aparecerá aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="operations">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Indicadores</div>
+            <h2>Painel da equipe</h2>
+          </div>
+          <button id="refresh-dashboard" type="button" class="button">Atualizar painel</button>
+        </div>
+        <div id="team-dashboard-summary" class="summary-strip">Carregue a equipe ativa para ver o painel institucional.</div>
+        <pre id="team-dashboard-detail" class="console-card">Os indicadores operacionais e científicos da equipe aparecerão aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="operations">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Lançamento</div>
+            <h2>Prontidão científica e web</h2>
+          </div>
+          <button id="load-launch-readiness" type="button" class="button">Avaliar prontidão</button>
+        </div>
+        <div id="launch-readiness-summary" class="summary-strip">Avalie se a plataforma está pronta para staging, publicação computacional e lançamento público controlado.</div>
+        <div id="launch-readiness-list" class="result-list">
+          <div class="empty-cell">A avaliação de prontidão aparecerá aqui.</div>
+        </div>
+        <pre id="launch-readiness-detail" class="console-card">O relatório de prontidão aparecerá aqui.</pre>
+      </section>
+
+      <section class="panel panel-wide module-panel" data-module-panel="operations">
+        <div class="panel-head">
+          <div>
+            <div class="panel-kicker">Operação</div>
+            <h2>Fila e histórico</h2>
+          </div>
+          <button id="refresh-jobs" type="button" class="button">Atualizar trabalhos</button>
+        </div>
+        <div id="jobs-summary" class="summary-strip">Nenhum trabalho carregado ainda.</div>
+        <div id="jobs-table-body" class="result-list">
+          <div class="empty-cell">Nenhum trabalho disponível.</div>
+        </div>
+        <pre id="job-detail" class="console-card">Selecione ou atualize um trabalho para ver os detalhes.</pre>
+        <pre id="audit-detail" class="console-card">Os eventos de auditoria recentes aparecerão aqui.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="/workbench/assets/workbench.js?v=neonbio-20260510b"></script>
+</body>
+</html>

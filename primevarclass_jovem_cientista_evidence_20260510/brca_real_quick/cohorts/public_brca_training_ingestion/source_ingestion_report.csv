@@ -1,0 +1,4 @@
+name,kind,source_type,rows_loaded,rows_normalized,columns_loaded,columns_normalized,join_on
+clinvar_variant_summary,cohort,file,869,869,7,12,"gene,hgvs_p"
+gnomad_brca_annotations,annotation,file,6749,6749,11,16,"gene,hgvs_p"
+mavedb_brca_scores,annotation,file,11284,11284,6,11,"gene,hgvs_p"

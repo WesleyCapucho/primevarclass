@@ -1,0 +1,91 @@
+started_at,finished_at,command,status,return_code,total_energy_hartree,stdout_tail,stderr_tail,model_request_id,reference_fragment_xyz_path
+2026-04-25T15:01:31Z,2026-04-25T15:01:32Z,C:\primevarclass_mamba\envs\primevarclass-structural-engines\Library\bin\xtb.exe C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_brca1_fragment_preparation_results\prepared_fragments\BRCA1_pLeu100Asp\BRCA1_pLeu100Asp.reference_fragment.xyz --gfn 2 --sp --chrg 0,completed,0,-146.59076226138," 3.293 --    42 C    1.304    53 C    1.181    55 C    0.302
+                            44 O    0.175    54 C    0.154
+    53   6 C    3.861 --    55 C    1.567    52 N    1.181    54 C    0.995
+    54   6 C    3.619 --    56 O    2.206    53 C    0.995    55 C    0.192
+                            52 N    0.154
+    55   6 C    2.432 --    53 C    1.567    52 N    0.302    54 C    0.192
+                            56 O    0.154    44 O    0.140
+    56   8 O    2.552 --    54 C    2.206    55 C    0.154
+ ---------------------------------------------------------------------------
+
+Topologies differ in total number of bonds
+Writing topology from bond orders to xtbtopo.mol
+
+molecular dipole:
+                 x           y           z       tot (Debye)
+ q only:        2.463      -1.096      -2.999
+   full:        2.229      -0.604      -2.643       8.920
+molecular quadrupole (traceless):
+                xx          xy          yy          xz          yz          zz
+ q only:     -253.216      18.491     298.651     361.045      64.852     -45.435
+  q+dip:     -231.915     -27.998     272.263     322.071      74.950     -40.348
+   full:     -230.080     -26.172     270.941     326.727      75.400     -40.861
+
+
+           -------------------------------------------------
+          | TOTAL ENERGY             -146.590762261380 Eh   |
+          | GRADIENT NORM               0.620991190080 Eh/α |
+          | HOMO-LUMO GAP               0.010840534718 eV   |
+           -------------------------------------------------
+
+------------------------------------------------------------------------
+ * finished run on 2026/04/25 at 12:01:32.167     
+------------------------------------------------------------------------
+ total:
+ * wall-time:     0 d,  0 h,  0 min,  0.243 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  0.484 sec
+ * ratio c/w:     1.995 speedup
+ SCF:
+ * wall-time:     0 d,  0 h,  0 min,  0.199 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  0.406 sec
+ * ratio c/w:     2.046 speedup
+
+","normal termination of xtb
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG IEEE_DENORMAL
+",BRCA1_pLeu100Asp,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_brca1_fragment_preparation_results\prepared_fragments\BRCA1_pLeu100Asp\BRCA1_pLeu100Asp.reference_fragment.xyz
+2026-04-25T15:01:32Z,2026-04-25T15:01:32Z,C:\primevarclass_mamba\envs\primevarclass-structural-engines\Library\bin\xtb.exe C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_brca1_fragment_preparation_results\prepared_fragments\BRCA1_pLeu4Gln\BRCA1_pLeu4Gln.reference_fragment.xyz --gfn 2 --sp --chrg 0,completed,0,-137.18262610499,"    1.166    50 C    0.927
+                            53 C    0.107
+    49   6 C    3.611 --    51 O    2.155    48 C    1.166    53 C    0.134
+    50   6 C    3.902 --    52 C    1.498    53 C    1.412    48 C    0.927
+    51   8 O    2.472 --    49 C    2.155    53 C    0.108
+    52   6 C    2.489 --    50 C    1.498    53 C    0.631    47 N    0.162
+    53   6 C    2.592 --    50 C    1.412    52 C    0.631    49 C    0.134
+                            47 N    0.132    51 O    0.108    48 C    0.107
+ ---------------------------------------------------------------------------
+
+Topologies differ in total number of bonds
+Writing topology from bond orders to xtbtopo.mol
+
+molecular dipole:
+                 x           y           z       tot (Debye)
+ q only:        0.248      -2.590       0.052
+   full:        0.299      -3.078       0.050       7.862
+molecular quadrupole (traceless):
+                xx          xy          yy          xz          yz          zz
+ q only:      -59.779     270.499      45.045       9.577      13.054      14.734
+  q+dip:      -70.704     308.259      72.242       9.809       9.930      -1.538
+   full:      -68.595     308.808      73.872       8.782      12.848      -5.277
+
+
+           -------------------------------------------------
+          | TOTAL ENERGY             -137.182626104990 Eh   |
+          | GRADIENT NORM               0.551723463484 Eh/α |
+          | HOMO-LUMO GAP               0.003444456473 eV   |
+           -------------------------------------------------
+
+------------------------------------------------------------------------
+ * finished run on 2026/04/25 at 12:01:32.401     
+------------------------------------------------------------------------
+ total:
+ * wall-time:     0 d,  0 h,  0 min,  0.205 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  0.344 sec
+ * ratio c/w:     1.673 speedup
+ SCF:
+ * wall-time:     0 d,  0 h,  0 min,  0.141 sec
+ *  cpu-time:     0 d,  0 h,  0 min,  0.266 sec
+ * ratio c/w:     1.884 speedup
+
+","normal termination of xtb
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG IEEE_DENORMAL
+",BRCA1_pLeu4Gln,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_brca1_fragment_preparation_results\prepared_fragments\BRCA1_pLeu4Gln\BRCA1_pLeu4Gln.reference_fragment.xyz

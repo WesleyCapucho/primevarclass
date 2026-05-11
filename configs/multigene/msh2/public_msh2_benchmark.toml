@@ -1,0 +1,23 @@
+[study]
+name = "Public MSH2 Benchmark Scaffold"
+mode = "hybrid"
+high_confidence_only = false
+keep_metadata = true
+primary_metric = "auc_roc"
+baseline_experiment = "external_predictors_only"
+n_bootstrap = 100
+
+[[cohorts]]
+name = "msh2_training"
+role = "train"
+source_config = "configs/multigene/msh2/public_msh2_real.toml"
+
+[[cohorts]]
+name = "msh2_clinical_external_validation"
+role = "external_test"
+source_config = "configs/multigene/msh2/public_msh2_external_clinical.toml"
+
+[[cohorts]]
+name = "msh2_secondary_external_validation"
+role = "external_test"
+source_config = "configs/multigene/msh2/public_msh2_external_secondary.toml"

@@ -1,0 +1,214 @@
+# PrimeVarClass independent public-source template
+# Stage the listed files locally, confirm release/licensing, then run with --source-config.
+
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/clinvar/variant_summary.txt.gz"
+preset = "clinvar_variant_summary"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "clinvar_release_to_freeze"
+# official_url = "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/"
+# download_url_hint = "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz"
+
+[[sources]]
+name = "clingen_erepo_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/clingen_erepo/clingen_erepo_gene_panel.tsv"
+preset = "clingen_erepo_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "clingen_erepo_release_to_freeze"
+# official_url = "https://erepo.clinicalgenome.org/evrepo/"
+# download_url_hint = "https://erepo.genome.network/"
+
+[[sources]]
+name = "brca_exchange_enigma_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/brca_exchange/brca_exchange_enigma_curated.tsv"
+preset = "enigma_brca"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "brca_exchange_enigma_release_to_freeze"
+# official_url = "https://enigmaconsortium.org/"
+# download_url_hint = "stage BRCA Exchange or ENIGMA-derived release file locally"
+
+[[sources]]
+name = "gnomad_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gnomad/target_gene_missense_annotations.tsv"
+preset = "gnomad_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "gnomad_release_to_freeze"
+# official_url = "https://gnomad.broadinstitute.org/downloads"
+# download_url_hint = "use gene-filtered browser table, Hail table, or GraphQL/toolbox extraction"
+
+[[sources]]
+name = "mavedb_staged"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/raw/mavedb/target_gene_function_scores.csv"
+preset = "mavedb_score_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "mavedb_release_to_freeze"
+# official_url = "https://www.mavedb.org/"
+# download_url_hint = "use public score-set CSVs, mapped variants, or bulk release dump"
+
+[[sources]]
+name = "alphamissense_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/alphamissense/target_gene_alphamissense.tsv"
+preset = "alphamissense_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "alphamissense_release_to_freeze"
+# official_url = "https://storage.googleapis.com/dm_alphamissense/README.pdf"
+# download_url_hint = "stage AlphaMissense_hg38.tsv.gz or amino-acid substitution subset"
+
+[[sources]]
+name = "uniprot_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/uniprot/target_gene_uniprot_features.tsv"
+preset = "uniprot_feature_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "uniprot_release_to_freeze"
+# official_url = "https://www.uniprot.org/api-documentation"
+# download_url_hint = "REST reviewed human gene/accession export"
+
+[[sources]]
+name = "alphafold_db_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/alphafold/target_gene_alphafold_models.tsv"
+preset = "alphafold_model_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "alphafold_db_release_to_freeze"
+# official_url = "https://alphafold.ebi.ac.uk/"
+# download_url_hint = "stage accession-specific model metadata and coordinate URLs"
+
+[[sources]]
+name = "pdb_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/pdb/target_gene_pdb_structures.tsv"
+preset = "pdb_structure_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "pdb_release_to_freeze"
+# official_url = "https://www.rcsb.org/"
+# download_url_hint = "stage Data API/Search API structure metadata by accession/gene"
+
+[[sources]]
+name = "civic_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/civic/target_gene_civic_evidence.tsv"
+preset = "civic_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "civic_release_to_freeze"
+# official_url = "https://docs.civicdb.org/en/latest/using/data_releases.html"
+# download_url_hint = "nightly or historical monthly TSV/VCF release"
+
+[[sources]]
+name = "cbioportal_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/cbioportal/target_gene_cbioportal_mutations.tsv"
+preset = "cbioportal_mutation_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "cbioportal_release_to_freeze"
+# official_url = "https://github.com/cBioPortal/datahub"
+# download_url_hint = "download selected public study folders, e.g. public/brca_tcga"
+
+[[sources]]
+name = "gdc_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gdc/target_gene_gdc_open_maf.tsv"
+preset = "gdc_maf_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "gdc_release_to_freeze"
+# official_url = "https://gdc.cancer.gov/access-data"
+# download_url_hint = "use open MAF/project metadata via GDC API; controlled files require dbGaP"
+
+[[sources]]
+name = "gwas_catalog_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gwas_catalog/target_gene_gwas_associations.tsv"
+preset = "gwas_catalog_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "gwas_catalog_release_to_freeze"
+# official_url = "https://www.ebi.ac.uk/gwas/rest/api/v2/docs"
+# download_url_hint = "REST API by trait, variant, study, or mapped gene"
+
+[[sources]]
+name = "opentargets_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/opentargets/target_gene_opentargets_evidence.tsv"
+preset = "opentargets_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "opentargets_release_to_freeze"
+# official_url = "https://platform-docs.opentargets.org/variant"
+# download_url_hint = "GraphQL API or bulk data filtered by target/disease/variant"
+
+[[sources]]
+name = "pharmgkb_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/pharmgkb/target_gene_pharmgkb_annotations.tsv"
+preset = "pharmgkb_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+release_version = "pharmgkb_release_to_freeze"
+# official_url = "https://api.pharmgkb.org/"
+# download_url_hint = "ClinPGx API or PharmGKB bulk downloads under applicable terms"
+
+[[sources]]
+name = "lovd_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/lovd/target_gene_lovd_variants.tsv"
+preset = "lovd_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+release_version = "lovd_release_to_freeze"
+# official_url = "https://www.lovd.nl/2.0/index_list.php"
+# download_url_hint = "stage gene-specific export after database-level QC"

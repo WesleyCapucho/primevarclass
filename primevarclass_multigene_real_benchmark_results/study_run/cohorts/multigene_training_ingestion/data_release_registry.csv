@@ -1,0 +1,2 @@
+release_id,release_type,generated_at,config_path,config_sha256,n_rows,n_columns,n_sources,manifest_path
+data_multigene_training_20260424T045149Z,data_ingestion,2026-04-24T04:51:49Z,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\multigene_training.toml,ed013c3500ccd1eb6b837954c24e17b5720c904874c345f195b677d8489edb5b,580,12,1,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\study_run\cohorts\multigene_training_ingestion\data_release_manifest.json

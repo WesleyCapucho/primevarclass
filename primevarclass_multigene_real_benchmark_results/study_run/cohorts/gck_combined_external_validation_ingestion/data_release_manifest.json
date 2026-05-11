@@ -1,0 +1,297 @@
+{
+  "release_id": "data_gck_combined_external_20260424T045150Z",
+  "release_type": "data_ingestion",
+  "generated_at": "2026-04-24T04:51:50Z",
+  "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml",
+  "config_sha256": "5c7388f764388b80816568569271a9870a13e18005c733292c9f7a1778b80795",
+  "output_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion",
+  "n_rows": 289,
+  "n_columns": 12,
+  "columns": [
+    "gene",
+    "hgvs_p",
+    "label",
+    "review_status",
+    "variant_id",
+    "protein_change_raw",
+    "LastEvaluated",
+    "source",
+    "meta_dataset",
+    "source_name",
+    "source_kind",
+    "source_type"
+  ],
+  "integrated_dataset_fingerprint": {
+    "n_rows": 289,
+    "n_columns": 12,
+    "sha256_csv": "2fae6c0a6f77fa1c5766090c77cd0e296f8c99b2abf6468aa467670752f50c45"
+  },
+  "sources": [
+    {
+      "name": "gck_combined_external",
+      "kind": "cohort",
+      "source_type": "file",
+      "format": "tsv",
+      "preset": "clinvar_variant_summary",
+      "join_on": [
+        "gene",
+        "hgvs_p"
+      ],
+      "path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+      "url": null,
+      "query": null,
+      "table": null,
+      "file_fingerprint": {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\gck\\gck_combined_external.tsv",
+        "size_bytes": 35276,
+        "sha256": "203e9b010353b515c77ebf3b2f276e3431938729240018bfcbb301c20ef44310",
+        "modified_at_epoch": 1777006309.369173
+      },
+      "provenance": {
+        "captured_at": "2026-04-24T04:51:50Z",
+        "source_name": "gck_combined_external",
+        "source_type": "file",
+        "format": "tsv",
+        "preset": "clinvar_variant_summary",
+        "join_on": [
+          "gene",
+          "hgvs_p"
+        ],
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\gck\\gck_combined_external.tsv",
+        "encoding": "utf-8",
+        "records_path": null,
+        "file_fingerprint": {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\gck\\gck_combined_external.tsv",
+          "size_bytes": 35276,
+          "sha256": "203e9b010353b515c77ebf3b2f276e3431938729240018bfcbb301c20ef44310",
+          "modified_at_epoch": 1777006309.369173
+        },
+        "schema": {
+          "raw_columns": [
+            "GeneSymbol",
+            "Protein change",
+            "ClinicalSignificance",
+            "ReviewStatus",
+            "VariationID",
+            "Name",
+            "LastEvaluated"
+          ],
+          "normalized_columns": [
+            "gene",
+            "hgvs_p",
+            "label",
+            "review_status",
+            "variant_id",
+            "protein_change_raw",
+            "LastEvaluated",
+            "source",
+            "meta_dataset",
+            "source_name",
+            "source_kind",
+            "source_type"
+          ],
+          "rows_loaded": 289,
+          "rows_normalized": 289
+        }
+      }
+    }
+  ],
+  "source_report": [
+    {
+      "name": "gck_combined_external",
+      "kind": "cohort",
+      "source_type": "file",
+      "rows_loaded": 289,
+      "rows_normalized": 289,
+      "columns_loaded": 7,
+      "columns_normalized": 12,
+      "join_on": "gene,hgvs_p"
+    }
+  ],
+  "public_source_assessment": {
+    "summary": {
+      "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml",
+      "n_sources": 1,
+      "n_recognized_public_sources": 1,
+      "n_sources_with_release": 0,
+      "release_coverage_percent": 45,
+      "schema_coverage_percent": 100,
+      "n_schema_ready_sources": 1,
+      "overall_readiness_percent": 72,
+      "ready_for_public_benchmark": false
+    },
+    "sources": [
+      {
+        "source_name": "gck_combined_external",
+        "kind": "cohort",
+        "source_format": "tsv",
+        "preset": "clinvar_variant_summary",
+        "path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+        "url": null,
+        "gene_allowlist": [
+          "GCK"
+        ],
+        "recognized_public_source": true,
+        "profile_id": "clinvar",
+        "display_name": "ClinVar",
+        "release_value": null,
+        "release_date": null,
+        "release_method": "missing",
+        "evidence": [
+          {
+            "label": "config.path",
+            "value": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv"
+          },
+          {
+            "label": "config.name",
+            "value": "gck_combined_external"
+          },
+          {
+            "label": "provenance.file.path",
+            "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\gck\\gck_combined_external.tsv"
+          }
+        ],
+        "coverage_percent": 45,
+        "citation_url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+        "warnings": [
+          "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+        ],
+        "schema_recognized": true,
+        "schema_coverage_percent": 100,
+        "expected_columns": [
+          "gene",
+          "hgvs_p",
+          "label",
+          "review_status"
+        ],
+        "available_normalized_columns": [
+          "gene",
+          "hgvs_p",
+          "label",
+          "review_status",
+          "variant_id",
+          "protein_change_raw",
+          "LastEvaluated",
+          "source",
+          "meta_dataset",
+          "source_name",
+          "source_kind",
+          "source_type"
+        ],
+        "available_raw_columns": [
+          "GeneSymbol",
+          "Protein change",
+          "ClinicalSignificance",
+          "ReviewStatus",
+          "VariationID",
+          "Name",
+          "LastEvaluated"
+        ],
+        "missing_expected_columns": [],
+        "schema_ready": true,
+        "schema_warnings": [],
+        "readiness_percent": 72,
+        "ready_for_public_use": false
+      }
+    ],
+    "warnings": [
+      "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+    ],
+    "markdown_report": "# Public Source Catalog Assessment\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml\n- Total sources: 1\n- Recognized public sources: 1\n- Sources with explicit or inferred release: 0\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Ready for public benchmark: not yet\n\n## Sources\n\n### gck_combined_external\n\n- Recognized: yes\n- Public source: ClinVar\n- Release: -\n- Release method: missing\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Citation: https://www.ncbi.nlm.nih.gov/clinvar/\n\n- Warning: Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+  },
+  "public_source_sync_plan": {
+    "summary": {
+      "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml",
+      "n_sync_candidates": 1,
+      "n_automatable_sources": 1,
+      "n_semi_automatable_sources": 0,
+      "n_manual_sources": 0,
+      "overall_readiness_percent": 72,
+      "recommended_next_step": "Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais."
+    },
+    "sync_items": [
+      {
+        "source_name": "gck_combined_external",
+        "profile_id": "clinvar",
+        "display_name": "ClinVar",
+        "release_value": null,
+        "release_method": "missing",
+        "readiness_percent": 72,
+        "schema_coverage_percent": 100,
+        "automation_level": "automatable",
+        "can_auto_sync": true,
+        "sync_strategy": "direct_download",
+        "preferred_channel": "ftp_tsv",
+        "official_entrypoints": [
+          {
+            "label": "ClinVar downloads overview",
+            "url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/",
+            "notes": "ClinVar documents weekly updates and monthly archived releases for XML, VCF, and TSV."
+          },
+          {
+            "label": "ClinVar TSV directory",
+            "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/",
+            "notes": "Recommended for variant_summary-based ingestion into PrimeVarClass."
+          }
+        ],
+        "recommended_artifacts": [
+          "variant_summary.txt.gz",
+          "variant_summary.txt.gz.md5"
+        ],
+        "suggested_local_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+        "notes": [
+          "Prefer the TSV summary file for cohort assembly.",
+          "Capture the archived monthly release when building a publication cohort."
+        ],
+        "next_action": "Pode ser automatizada com download/API e versionamento local.",
+        "source_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+        "source_url": null,
+        "source_format": "tsv",
+        "gene_allowlist": [
+          "GCK"
+        ],
+        "local_source_exists": true,
+        "resolved_mavedb_urn": null
+      }
+    ],
+    "markdown_report": "# Public Source Sync Plan\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml\n- Sync candidates: 1\n- Automatable: 1\n- Semi-automatable: 0\n- Manual-assisted: 0\n- Catalog readiness: 72%\n- Recommended next step: Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais.\n\n## Sync Items\n\n### ClinVar - gck_combined_external\n\n- Release: -\n- Automation level: automatable\n- Sync strategy: direct_download\n- Preferred channel: ftp_tsv\n- Suggested local path: C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv\n- Readiness: 72%\n- Next action: Pode ser automatizada com download/API e versionamento local.\n\n- Official entrypoint: ClinVar downloads overview -> https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/\n- Official entrypoint: ClinVar TSV directory -> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\n- Expected artifact: variant_summary.txt.gz\n- Expected artifact: variant_summary.txt.gz.md5\n- Note: Prefer the TSV summary file for cohort assembly.\n- Note: Capture the archived monthly release when building a publication cohort."
+  },
+  "artifact_fingerprints": {
+    "integrated_sources": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\integrated_sources.csv",
+      "size_bytes": 51581,
+      "sha256": "2fae6c0a6f77fa1c5766090c77cd0e296f8c99b2abf6468aa467670752f50c45",
+      "modified_at_epoch": 1777006310.9237528
+    },
+    "source_ingestion_report": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\source_ingestion_report.csv",
+      "size_bytes": 155,
+      "sha256": "ef9d32ffad66b354c20297e101226595f36448e6a1a116ea79d31dcce234d04a",
+      "modified_at_epoch": 1777006310.9257555
+    },
+    "public_source_catalog_report_json": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\public_source_catalog_report.json",
+      "size_bytes": 3712,
+      "sha256": "88475fa4428879a61ceadafcafad6e7cfb590c49e5db0119508b59f87685639c",
+      "modified_at_epoch": 1777006310.927848
+    },
+    "public_source_catalog_report_markdown": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\public_source_catalog_report.md",
+      "size_bytes": 796,
+      "sha256": "d7782da1269de2f62019279eea8d68f80d1be8ab9647bbd89eb7e006eba831aa",
+      "modified_at_epoch": 1777006310.9287467
+    },
+    "public_source_sync_plan_json": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\public_source_sync_plan.json",
+      "size_bytes": 3638,
+      "sha256": "649c8e7ff8b06f61597a031a6969f228bba40187c26ee8423e846aecf0e4e026",
+      "modified_at_epoch": 1777006310.9297447
+    },
+    "public_source_sync_plan_markdown": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\gck_combined_external_validation_ingestion\\public_source_sync_plan.md",
+      "size_bytes": 1286,
+      "sha256": "2355dcffebf2bc772f2a6ed40a4ce2e169c94525e428453c17e73d8c3160c98b",
+      "modified_at_epoch": 1777006310.9297447
+    }
+  }
+}

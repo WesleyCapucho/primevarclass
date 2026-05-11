@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-04-03T04:33:17Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Translational Impact Package",
+    "generated_at": "2026-04-03T04:33:17Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_translational_impact_percent": 49,
+    "overall_status": "gap",
+    "package_integrity_percent": 100,
+    "pilot_operability_percent": 87,
+    "candidate_transition_percent": 22,
+    "field_feedback_percent": 0,
+    "institutional_rollout_percent": 44,
+    "ready_for_assisted_pilot_ops": true,
+    "ready_for_shadow_rollout": false,
+    "ready_for_institutional_rollout": false,
+    "n_sessions": 0,
+    "n_completed_sessions": 0,
+    "n_feedback_entries": 0
+  },
+  "recommended_actions": [
+    "Promover o candidate config apenas quando o tracker estiver validado e auditado.",
+    "Registrar sessoes, feedback e tempo economizado para tornar o impacto medido e nao apenas estimado.",
+    "Consolidar pelo menos duas sessoes concluidas com feedback positivo e sem incidentes altos."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_impact_package.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_impact_package.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_impact_package_criteria.csv",
+  "sessions_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_impact_sessions.csv",
+  "feedback_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_impact_feedback.csv"
+}

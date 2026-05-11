@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-04-03T04:29:32Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Study Preflight",
+    "generated_at": "2026-04-03T04:29:32Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_preflight_percent": 94,
+    "overall_status": "ready",
+    "ready_to_run": true,
+    "n_cohorts": 2,
+    "n_train_cohorts": 1,
+    "n_external_cohorts": 1,
+    "cohort_independence_percent": 100,
+    "n_critical_gaps": 0
+  },
+  "warnings": [],
+  "recommended_actions": [
+    "Elevar release/schema coverage dos catalogos publicos usados no estudo."
+  ],
+  "report_context": {},
+  "cohort_independence_summary": {
+    "generated_at": "2026-04-03T04:29:32Z",
+    "overall_independence_percent": 100,
+    "overall_status": "ready",
+    "n_cohorts": 2,
+    "n_pairs": 1,
+    "n_train_external_pairs": 1,
+    "max_variant_overlap_percent": 0,
+    "mean_variant_overlap_percent": 0,
+    "variant_overlap_pair_rate_percent": 0,
+    "label_conflict_pair_rate_percent": 0,
+    "ready_for_external_validation": true,
+    "n_critical_gaps": 0
+  },
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_preflight\\study_preflight_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_preflight\\study_preflight_report.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_preflight\\study_preflight_criteria.csv",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_preflight\\study_preflight_cohorts.csv",
+  "independence_pairs_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_preflight\\study_preflight_independence_pairs.csv"
+}

@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-04-18T06:01:48Z",
+  "summary": {
+    "generated_at": "2026-04-18T06:01:48Z",
+    "overall_rollout_readiness_percent": 77,
+    "phase_1_gene_count": 1,
+    "phase_2_gene_count": 5,
+    "phase_3_gene_count": 4,
+    "phase_1_genes": [
+      "TP53"
+    ],
+    "phase_2_genes": [
+      "GCK",
+      "PTEN",
+      "MSH2",
+      "F9",
+      "KRAS"
+    ],
+    "phase_3_genes": [
+      "MLH1",
+      "SPTAN1",
+      "KCNQ2",
+      "OBSCN"
+    ],
+    "prime_top_candidate_gene": "TP53",
+    "cross_gene_runway_percent": 85,
+    "prime_biological_alignment_percent": 81
+  },
+  "recommended_actions": [
+    "Abrir a proxima rodada real pelos genes da phase_1 com treino multicohorte e holdouts externos separados.",
+    "Usar o bloco de numeros primos como eixo explicativo priorizando o gene mais alinhado ao prime-intelligence.",
+    "Reservar os genes da phase_2 para expansao logo apos estabilizar os manifests reais da phase_1."
+  ],
+  "report_context": {
+    "gene_expansion_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_gene_expansion_results\\gene_expansion_manifest.json",
+    "prime_intelligence_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_study_results_real_multicohort_robust\\prime_intelligence_manifest.json"
+  },
+  "rollout_csv_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_rollout_results\\multigene_rollout_plan.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_rollout_results\\multigene_rollout_plan.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_rollout_results\\multigene_rollout_plan.html",
+  "manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_rollout_results\\multigene_rollout_manifest.json"
+}

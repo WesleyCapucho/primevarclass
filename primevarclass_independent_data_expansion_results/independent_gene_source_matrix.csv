@@ -1,0 +1,129 @@
+gene,source_id,display_name,evidence_lane,recommended_for_gene,recommended_use,join_on,readiness_percent,next_step
+BRCA1,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+BRCA1,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+BRCA1,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,True,brca_external_validation,"gene,hgvs_p",88,stage_source_and_include_in_benchmark
+BRCA1,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+BRCA1,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+BRCA1,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+BRCA1,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+BRCA1,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+BRCA1,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+BRCA1,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+BRCA1,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+BRCA1,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+BRCA1,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+BRCA1,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+BRCA1,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+BRCA1,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+BRCA2,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+BRCA2,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+BRCA2,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,True,brca_external_validation,"gene,hgvs_p",88,stage_source_and_include_in_benchmark
+BRCA2,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+BRCA2,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+BRCA2,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+BRCA2,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+BRCA2,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+BRCA2,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+BRCA2,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+BRCA2,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+BRCA2,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+BRCA2,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+BRCA2,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+BRCA2,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+BRCA2,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+TP53,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+TP53,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+TP53,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+TP53,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+TP53,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+TP53,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+TP53,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+TP53,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+TP53,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+TP53,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+TP53,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+TP53,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+TP53,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+TP53,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+TP53,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+TP53,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+PTEN,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+PTEN,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+PTEN,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+PTEN,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+PTEN,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+PTEN,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+PTEN,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+PTEN,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+PTEN,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+PTEN,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+PTEN,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+PTEN,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+PTEN,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+PTEN,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+PTEN,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+PTEN,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+MSH2,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+MSH2,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+MSH2,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+MSH2,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+MSH2,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+MSH2,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+MSH2,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+MSH2,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+MSH2,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+MSH2,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+MSH2,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+MSH2,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+MSH2,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+MSH2,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+MSH2,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+MSH2,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+KRAS,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+KRAS,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+KRAS,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+KRAS,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+KRAS,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+KRAS,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+KRAS,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+KRAS,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+KRAS,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+KRAS,civic,CIViC,translational_oncology,True,translational_validation,"gene,hgvs_p",99,stage_as_annotation_or_context
+KRAS,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,True,cancer_context_external_validation,"gene,hgvs_p",94,stage_source_and_include_in_benchmark
+KRAS,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,True,open_cancer_context_validation,"gene,hgvs_p",86,stage_source_and_include_in_benchmark
+KRAS,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+KRAS,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+KRAS,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+KRAS,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+GCK,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+GCK,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+GCK,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+GCK,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+GCK,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+GCK,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+GCK,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+GCK,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+GCK,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+GCK,civic,CIViC,translational_oncology,False,translational_validation,"gene,hgvs_p",99,optional_after_primary_gene_scope
+GCK,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,False,cancer_context_external_validation,"gene,hgvs_p",94,optional_after_primary_gene_scope
+GCK,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,False,open_cancer_context_validation,"gene,hgvs_p",86,optional_after_primary_gene_scope
+GCK,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+GCK,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+GCK,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+GCK,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark
+F9,clinvar,ClinVar,clinical_labels,True,training_and_external_holdout,"gene,hgvs_p",99,stage_as_annotation_or_context
+F9,clingen_erepo,ClinGen Evidence Repository,expert_curation,True,independent_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+F9,brca_exchange_enigma,BRCA Exchange / ENIGMA,expert_brca_curation,False,brca_external_validation,"gene,hgvs_p",88,optional_after_primary_gene_scope
+F9,gnomad,gnomAD,population_frequency,True,annotation_and_calibration,"gene,hgvs_p",94,stage_as_annotation_or_context
+F9,mavedb,MaveDB,functional_assay,True,functional_validation,"gene,hgvs_p",99,stage_source_and_include_in_benchmark
+F9,alphamissense,AlphaMissense,external_predictor,True,baseline_comparator_and_disagreement_discovery,"gene,hgvs_p",94,stage_as_annotation_or_context
+F9,uniprot,UniProt,protein_context,True,protein_annotation,gene,99,stage_as_annotation_or_context
+F9,alphafold_db,AlphaFold DB,predicted_structure,True,structure_prior,gene,94,stage_as_annotation_or_context
+F9,pdb,RCSB PDB,experimental_structure,True,structural_validation_overlay,gene,94,stage_as_annotation_or_context
+F9,civic,CIViC,translational_oncology,False,translational_validation,"gene,hgvs_p",99,optional_after_primary_gene_scope
+F9,cbioportal,cBioPortal Datahub,somatic_cancer_cohorts,False,cancer_context_external_validation,"gene,hgvs_p",94,optional_after_primary_gene_scope
+F9,gdc,NCI Genomic Data Commons,tcga_gdc_cancer_cohorts,False,open_cancer_context_validation,"gene,hgvs_p",86,optional_after_primary_gene_scope
+F9,gwas_catalog,GWAS Catalog,genetic_association,True,disease_trait_context,gene,95,stage_as_annotation_or_context
+F9,opentargets,Open Targets Platform,target_disease_evidence,True,translational_target_prioritization,gene,95,stage_as_annotation_or_context
+F9,pharmgkb,PharmGKB / ClinPGx,pharmacogenomics,True,drug_response_context,gene,95,stage_as_annotation_or_context
+F9,lovd,LOVD,locus_specific_variation,True,supplemental_external_validation,"gene,hgvs_p",84,stage_source_and_include_in_benchmark

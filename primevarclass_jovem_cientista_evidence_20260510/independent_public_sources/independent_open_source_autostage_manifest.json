@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-05-11T00:01:06Z",
+  "summary": {
+    "workspace_root": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos",
+    "target_genes": [
+      "BRCA1",
+      "BRCA2",
+      "TP53",
+      "PTEN",
+      "MSH2",
+      "KRAS",
+      "GCK",
+      "F9"
+    ],
+    "attempted_source_count": 10,
+    "staged_source_count": 10,
+    "failed_source_count": 0,
+    "total_staged_size_bytes": 29742162,
+    "autostaging_readiness_percent": 100,
+    "ready_for_staging_closure_refresh": true
+  },
+  "staged_sources": [
+    {
+      "source_id": "clingen_erepo",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clingen_erepo\\clingen_erepo_classifications.tsv",
+      "size_bytes": 29666864
+    },
+    {
+      "source_id": "uniprot",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\uniprot\\target_gene_features.tsv",
+      "size_bytes": 920
+    },
+    {
+      "source_id": "alphafold_db",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\alphafold\\target_gene_models.tsv",
+      "size_bytes": 1359
+    },
+    {
+      "source_id": "pdb",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pdb\\target_gene_structures.tsv",
+      "size_bytes": 3645
+    },
+    {
+      "source_id": "civic",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\civic\\target_gene_civic.tsv",
+      "size_bytes": 4781
+    },
+    {
+      "source_id": "cbioportal",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\cbioportal\\brca_tcga_pan_can_mutations.tsv",
+      "size_bytes": 52797
+    },
+    {
+      "source_id": "gdc",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gdc\\target_gene_metadata.tsv",
+      "size_bytes": 953
+    },
+    {
+      "source_id": "gwas_catalog",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gwas_catalog\\target_gene_associations.tsv",
+      "size_bytes": 6522
+    },
+    {
+      "source_id": "opentargets",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\opentargets\\target_disease_associations.tsv",
+      "size_bytes": 3501
+    },
+    {
+      "source_id": "pharmgkb",
+      "status": "retained_existing",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pharmgkb\\target_gene_pharmgkb.tsv",
+      "size_bytes": 820
+    }
+  ],
+  "errors": [],
+  "report_context": {
+    "report_purpose": "cli_independent_open_source_autostage"
+  }
+}

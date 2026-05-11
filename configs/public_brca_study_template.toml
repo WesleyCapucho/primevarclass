@@ -1,0 +1,51 @@
+# Public BRCA study blueprint for PrimeVarClass
+# Replace local paths with downloaded public datasets before running.
+
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_variant_summary"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/clinvar/variant_summary.txt"
+preset = "clinvar_variant_summary"
+release_date = "YYYY-MM-DD"
+
+[[sources]]
+name = "gnomad_brca_annotations"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gnomad/brca_missense_annotations.tsv"
+preset = "gnomad_variant_table"
+join_on = ["gene", "hgvs_p"]
+release_version = "vX.Y"
+# Quando esse caminho aponta para uma tabela gnomAD local exportada, o bootstrap
+# consegue gerar um recorte BRCA controlado para staging e auditoria.
+
+[[sources]]
+name = "mavedb_brca_scores"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/raw/mavedb/brca_function_scores.csv"
+preset = "mavedb_score_table"
+join_on = ["gene", "hgvs_p"]
+release_version = "urn:mavedb:..."
+# When release_version stores the public score-set URN, PrimeVarClass can bootstrap
+# score-set metadata and mapped variants automatically via the official MaveDB API.
+
+[[sources]]
+name = "enigma_brca_labels"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/enigma/enigma_brca_curated.tsv"
+preset = "enigma_brca"
+join_on = ["gene", "hgvs_p"]
+release_date = "YYYY-MM-DD"
+# Quando esse caminho aponta para um arquivo curado local versionado, o bootstrap
+# consegue gerar um staging auditavel da importacao ENIGMA com manifest proprio.

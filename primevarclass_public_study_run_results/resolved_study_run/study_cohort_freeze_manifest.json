@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:33:16Z",
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\resolved_study_config.toml",
+    "study_name": "Public BRCA Benchmark Example",
+    "n_cohorts": 2,
+    "n_ready_cohorts": 0,
+    "n_example_blocked_cohorts": 2,
+    "n_placeholder_release_blocked_cohorts": 2,
+    "overall_real_data_readiness_percent": 19,
+    "overall_status": "gap",
+    "ready_for_real_data_study": false
+  },
+  "critical_gaps": [
+    "Example/demo sources still present",
+    "Placeholder public releases still present"
+  ],
+  "recommended_actions": [
+    "Remover arquivos de exemplo do estudo final antes da rodada real.",
+    "Trocar placeholders por release_version/release_date reais para ClinVar, gnomAD, MaveDB e ENIGMA.",
+    "Substituir demos por dados reais e manter apenas fontes congeladas para o benchmark final.",
+    "Preferir staging em data/raw ou artefatos resolvidos versionados para coortes finais.",
+    "Congelar cada coorte apenas com dados reais versionados antes do benchmark final."
+  ],
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_cohort_freeze_cohorts.csv",
+  "sources_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_cohort_freeze_sources.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_cohort_freeze_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_cohort_freeze_report.html"
+}

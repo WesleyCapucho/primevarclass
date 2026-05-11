@@ -1,0 +1,7 @@
+gene,score_set_urn,title,published_date,num_variants
+F9,urn:mavedb:00001200-d-1,F9 MultiSTEP F9 Gla domain scores,2024-07-01,9682
+GCK,urn:mavedb:00000096-b-1,GCK variant abundance measured by DHFR-PCA,2023-05-22,9201
+KRAS,urn:mavedb:00000115-a-9,binding fitness from KRAS-DARPin K55 bindingPCA of KRAS block2,2023-06-19,8657
+MSH2,urn:mavedb:00000050-a-1,MSH2 LOF scores (HAP1),2020-11-25,17746
+PTEN,urn:mavedb:00000102-0-1,PTEN VAMP-seq Combined,2022-08-25,5477
+TP53,urn:mavedb:00001234-c-1,Scores from arrayed yeast-based assay of TP53 BAX promoter,2025-05-08,2314

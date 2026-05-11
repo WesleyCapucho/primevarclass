@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-11T00:00:21Z",
+  "summary": {
+    "generated_at": "2026-05-11T00:00:21Z",
+    "overall_independence_percent": 100,
+    "overall_status": "ready",
+    "n_cohorts": 5,
+    "n_pairs": 10,
+    "n_train_external_pairs": 4,
+    "max_variant_overlap_percent": 0,
+    "mean_variant_overlap_percent": 0,
+    "variant_overlap_pair_rate_percent": 0,
+    "label_conflict_pair_rate_percent": 0,
+    "ready_for_external_validation": true,
+    "n_critical_gaps": 0
+  },
+  "critical_gaps": [],
+  "recommended_actions": [],
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\brca_real_quick\\cohort_independence_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\brca_real_quick\\cohort_independence_report.html",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\brca_real_quick\\cohort_independence_cohorts.csv",
+  "pairwise_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\brca_real_quick\\cohort_independence_pairs.csv"
+}

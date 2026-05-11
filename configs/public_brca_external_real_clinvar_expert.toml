@@ -1,0 +1,32 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_expert_validation"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/clinvar/brca_missense_expert_external.tsv"
+preset = "clinvar_variant_summary"
+release_date = "2026-04-03"
+
+[[sources]]
+name = "gnomad_validation_annotations"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gnomad/brca_missense_annotations.tsv"
+preset = "gnomad_variant_table"
+join_on = ["gene", "hgvs_p"]
+release_version = "gnomad_r4_graphql_2026-04-16"
+
+[[sources]]
+name = "mavedb_validation_scores"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/raw/mavedb/brca_function_scores.csv"
+preset = "mavedb_score_table"
+join_on = ["gene", "hgvs_p"]
+release_version = "mavedb-dump.20260206153444"

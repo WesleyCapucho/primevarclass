@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-03T04:29:31Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:29:31Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_candidate_promotion_percent": 22,
+    "overall_status": "gap",
+    "candidate_config_exists": true,
+    "candidate_config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_config.toml",
+    "n_tasks": 6,
+    "n_validated_tasks": 0,
+    "n_pending_tasks": 6,
+    "n_invalid_tasks": 0,
+    "n_critical_pending_tasks": 6,
+    "n_applied_changes": 0,
+    "handoff_application_percent": 0,
+    "ready_for_candidate_resolution": false,
+    "ready_for_candidate_public_study": false,
+    "ready_to_promote_candidate_config": false,
+    "ready_to_run_candidate_public_study": false,
+    "candidate_public_study_command": "primevarclass --study-config \"C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_config.toml\" --public-study-run --output-dir \"C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\candidate_public_study_run\"",
+    "candidate_public_study_output_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\candidate_public_study_run"
+  },
+  "recommended_actions": [
+    "Concluir validacoes suficientes no tracker para liberar a promocao do candidate config."
+  ],
+  "report_context": {},
+  "candidate_config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_config.toml",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_promotion.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_promotion.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_promotion_criteria.csv",
+  "blockers_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_candidate_promotion_blockers.csv"
+}

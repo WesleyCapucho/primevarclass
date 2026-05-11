@@ -1,0 +1,8 @@
+cohort,cohort_role,experiment,baseline_experiment,delta_mean,ci_lower_95,ci_upper_95,n_bootstrap_valid
+bridges_like_external_validation,external_test,consensus_top3,external_predictors_only,0.0,0.0,0.0,76
+bridges_like_external_validation,external_test,hybrid_plus_external,external_predictors_only,0.0,0.0,0.0,76
+bridges_like_external_validation,external_test,biochemical_only,external_predictors_only,-0.7017543859649124,-1.0,0.0,76
+bridges_like_external_validation,external_test,hybrid_plus_conservation,external_predictors_only,-0.850877192982456,-1.0,-0.5,76
+bridges_like_external_validation,external_test,hybrid_plus_conservation_structure,external_predictors_only,-0.850877192982456,-1.0,-0.5,76
+bridges_like_external_validation,external_test,hybrid,external_predictors_only,-1.0,-1.0,-1.0,76
+bridges_like_external_validation,external_test,prime_only,external_predictors_only,-1.0,-1.0,-1.0,76

@@ -1,0 +1,8 @@
+experiment,feature_set,is_prime_signal,baseline_experiment,n_external_cohorts,n_positive_gains,n_supported_gains,mean_delta_auc_roc,median_delta_auc_roc,mean_ci_lower_95,best_delta_auc_roc,positive_gain_rate_percent,supported_gain_rate_percent,internal_rank,internal_primary_metric,auc_roc,auc_pr,mcc
+consensus_top3,consensus_top3,False,external_predictors_only,1,0,0,0.0,0.0,0.0,0.0,0,0,,,,,
+hybrid_plus_external,hybrid_plus_external,True,external_predictors_only,1,0,0,0.0,0.0,0.0,0.0,0,0,6.0,0.5,0.5,0.5,0.0
+biochemical_only,biochemical_only,False,external_predictors_only,1,0,0,-0.7017543859649124,-0.7017543859649124,-1.0,-0.7017543859649124,0,0,1.0,0.5,0.5,0.5,0.0
+hybrid_plus_conservation,hybrid_plus_conservation,True,external_predictors_only,1,0,0,-0.850877192982456,-0.850877192982456,-1.0,-0.850877192982456,0,0,4.0,0.5,0.5,0.5,0.0
+hybrid_plus_conservation_structure,hybrid_plus_conservation_structure,True,external_predictors_only,1,0,0,-0.850877192982456,-0.850877192982456,-1.0,-0.850877192982456,0,0,5.0,0.5,0.5,0.5,0.0
+hybrid,hybrid,True,external_predictors_only,1,0,0,-1.0,-1.0,-1.0,-1.0,0,0,3.0,0.5,0.5,0.5,0.0
+prime_only,prime_only,True,external_predictors_only,1,0,0,-1.0,-1.0,-1.0,-1.0,0,0,7.0,0.5,0.5,0.5,0.0

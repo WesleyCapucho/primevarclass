@@ -1,0 +1,8 @@
+cohort,cohort_role,experiment,baseline_experiment,metric,delta_mean,ci_lower_95,ci_upper_95,n_bootstrap_valid,feature_set,is_prime_signal,supported_gain,positive_gain
+bridges_like_external_validation,external_test,prime_only,external_predictors_only,auc_roc,-1.0,-1.0,-1.0,76,prime_only,True,False,False
+bridges_like_external_validation,external_test,biochemical_only,external_predictors_only,auc_roc,-0.7017543859649124,-1.0,0.0,76,biochemical_only,False,False,False
+bridges_like_external_validation,external_test,hybrid,external_predictors_only,auc_roc,-1.0,-1.0,-1.0,76,hybrid,True,False,False
+bridges_like_external_validation,external_test,hybrid_plus_conservation,external_predictors_only,auc_roc,-0.850877192982456,-1.0,-0.5,76,hybrid_plus_conservation,True,False,False
+bridges_like_external_validation,external_test,hybrid_plus_conservation_structure,external_predictors_only,auc_roc,-0.850877192982456,-1.0,-0.5,76,hybrid_plus_conservation_structure,True,False,False
+bridges_like_external_validation,external_test,hybrid_plus_external,external_predictors_only,auc_roc,0.0,0.0,0.0,76,hybrid_plus_external,True,False,False
+bridges_like_external_validation,external_test,consensus_top3,external_predictors_only,auc_roc,0.0,0.0,0.0,76,consensus_top3,False,False,False

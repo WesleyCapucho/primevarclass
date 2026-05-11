@@ -1,0 +1,9 @@
+cohort_name,cohort_role,config_path,overall_real_data_readiness_percent,overall_status,n_sources,n_recognized_public_sources,n_ready_real_sources,n_missing_sources,n_example_sources,n_placeholder_release_sources,n_raw_data_sources,ready_for_real_data_lock
+multigene_training,train,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\multigene_training.toml,42,gap,1,1,0,0,0,1,0,False
+multigene_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\multigene_combined_external.toml,42,gap,1,1,0,0,0,1,0,False
+tp53_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\tp53_combined_external.toml,55,gap,1,1,0,0,0,1,1,False
+pten_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\pten_combined_external.toml,55,gap,1,1,0,0,0,1,1,False
+msh2_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\msh2_combined_external.toml,55,gap,1,1,0,0,0,1,1,False
+kras_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\kras_combined_external.toml,55,gap,1,1,0,0,0,1,1,False
+gck_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\gck_combined_external.toml,55,gap,1,1,0,0,0,1,1,False
+f9_combined_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_multigene_real_benchmark_results\configs\f9_combined_external.toml,55,gap,1,1,0,0,0,1,1,False

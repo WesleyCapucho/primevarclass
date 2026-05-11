@@ -1,0 +1,297 @@
+{
+  "release_id": "data_pten_combined_external_20260424T045150Z",
+  "release_type": "data_ingestion",
+  "generated_at": "2026-04-24T04:51:50Z",
+  "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\pten_combined_external.toml",
+  "config_sha256": "4e3e3327ec6d8d377e0e1f1a2584a04f538c44e583c0beb0e4f8ee8d3d26f20b",
+  "output_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion",
+  "n_rows": 167,
+  "n_columns": 12,
+  "columns": [
+    "gene",
+    "hgvs_p",
+    "label",
+    "review_status",
+    "variant_id",
+    "protein_change_raw",
+    "LastEvaluated",
+    "source",
+    "meta_dataset",
+    "source_name",
+    "source_kind",
+    "source_type"
+  ],
+  "integrated_dataset_fingerprint": {
+    "n_rows": 167,
+    "n_columns": 12,
+    "sha256_csv": "c3d55857a08eb8ce4284c12a9a6ff794476171515066a3ea6981cb10e748e3e5"
+  },
+  "sources": [
+    {
+      "name": "pten_combined_external",
+      "kind": "cohort",
+      "source_type": "file",
+      "format": "tsv",
+      "preset": "clinvar_variant_summary",
+      "join_on": [
+        "gene",
+        "hgvs_p"
+      ],
+      "path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv",
+      "url": null,
+      "query": null,
+      "table": null,
+      "file_fingerprint": {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\pten\\pten_combined_external.tsv",
+        "size_bytes": 22825,
+        "sha256": "1f3842616b035819d6e1e5d55ef19f765bbcdb0d30a9a1eb189d30bf52ec7686",
+        "modified_at_epoch": 1777006309.3051567
+      },
+      "provenance": {
+        "captured_at": "2026-04-24T04:51:50Z",
+        "source_name": "pten_combined_external",
+        "source_type": "file",
+        "format": "tsv",
+        "preset": "clinvar_variant_summary",
+        "join_on": [
+          "gene",
+          "hgvs_p"
+        ],
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\pten\\pten_combined_external.tsv",
+        "encoding": "utf-8",
+        "records_path": null,
+        "file_fingerprint": {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\pten\\pten_combined_external.tsv",
+          "size_bytes": 22825,
+          "sha256": "1f3842616b035819d6e1e5d55ef19f765bbcdb0d30a9a1eb189d30bf52ec7686",
+          "modified_at_epoch": 1777006309.3051567
+        },
+        "schema": {
+          "raw_columns": [
+            "GeneSymbol",
+            "Protein change",
+            "ClinicalSignificance",
+            "ReviewStatus",
+            "VariationID",
+            "Name",
+            "LastEvaluated"
+          ],
+          "normalized_columns": [
+            "gene",
+            "hgvs_p",
+            "label",
+            "review_status",
+            "variant_id",
+            "protein_change_raw",
+            "LastEvaluated",
+            "source",
+            "meta_dataset",
+            "source_name",
+            "source_kind",
+            "source_type"
+          ],
+          "rows_loaded": 167,
+          "rows_normalized": 167
+        }
+      }
+    }
+  ],
+  "source_report": [
+    {
+      "name": "pten_combined_external",
+      "kind": "cohort",
+      "source_type": "file",
+      "rows_loaded": 167,
+      "rows_normalized": 167,
+      "columns_loaded": 7,
+      "columns_normalized": 12,
+      "join_on": "gene,hgvs_p"
+    }
+  ],
+  "public_source_assessment": {
+    "summary": {
+      "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\pten_combined_external.toml",
+      "n_sources": 1,
+      "n_recognized_public_sources": 1,
+      "n_sources_with_release": 0,
+      "release_coverage_percent": 45,
+      "schema_coverage_percent": 100,
+      "n_schema_ready_sources": 1,
+      "overall_readiness_percent": 72,
+      "ready_for_public_benchmark": false
+    },
+    "sources": [
+      {
+        "source_name": "pten_combined_external",
+        "kind": "cohort",
+        "source_format": "tsv",
+        "preset": "clinvar_variant_summary",
+        "path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv",
+        "url": null,
+        "gene_allowlist": [
+          "PTEN"
+        ],
+        "recognized_public_source": true,
+        "profile_id": "clinvar",
+        "display_name": "ClinVar",
+        "release_value": null,
+        "release_date": null,
+        "release_method": "missing",
+        "evidence": [
+          {
+            "label": "config.path",
+            "value": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv"
+          },
+          {
+            "label": "config.name",
+            "value": "pten_combined_external"
+          },
+          {
+            "label": "provenance.file.path",
+            "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\pten\\pten_combined_external.tsv"
+          }
+        ],
+        "coverage_percent": 45,
+        "citation_url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+        "warnings": [
+          "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+        ],
+        "schema_recognized": true,
+        "schema_coverage_percent": 100,
+        "expected_columns": [
+          "gene",
+          "hgvs_p",
+          "label",
+          "review_status"
+        ],
+        "available_normalized_columns": [
+          "gene",
+          "hgvs_p",
+          "label",
+          "review_status",
+          "variant_id",
+          "protein_change_raw",
+          "LastEvaluated",
+          "source",
+          "meta_dataset",
+          "source_name",
+          "source_kind",
+          "source_type"
+        ],
+        "available_raw_columns": [
+          "GeneSymbol",
+          "Protein change",
+          "ClinicalSignificance",
+          "ReviewStatus",
+          "VariationID",
+          "Name",
+          "LastEvaluated"
+        ],
+        "missing_expected_columns": [],
+        "schema_ready": true,
+        "schema_warnings": [],
+        "readiness_percent": 72,
+        "ready_for_public_use": false
+      }
+    ],
+    "warnings": [
+      "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+    ],
+    "markdown_report": "# Public Source Catalog Assessment\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\pten_combined_external.toml\n- Total sources: 1\n- Recognized public sources: 1\n- Sources with explicit or inferred release: 0\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Ready for public benchmark: not yet\n\n## Sources\n\n### pten_combined_external\n\n- Recognized: yes\n- Public source: ClinVar\n- Release: -\n- Release method: missing\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Citation: https://www.ncbi.nlm.nih.gov/clinvar/\n\n- Warning: Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+  },
+  "public_source_sync_plan": {
+    "summary": {
+      "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\pten_combined_external.toml",
+      "n_sync_candidates": 1,
+      "n_automatable_sources": 1,
+      "n_semi_automatable_sources": 0,
+      "n_manual_sources": 0,
+      "overall_readiness_percent": 72,
+      "recommended_next_step": "Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais."
+    },
+    "sync_items": [
+      {
+        "source_name": "pten_combined_external",
+        "profile_id": "clinvar",
+        "display_name": "ClinVar",
+        "release_value": null,
+        "release_method": "missing",
+        "readiness_percent": 72,
+        "schema_coverage_percent": 100,
+        "automation_level": "automatable",
+        "can_auto_sync": true,
+        "sync_strategy": "direct_download",
+        "preferred_channel": "ftp_tsv",
+        "official_entrypoints": [
+          {
+            "label": "ClinVar downloads overview",
+            "url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/",
+            "notes": "ClinVar documents weekly updates and monthly archived releases for XML, VCF, and TSV."
+          },
+          {
+            "label": "ClinVar TSV directory",
+            "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/",
+            "notes": "Recommended for variant_summary-based ingestion into PrimeVarClass."
+          }
+        ],
+        "recommended_artifacts": [
+          "variant_summary.txt.gz",
+          "variant_summary.txt.gz.md5"
+        ],
+        "suggested_local_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv",
+        "notes": [
+          "Prefer the TSV summary file for cohort assembly.",
+          "Capture the archived monthly release when building a publication cohort."
+        ],
+        "next_action": "Pode ser automatizada com download/API e versionamento local.",
+        "source_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv",
+        "source_url": null,
+        "source_format": "tsv",
+        "gene_allowlist": [
+          "PTEN"
+        ],
+        "local_source_exists": true,
+        "resolved_mavedb_urn": null
+      }
+    ],
+    "markdown_report": "# Public Source Sync Plan\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\pten_combined_external.toml\n- Sync candidates: 1\n- Automatable: 1\n- Semi-automatable: 0\n- Manual-assisted: 0\n- Catalog readiness: 72%\n- Recommended next step: Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais.\n\n## Sync Items\n\n### ClinVar - pten_combined_external\n\n- Release: -\n- Automation level: automatable\n- Sync strategy: direct_download\n- Preferred channel: ftp_tsv\n- Suggested local path: C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/pten/pten_combined_external.tsv\n- Readiness: 72%\n- Next action: Pode ser automatizada com download/API e versionamento local.\n\n- Official entrypoint: ClinVar downloads overview -> https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/\n- Official entrypoint: ClinVar TSV directory -> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\n- Expected artifact: variant_summary.txt.gz\n- Expected artifact: variant_summary.txt.gz.md5\n- Note: Prefer the TSV summary file for cohort assembly.\n- Note: Capture the archived monthly release when building a publication cohort."
+  },
+  "artifact_fingerprints": {
+    "integrated_sources": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\integrated_sources.csv",
+      "size_bytes": 32720,
+      "sha256": "c3d55857a08eb8ce4284c12a9a6ff794476171515066a3ea6981cb10e748e3e5",
+      "modified_at_epoch": 1777006310.5406623
+    },
+    "source_ingestion_report": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\source_ingestion_report.csv",
+      "size_bytes": 156,
+      "sha256": "e37f705d51e5936fc4edf3aea06d7d61583cf82b0c06509339bd3185c4e3cbcf",
+      "modified_at_epoch": 1777006310.5416641
+    },
+    "public_source_catalog_report_json": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\public_source_catalog_report.json",
+      "size_bytes": 3724,
+      "sha256": "5d380293cf1611c0db139aba00d1afc817b59eaa8ae697a591d440370fbd1f08",
+      "modified_at_epoch": 1777006310.5426645
+    },
+    "public_source_catalog_report_markdown": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\public_source_catalog_report.md",
+      "size_bytes": 798,
+      "sha256": "b440b941dba8d8a3616c91e0f61bc7ce8cc35215907c39ce0c453e602a0c5292",
+      "modified_at_epoch": 1777006310.5436647
+    },
+    "public_source_sync_plan_json": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\public_source_sync_plan.json",
+      "size_bytes": 3649,
+      "sha256": "4abc05a75185fdd5c9902e2e125188baff6b5af7eb7a319f55f64a8b98175f8f",
+      "modified_at_epoch": 1777006310.5436647
+    },
+    "public_source_sync_plan_markdown": {
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\cohorts\\pten_combined_external_validation_ingestion\\public_source_sync_plan.md",
+      "size_bytes": 1290,
+      "sha256": "623f729cbc166ce273a0496f4f97f1ddd0cb5670e3a4cc73fc5afa6641bdea65",
+      "modified_at_epoch": 1777006310.5446646
+    }
+  }
+}

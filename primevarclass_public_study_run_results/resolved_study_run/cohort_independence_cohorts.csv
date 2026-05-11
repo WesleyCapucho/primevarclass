@@ -1,0 +1,3 @@
+cohort_name,role,n_rows,n_unique_variants,n_unique_genes,has_labels
+public_brca_training,train,4,4,2,True
+bridges_like_external_validation,external_test,4,4,2,True

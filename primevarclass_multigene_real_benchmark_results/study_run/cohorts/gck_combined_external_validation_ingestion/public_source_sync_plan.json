@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml",
+    "n_sync_candidates": 1,
+    "n_automatable_sources": 1,
+    "n_semi_automatable_sources": 0,
+    "n_manual_sources": 0,
+    "overall_readiness_percent": 72,
+    "recommended_next_step": "Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais."
+  },
+  "sync_items": [
+    {
+      "source_name": "gck_combined_external",
+      "profile_id": "clinvar",
+      "display_name": "ClinVar",
+      "release_value": null,
+      "release_method": "missing",
+      "readiness_percent": 72,
+      "schema_coverage_percent": 100,
+      "automation_level": "automatable",
+      "can_auto_sync": true,
+      "sync_strategy": "direct_download",
+      "preferred_channel": "ftp_tsv",
+      "official_entrypoints": [
+        {
+          "label": "ClinVar downloads overview",
+          "url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/",
+          "notes": "ClinVar documents weekly updates and monthly archived releases for XML, VCF, and TSV."
+        },
+        {
+          "label": "ClinVar TSV directory",
+          "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/",
+          "notes": "Recommended for variant_summary-based ingestion into PrimeVarClass."
+        }
+      ],
+      "recommended_artifacts": [
+        "variant_summary.txt.gz",
+        "variant_summary.txt.gz.md5"
+      ],
+      "suggested_local_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+      "notes": [
+        "Prefer the TSV summary file for cohort assembly.",
+        "Capture the archived monthly release when building a publication cohort."
+      ],
+      "next_action": "Pode ser automatizada com download/API e versionamento local.",
+      "source_path": "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv",
+      "source_url": null,
+      "source_format": "tsv",
+      "gene_allowlist": [
+        "GCK"
+      ],
+      "local_source_exists": true,
+      "resolved_mavedb_urn": null
+    }
+  ],
+  "markdown_report": "# Public Source Sync Plan\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\gck_combined_external.toml\n- Sync candidates: 1\n- Automatable: 1\n- Semi-automatable: 0\n- Manual-assisted: 0\n- Catalog readiness: 72%\n- Recommended next step: Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais.\n\n## Sync Items\n\n### ClinVar - gck_combined_external\n\n- Release: -\n- Automation level: automatable\n- Sync strategy: direct_download\n- Preferred channel: ftp_tsv\n- Suggested local path: C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/gck/gck_combined_external.tsv\n- Readiness: 72%\n- Next action: Pode ser automatizada com download/API e versionamento local.\n\n- Official entrypoint: ClinVar downloads overview -> https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/\n- Official entrypoint: ClinVar TSV directory -> https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/\n- Expected artifact: variant_summary.txt.gz\n- Expected artifact: variant_summary.txt.gz.md5\n- Note: Prefer the TSV summary file for cohort assembly.\n- Note: Capture the archived monthly release when building a publication cohort."
+}

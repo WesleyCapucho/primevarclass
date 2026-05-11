@@ -1,0 +1,32 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "tp53_secondary_external_validation"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/raw/multigene/tp53/tp53_secondary_external.tsv"
+preset = "clinvar_variant_summary"
+gene_allowlist = ["TP53"]
+
+[[sources]]
+name = "tp53_validation_gnomad_annotations"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/raw/gnomad/tp53_missense_annotations.tsv"
+preset = "gnomad_variant_table"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["TP53"]
+
+[[sources]]
+name = "tp53_validation_mavedb_scores"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/raw/mavedb/tp53_function_scores.csv"
+preset = "mavedb_score_table"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["TP53"]

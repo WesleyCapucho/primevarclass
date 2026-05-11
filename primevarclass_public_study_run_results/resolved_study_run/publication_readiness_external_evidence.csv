@@ -1,0 +1,2 @@
+cohort,cohort_role,best_external_experiment,best_external_auc_roc,best_external_auc_pr,best_external_mcc,pairwise_experiment,pairwise_baseline_experiment,pairwise_delta_auc_roc,pairwise_ci_lower_95,pairwise_ci_upper_95,pairwise_evidence,has_combined_external_metrics,has_pairwise_auc_roc
+bridges_like_external_validation,external_test,external_predictors_only,1.0,1.0,1.0,consensus_top3,external_predictors_only,0.0,0.0,0.0,no_gain,True,True

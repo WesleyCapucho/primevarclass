@@ -1,0 +1,25 @@
+PrimeVarClass - Manual rápido de execução
+
+1. Estrutura mínima do CSV
+   Colunas obrigatórias:
+   - gene
+   - hgvs_p
+   - label
+
+   Colunas opcionais recomendadas:
+   - review_status
+   - source
+   - clinical_significance
+   - variant_id
+   - phylop, gerp, siphy
+   - rsa, ddg_foldx, functional_domain, protein_interface, distance_to_key_site
+   - revel, bayesdel, alphamissense, cadd
+
+2. Exemplo de execução
+   results = run_full_training_pipeline(
+       input_csv_path='primevarclass_realistic_input_example.csv',
+       mode='hybrid',
+       output_dir='primevarclass_results',
+       keep_metadata=True,
+       high_confidence_only=True,
+   )

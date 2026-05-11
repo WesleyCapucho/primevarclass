@@ -1,0 +1,3 @@
+cohort_name,role,source_config,valid_rows,n_classes,n_source_tables,input_rows,excluded_missing,excluded_invalid_gene,excluded_invalid_label,excluded_non_missense,excluded_class_imbalance_risk
+public_brca_training,train,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\resolved_cohorts\public_brca_training\resolved_source_config.toml,4,2,3,4,0,0,0,0,0
+bridges_like_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\resolved_cohorts\bridges_like_external_validation\resolved_source_config.toml,4,2,3,4,0,0,0,0,0

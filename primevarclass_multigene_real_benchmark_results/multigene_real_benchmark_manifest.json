@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-04-24T05:31:12Z",
+  "summary": {
+    "generated_at": "2026-04-24T05:31:12Z",
+    "target_genes": [
+      "TP53",
+      "PTEN",
+      "MSH2",
+      "KRAS",
+      "GCK",
+      "F9"
+    ],
+    "study_executed": true,
+    "training_row_count": 580,
+    "combined_external_row_count": 978,
+    "study_training_genes": [
+      "TP53",
+      "MSH2",
+      "GCK",
+      "F9"
+    ],
+    "deferred_training_genes": [
+      "PTEN",
+      "KRAS"
+    ],
+    "gene_count": 6,
+    "completed_gene_count": 5,
+    "strong_gene_count": 5,
+    "mean_gene_progress_percent": 76,
+    "mean_external_balanced_score_percent": 58.7,
+    "mean_external_auc_roc_percent": 72.9,
+    "overall_multigene_benchmark_percent": 70,
+    "claim_strength_percent": 67,
+    "prime_signal_multigene_percent": 55,
+    "selected_experiment": "gene_balanced_specialist",
+    "ready_genes": [
+      "TP53",
+      "F9",
+      "MSH2",
+      "GCK",
+      "PTEN"
+    ],
+    "top_gene_by_progress": "TP53",
+    "variant_summary_input_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\variant_summary.txt",
+    "gene_expansion_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_gene_expansion_results\\gene_expansion_manifest.json"
+  },
+  "extraction_summary": {
+    "input_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\variant_summary.txt",
+    "raw_rows": 8909090,
+    "selected_rows": 3491,
+    "output_rows": 1668,
+    "conflicting_pairs_removed": 0,
+    "target_gene_count": 6,
+    "target_genes": [
+      "F9",
+      "GCK",
+      "KRAS",
+      "MSH2",
+      "PTEN",
+      "TP53"
+    ]
+  },
+  "study_config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\multigene_benchmark.toml",
+  "study_output_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run",
+  "study_claim_strength_manifest_path": null,
+  "study_prime_intelligence_manifest_path": null,
+  "study_validation_lock_manifest_path": null,
+  "gene_progress_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_gene_progress.csv",
+  "gene_catalog_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_gene_catalog.csv",
+  "cohort_catalog_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_cohort_catalog.csv",
+  "study_metric_frame_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_study_metrics.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_real_benchmark_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\multigene_real_benchmark_report.html"
+}

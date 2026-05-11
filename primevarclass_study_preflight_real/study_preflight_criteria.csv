@@ -1,0 +1,8 @@
+criterion_id,title,weight,score_percent,status,critical,evidence,next_step
+study_design,Study design structure,1.1,100,ready,True,1 coorte(s) de treino e 1 coorte(s) externas declaradas.,Garantir exatamente uma coorte train e pelo menos uma coorte externa.
+source_configs,Source config resolution,1.0,100,ready,True,100% das coortes tiveram source_config resolvido com sucesso.,Corrigir caminhos TOML e padronizar referencias relativas das coortes.
+cohort_validity,Curated cohort validity,1.0,100,ready,True,100% das coortes produziram linhas validas apos curadoria.,"Revisar filtros, colunas obrigatorias e labels das coortes com zero linhas validas."
+class_diversity,Label diversity,0.95,100,ready,True,100% das coortes ficaram com pelo menos duas classes apos curadoria.,Assegurar rotulos positivos e negativos suficientes para treino e validacao.
+cohort_independence,Cohort independence,1.2,100,ready,True,Max overlap treino/externo=0% e label-conflict pairs=0%.,Remover sobreposicoes entre treino e validacao externa antes da rodada final.
+public_traceability,Public-source traceability,1.15,96,ready,True,Readiness media de catalogo publico = 96%.,Elevar release/schema coverage dos catalogos publicos usados no estudo.
+sync_automation,Sync automation readiness,0.85,87,ready,False,Readiness media de automacao/sync = 87%.,Aumentar staging automatizado das fontes mais criticas antes da rodada final.

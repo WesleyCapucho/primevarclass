@@ -1,0 +1,11 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "multigene_training_clinvar"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/cohorts/multigene_training.tsv"
+preset = "clinvar_variant_summary"

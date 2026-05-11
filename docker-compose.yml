@@ -1,0 +1,17 @@
+services:
+  primevarclass:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      PRIMEVARCLASS_JOB_ROOT: /app/primevarclass_job_history
+    volumes:
+      - primevarclass_state:/app/primevarclass_job_history
+      - ./primevarclass_results_public_brca:/app/primevarclass_results_public_brca:ro
+      - ./primevarclass_study_results_real_multicohort_robust:/app/primevarclass_study_results_real_multicohort_robust:ro
+    restart: unless-stopped
+
+volumes:
+  primevarclass_state:

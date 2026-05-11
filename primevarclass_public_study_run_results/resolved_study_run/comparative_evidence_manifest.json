@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:33:16Z",
+    "baseline_experiment": "external_predictors_only",
+    "overall_comparative_strength_percent": 25,
+    "overall_status": "gap",
+    "n_external_cohorts": 1,
+    "pairwise_coverage_percent": 100,
+    "supported_gain_rate_percent": 0,
+    "positive_gain_rate_percent": 0,
+    "prime_supported_gain_rate_percent": 0,
+    "prime_positive_gain_rate_percent": 0,
+    "internal_external_alignment_percent": 35,
+    "cross_cohort_consistency_percent": 0,
+    "best_internal_experiment": "biochemical_only",
+    "best_internal_feature_set": "biochemical_only",
+    "best_supported_experiment": "consensus_top3",
+    "best_supported_feature_set": "consensus_top3",
+    "best_supported_delta_auc_roc": 0.0,
+    "dominant_feature_set": null,
+    "n_critical_gaps": 2
+  },
+  "critical_gaps": [
+    "Supported external gain",
+    "Prime-signal support rate"
+  ],
+  "recommended_actions": [
+    "Buscar ganhos suportados em mais coortes externas com dados reais versionados.",
+    "Fortalecer a vantagem do bloco primo/hibrido contra o baseline em multiplas coortes.",
+    "Alinhar o melhor experimento interno com ganhos positivos sustentados na validacao externa.",
+    "Buscar consistencia do mesmo bloco de sinal entre as coortes externas do estudo."
+  ],
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_report.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_criteria.csv",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_cohorts.csv",
+  "experiments_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_experiments.csv",
+  "feature_sets_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_feature_sets.csv",
+  "pairwise_auc_roc_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\comparative_evidence_pairwise_auc_roc.csv"
+}

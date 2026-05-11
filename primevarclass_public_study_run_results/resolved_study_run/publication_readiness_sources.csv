@@ -1,0 +1,7 @@
+cohort_name,role,source_name,display_name,recognized_public_source,release_value,release_coverage_percent,schema_coverage_percent,catalog_readiness_percent,ready_for_public_use,citation_url
+public_brca_training,train,clinvar_variant_summary,ClinVar,True,,45,100,72,False,https://www.ncbi.nlm.nih.gov/clinvar/
+public_brca_training,train,gnomad_brca_annotations,gnomAD,True,,45,100,72,False,https://gnomad.broadinstitute.org/
+public_brca_training,train,mavedb_brca_scores,MaveDB,True,,45,100,72,False,https://www.mavedb.org/
+bridges_like_external_validation,external_test,bridges_like_validation,ClinVar,True,,45,100,72,False,https://www.ncbi.nlm.nih.gov/clinvar/
+bridges_like_external_validation,external_test,gnomad_validation_annotations,gnomAD,True,,45,100,72,False,https://gnomad.broadinstitute.org/
+bridges_like_external_validation,external_test,mavedb_validation_scores,MaveDB,True,,45,100,72,False,https://www.mavedb.org/

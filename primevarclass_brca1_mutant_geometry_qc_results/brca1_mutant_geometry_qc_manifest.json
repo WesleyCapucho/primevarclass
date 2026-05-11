@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-04-25T21:06:22Z",
+  "summary": {
+    "generated_at": "2026-04-25T21:01:19Z",
+    "source_paired_mutant_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_paired_mutant_execution_results\\brca1_paired_mutant_execution_manifest.json",
+    "paired_row_count": 9,
+    "execute_xtb_opt": true,
+    "max_opt_pairs": 2,
+    "xtb_timeout_sec": 360,
+    "xtb_available": true,
+    "reviewed_pair_count": 9,
+    "geometry_pass_count": 9,
+    "xtb_optimization_attempted_count": 2,
+    "xtb_optimization_completed_count": 2,
+    "mutant_geometry_qc_readiness_percent": 100,
+    "ready_for_reviewed_mutant_structure_claims": false,
+    "why_not_reviewed_structure_claims": "Automated geometry QC and loose xTB optimization still require expert rotamer/protonation review, domain context, and orthogonal experimental/biophysical evidence."
+  },
+  "mutant_geometry_qc_table_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_mutant_geometry_qc_results\\brca1_mutant_geometry_qc_table.csv",
+  "xtb_optimization_log_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_mutant_geometry_qc_results\\brca1_xtb_optimization_log.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_mutant_geometry_qc_results\\brca1_mutant_geometry_qc_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_mutant_geometry_qc_results\\brca1_mutant_geometry_qc_report.html"
+}

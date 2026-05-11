@@ -1,0 +1,229 @@
+{
+  "summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_example.toml",
+    "output_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace",
+    "n_bundle_items": 3,
+    "n_script_executable_items": 2,
+    "n_manual_followups": 1
+  },
+  "assessment_summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_example.toml",
+    "n_sources": 3,
+    "n_recognized_public_sources": 3,
+    "n_sources_with_release": 0,
+    "release_coverage_percent": 45,
+    "schema_coverage_percent": 100,
+    "n_schema_ready_sources": 3,
+    "overall_readiness_percent": 72,
+    "ready_for_public_benchmark": false
+  },
+  "sync_summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_example.toml",
+    "n_sync_candidates": 3,
+    "n_automatable_sources": 2,
+    "n_semi_automatable_sources": 1,
+    "n_manual_sources": 0,
+    "overall_readiness_percent": 72,
+    "recommended_next_step": "Usar ClinVar, MaveDB, gnomAD e ENIGMA em staging versionado e partir para os benchmarks finais com coortes publicas reais."
+  },
+  "bundle_items": [
+    {
+      "source_name": "clinvar_variant_summary",
+      "profile_id": "clinvar",
+      "display_name": "ClinVar",
+      "release_value": null,
+      "automation_level": "automatable",
+      "target_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary",
+      "can_execute_from_script": true,
+      "official_entrypoints": [
+        {
+          "label": "ClinVar downloads overview",
+          "url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/",
+          "notes": "ClinVar documents weekly updates and monthly archived releases for XML, VCF, and TSV."
+        },
+        {
+          "label": "ClinVar TSV directory",
+          "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/",
+          "notes": "Recommended for variant_summary-based ingestion into PrimeVarClass."
+        }
+      ],
+      "recommended_artifacts": [
+        "variant_summary.txt.gz",
+        "variant_summary.txt.gz.md5"
+      ],
+      "expected_artifact_paths": [
+        "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz",
+        "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz.md5"
+      ],
+      "next_action": "Pode ser automatizada com download/API e versionamento local.",
+      "source_path": "data/examples/clinvar_variant_summary_like.tsv",
+      "source_format": "tsv",
+      "gene_allowlist": [],
+      "local_source_exists": true,
+      "resolved_mavedb_urn": null,
+      "execution_plan": [
+        {
+          "step_type": "mkdir",
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary",
+          "label": "Create ClinVar staging directory"
+        },
+        {
+          "step_type": "download",
+          "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+          "output_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz",
+          "label": "Download ClinVar variant summary"
+        },
+        {
+          "step_type": "download",
+          "url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz.md5",
+          "output_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz.md5",
+          "label": "Download ClinVar checksum"
+        }
+      ],
+      "bootstrap_commands": [
+        "New-Item -ItemType Directory -Force -Path 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary' | Out-Null",
+        "Invoke-WebRequest -Uri 'https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz' -OutFile 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz'",
+        "Invoke-WebRequest -Uri 'https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz.md5' -OutFile 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz.md5'"
+      ],
+      "expected_artifacts": [
+        {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz",
+          "exists": false,
+          "size_bytes": 0
+        },
+        {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\clinvar\\clinvar_variant_summary\\variant_summary.txt.gz.md5",
+          "exists": false,
+          "size_bytes": 0
+        }
+      ],
+      "n_expected_artifacts": 2,
+      "n_present_artifacts": 0,
+      "artifact_coverage_percent": 0
+    },
+    {
+      "source_name": "gnomad_brca_annotations",
+      "profile_id": "gnomad",
+      "display_name": "gnomAD",
+      "release_value": null,
+      "automation_level": "semi_automatable",
+      "target_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations",
+      "can_execute_from_script": true,
+      "official_entrypoints": [
+        {
+          "label": "gnomAD downloads",
+          "url": "https://gnomad.broadinstitute.org/downloads",
+          "notes": "Use the official downloads page for release files and browser tables."
+        },
+        {
+          "label": "gnomAD toolbox announcement",
+          "url": "https://gnomad.broadinstitute.org/news/2025-01-gnomad-toolbox/",
+          "notes": "Recommended when full downloads are too large for local handling."
+        }
+      ],
+      "recommended_artifacts": [
+        "browser variants Hail Table or release table export",
+        "gene-filtered BRCA annotation subset"
+      ],
+      "expected_artifact_paths": [
+        "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset.tsv",
+        "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset_manifest.json"
+      ],
+      "next_action": "Pode executar recorte BRCA local a partir da tabela gnomAD ja baixada e versionada.",
+      "source_path": "data/examples/gnomad_brca_annotations.tsv",
+      "source_format": "tsv",
+      "gene_allowlist": [],
+      "local_source_exists": true,
+      "resolved_mavedb_urn": null,
+      "execution_plan": [
+        {
+          "step_type": "mkdir",
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations",
+          "label": "Create gnomAD staging directory"
+        },
+        {
+          "step_type": "filter_variant_table",
+          "input_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv",
+          "input_format": "tsv",
+          "output_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset.tsv",
+          "manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset_manifest.json",
+          "gene_allowlist": [
+            "BRCA1",
+            "BRCA2"
+          ],
+          "gene_column_candidates": [
+            "gene",
+            "gene_symbol",
+            "Gene",
+            "symbol"
+          ],
+          "label": "Filter gnomAD variant table to BRCA subset"
+        }
+      ],
+      "bootstrap_commands": [
+        "New-Item -ItemType Directory -Force -Path 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations' | Out-Null",
+        "# PrimeVarClass runner step: filter local table 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv'",
+        "# Output subset: 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset.tsv'",
+        "# Output manifest: 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset_manifest.json'",
+        "# Genes: BRCA1, BRCA2"
+      ],
+      "expected_artifacts": [
+        {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset.tsv",
+          "exists": false,
+          "size_bytes": 0
+        },
+        {
+          "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\gnomad\\gnomad_brca_annotations\\gnomad_brca_subset_manifest.json",
+          "exists": false,
+          "size_bytes": 0
+        }
+      ],
+      "n_expected_artifacts": 2,
+      "n_present_artifacts": 0,
+      "artifact_coverage_percent": 0
+    },
+    {
+      "source_name": "mavedb_brca_scores",
+      "profile_id": "mavedb",
+      "display_name": "MaveDB",
+      "release_value": null,
+      "automation_level": "automatable",
+      "target_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\mavedb\\mavedb_brca_scores",
+      "can_execute_from_script": false,
+      "official_entrypoints": [
+        {
+          "label": "MaveDB API",
+          "url": "https://www.mavedb.org/docs/mavedb/api/index.html",
+          "notes": "Use for score set metadata and programmatic access."
+        },
+        {
+          "label": "MaveDB bulk downloads",
+          "url": "https://www.mavedb.org/docs/mavedb/bulk_downloads.html",
+          "notes": "Zenodo-backed archival releases updated twice yearly."
+        }
+      ],
+      "recommended_artifacts": [
+        "score set metadata JSON",
+        "mapped variants JSON",
+        "score CSV per public score set (optional or bulk release)"
+      ],
+      "expected_artifact_paths": [],
+      "next_action": "Informe release_version com o URN publico do score set para habilitar sync automatico via API.",
+      "source_path": "data/examples/mavedb_brca_scores.csv",
+      "source_format": "csv",
+      "gene_allowlist": [],
+      "local_source_exists": true,
+      "resolved_mavedb_urn": null,
+      "execution_plan": [],
+      "bootstrap_commands": [
+        "New-Item -ItemType Directory -Force -Path 'C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_continuous_learning_results\\bootstrap_workspace\\mavedb\\mavedb_brca_scores' | Out-Null",
+        "# TODO: defina release_version = 'urn:mavedb:...' no catalogo para habilitar sync automatico do score set."
+      ],
+      "expected_artifacts": [],
+      "n_expected_artifacts": 0,
+      "n_present_artifacts": 0,
+      "artifact_coverage_percent": 0
+    }
+  ]
+}

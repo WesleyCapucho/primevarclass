@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "title": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_benchmark_example.toml - Study Execution Board",
+    "generated_at": "2026-04-03T04:33:16Z",
+    "overall_execution_percent": 66,
+    "overall_status": "partial",
+    "ready_for_benchmark_lock": false,
+    "ready_for_submission_lock": false,
+    "ready_for_translational_pilot": false,
+    "n_critical_gaps": 4,
+    "resolution_percent": 82,
+    "preflight_percent": 94,
+    "publication_readiness_percent": 71,
+    "cohort_independence_percent": 100,
+    "real_data_readiness_percent": 19,
+    "real_data_handoff_percent": 100,
+    "comparative_evidence_percent": 25,
+    "claim_strength_percent": 37,
+    "claim_tier": "insufficient",
+    "validation_lock_percent": 69,
+    "translational_readiness_percent": 83,
+    "methods_best_internal_experiment": "biochemical_only",
+    "manuscript_best_external_experiment": "external_predictors_only"
+  },
+  "recommended_actions": [
+    "Concluir a resolucao das coortes e garantir staging/referencias congeladas para as fontes publicas.",
+    "Congelar as coortes finais com dados reais versionados antes da rodada definitiva.",
+    "Fechar o publication readiness com resultados em coortes reais e manifests finais de submissao.",
+    "Buscar ganho consistente e estatisticamente defendivel contra os baselines em dados reais.",
+    "Elevar a forca da alegacao cientifica antes da rodada final de submissao.",
+    "Preservar a comparacao completa de feature sets e baselines no pacote final do paper.",
+    "Usar o benchmark final para sustentar piloto de laboratorio e narrativa de impacto translacional.",
+    "Consolidar os locks cientificos ate um estado pronto para submissao."
+  ],
+  "critical_gaps": [
+    "Real-data cohort freeze",
+    "Comparative evidence strength",
+    "Claim strength",
+    "Validation lock status"
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\study_execution_board.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\study_execution_board.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\study_execution_board_criteria.csv"
+}

@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Publication Readiness",
+    "generated_at": "2026-04-03T04:33:16Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "n_cohorts": 2,
+    "n_external_cohorts": 1,
+    "overall_readiness_percent": 71,
+    "overall_status": "partial",
+    "claim_tier": "insufficient",
+    "claim_strength_percent": 37,
+    "real_data_freeze_percent": 19,
+    "ready_for_submission": false,
+    "n_strengths": 5,
+    "n_critical_gaps": 3,
+    "best_external_cohort": "bridges_like_external_validation",
+    "best_external_experiment": "external_predictors_only",
+    "best_external_auc_roc": 1.0,
+    "best_pairwise_evidence": "no_gain"
+  },
+  "strengths": [
+    "Cohort design and labels",
+    "Data versioning and manifests",
+    "Cohort independence",
+    "External validation coverage",
+    "Artifact package completeness"
+  ],
+  "critical_gaps": [
+    "Real-data cohort freeze",
+    "Comparative evidence strength",
+    "Claim strength and framing"
+  ],
+  "recommended_actions": [
+    "Completar tracking de release e cobertura estrutural das fontes publicas reais por coorte.",
+    "Substituir datasets de exemplo por coortes reais versionadas antes da submissao final.",
+    "Manter repeated holdout, modelos versionados e analise gene-estratificada em toda release.",
+    "Rodar o benchmark em dados reais e buscar ganho consistente contra o baseline declarado.",
+    "Fortalecer a alegacao central do estudo ate um tier moderado ou forte antes da submissao."
+  ],
+  "report_context": {},
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_criteria.csv",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_cohorts.csv",
+  "sources_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_sources.csv",
+  "external_evidence_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_external_evidence.csv",
+  "artifacts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_artifacts.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\publication_readiness_report.html"
+}

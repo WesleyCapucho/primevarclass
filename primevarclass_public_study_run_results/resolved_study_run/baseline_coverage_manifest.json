@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:33:16Z",
+    "baseline_experiment": "external_predictors_only",
+    "overall_coverage_percent": 79,
+    "overall_status": "partial",
+    "core_ablation_coverage_percent": 100,
+    "pairwise_external_coverage_percent": 100,
+    "best_prime_experiment": "hybrid_plus_external",
+    "best_prime_delta_auc_roc": 0.0,
+    "supported_prime_delta": false
+  },
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\baseline_coverage_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\baseline_coverage_report.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\baseline_coverage_criteria.csv",
+  "feature_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\baseline_coverage_feature_sets.csv",
+  "prime_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\baseline_coverage_prime_vs_baseline.csv"
+}

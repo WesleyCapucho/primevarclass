@@ -1,0 +1,6 @@
+gene,score_set_urn,assay_name,damaging_direction,overlap_rows,positive_rows,negative_rows,orientation_confidence_percent
+BRCA1,urn:mavedb:00000081-a-1,BRCA1 RING and BRCT domains depletion scores,higher,38,18,20,100.0
+BRCA1,urn:mavedb:00000081-a-2,BRCA1 RING and BRCT domains mean HDR fluorescence score,lower,84,42,42,75.2
+BRCA1,urn:mavedb:00001222-b-1,Scores from multiplexed functional assay of BRCA1 variants,lower,5,0,5,35.0
+BRCA1,urn:mavedb:00001222-b-2,Scores from multiplexed functional assay of BRCA1 variants,lower,5,0,5,35.0
+BRCA2,urn:mavedb:00001224-a-1,Scores from arrayed screen of BRCA2 homology directed repair function in VC-8 cells,lower,129,75,54,100.0

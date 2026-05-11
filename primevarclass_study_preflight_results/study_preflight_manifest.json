@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-04-02T17:49:58Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Study Preflight",
+    "generated_at": "2026-04-02T17:49:58Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_preflight_percent": 93,
+    "overall_status": "ready",
+    "ready_to_run": true,
+    "n_cohorts": 2,
+    "n_train_cohorts": 1,
+    "n_external_cohorts": 1,
+    "n_critical_gaps": 0
+  },
+  "warnings": [],
+  "recommended_actions": [
+    "Elevar release/schema coverage dos catalogos publicos usados no estudo."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_study_preflight_results\\study_preflight_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_study_preflight_results\\study_preflight_report.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_study_preflight_results\\study_preflight_criteria.csv",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_study_preflight_results\\study_preflight_cohorts.csv"
+}

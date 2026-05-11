@@ -1,0 +1,16 @@
+feature,importance_mean,importance_std
+prime_mode,0.0,0.0
+prime_ref,0.0,0.0
+prime_alt,0.0,0.0
+prime_diff,0.0,0.0
+prime_ratio,0.0,0.0
+prime_log_ratio,0.0,0.0
+prime_product,0.0,0.0
+prime_is_increase,0.0,0.0
+prime_is_decrease,0.0,0.0
+prime_distance_rank,0.0,0.0
+prime_mass_retention,0.0,0.0
+mass_prime_transition,0.0,0.0
+codon_count_ref,0.0,0.0
+codon_count_alt,0.0,0.0
+codon_count_diff,0.0,0.0

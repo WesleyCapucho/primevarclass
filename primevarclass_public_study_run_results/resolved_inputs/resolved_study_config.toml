@@ -1,0 +1,19 @@
+[study]
+name = "Public BRCA Benchmark Example"
+mode = "hybrid"
+keep_metadata = true
+high_confidence_only = false
+primary_metric = "auc_roc"
+baseline_experiment = "external_predictors_only"
+n_bootstrap = 100
+consensus_top_k = 3
+
+[[cohorts]]
+name = "public_brca_training"
+role = "train"
+source_config = "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\resolved_cohorts\\public_brca_training\\resolved_source_config.toml"
+
+[[cohorts]]
+name = "bridges_like_external_validation"
+role = "external_test"
+source_config = "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\resolved_cohorts\\bridges_like_external_validation\\resolved_source_config.toml"

@@ -1,0 +1,20 @@
+gate_id,area,title,status,score_percent,critical,artifact_available,path,recommended_action
+real_data_manifest,science,Manifesto de dados reais,ready,100,True,True,primevarclass_real_data_preparation_results\real_data_preparation_manifest.json,Dados reais preparados e rastreáveis.
+publication_readiness,science,Prontidão de publicação computacional,ready,96,True,True,primevarclass_study_results_real_multicohort_robust\publication_readiness_manifest.json,Pacote de prontidão de publicação encontrado.
+validation_credibility,science,Fechamento de validação e credibilidade,ready,88,True,True,primevarclass_validation_credibility_closure_results\validation_credibility_closure_manifest.json,Fechamento de credibilidade consolidado.
+independent_data_expansion,science,Bancos reais independentes para treino e validaÃ§Ã£o,ready,94,True,True,primevarclass_independent_data_expansion_results\independent_data_expansion_manifest.json,Plano e templates de bancos independentes encontrados.
+independent_data_staging_closure,science,Staging local de bancos independentes,ready,94,False,True,primevarclass_independent_data_staging_closure_results\independent_data_staging_closure_manifest.json,"Inventario local, gap plan e TOML de fontes independentes encontrados."
+prospective_validation,science,Plano prospectivo e experimental,ready,88,True,True,primevarclass_prospective_validation_closure_results\prospective_validation_closure_manifest.json,Plano prospectivo/experimental exportado.
+mechanistic_layers,science,"Camadas mecanísticas: descoberta, proteômica e quantum",ready,100,False,True,primevarclass_quantum_proteomics_results\quantum_proteomics_manifest.json,Pacote quântico-proteômico encontrado.
+public_sync,science,Sincronização pública e rastreabilidade linha a linha,ready,99,False,True,primevarclass_public_sync_closure_results\public_sync_closure_manifest.json,Pacote de sincronização pública encontrado.
+brca1_structural_execution,science,Campanha estrutural BRCA1 com motores reais,ready,100,False,True,primevarclass_brca1_engine_execution_results\brca1_engine_execution_manifest.json,Pacote de execução estrutural BRCA1 encontrado.
+api_service,web,API FastAPI,ready,100,True,True,src\primevarclass\api.py,API disponível no pacote.
+workbench_ui,web,Workbench web multiusuário,ready,100,True,True,src\primevarclass\ui\workbench.html,Interface web empacotada.
+knowledge_docs,web,"Manual, glossário e feedback bilíngues",ready,100,False,True,docs\manual_usuario.md,Documentação bilíngue disponível.
+dockerfile,web,Container Docker,ready,100,False,True,Dockerfile,Dockerfile encontrado.
+compose,web,Compose para staging local,ready,100,False,True,docker-compose.yml,docker-compose.yml encontrado.
+launch_docs,web,Runbook de publicação e lançamento,ready,100,False,True,docs\scientific_publication_and_web_launch.md,Runbook de lançamento encontrado.
+auth_key,operations,API key configurada para ambiente web,ready,100,True,True,.env,PRIMEVARCLASS_API_KEY está configurada via .env.
+cors_origins,operations,Origens CORS declaradas,partial,70,False,False,,Definir PRIMEVARCLASS_CORS_ORIGINS quando houver frontend hospedado em outro domínio.
+persistent_state,operations,Diretório persistente para trabalhos/auditoria,ready,100,False,True,.env,PRIMEVARCLASS_JOB_ROOT está configurado via .env.
+env_example,operations,Modelo de variáveis de ambiente,ready,100,False,True,.env.example,Usar .env.example como base para ambiente de staging/produção.

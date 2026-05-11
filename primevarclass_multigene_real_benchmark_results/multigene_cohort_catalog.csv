@@ -1,0 +1,7 @@
+cohort_name,gene,cohort_kind,rows
+tp53_combined_external_validation,TP53,combined_external,264
+pten_combined_external_validation,PTEN,combined_external,167
+msh2_combined_external_validation,MSH2,combined_external,164
+kras_combined_external_validation,KRAS,combined_external,32
+gck_combined_external_validation,GCK,combined_external,289
+f9_combined_external_validation,F9,combined_external,62

@@ -1,0 +1,3 @@
+cohort_name,role,source_config,resolved_source_config,source_config_exists,integrated_rows,valid_rows,n_classes,prime_mode,public_catalog_readiness_percent,release_coverage_percent,schema_coverage_percent,sync_candidates,automatable_sources,semi_automatable_sources,manual_sources,cohort_ready,warning
+public_brca_training,train,configs/public_brca_real.toml,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_real.toml,True,1260,1260,2,hybrid,96,92,100,3,2,1,0,True,
+bridges_like_external_validation,external_test,configs/public_brca_external_real.toml,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real.toml,True,432,432,2,hybrid,96,92,100,3,2,1,0,True,

@@ -1,0 +1,49 @@
+variant_id,status,reference_genome,live_gnomad_ac,live_gnomad_an,live_gnomad_af,live_gnomad_exome_af,live_gnomad_genome_af,gene,hgvs_p,variation_id,error
+X-139560852-G-A,found,GRCh38,2.0,1050721.0,1.9034548657540869e-06,1.9034548657540869e-06,,F9,p.Ala279Thr,216926,
+X-139561635-C-T,found,GRCh38,3.0,1097380.0,2.733784103956697e-06,2.733784103956697e-06,,F9,p.Ala317Val,1334561,
+X-139561694-G-C,graphql_error,,,,,,,F9,p.Ala337Pro,10606,"[{""message"": ""Variant not found""}]"
+X-139561694-G-A,graphql_error,,,,,,,F9,p.Ala337Thr,626950,"[{""message"": ""Variant not found""}]"
+X-139561695-C-T,graphql_error,,,,,,,F9,p.Ala337Val,3242389,"[{""message"": ""Variant not found""}]"
+X-139551112-C-T,graphql_error,,,,,,,F9,p.Arg191Cys,10584,"[{""message"": ""Variant not found""}]"
+X-139551113-G-A,found,GRCh38,3.0,1097762.0,2.7328327998236413e-06,2.7328327998236413e-06,8.943103972526785e-06,F9,p.Arg191His,10585,
+X-139551218-G-A,graphql_error,,,,,,,F9,p.Arg226Gln,10591,"[{""message"": ""Variant not found""}]"
+7-44188923-C-T,found,GRCh38,979.0,1461600.0,0.0006698139025725232,0.0006698139025725232,0.006153058142131046,GCK,p.Ala11Thr,129141,
+7-44149986-C-T,found,GRCh38,3.0,1461666.0,2.0524524754629305e-06,2.0524524754629305e-06,,GCK,p.Ala188Thr,804849,
+7-44149838-C-A,query_error,,,,,,,GCK,p.Ala201Ser,198050,HTTP Error 429: Too Many Requests
+7-44149817-C-G,query_error,,,,,,,GCK,p.Ala208Pro,2691827,HTTP Error 429: Too Many Requests
+7-44149817-C-T,query_error,,,,,,,GCK,p.Ala208Thr,804344,HTTP Error 429: Too Many Requests
+7-44149816-G-A,query_error,,,,,,,GCK,p.Ala208Val,447411,HTTP Error 429: Too Many Requests
+7-44147738-C-A,query_error,,,,,,,GCK,p.Ala259Ser,2578354,HTTP Error 429: Too Many Requests
+7-44147738-C-T,query_error,,,,,,,GCK,p.Ala259Thr,435302,HTTP Error 429: Too Many Requests
+12-25225628-C-G,query_error,,,,,,,KRAS,p.Ala146Pro,375963,HTTP Error 429: Too Many Requests
+12-25225627-G-A,query_error,,,,,,,KRAS,p.Ala146Val,375962,HTTP Error 429: Too Many Requests
+12-25227349-C-A,query_error,,,,,,,KRAS,p.Ala59Ser,222075,HTTP Error 429: Too Many Requests
+12-25225709-C-T,query_error,,,,,,,KRAS,p.Asp119Asn,40460,HTTP Error 429: Too Many Requests
+12-25209904-T-C,query_error,,,,,,,KRAS,p.Asp153Gly,40465,HTTP Error 429: Too Many Requests
+12-25209904-T-A,query_error,,,,,,,KRAS,p.Asp153Val,12587,HTTP Error 429: Too Many Requests
+12-25245320-T-C,query_error,,,,,,,KRAS,p.Gln22Arg,40452,HTTP Error 429: Too Many Requests
+12-25245321-G-T,query_error,,,,,,,KRAS,p.Gln22Lys,376325,HTTP Error 429: Too Many Requests
+2-47410347-C-T,query_error,,,,,,,MSH2,p.Ala207Val,1417674,HTTP Error 429: Too Many Requests
+2-47414291-C-T,query_error,,,,,,,MSH2,p.Ala272Val,41651,HTTP Error 429: Too Many Requests
+2-47403195-G-A,query_error,,,,,,,MSH2,p.Ala2Thr,41650,HTTP Error 429: Too Many Requests
+2-47416335-G-T,query_error,,,,,,,MSH2,p.Ala328Ser,455631,HTTP Error 429: Too Many Requests
+2-47416336-C-T,query_error,,,,,,,MSH2,p.Ala328Val,823501,HTTP Error 429: Too Many Requests
+2-47403325-C-T,query_error,,,,,,,MSH2,p.Ala45Val,90634,HTTP Error 429: Too Many Requests
+2-47475064-C-T,query_error,,,,,,,MSH2,p.Ala600Val,90789,HTTP Error 429: Too Many Requests
+2-47475076-C-A,query_error,,,,,,,MSH2,p.Ala604Asp,2673297,HTTP Error 429: Too Many Requests
+10-87933136-C-A,query_error,,,,,,,PTEN,p.Ala126Asp,2674280,HTTP Error 429: Too Many Requests
+10-87933135-G-C,query_error,,,,,,,PTEN,p.Ala126Pro,1067089,HTTP Error 429: Too Many Requests
+10-87933135-G-A,query_error,,,,,,,PTEN,p.Ala126Thr,468683,HTTP Error 429: Too Many Requests
+10-87933136-C-T,query_error,,,,,,,PTEN,p.Ala126Val,428234,HTTP Error 429: Too Many Requests
+10-87894045-G-C,query_error,,,,,,,PTEN,p.Ala34Pro,822002,HTTP Error 429: Too Many Requests
+10-87931071-G-A,query_error,,,,,,,PTEN,p.Ala79Thr,41682,HTTP Error 429: Too Many Requests
+10-87933148-G-A,query_error,,,,,,,PTEN,p.Arg130Gln,7829,HTTP Error 429: Too Many Requests
+10-87933147-C-G,query_error,,,,,,,PTEN,p.Arg130Gly,375958,HTTP Error 429: Too Many Requests
+17-7675200-C-G,query_error,,,,,,,TP53,p.Ala138Pro,12376,HTTP Error 429: Too Many Requests
+17-7675199-G-A,query_error,,,,,,,TP53,p.Ala138Val,184863,HTTP Error 429: Too Many Requests
+17-7675136-G-T,query_error,,,,,,,TP53,p.Ala159Asp,1026335,HTTP Error 429: Too Many Requests
+17-7675136-G-A,query_error,,,,,,,TP53,p.Ala159Val,458545,HTTP Error 429: Too Many Requests
+17-7675131-C-T,query_error,,,,,,,TP53,p.Ala161Thr,161518,HTTP Error 429: Too Many Requests
+17-7673793-G-C,query_error,,,,,,,TP53,p.Ala276Gly,185319,HTTP Error 429: Too Many Requests
+17-7670669-G-T,query_error,,,,,,,TP53,p.Ala347Asp,43587,HTTP Error 429: Too Many Requests
+17-7676181-G-C,query_error,,,,,,,TP53,p.Ala63Gly,229693,HTTP Error 429: Too Many Requests

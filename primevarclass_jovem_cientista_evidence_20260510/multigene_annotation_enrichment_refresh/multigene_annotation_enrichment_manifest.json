@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-11T00:13:11Z",
+  "summary": {
+    "generated_at": "2026-05-11T00:13:11Z",
+    "target_genes": [
+      "F9",
+      "GCK",
+      "KRAS",
+      "MSH2",
+      "PTEN",
+      "TP53"
+    ],
+    "variant_row_count": 1668,
+    "genomic_coordinate_coverage_percent": 100,
+    "local_gnomad_line_coverage_percent": 0,
+    "live_gnomad_query_count": 48,
+    "live_gnomad_hit_coverage_percent": 0,
+    "gnomad_line_evidence_coverage_percent": 0,
+    "mavedb_line_evidence_coverage_percent": 90,
+    "source_trace_coverage_percent": 100,
+    "line_level_annotation_readiness_percent": 62,
+    "live_mavedb_score_set_count": 6,
+    "live_mavedb_score_rows_loaded": 53077,
+    "local_gnomad_rows_loaded": 0,
+    "local_mavedb_rows_loaded": 0,
+    "coordinate_summary": {
+      "variant_summary_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\variant_summary.txt",
+      "variation_ids_requested": 1668,
+      "coordinate_rows_found": 1668,
+      "raw_rows_scanned": 8909090,
+      "status": "completed"
+    },
+    "public_sources": {
+      "gnomad_graphql_endpoint": "https://gnomad.broadinstitute.org/api",
+      "gnomad_dataset": "gnomad_r4",
+      "mavedb_api_base": "https://api.mavedb.org/api/v1"
+    },
+    "warnings": [
+      "Line-level MaveDB joins use protein HGVS and should be upgraded with VRS/coordinate reconciliation for publication-grade variant identity.",
+      "gnomAD live calls are capped; full production sync should use downloaded gnomAD tables or a scheduled public sync job."
+    ]
+  },
+  "variant_annotation_matrix_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\multigene_variant_annotation_matrix.csv",
+  "coverage_by_gene_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\multigene_annotation_coverage_by_gene.csv",
+  "gnomad_live_query_results_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\gnomad_live_query_results.csv",
+  "mavedb_live_score_sets_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\mavedb_live_score_sets.csv",
+  "mavedb_live_errors_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\mavedb_live_errors.json",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\multigene_annotation_enrichment_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\multigene_annotation_enrichment_report.html"
+}

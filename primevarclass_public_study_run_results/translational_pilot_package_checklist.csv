@@ -1,0 +1,6 @@
+check_id,phase,status,action
+open_workbench,operator,ready,Abrir /workbench e carregar o registry de modelos.
+review_handoff,data,ready,Revisar study_real_data_handoff_tasks.csv e atribuir as tarefas criticas por coorte/fonte.
+run_preflight,benchmark,ready,Executar preflight do estudo resolvido antes da rodada publica final.
+shadow_mode,pilot,ready,"Usar a API e a workbench em modo assistido, com validacao humana e sem claims clinicos finais."
+live_candidate,pilot,pending,"Permitir piloto live apenas quando freeze real, validation lock e claim strength sustentarem a rodada."

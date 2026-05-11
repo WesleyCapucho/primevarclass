@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_real.toml",
+    "n_sources": 3,
+    "n_recognized_public_sources": 3,
+    "n_sources_with_release": 3,
+    "release_coverage_percent": 92,
+    "schema_coverage_percent": 100,
+    "n_schema_ready_sources": 3,
+    "overall_readiness_percent": 96,
+    "ready_for_public_benchmark": true
+  },
+  "sources": [
+    {
+      "source_name": "clinvar_variant_summary",
+      "kind": "cohort",
+      "source_format": "tsv",
+      "preset": "clinvar_variant_summary",
+      "path": "data/raw/clinvar/brca_missense_variant_summary.tsv",
+      "url": null,
+      "gene_allowlist": [],
+      "recognized_public_source": true,
+      "profile_id": "clinvar",
+      "display_name": "ClinVar",
+      "release_value": "2026-04-03",
+      "release_date": "2026-04-03",
+      "release_method": "config_override",
+      "evidence": [
+        {
+          "label": "config.release_date",
+          "value": "2026-04-03"
+        }
+      ],
+      "coverage_percent": 92,
+      "citation_url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+      "warnings": [],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "label",
+        "review_status"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "hgvs_p",
+        "label",
+        "review_status",
+        "variant_id",
+        "protein_change_raw",
+        "LastEvaluated",
+        "source",
+        "meta_dataset",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "GeneSymbol",
+        "Protein change",
+        "ClinicalSignificance",
+        "ReviewStatus",
+        "VariationID",
+        "Name",
+        "LastEvaluated"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 96,
+      "ready_for_public_use": true
+    },
+    {
+      "source_name": "gnomad_brca_annotations",
+      "kind": "annotation",
+      "source_format": "tsv",
+      "preset": "gnomad_variant_table",
+      "path": "data/raw/gnomad/brca_missense_annotations.tsv",
+      "url": null,
+      "gene_allowlist": [],
+      "recognized_public_source": true,
+      "profile_id": "gnomad",
+      "display_name": "gnomAD",
+      "release_value": "gnomad_r4_graphql_2026-04-16",
+      "release_date": null,
+      "release_method": "config_override",
+      "evidence": [
+        {
+          "label": "config.release_version",
+          "value": "gnomad_r4_graphql_2026-04-16"
+        }
+      ],
+      "coverage_percent": 92,
+      "citation_url": "https://gnomad.broadinstitute.org/",
+      "warnings": [],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_gnomad_af"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_gnomad_af",
+        "feature_gnomad_ac",
+        "feature_gnomad_an",
+        "feature_gnomad_popmax_af",
+        "meta_gnomad_variant_id",
+        "meta_gnomad_transcript_id",
+        "meta_gnomad_consequence",
+        "meta_gnomad_dataset",
+        "meta_gnomad_reference_genome",
+        "meta_dataset",
+        "source",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "gene",
+        "hgvs_p",
+        "af",
+        "ac",
+        "an",
+        "popmax_af",
+        "meta_gnomad_variant_id",
+        "meta_gnomad_transcript_id",
+        "meta_gnomad_consequence",
+        "meta_gnomad_dataset",
+        "meta_gnomad_reference_genome"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 96,
+      "ready_for_public_use": true
+    },
+    {
+      "source_name": "mavedb_brca_scores",
+      "kind": "annotation",
+      "source_format": "csv",
+      "preset": "mavedb_score_table",
+      "path": "data/raw/mavedb/brca_function_scores.csv",
+      "url": null,
+      "gene_allowlist": [],
+      "recognized_public_source": true,
+      "profile_id": "mavedb",
+      "display_name": "MaveDB",
+      "release_value": "mavedb-dump.20260206153444",
+      "release_date": null,
+      "release_method": "config_override",
+      "evidence": [
+        {
+          "label": "config.release_version",
+          "value": "mavedb-dump.20260206153444"
+        }
+      ],
+      "coverage_percent": 92,
+      "citation_url": "https://www.mavedb.org/",
+      "warnings": [],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_mave_score"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_mave_score",
+        "feature_mave_se",
+        "meta_mavedb_urn",
+        "meta_assay_name",
+        "meta_dataset",
+        "source",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "gene",
+        "hgvs_p",
+        "score",
+        "score_se",
+        "score_set_urn",
+        "assay_name"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 96,
+      "ready_for_public_use": true
+    }
+  ],
+  "warnings": [],
+  "markdown_report": "# Public Source Catalog Assessment\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\configs\\public_brca_real.toml\n- Total sources: 3\n- Recognized public sources: 3\n- Sources with explicit or inferred release: 3\n- Release coverage: 92%\n- Schema coverage: 100%\n- Overall readiness: 96%\n- Ready for public benchmark: yes\n\n## Sources\n\n### clinvar_variant_summary\n\n- Recognized: yes\n- Public source: ClinVar\n- Release: 2026-04-03\n- Release method: config_override\n- Release coverage: 92%\n- Schema coverage: 100%\n- Overall readiness: 96%\n- Citation: https://www.ncbi.nlm.nih.gov/clinvar/\n\n### gnomad_brca_annotations\n\n- Recognized: yes\n- Public source: gnomAD\n- Release: gnomad_r4_graphql_2026-04-16\n- Release method: config_override\n- Release coverage: 92%\n- Schema coverage: 100%\n- Overall readiness: 96%\n- Citation: https://gnomad.broadinstitute.org/\n\n### mavedb_brca_scores\n\n- Recognized: yes\n- Public source: MaveDB\n- Release: mavedb-dump.20260206153444\n- Release method: config_override\n- Release coverage: 92%\n- Schema coverage: 100%\n- Overall readiness: 96%\n- Citation: https://www.mavedb.org/"
+}

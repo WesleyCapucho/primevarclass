@@ -1,0 +1,4 @@
+consensus_experiment,member_rank,member_experiment,cohort,cohort_role
+consensus_top3,1,biochemical_only,bridges_like_external_validation,external_test
+consensus_top3,2,external_predictors_only,bridges_like_external_validation,external_test
+consensus_top3,3,hybrid,bridges_like_external_validation,external_test

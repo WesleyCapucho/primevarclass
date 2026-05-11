@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "primevarclass"
+version = "0.1.0"
+description = "Research pipeline for BRCA1/2 missense variant classification using prime-number encodings."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.115",
+  "httpx>=0.27",
+  "joblib>=1.3",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scikit-learn>=1.3",
+  "tomli>=2.0; python_version < '3.11'",
+  "uvicorn>=0.30",
+]
+
+[project.scripts]
+primevarclass = "primevarclass.cli:main"
+primevarclass-api = "primevarclass.api:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+primevarclass = ["ui/*.html", "ui/*.css", "ui/*.js"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

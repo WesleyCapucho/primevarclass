@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-04-23T22:42:20Z",
+  "summary": {
+    "generated_at": "2026-04-23T22:42:20Z",
+    "quantum_target_count": 12,
+    "high_priority_quantum_target_count": 12,
+    "vqe_target_count": 12,
+    "high_readiness_vqe_target_count": 6,
+    "mean_quantum_priority_score_percent": 89.3,
+    "mean_vqe_readiness_score_percent": 87.4,
+    "mean_prime_mechanistic_score_percent": 74.0,
+    "mean_prime_quantum_coupling_score_percent": 72.9,
+    "high_prime_quantum_coupling_target_count": 1,
+    "top_vulnerability_classes": [
+      "metal_redox_or_cysteine_network"
+    ],
+    "source_protein_impact_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_protein_impact_results\\protein_impact_manifest.json"
+  },
+  "source_protein_impact_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_protein_impact_results\\protein_impact_manifest.json",
+  "quantum_targets_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_targets.csv",
+  "prime_quantum_bridge_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\prime_quantum_bridge.csv",
+  "vqe_targets_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\vqe_targets.csv",
+  "quantum_algorithm_portfolio_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_algorithm_portfolio.csv",
+  "quantum_workflow_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_workflow.csv",
+  "quantum_job_templates_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_job_templates.csv",
+  "quantum_job_templates_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_job_templates",
+  "vqe_job_templates_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\vqe_job_templates.csv",
+  "vqe_job_templates_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\vqe_job_templates",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_proteomics_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_quantum_proteomics_results\\quantum_proteomics_report.html"
+}

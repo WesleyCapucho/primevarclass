@@ -1,0 +1,7 @@
+gene,variant_rows,coordinate_coverage_percent,local_gnomad_line_coverage_percent,live_gnomad_attempt_coverage_percent,live_gnomad_hit_coverage_percent,mavedb_line_coverage_percent,source_trace_coverage_percent,line_level_annotation_readiness_percent
+TP53,364,100,0,2,0,99,100,65
+F9,216,99,0,4,1,96,100,64
+MSH2,414,100,0,2,0,98,100,64
+GCK,365,100,0,2,1,92,100,63
+PTEN,238,100,0,3,0,73,100,58
+KRAS,71,100,0,11,0,23,100,46

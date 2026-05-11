@@ -1,0 +1,34 @@
+[study]
+name = "Jovem Cientista BRCA Real Evidence Quick Pass"
+mode = "hybrid"
+high_confidence_only = false
+keep_metadata = true
+primary_metric = "auc_roc"
+baseline_experiment = "external_predictors_only"
+n_bootstrap = 20
+model_families = ["logistic_regression"]
+
+[[cohorts]]
+name = "public_brca_training"
+role = "train"
+source_config = "configs/public_brca_real.toml"
+
+[[cohorts]]
+name = "clinvar_expert_external_validation_brca1"
+role = "external_test"
+source_config = "configs/public_brca_external_real_clinvar_expert_brca1.toml"
+
+[[cohorts]]
+name = "clinvar_expert_external_validation_brca2"
+role = "external_test"
+source_config = "configs/public_brca_external_real_clinvar_expert_brca2.toml"
+
+[[cohorts]]
+name = "bridges_like_external_validation_brca1"
+role = "external_test"
+source_config = "configs/public_brca_external_real_brca1.toml"
+
+[[cohorts]]
+name = "bridges_like_external_validation_brca2"
+role = "external_test"
+source_config = "configs/public_brca_external_real_brca2.toml"

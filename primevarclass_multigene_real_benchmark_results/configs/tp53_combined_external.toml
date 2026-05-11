@@ -1,0 +1,12 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "tp53_combined_external"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/multigene/tp53/tp53_combined_external.tsv"
+preset = "clinvar_variant_summary"
+gene_allowlist = ["TP53"]

@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-04-03T04:33:15Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:33:15Z",
+    "overall_independence_percent": 100,
+    "overall_status": "ready",
+    "n_cohorts": 2,
+    "n_pairs": 1,
+    "n_train_external_pairs": 1,
+    "max_variant_overlap_percent": 0,
+    "mean_variant_overlap_percent": 0,
+    "variant_overlap_pair_rate_percent": 0,
+    "label_conflict_pair_rate_percent": 0,
+    "ready_for_external_validation": true,
+    "n_critical_gaps": 0
+  },
+  "critical_gaps": [],
+  "recommended_actions": [],
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\cohort_independence_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\cohort_independence_report.html",
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\cohort_independence_cohorts.csv",
+  "pairwise_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\cohort_independence_pairs.csv"
+}

@@ -1,0 +1,20 @@
+[study]
+name = "Public BRCA Benchmark Advanced Example"
+mode = "hybrid"
+high_confidence_only = false
+keep_metadata = true
+primary_metric = "auc_roc"
+baseline_experiment = "external_predictors_only"
+n_bootstrap = 100
+model_families = ["random_forest", "extra_trees", "logistic_regression"]
+consensus_top_k = 3
+
+[[cohorts]]
+name = "public_brca_training"
+role = "train"
+source_config = "configs/public_brca_example.toml"
+
+[[cohorts]]
+name = "bridges_like_external_validation"
+role = "external_test"
+source_config = "configs/public_brca_external_example.toml"

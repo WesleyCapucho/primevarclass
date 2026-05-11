@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-04-30T06:05:39Z",
+  "summary": {
+    "generated_at": "2026-04-30T06:05:39Z",
+    "prospective_validation_readiness_percent": 88,
+    "experimental_package_artifact_readiness_percent": 100,
+    "experimental_confirmation_completed_percent": 0,
+    "functional_structural_confirmation_queue_count": 24,
+    "prospective_cohort_plan_count": 6,
+    "experimental_confirmation_criteria_count": 9,
+    "partner_handoff_variant_count": 24,
+    "sop_template_count": 9,
+    "validation_gate_count": 6,
+    "closed_or_strong_gate_count": 3,
+    "final_scientific_proof_cap_percent": 88,
+    "ready_for_definitive_scientific_claims": false,
+    "ready_for_definitive_therapeutic_claims": false,
+    "ready_for_irb_or_partner_handoff": true,
+    "external_execution_status": "partner_lab_required",
+    "why_not_100_percent": "Prospective independent scoring and wet-lab/biophysical confirmation still require external execution; this package locks the protocol and queue.",
+    "source_manifests": {
+      "multigene_annotation_enrichment_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_annotation_enrichment_results\\multigene_annotation_enrichment_manifest.json",
+      "brca1_engine_execution_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_engine_execution_results\\brca1_engine_execution_manifest.json",
+      "validation_credibility_closure_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_validation_credibility_closure_results\\validation_credibility_closure_manifest.json",
+      "public_sync_closure_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_sync_closure_results\\public_sync_closure_manifest.json",
+      "brca1_paired_mutant_execution_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_paired_mutant_execution_results\\brca1_paired_mutant_execution_manifest.json",
+      "brca1_mutant_geometry_qc_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_brca1_mutant_geometry_qc_results\\brca1_mutant_geometry_qc_manifest.json"
+    }
+  },
+  "validation_gates_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\prospective_validation_gates.csv",
+  "functional_structural_confirmation_queue_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\functional_structural_confirmation_queue.csv",
+  "prospective_validation_cohort_plan_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\prospective_validation_cohort_plan.csv",
+  "experimental_confirmation_criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\experimental_confirmation_criteria.csv",
+  "partner_lab_handoff_sheet_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\partner_lab_handoff_sheet.csv",
+  "statistical_analysis_plan_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\statistical_analysis_plan.md",
+  "statistical_analysis_plan_html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\statistical_analysis_plan.html",
+  "external_partner_handoff_packet_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\external_partner_handoff_packet.md",
+  "external_partner_handoff_packet_html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\external_partner_handoff_packet.html",
+  "sop_templates_dir": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\sop_templates",
+  "sop_template_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\sop_template_manifest.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\prospective_validation_protocol.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_api_prospective_validation_smoke\\prospective_validation_protocol.html"
+}

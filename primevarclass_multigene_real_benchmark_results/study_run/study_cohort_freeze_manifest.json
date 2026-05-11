@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-04-24T05:25:38Z",
+  "summary": {
+    "generated_at": "2026-04-24T05:25:38Z",
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\configs\\multigene_benchmark.toml",
+    "study_name": "PrimeVarClass Multigene ClinVar Benchmark",
+    "n_cohorts": 8,
+    "n_ready_cohorts": 0,
+    "n_example_blocked_cohorts": 0,
+    "n_placeholder_release_blocked_cohorts": 8,
+    "overall_real_data_readiness_percent": 52,
+    "overall_status": "gap",
+    "ready_for_real_data_study": false
+  },
+  "critical_gaps": [
+    "Placeholder public releases still present"
+  ],
+  "recommended_actions": [
+    "Trocar placeholders por release_version/release_date reais para ClinVar, gnomAD, MaveDB e ENIGMA.",
+    "Substituir demos por dados reais e manter apenas fontes congeladas para o benchmark final.",
+    "Preferir staging em data/raw ou artefatos resolvidos versionados para coortes finais.",
+    "Congelar cada coorte apenas com dados reais versionados antes do benchmark final."
+  ],
+  "cohorts_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\study_cohort_freeze_cohorts.csv",
+  "sources_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\study_cohort_freeze_sources.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\study_cohort_freeze_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_multigene_real_benchmark_results\\study_run\\study_cohort_freeze_report.html"
+}

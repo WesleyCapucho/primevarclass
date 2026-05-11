@@ -1,0 +1,7 @@
+criterion_id,title,weight,score_percent,status,critical,evidence,next_step
+external_depth,External cohort depth,0.85,25,gap,False,1 coorte(s) externas sustentam o experimento candidato.,Aumentar o numero de coortes externas independentes para sustentar uma alegacao mais forte.
+pairwise_metric_coverage,Pairwise multi-metric coverage,1.0,100,ready,True,100% das combinacoes coorte-metrica foram materializadas para o candidato.,Garantir AUC-ROC e AUC-PR pareados contra baseline em todas as coortes externas.
+supported_auc_roc,Supported AUC-ROC gain,1.35,0,gap,True,0% das coortes externas mostram ganho AUC-ROC com IC inferior > 0.,Buscar suporte estatistico do ganho AUC-ROC em mais coortes externas reais.
+cross_metric_support,Cross-metric support,1.2,0,gap,True,0% das coortes externas sustentam ganho simultaneo em AUC-ROC e AUC-PR.,Fortalecer o sinal em mais de uma metrica para sustentar a alegacao central do paper.
+head_to_head_win_rate,Head-to-head external win rate,1.0,0,gap,True,"0% das comparacoes externas diretas superam o baseline em AUC-ROC, AUC-PR ou MCC.",Aumentar a taxa de vitoria direta do candidato nas metricas externas centrais.
+no_regression_safety,No-regression safety,1.15,67,partial,True,67% das comparacoes externas nao mostram regressao relevante frente ao baseline.,Reduzir sinais de regressao antes de sustentar uma alegacao forte de superioridade.

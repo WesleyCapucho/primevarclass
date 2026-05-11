@@ -1,0 +1,6 @@
+criterion_id,title,weight,score_percent,status,critical,evidence,next_step
+operator_surface,Operator surface readiness,1.0,100,ready,False,"Workbench, API, jobs e manifests ja suportam uso guiado por laboratorio.",Manter a superficie operacional consistente entre releases.
+artifact_package,Pilot artifact package,1.1,100,ready,True,100% dos artefatos operacionais essenciais do piloto foram materializados.,"Garantir que todo piloto venha acompanhado de manifests, relatorios e release final."
+lab_handoff,Lab handoff readiness,1.2,100,ready,True,Handoff de dados reais em 100% com 6 tarefa(s) abertas.,Fechar as tarefas do handoff para permitir uma rodada assistida pelo laboratorio.
+shadow_mode,Shadow-mode pilot readiness,1.15,90,ready,True,Shadow-mode em 90% com preflight=94% e execution board=66%.,Usar a workbench e o handoff para rodar o fluxo em paralelo com revisao humana.
+live_candidate,Live translational candidate,1.25,49,gap,True,Candidato live em 49% com freeze=19% e validation lock=69%.,Trocar datasets demo por coortes reais e fortalecer claim/validation antes de qualquer piloto live.

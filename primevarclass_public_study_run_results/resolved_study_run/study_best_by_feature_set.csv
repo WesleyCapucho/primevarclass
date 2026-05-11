@@ -1,0 +1,8 @@
+experiment,feature_set,model_family,is_primary_experiment,n_features,cv_folds,auc_roc,auc_pr,accuracy,sensitivity,specificity,mcc,precision_at_0_5,recall_at_0_5
+biochemical_only,biochemical_only,random_forest,1,28,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+external_predictors_only,external_predictors_only,random_forest,1,12,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+hybrid,hybrid,random_forest,1,41,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+hybrid_plus_conservation,hybrid_plus_conservation,random_forest,1,46,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+hybrid_plus_conservation_structure,hybrid_plus_conservation_structure,random_forest,1,55,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+hybrid_plus_external,hybrid_plus_external,random_forest,1,67,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5
+prime_only,prime_only,random_forest,1,15,2,0.5,0.5,0.5,0.5,0.5,0.0,0.5,0.5

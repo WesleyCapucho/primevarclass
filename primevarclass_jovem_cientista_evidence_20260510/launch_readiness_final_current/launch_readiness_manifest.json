@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-05-11T00:17:03Z",
+  "summary": {
+    "generated_at": "2026-05-11T00:17:03Z",
+    "workspace_root": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos",
+    "overall_launch_readiness_percent": 96,
+    "overall_launch_status": "ready",
+    "scientific_publication_percent": 95,
+    "web_launch_percent": 100,
+    "operational_hardening_percent": 93,
+    "ready_for_web_staging": true,
+    "ready_for_public_web": true,
+    "ready_for_computational_preprint": true,
+    "ready_for_external_validation_package": true,
+    "ready_for_strong_scientific_claim": false,
+    "ready_for_definitive_scientific_claims": false,
+    "ready_for_definitive_therapeutic_claims": false,
+    "experimental_confirmation_completed_percent": 0,
+    "final_scientific_proof_cap_percent": 88,
+    "critical_gap_count": 0,
+    "truth_guardrail": "Prontidão computacional não equivale a validade clínica; afirmações fortes ainda exigem confirmação funcional, estrutural e prospectiva independente."
+  },
+  "critical_gaps": [],
+  "recommended_actions": [
+    "Definir PRIMEVARCLASS_CORS_ORIGINS quando houver frontend hospedado em outro domínio.",
+    "A plataforma está próxima de preprint computacional; manter linguagem conservadora até confirmação funcional/estrutural independente."
+  ],
+  "report_context": {
+    "report_purpose": "cli_launch_readiness"
+  },
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\launch_readiness_final_current\\launch_readiness_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\launch_readiness_final_current\\launch_readiness_report.html",
+  "checklist_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\launch_readiness_final_current\\launch_readiness_checklist.csv"
+}

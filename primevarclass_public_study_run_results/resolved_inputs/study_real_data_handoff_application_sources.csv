@@ -1,0 +1,7 @@
+cohort_name,source_name,original_path,candidate_path,original_release_version,candidate_release_version,original_release_date,candidate_release_date,n_applied_changes,ready_for_candidate,notes
+public_brca_training,clinvar_variant_summary,data/examples/clinvar_variant_summary_like.tsv,data/examples/clinvar_variant_summary_like.tsv,,,,,0,False,
+public_brca_training,gnomad_brca_annotations,data/examples/gnomad_brca_annotations.tsv,data/examples/gnomad_brca_annotations.tsv,,,,,0,False,
+public_brca_training,mavedb_brca_scores,data/examples/mavedb_brca_scores.csv,data/examples/mavedb_brca_scores.csv,,,,,0,False,
+bridges_like_external_validation,bridges_like_validation,data/examples/bridges_like_brca_test.tsv,data/examples/bridges_like_brca_test.tsv,,,,,0,False,
+bridges_like_external_validation,gnomad_validation_annotations,data/examples/gnomad_brca_validation.tsv,data/examples/gnomad_brca_validation.tsv,,,,,0,False,
+bridges_like_external_validation,mavedb_validation_scores,data/examples/mavedb_brca_validation.csv,data/examples/mavedb_brca_validation.csv,,,,,0,False,

@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Validation Lock",
+    "generated_at": "2026-04-03T04:33:16Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_validation_lock_percent": 69,
+    "overall_status": "partial",
+    "claim_tier": "insufficient",
+    "ready_for_statistical_validation": false,
+    "ready_for_submission_lock": false,
+    "ready_for_translational_pilot": false,
+    "publication_readiness_percent": 71,
+    "comparative_evidence_percent": 25,
+    "claim_strength_percent": 37,
+    "cohort_independence_percent": 100,
+    "baseline_coverage_percent": 79,
+    "artifact_bundle_percent": 100,
+    "n_critical_gaps": 2
+  },
+  "critical_gaps": [
+    "Comparative evidence lock",
+    "Claim strength lock"
+  ],
+  "recommended_actions": [
+    "Fortalecer a superioridade comparativa do candidato em mais coortes externas reais.",
+    "Elevar a forca da alegacao para um nivel moderado ou forte antes da submissao final.",
+    "Fechar os gaps criticos restantes do pacote de submissao.",
+    "Garantir que a narrativa de ablation e baseline esteja completa na rodada final.",
+    "Usar um claim tier mais forte para sustentar narrativa translacional e de alto impacto."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_validation_lock.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_validation_lock.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_study_run\\study_validation_lock_criteria.csv"
+}

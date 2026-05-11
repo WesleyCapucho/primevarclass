@@ -1,0 +1,7 @@
+gene,variant_count,cached_found_count,cached_not_found_count,retryable_count,pending_query_count,definitive_cached_percent,needs_more_sync_count
+F9,216,45,169,0,0,99,0
+GCK,365,134,231,0,0,100,0
+KRAS,71,20,51,0,0,100,0
+MSH2,414,126,288,0,0,100,0
+PTEN,238,44,194,0,0,100,0
+TP53,364,178,186,0,0,100,0

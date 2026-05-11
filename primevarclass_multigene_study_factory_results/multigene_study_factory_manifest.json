@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-04-18T06:01:48Z",
+  "summary": {
+    "generated_at": "2026-04-18T06:01:48Z",
+    "workspace_root": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos",
+    "total_scaffolded_genes": 6,
+    "phase_1_genes": [
+      "TP53"
+    ],
+    "phase_2_genes": [
+      "GCK",
+      "PTEN",
+      "MSH2",
+      "F9",
+      "KRAS"
+    ],
+    "phase_3_genes": []
+  },
+  "rollout_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_rollout_results\\multigene_rollout_manifest.json",
+  "scaffold_index_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_study_factory_results\\multigene_study_scaffold_index.csv",
+  "tasks_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_study_factory_results\\multigene_study_factory_tasks.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_study_factory_results\\multigene_study_factory.md",
+  "manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos n\u00fameros primos\\primevarclass_multigene_study_factory_results\\multigene_study_factory_manifest.json"
+}

@@ -1,0 +1,6 @@
+[panel]
+name = "PrimeVarClass Generalization Expansion Candidates"
+genes = ["TP53", "GCK", "PTEN", "MSH2", "F9", "KRAS", "MLH1", "SPTAN1", "KCNQ2", "OBSCN", "BRAF", "PTPN11"]
+training_strategy = "ClinVar primary training + ClinVar expert holdout + external cohorts when available"
+annotation_strategy = "gnomAD direct API + MaveDB score sets"
+notes = "Gerado automaticamente a partir do overlap ClinVar x MaveDB para expansao multicohorte/multigene"

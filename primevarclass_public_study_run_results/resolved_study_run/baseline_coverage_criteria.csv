@@ -1,0 +1,5 @@
+criterion_id,title,weight,score_percent,status,critical,evidence,next_step
+baseline_presence,Declared baseline presence,1.2,100,ready,True,Baseline 'external_predictors_only' esta no ranking interno e esta nas comparacoes externas.,Garantir que o baseline declarado esteja presente no treino e nas comparacoes externas.
+core_ablation_coverage,Core ablation coverage,1.1,100,ready,True,7/7 feature sets centrais de ablation estao presentes.,Completar os feature sets centrais para sustentar a narrativa de ablation.
+pairwise_external_coverage,Pairwise external coverage,1.0,100,ready,True,100% das coortes externas possuem comparacao pareada AUC-ROC.,Materializar comparacao pareada para todas as coortes externas do estudo.
+prime_signal_against_baseline,Prime-signal vs baseline,1.3,25,gap,True,Melhor experimento com sinal primo/hibrido: hybrid_plus_external com delta AUC-ROC=0.0000.,Buscar ganho consistente do bloco primo/hibrido contra o baseline declarado em dados reais.

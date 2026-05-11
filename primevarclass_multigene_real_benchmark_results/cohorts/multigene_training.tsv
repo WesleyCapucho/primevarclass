@@ -1,0 +1,581 @@
+GeneSymbol	Protein change	ClinicalSignificance	ReviewStatus	VariationID	Name	LastEvaluated
+TP53	p.Ala129Asp	Benign	criteria provided, single submitter	1735669	NM_000546.6(TP53):c.386C>A (p.Ala129Asp)	Nov 10, 2021
+TP53	p.Ala307Gly	Likely benign	criteria provided, single submitter	485027	NM_000546.6(TP53):c.920C>G (p.Ala307Gly)	May 27, 2025
+TP53	p.Ala347Gly	Likely benign	criteria provided, single submitter	2683739	NM_000546.6(TP53):c.1040C>G (p.Ala347Gly)	Nov 14, 2023
+TP53	p.Ala355Thr	Likely benign	criteria provided, single submitter	1781085	NM_000546.6(TP53):c.1063G>A (p.Ala355Thr)	Jan 05, 2022
+TP53	p.Ala63Thr	Likely benign	criteria provided, single submitter	231015	NM_000546.6(TP53):c.187G>A (p.Ala63Thr)	Mar 16, 2021
+TP53	p.Ala76Gly	Benign	criteria provided, single submitter	3460333	NM_000546.6(TP53):c.227C>G (p.Ala76Gly)	Nov 11, 2024
+TP53	p.Ala79Val	Likely benign	criteria provided, single submitter	4189271	NM_000546.6(TP53):c.236C>T (p.Ala79Val)	Aug 04, 2025
+TP53	p.Ala83Pro	Likely benign	criteria provided, single submitter	3972448	NM_000546.6(TP53):c.247G>C (p.Ala83Pro)	Apr 25, 2025
+TP53	p.Arg158Ser	Pathogenic	criteria provided, single submitter	1067910	NM_000546.6(TP53):c.472C>A (p.Arg158Ser)	Sep 13, 2023
+TP53	p.Arg335Leu	Likely benign	criteria provided, single submitter	3328160	NM_000546.6(TP53):c.1004G>T (p.Arg335Leu)	Jun 18, 2024
+TP53	p.Asn131His	Likely pathogenic	criteria provided, single submitter	4279056	NM_000546.6(TP53):c.391A>C (p.Asn131His)	Jul 30, 2025
+TP53	p.Asn210Ser	Likely benign	criteria provided, single submitter	3232058	NM_000546.6(TP53):c.629A>G (p.Asn210Ser)	Dec 21, 2023
+TP53	p.Asn239Lys	Pathogenic	criteria provided, single submitter	4189258	NM_000546.6(TP53):c.717C>A (p.Asn239Lys)	Sep 05, 2025
+TP53	p.Asn263Ser	Likely benign	criteria provided, single submitter	827313	NM_000546.6(TP53):c.788A>G (p.Asn263Ser)	Aug 29, 2019
+TP53	p.Asn29Asp	Likely benign	criteria provided, single submitter	822586	NM_000546.6(TP53):c.85A>G (p.Asn29Asp)	Nov 25, 2019
+TP53	p.Asn310Lys	Likely benign	criteria provided, single submitter	428879	NM_000546.6(TP53):c.930C>G (p.Asn310Lys)	Oct 30, 2020
+TP53	p.Asn310Ser	Likely benign	criteria provided, single submitter	1766454	NM_000546.6(TP53):c.929A>G (p.Asn310Ser)	Oct 28, 2020
+TP53	p.Asp207Glu	Likely benign	criteria provided, single submitter	3809687	NM_000546.6(TP53):c.621T>G (p.Asp207Glu)	Mar 07, 2025
+TP53	p.Asp21Ala	Likely benign	criteria provided, single submitter	3972456	NM_000546.6(TP53):c.62A>C (p.Asp21Ala)	Jun 05, 2025
+TP53	p.Asp228Tyr	Likely benign	criteria provided, single submitter	2450759	NM_000546.6(TP53):c.682G>T (p.Asp228Tyr)	Mar 02, 2023
+TP53	p.Asp259Ala	Pathogenic	no assertion criteria provided	2671888	NM_000546.6(TP53):c.776A>C (p.Asp259Ala)	Dec 04, 2023
+TP53	p.Asp324Asn	Benign	no assertion criteria provided	2578516	NM_000546.6(TP53):c.970G>A (p.Asp324Asn)	-
+TP53	p.Asp324Glu	Likely benign	criteria provided, single submitter	2450758	NM_000546.6(TP53):c.972T>A (p.Asp324Glu)	Mar 07, 2023
+TP53	p.Asp393Tyr	Likely benign	criteria provided, single submitter	1741120	NM_000546.6(TP53):c.1177G>T (p.Asp393Tyr)	Jul 12, 2022
+TP53	p.Asp57Val	Likely benign	criteria provided, single submitter	1778520	NM_000546.6(TP53):c.170A>T (p.Asp57Val)	Nov 10, 2021
+TP53	p.Cys124Arg	Likely pathogenic	criteria provided, single submitter	4056245	NM_000546.6(TP53):c.370T>C (p.Cys124Arg)	Feb 29, 2024
+TP53	p.Cys124Trp	Likely benign	criteria provided, single submitter	3809674	NM_000546.6(TP53):c.372C>G (p.Cys124Trp)	Jan 27, 2025
+TP53	p.Cys135Ser	Likely pathogenic	criteria provided, single submitter	3893309	NM_000546.6(TP53):c.404G>C (p.Cys135Ser)	Oct 23, 2024
+TP53	p.Cys176Arg	Likely pathogenic	no assertion criteria provided	634759	NM_000546.6(TP53):c.526_528delinsCGG (p.Cys176Arg)	Dec 01, 2018
+TP53	p.Cys242Trp	Pathogenic	criteria provided, single submitter	376580	NM_000546.6(TP53):c.726C>G (p.Cys242Trp)	Mar 09, 2023
+TP53	p.Gln165Leu	Pathogenic	no assertion criteria provided	2505496	NM_000546.6(TP53):c.494A>T (p.Gln165Leu)	-
+TP53	p.Gln192His	Likely benign	criteria provided, single submitter	988617	NM_000546.6(TP53):c.576G>C (p.Gln192His)	-
+TP53	p.Gln354Leu	Benign	criteria provided, single submitter	3232047	NM_000546.6(TP53):c.1061A>T (p.Gln354Leu)	Dec 29, 2023
+TP53	p.Gln354Pro	Likely benign	criteria provided, single submitter	3328171	NM_000546.6(TP53):c.1061A>C (p.Gln354Pro)	May 08, 2024
+TP53	p.Gln375Lys	Likely benign	criteria provided, single submitter	1798385	NM_000546.6(TP53):c.1123C>A (p.Gln375Lys)	Jan 07, 2021
+TP53	p.Glu171Asp	Pathogenic	no assertion criteria provided	2446885	NM_000546.6(TP53):c.513G>T (p.Glu171Asp)	-
+TP53	p.Glu171Gly	Pathogenic	criteria provided, single submitter	1745525	NM_000546.6(TP53):c.512A>G (p.Glu171Gly)	Jan 24, 2022
+TP53	p.Glu204Asp	Likely benign	criteria provided, single submitter	3460304	NM_000546.6(TP53):c.612G>C (p.Glu204Asp)	Jul 16, 2024
+TP53	p.Glu285Val	Pathogenic	criteria provided, single submitter	12384	NM_000546.6(TP53):c.854A>T (p.Glu285Val)	Dec 21, 2018
+TP53	p.Glu286Ala	Likely pathogenic	criteria provided, single submitter	376593	NM_000546.6(TP53):c.857A>C (p.Glu286Ala)	Feb 21, 2024
+TP53	p.Glu287Gly	Likely benign	criteria provided, single submitter	4757808	NM_000546.6(TP53):c.860A>G (p.Glu287Gly)	Sep 10, 2025
+TP53	p.Glu326Asp	Likely benign	criteria provided, single submitter	3972458	NM_000546.6(TP53):c.978A>C (p.Glu326Asp)	May 23, 2025
+TP53	p.Glu326Val	Likely pathogenic	no assertion criteria provided	2578514	NM_000546.6(TP53):c.977A>T (p.Glu326Val)	-
+TP53	p.Glu336Gln	Likely benign	criteria provided, single submitter	2450754	NM_000546.6(TP53):c.1006G>C (p.Glu336Gln)	Feb 03, 2023
+TP53	p.Glu343Asp	Benign	criteria provided, single submitter	3460327	NM_000546.6(TP53):c.1029G>T (p.Glu343Asp)	Oct 24, 2024
+TP53	p.Glu349Gly	Likely benign	criteria provided, single submitter	1775423	NM_000546.6(TP53):c.1046A>G (p.Glu349Gly)	Dec 21, 2020
+TP53	p.Glu388Asp	Likely benign	criteria provided, single submitter	4553123	NM_000546.6(TP53):c.1164A>C (p.Glu388Asp)	Dec 04, 2025
+TP53	p.Glu388Gln	Likely benign	criteria provided, single submitter	1737291	NM_000546.6(TP53):c.1162G>C (p.Glu388Gln)	Jul 11, 2022
+TP53	p.Glu62Gly	Likely benign	criteria provided, single submitter	3809683	NM_000546.6(TP53):c.185A>G (p.Glu62Gly)	Feb 10, 2025
+TP53	p.Gly199Val	Likely pathogenic	criteria provided, single submitter	451799	NM_000546.6(TP53):c.596G>T (p.Gly199Val)	Jun 20, 2018
+TP53	p.Gly244Val	Likely pathogenic	criteria provided, single submitter	376601	NM_000546.6(TP53):c.731G>T (p.Gly244Val)	Feb 16, 2024
+TP53	p.Gly302Ala	Likely benign	criteria provided, single submitter	3328162	NM_000546.6(TP53):c.905G>C (p.Gly302Ala)	Mar 18, 2024
+TP53	p.Gly356Glu	Likely benign	criteria provided, single submitter	3460336	NM_000546.6(TP53):c.1067G>A (p.Gly356Glu)	Nov 18, 2024
+TP53	p.Gly59Asp	Likely benign	criteria provided, single submitter	820048	NM_000546.6(TP53):c.176G>A (p.Gly59Asp)	Jan 21, 2021
+TP53	p.His168Leu	Pathogenic	criteria provided, single submitter	1744933	NM_000546.6(TP53):c.503A>T (p.His168Leu)	Dec 03, 2020
+TP53	p.His168Pro	Likely pathogenic	criteria provided, single submitter	3328154	NM_000546.6(TP53):c.503A>C (p.His168Pro)	Jun 14, 2024
+TP53	p.His296Arg	Likely pathogenic	no assertion criteria provided	100816	NM_000546.6(TP53):c.887A>G (p.His296Arg)	-
+TP53	p.Ile232Ser	Pathogenic	criteria provided, single submitter	634756	NM_000546.6(TP53):c.695T>G (p.Ile232Ser)	Mar 28, 2022
+TP53	p.Ile251Phe	Likely pathogenic	criteria provided, single submitter	1518844	NM_000546.6(TP53):c.751A>T (p.Ile251Phe)	Sep 08, 2023
+TP53	p.Ile332Asn	Likely pathogenic	criteria provided, single submitter	1768732	NM_000546.6(TP53):c.995T>A (p.Ile332Asn)	Feb 04, 2022
+TP53	p.Ile332Leu	Likely benign	criteria provided, single submitter	4189263	NM_000546.6(TP53):c.994A>C (p.Ile332Leu)	Jul 16, 2025
+TP53	p.Leu130His	Pathogenic	criteria provided, single submitter	824351	NM_000546.6(TP53):c.389T>A (p.Leu130His)	Aug 07, 2025
+TP53	p.Leu32Val	Likely benign	criteria provided, single submitter	1767161	NM_000546.6(TP53):c.94C>G (p.Leu32Val)	Oct 04, 2022
+TP53	p.Leu350Arg	Likely benign	criteria provided, single submitter	4189250	NM_000546.6(TP53):c.1049T>G (p.Leu350Arg)	Aug 18, 2025
+TP53	p.Lys319Thr	Likely benign	criteria provided, single submitter	3328169	NM_000546.6(TP53):c.956A>C (p.Lys319Thr)	May 01, 2024
+TP53	p.Met340Ile	Likely benign	criteria provided, single submitter	3256325	NM_000546.6(TP53):c.1020G>C (p.Met340Ile)	Mar 04, 2025
+TP53	p.Met66Val	Likely benign	criteria provided, single submitter	1783578	NM_000546.6(TP53):c.196A>G (p.Met66Val)	Oct 15, 2021
+TP53	p.Phe109Cys	Likely pathogenic	criteria provided, single submitter	634784	NM_000546.6(TP53):c.326T>G (p.Phe109Cys)	Feb 12, 2024
+TP53	p.Phe113Cys	Pathogenic	criteria provided, single submitter	634690	NM_000546.6(TP53):c.338T>G (p.Phe113Cys)	Dec 16, 2024
+TP53	p.Phe113Leu	Pathogenic	criteria provided, single submitter	3634432	NM_000546.6(TP53):c.337T>C (p.Phe113Leu)	Aug 20, 2024
+TP53	p.Phe212Ser	Likely benign	criteria provided, single submitter	3460339	NM_000546.6(TP53):c.635T>C (p.Phe212Ser)	Nov 26, 2024
+TP53	p.Phe270Val	Pathogenic	criteria provided, single submitter	376598	NM_000546.6(TP53):c.808T>G (p.Phe270Val)	Jun 07, 2023
+TP53	p.Phe341Leu	Likely benign	criteria provided, single submitter	2585878	NM_000546.6(TP53):c.1023C>G (p.Phe341Leu)	Jun 26, 2023
+TP53	p.Phe341Ser	Likely pathogenic	criteria provided, single submitter	2450748	NM_000546.6(TP53):c.1021_1022delinsAG (p.Phe341Ser)	Dec 29, 2022
+TP53	p.Phe385Leu	Likely benign	criteria provided, single submitter	1735082	NM_000546.6(TP53):c.1155C>A (p.Phe385Leu)	Dec 10, 2021
+TP53	p.Pro151Phe	Likely pathogenic	criteria provided, single submitter	824960	NM_000546.6(TP53):c.451_452delinsTT (p.Pro151Phe)	Oct 04, 2019
+TP53	p.Pro300Leu	Likely benign	criteria provided, single submitter	1765377	NM_000546.6(TP53):c.899C>T (p.Pro300Leu)	Dec 05, 2014
+TP53	p.Pro318Ser	Benign	no assertion criteria provided	2575170	NM_000546.6(TP53):c.952C>T (p.Pro318Ser)	-
+TP53	p.Pro4Gln	Likely benign	criteria provided, single submitter	2450740	NM_000546.6(TP53):c.11C>A (p.Pro4Gln)	Nov 22, 2022
+TP53	p.Pro58Ala	Likely benign	criteria provided, single submitter	1778944	NM_000546.6(TP53):c.172C>G (p.Pro58Ala)	Feb 10, 2021
+TP53	p.Pro75Ser	Likely benign	criteria provided, single submitter	4758197	NM_000546.6(TP53):c.223C>T (p.Pro75Ser)	Oct 06, 2025
+TP53	p.Pro8Arg	Likely benign	criteria provided, single submitter	1790705	NM_000546.6(TP53):c.23C>G (p.Pro8Arg)	Feb 28, 2022
+TP53	p.Pro8Leu	Likely benign	criteria provided, single submitter	231868	NM_000546.6(TP53):c.23C>T (p.Pro8Leu)	May 15, 2015
+TP53	p.Ser127Cys	Pathogenic	criteria provided, single submitter	219532	NM_000546.6(TP53):c.380C>G (p.Ser127Cys)	Jul 14, 2023
+TP53	p.Ser166Thr	Likely benign	criteria provided, single submitter	3809673	NM_000546.6(TP53):c.496T>A (p.Ser166Thr)	Dec 12, 2024
+TP53	p.Ser183Pro	Likely benign	criteria provided, single submitter	3328150	NM_000546.6(TP53):c.547T>C (p.Ser183Pro)	May 08, 2024
+TP53	p.Ser185Arg	Likely benign	criteria provided, single submitter	1748280	NM_000546.6(TP53):c.555C>G (p.Ser185Arg)	Nov 01, 2021
+TP53	p.Ser240Asn	Pathogenic	no assertion criteria provided	2502882	NM_000546.6(TP53):c.719G>A (p.Ser240Asn)	-
+TP53	p.Ser240Cys	Likely pathogenic	criteria provided, single submitter	3972460	NM_000546.6(TP53):c.718A>T (p.Ser240Cys)	Jun 10, 2025
+TP53	p.Ser269Cys	Benign	no assertion criteria provided	2575177	NM_000546.6(TP53):c.805A>T (p.Ser269Cys)	-
+TP53	p.Ser269Ile	Likely pathogenic	no assertion criteria provided	2575169	NM_000546.6(TP53):c.806G>T (p.Ser269Ile)	-
+TP53	p.Ser313Asn	Likely benign	criteria provided, single submitter	2450750	NM_000546.6(TP53):c.938G>A (p.Ser313Asn)	Jan 17, 2023
+TP53	p.Ser378Thr	Likely benign	criteria provided, single submitter	3972449	NM_000546.6(TP53):c.1132T>A (p.Ser378Thr)	Apr 21, 2025
+TP53	p.Ser94Ala	Likely benign	criteria provided, single submitter	3460308	NM_000546.6(TP53):c.280T>G (p.Ser94Ala)	Jul 23, 2024
+TP53	p.Ser94Leu	Likely benign	criteria provided, single submitter	1796426	NM_000546.6(TP53):c.281C>T (p.Ser94Leu)	Sep 25, 2020
+TP53	p.Ser95Thr	Likely benign	criteria provided, single submitter	4189261	NM_000546.6(TP53):c.283T>A (p.Ser95Thr)	Jun 23, 2025
+TP53	p.Thr312Asn	Likely benign	criteria provided, single submitter	1766672	NM_000546.6(TP53):c.935C>A (p.Thr312Asn)	Jun 07, 2022
+TP53	p.Thr387Pro	Likely benign	criteria provided, single submitter	2585882	NM_000546.6(TP53):c.1159A>C (p.Thr387Pro)	Aug 23, 2023
+TP53	p.Val274Ile	Benign	criteria provided, single submitter	3460325	NM_000546.6(TP53):c.820G>A (p.Val274Ile)	Oct 11, 2024
+TP53	p.Val73Glu	Likely benign	criteria provided, single submitter	3460312	NM_000546.6(TP53):c.218T>A (p.Val73Glu)	Sep 04, 2024
+MSH2	p.Ala120Ser	Likely benign	criteria provided, single submitter	3913543	NM_000251.3(MSH2):c.358G>T (p.Ala120Ser)	Jun 05, 2025
+MSH2	p.Ala14Pro	Likely benign	criteria provided, single submitter	3874885	NM_000251.3(MSH2):c.40G>C (p.Ala14Pro)	Dec 16, 2024
+MSH2	p.Ala154Pro	Likely benign	criteria provided, single submitter	1741885	NM_000251.3(MSH2):c.460G>C (p.Ala154Pro)	Sep 13, 2022
+MSH2	p.Ala15Pro	Likely benign	criteria provided, single submitter	3874883	NM_000251.3(MSH2):c.43G>C (p.Ala15Pro)	Dec 12, 2024
+MSH2	p.Ala189Val	Likely benign	criteria provided, single submitter	1748949	NM_000251.3(MSH2):c.566C>T (p.Ala189Val)	Jan 18, 2022
+MSH2	p.Ala256Gly	Benign	criteria provided, single submitter	4799755	NM_000251.3(MSH2):c.767C>G (p.Ala256Gly)	Dec 28, 2025
+MSH2	p.Ala327Ser	Likely benign	criteria provided, single submitter	4652438	NM_000251.3(MSH2):c.979G>T (p.Ala327Ser)	Sep 24, 2025
+MSH2	p.Ala391Gly	Likely benign	criteria provided, single submitter	2567745	NM_000251.3(MSH2):c.1172C>G (p.Ala391Gly)	Mar 27, 2023
+MSH2	p.Ala398Gly	Likely benign	criteria provided, single submitter	4652783	NM_000251.3(MSH2):c.1193C>G (p.Ala398Gly)	Dec 01, 2025
+MSH2	p.Ala420Thr	Likely benign	criteria provided, single submitter	4652661	NM_000251.3(MSH2):c.1258G>A (p.Ala420Thr)	Nov 19, 2025
+MSH2	p.Ala573Val	Likely benign	criteria provided, single submitter	819917	NM_000251.3(MSH2):c.1718C>T (p.Ala573Val)	Jul 02, 2025
+MSH2	p.Ala576Pro	Likely benign	criteria provided, single submitter	90762	NM_000251.3(MSH2):c.1726G>C (p.Ala576Pro)	Dec 06, 2022
+MSH2	p.Ala600Asp	Likely pathogenic	criteria provided, single submitter	1780308	NM_000251.3(MSH2):c.1799C>A (p.Ala600Asp)	Apr 12, 2021
+MSH2	p.Ala600Thr	Likely benign	criteria provided, single submitter	651698	NM_000251.3(MSH2):c.1798G>A (p.Ala600Thr)	May 15, 2024
+MSH2	p.Ala623Gly	Benign	criteria provided, single submitter	3913563	NM_000251.3(MSH2):c.1868C>G (p.Ala623Gly)	May 14, 2025
+MSH2	p.Ala636Thr	Benign	criteria provided, single submitter	2447350	NM_000251.3(MSH2):c.1906G>A (p.Ala636Thr)	Nov 10, 2022
+MSH2	p.Ala870Glu	Likely benign	criteria provided, single submitter	3874879	NM_000251.3(MSH2):c.2609C>A (p.Ala870Glu)	Dec 13, 2024
+MSH2	p.Ala917Pro	Likely benign	criteria provided, single submitter	4799780	NM_000251.3(MSH2):c.2749G>C (p.Ala917Pro)	Jun 29, 2025
+MSH2	p.Ala917Val	Benign	criteria provided, single submitter	4771574	NM_000251.3(MSH2):c.2750C>T (p.Ala917Val)	Dec 03, 2025
+MSH2	p.Arg106Gly	Likely benign	criteria provided, single submitter	1728407	NM_000251.3(MSH2):c.316A>G (p.Arg106Gly)	Jul 06, 2021
+MSH2	p.Arg21Gly	Likely benign	criteria provided, single submitter	2453494	NM_000251.3(MSH2):c.61C>G (p.Arg21Gly)	Feb 08, 2023
+MSH2	p.Arg227Ile	Likely benign	criteria provided, single submitter	2496585	NM_000251.3(MSH2):c.680G>T (p.Arg227Ile)	Nov 03, 2022
+MSH2	p.Arg308Gly	Likely benign	criteria provided, single submitter	3230860	NM_000251.3(MSH2):c.922A>G (p.Arg308Gly)	Mar 06, 2024
+MSH2	p.Arg355Lys	Likely benign	criteria provided, single submitter	1781308	NM_000251.3(MSH2):c.1064G>A (p.Arg355Lys)	Jan 04, 2022
+MSH2	p.Arg355Ser	Likely benign	criteria provided, single submitter	3874888	NM_000251.3(MSH2):c.1065A>C (p.Arg355Ser)	Dec 23, 2024
+MSH2	p.Arg35Leu	Likely benign	criteria provided, single submitter	1061189	NM_000251.3(MSH2):c.104G>T (p.Arg35Leu)	Aug 07, 2024
+MSH2	p.Arg396Lys	Likely benign	criteria provided, single submitter	2587532	NM_000251.3(MSH2):c.1187G>A (p.Arg396Lys)	Aug 15, 2023
+MSH2	p.Arg396Thr	Likely benign	criteria provided, single submitter	2802720	NM_000251.3(MSH2):c.1187G>C (p.Arg396Thr)	Oct 23, 2023
+MSH2	p.Arg631Ile	Benign	criteria provided, single submitter	960608	NM_000251.3(MSH2):c.1892G>T (p.Arg631Ile)	Feb 03, 2025
+MSH2	p.Arg737Lys	Likely pathogenic	criteria provided, single submitter	1503460	NM_000251.3(MSH2):c.2210G>A (p.Arg737Lys)	Apr 11, 2021
+MSH2	p.Arg929Gly	Likely benign	criteria provided, single submitter	3913559	NM_000251.3(MSH2):c.2785C>G (p.Arg929Gly)	Apr 23, 2025
+MSH2	p.Arg99Ile	Likely benign	criteria provided, single submitter	1798272	NM_000251.3(MSH2):c.296G>T (p.Arg99Ile)	Mar 29, 2022
+MSH2	p.Asn109His	Likely benign	criteria provided, single submitter	4111014	NM_000251.3(MSH2):c.325A>C (p.Asn109His)	Jul 22, 2025
+MSH2	p.Asn115Ser	Likely benign	criteria provided, single submitter	4111038	NM_000251.3(MSH2):c.344A>G (p.Asn115Ser)	Jul 21, 2025
+MSH2	p.Asn311Asp	Likely benign	criteria provided, single submitter	3398638	NM_000251.3(MSH2):c.931A>G (p.Asn311Asp)	Nov 19, 2024
+MSH2	p.Asn311Lys	Likely benign	criteria provided, single submitter	3633390	NM_000251.3(MSH2):c.933C>G (p.Asn311Lys)	Jan 13, 2025
+MSH2	p.Asn361His	Likely benign	criteria provided, single submitter	3913579	NM_000251.3(MSH2):c.1081A>C (p.Asn361His)	May 27, 2025
+MSH2	p.Asn400His	Likely benign	criteria provided, single submitter	1746476	NM_000251.3(MSH2):c.1198A>C (p.Asn400His)	May 19, 2023
+MSH2	p.Asn412His	Likely benign	criteria provided, single submitter	1756350	NM_000251.3(MSH2):c.1234A>C (p.Asn412His)	Jul 08, 2022
+MSH2	p.Asn560Asp	Likely benign	criteria provided, single submitter	1777832	NM_000251.3(MSH2):c.1678A>G (p.Asn560Asp)	Jun 27, 2022
+MSH2	p.Asn653Ser	Likely benign	criteria provided, single submitter	3398633	NM_000251.3(MSH2):c.1958A>G (p.Asn653Ser)	Oct 28, 2024
+MSH2	p.Asn903Asp	Benign	criteria provided, single submitter	3230842	NM_000251.3(MSH2):c.2707A>G (p.Asn903Asp)	Nov 13, 2023
+MSH2	p.Asn903Lys	Likely benign	criteria provided, single submitter	2587533	NM_000251.3(MSH2):c.2709C>G (p.Asn903Lys)	Aug 16, 2023
+MSH2	p.Asp133His	Likely benign	criteria provided, single submitter	3398603	NM_000251.3(MSH2):c.397G>C (p.Asp133His)	Aug 13, 2024
+MSH2	p.Asp295Ala	Likely benign	criteria provided, single submitter	1764866	NM_000251.3(MSH2):c.884A>C (p.Asp295Ala)	May 23, 2022
+MSH2	p.Asp403Glu	Likely benign	criteria provided, single submitter	3230806	NM_000251.3(MSH2):c.1209T>G (p.Asp403Glu)	Oct 05, 2023
+MSH2	p.Asp446His	Likely benign	criteria provided, single submitter	1770251	NM_000251.3(MSH2):c.1336G>C (p.Asp446His)	Mar 11, 2022
+MSH2	p.Asp487Gly	Likely benign	criteria provided, single submitter	1773149	NM_000251.3(MSH2):c.1460A>G (p.Asp487Gly)	Apr 04, 2022
+MSH2	p.Asp514Asn	Likely benign	criteria provided, single submitter	1774845	NM_000251.3(MSH2):c.1540G>A (p.Asp514Asn)	Apr 27, 2024
+MSH2	p.Asp543Ala	Likely benign	criteria provided, single submitter	2587528	NM_000251.3(MSH2):c.1628A>C (p.Asp543Ala)	Jul 25, 2023
+MSH2	p.Asp597Glu	Likely benign	criteria provided, single submitter	3913542	NM_000251.3(MSH2):c.1791T>A (p.Asp597Glu)	May 30, 2025
+MSH2	p.Asp654Asn	Likely benign	criteria provided, single submitter	1783429	NM_000251.3(MSH2):c.1960G>A (p.Asp654Asn)	Jul 19, 2022
+MSH2	p.Asp748Tyr	Likely pathogenic	criteria provided, single submitter	1788302	NM_000251.3(MSH2):c.2242G>T (p.Asp748Tyr)	Aug 26, 2021
+MSH2	p.Asp864Tyr	Likely benign	criteria provided, single submitter	483714	NM_000251.3(MSH2):c.2590G>T (p.Asp864Tyr)	Jul 10, 2024
+MSH2	p.Asp91His	Likely benign	criteria provided, single submitter	619519	NM_000251.3(MSH2):c.271G>C (p.Asp91His)	May 01, 2018
+MSH2	p.Cys199Trp	Likely pathogenic	criteria provided, single submitter	826091	NM_000251.3(MSH2):c.597T>G (p.Cys199Trp)	May 30, 2019
+MSH2	p.Cys822Ser	Likely benign	criteria provided, single submitter	2191723	NM_000251.3(MSH2):c.2465G>C (p.Cys822Ser)	Dec 29, 2025
+MSH2	p.Gln193Arg	Likely benign	criteria provided, single submitter	3398647	NM_000251.3(MSH2):c.578A>G (p.Gln193Arg)	Dec 09, 2024
+MSH2	p.Gln193Lys	Likely benign	criteria provided, single submitter	1749593	NM_000251.3(MSH2):c.577C>A (p.Gln193Lys)	May 04, 2022
+MSH2	p.Gln239His	Likely benign	criteria provided, single submitter	3230854	NM_000251.3(MSH2):c.717G>T (p.Gln239His)	Jan 17, 2024
+MSH2	p.Gln24Pro	Likely benign	criteria provided, single submitter	3874914	NM_000251.3(MSH2):c.71A>C (p.Gln24Pro)	Mar 02, 2025
+MSH2	p.Gln252Leu	Likely benign	criteria provided, single submitter	1759505	NM_000251.3(MSH2):c.755A>T (p.Gln252Leu)	Jan 15, 2022
+MSH2	p.Gln288Arg	Likely benign	criteria provided, single submitter	1764125	NM_000251.3(MSH2):c.863A>G (p.Gln288Arg)	Aug 10, 2022
+MSH2	p.Gln314His	Likely pathogenic	criteria provided, single submitter	483693	NM_000251.3(MSH2):c.942G>T (p.Gln314His)	Jul 12, 2018
+MSH2	p.Gln344Glu	Likely benign	criteria provided, single submitter	1771017	NM_000251.3(MSH2):c.1030C>G (p.Gln344Glu)	Dec 16, 2021
+MSH2	p.Gln377Glu	Likely benign	criteria provided, single submitter	837376	NM_000251.3(MSH2):c.1129C>G (p.Gln377Glu)	May 02, 2024
+MSH2	p.Gln397Pro	Likely benign	criteria provided, single submitter	3296235	NM_000251.3(MSH2):c.1190A>C (p.Gln397Pro)	May 24, 2024
+MSH2	p.Gln4His	Likely benign	criteria provided, single submitter	619517	NM_000251.3(MSH2):c.12G>T (p.Gln4His)	May 01, 2018
+MSH2	p.Gln510Arg	Likely benign	criteria provided, single submitter	3296209	NM_000251.3(MSH2):c.1529A>G (p.Gln510Arg)	May 04, 2024
+MSH2	p.Gln510Pro	Likely benign	criteria provided, single submitter	3398595	NM_000251.3(MSH2):c.1529A>C (p.Gln510Pro)	Aug 01, 2024
+MSH2	p.Gln518Glu	Likely benign	criteria provided, single submitter	2453457	NM_000251.3(MSH2):c.1552C>G (p.Gln518Glu)	Nov 09, 2022
+MSH2	p.Gln518His	Likely benign	criteria provided, single submitter	3913555	NM_000251.3(MSH2):c.1554G>C (p.Gln518His)	Apr 25, 2025
+MSH2	p.Gln61Arg	Likely benign	criteria provided, single submitter	1780911	NM_000251.3(MSH2):c.182A>G (p.Gln61Arg)	Dec 17, 2021
+MSH2	p.Gln61Lys	Likely benign	criteria provided, single submitter	3913566	NM_000251.3(MSH2):c.181C>A (p.Gln61Lys)	May 14, 2025
+MSH2	p.Gln662Arg	Likely benign	criteria provided, single submitter	1783863	NM_000251.3(MSH2):c.1985A>G (p.Gln662Arg)	Jan 31, 2022
+MSH2	p.Gln76Glu	Likely benign	criteria provided, single submitter	3296229	NM_000251.3(MSH2):c.226C>G (p.Gln76Glu)	May 14, 2024
+MSH2	p.Gln76His	Likely benign	criteria provided, single submitter	230330	NM_000251.3(MSH2):c.228G>C (p.Gln76His)	Dec 14, 2021
+MSH2	p.Gln879Glu	Likely benign	criteria provided, single submitter	3230840	NM_000251.3(MSH2):c.2635C>G (p.Gln879Glu)	Feb 28, 2024
+MSH2	p.Gln893Arg	Likely benign	criteria provided, single submitter	2447342	NM_000251.3(MSH2):c.2678A>G (p.Gln893Arg)	Nov 03, 2022
+MSH2	p.Gln893Pro	Likely benign	criteria provided, single submitter	3913581	NM_000251.3(MSH2):c.2678A>C (p.Gln893Pro)	Jun 13, 2025
+MSH2	p.Glu198Ala	Likely pathogenic	criteria provided, single submitter	1750605	NM_000251.3(MSH2):c.593A>C (p.Glu198Ala)	Nov 21, 2022
+MSH2	p.Glu205Asp	Likely benign	criteria provided, single submitter	1751947	NM_000251.3(MSH2):c.615G>T (p.Glu205Asp)	Mar 15, 2022
+MSH2	p.Glu226Lys	Likely benign	criteria provided, single submitter	1755344	NM_000251.3(MSH2):c.676G>A (p.Glu226Lys)	Nov 18, 2021
+MSH2	p.Glu28Ala	Likely benign	criteria provided, single submitter	2453462	NM_000251.3(MSH2):c.83A>C (p.Glu28Ala)	Nov 18, 2022
+MSH2	p.Glu371Asp	Likely benign	criteria provided, single submitter	1795591	NM_000251.3(MSH2):c.1113A>C (p.Glu371Asp)	Aug 12, 2022
+MSH2	p.Glu378Ala	Likely benign	criteria provided, single submitter	231853	NM_000251.3(MSH2):c.1133A>C (p.Glu378Ala)	Jul 12, 2022
+MSH2	p.Glu422Gln	Likely benign	criteria provided, single submitter	3296233	NM_000251.3(MSH2):c.1264G>C (p.Glu422Gln)	May 16, 2024
+MSH2	p.Glu455Ala	Likely benign	criteria provided, single submitter	2567740	NM_000251.3(MSH2):c.1364A>C (p.Glu455Ala)	Mar 24, 2023
+MSH2	p.Glu455Gly	Likely benign	criteria provided, single submitter	2567762	NM_000251.3(MSH2):c.1364A>G (p.Glu455Gly)	May 18, 2023
+MSH2	p.Glu48Gln	Likely benign	criteria provided, single submitter	1772475	NM_000251.3(MSH2):c.142G>C (p.Glu48Gln)	Jun 03, 2022
+MSH2	p.Glu56Gly	Likely benign	criteria provided, single submitter	3230817	NM_000251.3(MSH2):c.167A>G (p.Glu56Gly)	Jan 17, 2024
+MSH2	p.Glu571Lys	Benign	criteria provided, single submitter	2445291	NM_000251.3(MSH2):c.1711G>A (p.Glu571Lys)	Jan 01, 2022
+MSH2	p.Glu701Lys	Likely benign	criteria provided, single submitter	2734197	NM_000251.3(MSH2):c.2101G>A (p.Glu701Lys)	Dec 04, 2023
+MSH2	p.Glu749Gly	Likely pathogenic	criteria provided, single submitter	2674579	NM_000251.3(MSH2):c.2246A>G (p.Glu749Gly)	Aug 08, 2023
+MSH2	p.Glu7Asp	Likely benign	criteria provided, single submitter	3296217	NM_000251.3(MSH2):c.21G>C (p.Glu7Asp)	Mar 22, 2024
+MSH2	p.Glu86Gln	Likely benign	criteria provided, single submitter	2778099	NM_000251.3(MSH2):c.256G>C (p.Glu86Gln)	Jan 13, 2023
+MSH2	p.Glu886Asp	Likely benign	criteria provided, single submitter	4652698	NM_000251.3(MSH2):c.2658G>T (p.Glu886Asp)	Nov 06, 2025
+MSH2	p.Glu886Val	Likely benign	criteria provided, single submitter	1794396	NM_000251.3(MSH2):c.2657A>T (p.Glu886Val)	Nov 29, 2021
+MSH2	p.Glu925Gly	Likely benign	criteria provided, single submitter	3296231	NM_000251.3(MSH2):c.2774A>G (p.Glu925Gly)	May 16, 2024
+MSH2	p.Gly149Arg	Likely pathogenic	criteria provided, single submitter	1740769	NM_000251.3(MSH2):c.445G>C (p.Gly149Arg)	Jun 21, 2022
+MSH2	p.Gly18Ala	Likely benign	criteria provided, single submitter	2587526	NM_000251.3(MSH2):c.53G>C (p.Gly18Ala)	Jul 13, 2023
+MSH2	p.Gly18Arg	Likely benign	criteria provided, single submitter	2567752	NM_000251.3(MSH2):c.52G>C (p.Gly18Arg)	Apr 18, 2023
+MSH2	p.Gly18Ser	Likely benign	criteria provided, single submitter	3230848	NM_000251.3(MSH2):c.52G>A (p.Gly18Ser)	Nov 02, 2022
+MSH2	p.Gly195Arg	Likely benign	criteria provided, single submitter	2567768	NM_000251.3(MSH2):c.583G>C (p.Gly195Arg)	Jun 04, 2023
+MSH2	p.Gly247Ala	Likely benign	criteria provided, single submitter	3913577	NM_000251.3(MSH2):c.740G>C (p.Gly247Ala)	May 26, 2025
+MSH2	p.Gly338Asp	Likely pathogenic	criteria provided, single submitter	1734968	NM_000251.3(MSH2):c.1013_1014delinsAT (p.Gly338Asp)	Jan 21, 2022
+MSH2	p.Gly47Arg	Likely benign	criteria provided, single submitter	1991825	NM_000251.3(MSH2):c.139G>C (p.Gly47Arg)	Aug 05, 2023
+MSH2	p.Gly587Cys	Pathogenic	criteria provided, single submitter	428463	NM_000251.3(MSH2):c.1759G>T (p.Gly587Cys)	Apr 22, 2024
+MSH2	p.Gly614Arg	Likely benign	criteria provided, single submitter	1447487	NM_000251.3(MSH2):c.1840G>A (p.Gly614Arg)	Jul 07, 2023
+MSH2	p.Gly62Val	Likely benign	criteria provided, single submitter	1781482	NM_000251.3(MSH2):c.185G>T (p.Gly62Val)	Sep 07, 2022
+MSH2	p.Gly630Arg	Likely benign	criteria provided, single submitter	486885	NM_000251.3(MSH2):c.1888G>C (p.Gly630Arg)	Aug 01, 2022
+MSH2	p.Gly674Val	Likely pathogenic	criteria provided, single submitter	1784570	NM_000251.3(MSH2):c.2021G>T (p.Gly674Val)	Mar 24, 2021
+MSH2	p.Gly715Ser	Likely benign	criteria provided, single submitter	4799769	NM_000251.3(MSH2):c.2143G>A (p.Gly715Ser)	Sep 22, 2025
+MSH2	p.His665Arg	Likely benign	criteria provided, single submitter	3230825	NM_000251.3(MSH2):c.1994A>G (p.His665Arg)	Dec 08, 2023
+MSH2	p.His665Leu	Likely benign	criteria provided, single submitter	4111039	NM_000251.3(MSH2):c.1994A>T (p.His665Leu)	Jul 23, 2025
+MSH2	p.His785Asp	Likely benign	criteria provided, single submitter	2453482	NM_000251.3(MSH2):c.2353C>G (p.His785Asp)	Jan 12, 2023
+MSH2	p.Ile145Phe	Likely benign	criteria provided, single submitter	3398594	NM_000251.3(MSH2):c.433A>T (p.Ile145Phe)	Jul 30, 2024
+MSH2	p.Ile194Asn	Likely benign	criteria provided, single submitter	3230849	NM_000251.3(MSH2):c.581T>A (p.Ile194Asn)	Feb 08, 2024
+MSH2	p.Ile217Val	Benign	criteria provided, single submitter	1469992	NM_000251.3(MSH2):c.649A>G (p.Ile217Val)	Sep 01, 2022
+MSH2	p.Ile222Phe	Likely benign	criteria provided, single submitter	4111061	NM_000251.3(MSH2):c.664A>T (p.Ile222Phe)	Sep 03, 2025
+MSH2	p.Ile237Phe	Likely benign	criteria provided, single submitter	3230853	NM_000251.3(MSH2):c.709A>T (p.Ile237Phe)	Nov 17, 2023
+MSH2	p.Ile304Met	Likely benign	criteria provided, single submitter	3913545	NM_000251.3(MSH2):c.912T>G (p.Ile304Met)	Mar 17, 2025
+MSH2	p.Ile411Arg	Likely pathogenic	criteria provided, single submitter	1755986	NM_000251.3(MSH2):c.1232T>G (p.Ile411Arg)	Jul 11, 2025
+MSH2	p.Ile411Leu	Likely benign	criteria provided, single submitter	2863370	NM_000251.3(MSH2):c.1231A>T (p.Ile411Leu)	Oct 05, 2023
+MSH2	p.Ile454Lys	Likely pathogenic	criteria provided, single submitter	1770848	NM_000251.3(MSH2):c.1361T>A (p.Ile454Lys)	Apr 21, 2022
+MSH2	p.Ile511Thr	Likely benign	criteria provided, single submitter	2567751	NM_000251.3(MSH2):c.1532T>C (p.Ile511Thr)	Apr 17, 2023
+MSH2	p.Ile544Phe	Likely benign	criteria provided, single submitter	3398589	NM_000251.3(MSH2):c.1630A>T (p.Ile544Phe)	Jul 16, 2024
+MSH2	p.Ile632Ser	Likely benign	criteria provided, single submitter	1782145	NM_000251.3(MSH2):c.1895T>G (p.Ile632Ser)	Jun 03, 2022
+MSH2	p.Ile667Met	Likely benign	criteria provided, single submitter	1784261	NM_000251.3(MSH2):c.2001T>G (p.Ile667Met)	Jun 28, 2022
+MSH2	p.Ile685Leu	Likely benign	criteria provided, single submitter	4759161	NM_000251.3(MSH2):c.2053A>C (p.Ile685Leu)	Nov 18, 2025
+MSH2	p.Ile841Leu	Likely benign	criteria provided, single submitter	4111026	NM_000251.3(MSH2):c.2521A>T (p.Ile841Leu)	Jun 16, 2025
+MSH2	p.Ile857Leu	Likely benign	criteria provided, single submitter	3230838	NM_000251.3(MSH2):c.2569A>C (p.Ile857Leu)	Dec 04, 2023
+MSH2	p.Ile930Lys	Likely benign	criteria provided, single submitter	156505	NM_000251.3(MSH2):c.2789T>A (p.Ile930Lys)	Apr 28, 2025
+MSH2	p.Leu128Ile	Likely benign	criteria provided, single submitter	3874906	NM_000251.3(MSH2):c.382C>A (p.Leu128Ile)	Jan 31, 2025
+MSH2	p.Leu128Pro	Likely benign	criteria provided, single submitter	1735430	NM_000251.3(MSH2):c.383T>C (p.Leu128Pro)	May 23, 2022
+MSH2	p.Leu187His	Likely pathogenic	criteria provided, single submitter	1748628	NM_000251.3(MSH2):c.560T>A (p.Leu187His)	Apr 17, 2023
+MSH2	p.Leu190Pro	Likely pathogenic	criteria provided, single submitter	428550	NM_000251.3(MSH2):c.569T>C (p.Leu190Pro)	Jun 16, 2025
+MSH2	p.Leu191Arg	Likely pathogenic	criteria provided, single submitter	1749330	NM_000251.3(MSH2):c.572T>G (p.Leu191Arg)	Jul 01, 2022
+MSH2	p.Leu241Val	Likely benign	criteria provided, single submitter	455611	NM_000251.3(MSH2):c.721C>G (p.Leu241Val)	May 27, 2025
+MSH2	p.Leu270Arg	Likely pathogenic	criteria provided, single submitter	2674583	NM_000251.3(MSH2):c.809T>G (p.Leu270Arg)	Jul 28, 2023
+MSH2	p.Leu280Ser	Likely benign	criteria provided, single submitter	822383	NM_000251.3(MSH2):c.839T>C (p.Leu280Ser)	Mar 14, 2025
+MSH2	p.Leu330Arg	Likely pathogenic	criteria provided, single submitter	2674575	NM_000251.3(MSH2):c.989T>G (p.Leu330Arg)	Jul 28, 2023
+MSH2	p.Leu360Met	Likely benign	criteria provided, single submitter	818348	NM_000251.3(MSH2):c.1078T>A (p.Leu360Met)	Sep 07, 2025
+MSH2	p.Leu401Phe	Likely benign	criteria provided, single submitter	3913572	NM_000251.3(MSH2):c.1203A>C (p.Leu401Phe)	May 20, 2025
+MSH2	p.Leu414Pro	Likely pathogenic	criteria provided, single submitter	90579	NM_000251.3(MSH2):c.1241T>C (p.Leu414Pro)	Nov 27, 2024
+MSH2	p.Leu432Phe	Likely benign	criteria provided, single submitter	3296243	NM_000251.3(MSH2):c.1296G>C (p.Leu432Phe)	Jun 20, 2024
+MSH2	p.Leu488Met	Likely benign	criteria provided, single submitter	3398575	NM_000251.3(MSH2):c.1462T>A (p.Leu488Met)	Nov 15, 2024
+MSH2	p.Leu51Pro	Likely benign	criteria provided, single submitter	3398591	NM_000251.3(MSH2):c.152T>C (p.Leu51Pro)	Jul 19, 2024
+MSH2	p.Leu595Pro	Likely pathogenic	criteria provided, single submitter	848798	NM_000251.3(MSH2):c.1784T>C (p.Leu595Pro)	Feb 17, 2025
+MSH2	p.Leu744Ile	Likely benign	criteria provided, single submitter	3913540	NM_000251.3(MSH2):c.2230T>A (p.Leu744Ile)	May 07, 2025
+MSH2	p.Leu800Val	Likely benign	criteria provided, single submitter	1790646	NM_000251.3(MSH2):c.2398C>G (p.Leu800Val)	Oct 13, 2021
+MSH2	p.Lys104Asn	Likely benign	criteria provided, single submitter	2453471	NM_000251.3(MSH2):c.312G>T (p.Lys104Asn)	Dec 13, 2022
+MSH2	p.Lys104Glu	Likely benign	criteria provided, single submitter	2587535	NM_000251.3(MSH2):c.310A>G (p.Lys104Glu)	Sep 06, 2023
+MSH2	p.Lys122Thr	Likely benign	criteria provided, single submitter	1733652	NM_000251.3(MSH2):c.365A>C (p.Lys122Thr)	Aug 02, 2022
+MSH2	p.Lys172Asn	Likely benign	criteria provided, single submitter	3398642	NM_000251.3(MSH2):c.516A>T (p.Lys172Asn)	Nov 24, 2024
+MSH2	p.Lys212Arg	Likely benign	criteria provided, single submitter	1753036	NM_000251.3(MSH2):c.635A>G (p.Lys212Arg)	May 24, 2022
+MSH2	p.Lys249Glu	Likely benign	criteria provided, single submitter	1759007	NM_000251.3(MSH2):c.745A>G (p.Lys249Glu)	Jan 28, 2022
+MSH2	p.Lys29Arg	Likely benign	criteria provided, single submitter	2453488	NM_000251.3(MSH2):c.86A>G (p.Lys29Arg)	Jan 19, 2023
+MSH2	p.Lys332Arg	Likely benign	criteria provided, single submitter	1768723	NM_000251.3(MSH2):c.995A>G (p.Lys332Arg)	Feb 03, 2022
+MSH2	p.Lys353Asn	Likely benign	criteria provided, single submitter	3230802	NM_000251.3(MSH2):c.1059G>C (p.Lys353Asn)	Oct 06, 2023
+MSH2	p.Lys423Arg	Likely benign	criteria provided, single submitter	2750348	NM_000251.3(MSH2):c.1268A>G (p.Lys423Arg)	Aug 05, 2023
+MSH2	p.Lys430Gln	Likely benign	criteria provided, single submitter	3230810	NM_000251.3(MSH2):c.1288A>C (p.Lys430Gln)	Oct 25, 2023
+MSH2	p.Lys430Glu	Likely benign	criteria provided, single submitter	3398610	NM_000251.3(MSH2):c.1288A>G (p.Lys430Glu)	Sep 05, 2024
+MSH2	p.Lys537Asn	Likely benign	criteria provided, single submitter	1776389	NM_000251.3(MSH2):c.1611A>C (p.Lys537Asn)	Jun 22, 2022
+MSH2	p.Lys537Thr	Likely benign	criteria provided, single submitter	2785469	NM_000251.3(MSH2):c.1610A>C (p.Lys537Thr)	Mar 27, 2024
+MSH2	p.Lys567Glu	Likely benign	criteria provided, single submitter	408500	NM_000251.3(MSH2):c.1699A>G (p.Lys567Glu)	Sep 07, 2022
+MSH2	p.Lys635Thr	Likely benign	criteria provided, single submitter	2453470	NM_000251.3(MSH2):c.1904A>C (p.Lys635Thr)	Dec 12, 2022
+MSH2	p.Lys73Gln	Likely benign	criteria provided, single submitter	3398626	NM_000251.3(MSH2):c.217A>C (p.Lys73Gln)	Oct 08, 2024
+MSH2	p.Lys819Ile	Likely benign	criteria provided, single submitter	4652740	NM_000251.3(MSH2):c.2456A>T (p.Lys819Ile)	Nov 20, 2025
+MSH2	p.Lys845Gln	Likely benign	criteria provided, single submitter	2755828	NM_000251.3(MSH2):c.2533A>C (p.Lys845Gln)	Aug 30, 2023
+MSH2	p.Lys882Asn	Likely benign	criteria provided, single submitter	1794246	NM_000251.3(MSH2):c.2646A>T (p.Lys882Asn)	Aug 22, 2022
+MSH2	p.Lys882Glu	Likely benign	criteria provided, single submitter	3398559	NM_000251.3(MSH2):c.2644A>G (p.Lys882Glu)	Jul 16, 2024
+MSH2	p.Met253Ile	Likely benign	criteria provided, single submitter	2584100	NM_000251.3(MSH2):c.759G>C (p.Met253Ile)	Sep 05, 2023
+MSH2	p.Met253Leu	Benign	criteria provided, single submitter	1759602	NM_000251.3(MSH2):c.757A>T (p.Met253Leu)	May 06, 2024
+MSH2	p.Met663Ile	Likely benign	criteria provided, single submitter	4111024	NM_000251.3(MSH2):c.1989G>T (p.Met663Ile)	Jun 16, 2025
+MSH2	p.Met67Leu	Benign	criteria provided, single submitter	3398622	NM_000251.3(MSH2):c.199A>T (p.Met67Leu)	Oct 03, 2024
+MSH2	p.Met866Val	Likely benign	criteria provided, single submitter	483675	NM_000251.3(MSH2):c.2596A>G (p.Met866Val)	Sep 02, 2022
+MSH2	p.Met899Leu	Likely benign	criteria provided, single submitter	3230841	NM_000251.3(MSH2):c.2695A>C (p.Met899Leu)	Mar 08, 2024
+MSH2	p.Phe131Tyr	Likely benign	criteria provided, single submitter	4652383	NM_000251.3(MSH2):c.392T>A (p.Phe131Tyr)	Sep 29, 2025
+MSH2	p.Phe19Leu	Benign	criteria provided, single submitter	3772965	NM_000251.3(MSH2):c.57C>A (p.Phe19Leu)	Dec 02, 2024
+MSH2	p.Phe296Ser	Likely benign	criteria provided, single submitter	1764968	NM_000251.3(MSH2):c.887T>C (p.Phe296Ser)	Jun 30, 2022
+MSH2	p.Phe313Leu	Likely benign	criteria provided, single submitter	4111015	NM_000251.3(MSH2):c.939T>A (p.Phe313Leu)	Sep 07, 2025
+MSH2	p.Phe394Leu	Likely benign	criteria provided, single submitter	3296210	NM_000251.3(MSH2):c.1180T>C (p.Phe394Leu)	Jun 11, 2024
+MSH2	p.Phe85Val	Likely benign	criteria provided, single submitter	2567739	NM_000251.3(MSH2):c.253T>G (p.Phe85Val)	Mar 15, 2023
+MSH2	p.Phe887Leu	Likely benign	criteria provided, single submitter	4651382	NM_000251.3(MSH2):c.2659T>C (p.Phe887Leu)	Nov 24, 2025
+MSH2	p.Pro125Ser	Likely benign	criteria provided, single submitter	2453472	NM_000251.3(MSH2):c.373C>T (p.Pro125Ser)	Dec 15, 2022
+MSH2	p.Pro349His	Likely pathogenic	criteria provided, single submitter	2561334	NM_000251.3(MSH2):c.1046C>A (p.Pro349His)	Apr 17, 2023
+MSH2	p.Pro415His	Likely benign	criteria provided, single submitter	2447346	NM_000251.3(MSH2):c.1244C>A (p.Pro415His)	Nov 03, 2022
+MSH2	p.Pro507Leu	Likely benign	criteria provided, single submitter	1774417	NM_000251.3(MSH2):c.1520C>T (p.Pro507Leu)	May 09, 2022
+MSH2	p.Pro616Leu	Likely benign	criteria provided, single submitter	1781260	NM_000251.3(MSH2):c.1847C>T (p.Pro616Leu)	Sep 16, 2022
+MSH2	p.Pro652Arg	Likely benign	criteria provided, single submitter	1783292	NM_000251.3(MSH2):c.1955C>G (p.Pro652Arg)	Jul 12, 2022
+MSH2	p.Pro696Arg	Likely pathogenic	criteria provided, single submitter	2674577	NM_000251.3(MSH2):c.2087C>G (p.Pro696Arg)	Aug 07, 2023
+MSH2	p.Pro696Gln	Likely pathogenic	criteria provided, single submitter	3230831	NM_000251.3(MSH2):c.2087C>A (p.Pro696Gln)	Oct 25, 2023
+MSH2	p.Pro795Ser	Likely benign	criteria provided, single submitter	1790465	NM_000251.3(MSH2):c.2383C>T (p.Pro795Ser)	Nov 04, 2021
+MSH2	p.Ser129Pro	Likely benign	criteria provided, single submitter	1735603	NM_000251.3(MSH2):c.385T>C (p.Ser129Pro)	May 27, 2022
+MSH2	p.Ser153Ala	Likely benign	criteria provided, single submitter	2587518	NM_000251.3(MSH2):c.457T>G (p.Ser153Ala)	Jun 24, 2023
+MSH2	p.Ser185Pro	Likely benign	criteria provided, single submitter	2567765	NM_000251.3(MSH2):c.553T>C (p.Ser185Pro)	May 24, 2023
+MSH2	p.Ser271Phe	Likely benign	criteria provided, single submitter	2453500	NM_000251.3(MSH2):c.812C>T (p.Ser271Phe)	Feb 28, 2023
+MSH2	p.Ser297Thr	Likely benign	criteria provided, single submitter	3913557	NM_000251.3(MSH2):c.890G>C (p.Ser297Thr)	Apr 15, 2025
+MSH2	p.Ser316Trp	Likely benign	criteria provided, single submitter	2453460	NM_000251.3(MSH2):c.947_948delinsGG (p.Ser316Trp)	Nov 17, 2022
+MSH2	p.Ser473Ala	Likely benign	criteria provided, single submitter	3874907	NM_000251.3(MSH2):c.1417T>G (p.Ser473Ala)	Feb 04, 2025
+MSH2	p.Ser498Gly	Likely benign	criteria provided, single submitter	1773807	NM_000251.3(MSH2):c.1492A>G (p.Ser498Gly)	Jul 29, 2022
+MSH2	p.Ser516Thr	Likely benign	criteria provided, single submitter	3230814	NM_000251.3(MSH2):c.1547G>C (p.Ser516Thr)	Dec 27, 2023
+MSH2	p.Ser554Ile	Likely pathogenic	criteria provided, single submitter	1777499	NM_000251.3(MSH2):c.1661G>T (p.Ser554Ile)	Jan 19, 2018
+MSH2	p.Ser585Ala	Likely benign	criteria provided, single submitter	2567748	NM_000251.3(MSH2):c.1753T>G (p.Ser585Ala)	Apr 10, 2023
+MSH2	p.Ser612Pro	Likely benign	criteria provided, single submitter	2447337	NM_000251.3(MSH2):c.1834T>C (p.Ser612Pro)	Nov 03, 2022
+MSH2	p.Ser676Leu	Likely pathogenic	criteria provided, single submitter	433893	NM_000251.3(MSH2):c.2027C>T (p.Ser676Leu)	Aug 07, 2023
+MSH2	p.Ser717Gly	Likely benign	criteria provided, single submitter	848126	NM_000251.3(MSH2):c.2149A>G (p.Ser717Gly)	Aug 10, 2023
+MSH2	p.Ser860Trp	Likely benign	criteria provided, single submitter	3230839	NM_000251.3(MSH2):c.2579C>G (p.Ser860Trp)	Nov 29, 2023
+MSH2	p.Ser928Leu	Likely benign	criteria provided, single submitter	2453497	NM_000251.3(MSH2):c.2783C>T (p.Ser928Leu)	Feb 09, 2023
+MSH2	p.Thr234Lys	Likely benign	criteria provided, single submitter	1756711	NM_000251.3(MSH2):c.701C>A (p.Thr234Lys)	Sep 02, 2022
+MSH2	p.Thr292Ile	Likely benign	criteria provided, single submitter	2587515	NM_000251.3(MSH2):c.875C>T (p.Thr292Ile)	Aug 11, 2023
+MSH2	p.Thr31Ile	Likely benign	criteria provided, single submitter	3673966	NM_000251.3(MSH2):c.92C>T (p.Thr31Ile)	Aug 08, 2024
+MSH2	p.Thr31Pro	Likely benign	criteria provided, single submitter	3398561	NM_000251.3(MSH2):c.91A>C (p.Thr31Pro)	Oct 30, 2024
+MSH2	p.Thr335Pro	Likely pathogenic	criteria provided, single submitter	2561335	NM_000251.3(MSH2):c.1003A>C (p.Thr335Pro)	Apr 17, 2023
+MSH2	p.Thr335Ser	Likely benign	criteria provided, single submitter	2453496	NM_000251.3(MSH2):c.1003A>T (p.Thr335Ser)	Feb 14, 2023
+MSH2	p.Thr375Ser	Benign	criteria provided, single submitter	3296219	NM_000251.3(MSH2):c.1123A>T (p.Thr375Ser)	Mar 27, 2024
+MSH2	p.Thr456Arg	Likely benign	criteria provided, single submitter	1770951	NM_000251.3(MSH2):c.1367C>G (p.Thr456Arg)	Jul 01, 2022
+MSH2	p.Thr495Lys	Likely benign	criteria provided, single submitter	3296237	NM_000251.3(MSH2):c.1484C>A (p.Thr495Lys)	Jun 24, 2024
+MSH2	p.Thr541Asn	Likely benign	criteria provided, single submitter	1776628	NM_000251.3(MSH2):c.1622C>A (p.Thr541Asn)	Jun 27, 2022
+MSH2	p.Thr594Ser	Likely benign	criteria provided, single submitter	2567769	NM_000251.3(MSH2):c.1780A>T (p.Thr594Ser)	Jun 08, 2023
+MSH2	p.Thr60Ser	Likely benign	criteria provided, single submitter	1780163	NM_000251.3(MSH2):c.178A>T (p.Thr60Ser)	Jun 10, 2022
+MSH2	p.Thr732Pro	Likely pathogenic	criteria provided, single submitter	2674578	NM_000251.3(MSH2):c.2194A>C (p.Thr732Pro)	Aug 08, 2023
+MSH2	p.Thr740Ser	Likely benign	criteria provided, single submitter	3296241	NM_000251.3(MSH2):c.2218A>T (p.Thr740Ser)	Jun 11, 2024
+MSH2	p.Thr905Pro	Likely benign	criteria provided, single submitter	821700	NM_000251.3(MSH2):c.2713A>C (p.Thr905Pro)	Apr 02, 2025
+MSH2	p.Trp345Arg	Likely pathogenic	criteria provided, single submitter	4111041	NM_000251.3(MSH2):c.1033T>C (p.Trp345Arg)	Jul 23, 2025
+MSH2	p.Tyr299Asn	Likely benign	criteria provided, single submitter	1765259	NM_000251.3(MSH2):c.895T>A (p.Tyr299Asn)	Jul 11, 2022
+MSH2	p.Tyr619His	Likely benign	criteria provided, single submitter	1781397	NM_000251.3(MSH2):c.1855T>C (p.Tyr619His)	Aug 08, 2022
+MSH2	p.Tyr656Asn	Benign	criteria provided, single submitter	3230823	NM_000251.3(MSH2):c.1966T>A (p.Tyr656Asn)	Dec 09, 2023
+MSH2	p.Tyr66Cys	Likely benign	criteria provided, single submitter	3230824	NM_000251.3(MSH2):c.197A>G (p.Tyr66Cys)	Dec 18, 2023
+MSH2	p.Tyr66His	Likely benign	criteria provided, single submitter	4111032	NM_000251.3(MSH2):c.196T>C (p.Tyr66His)	Jul 09, 2025
+MSH2	p.Tyr863Asp	Likely benign	criteria provided, single submitter	821530	NM_000251.3(MSH2):c.2587T>G (p.Tyr863Asp)	Feb 02, 2023
+MSH2	p.Val267Ala	Likely benign	criteria provided, single submitter	3874920	NM_000251.3(MSH2):c.800T>C (p.Val267Ala)	Mar 01, 2025
+MSH2	p.Val267Ile	Likely benign	criteria provided, single submitter	1761550	NM_000251.3(MSH2):c.799G>A (p.Val267Ile)	Mar 02, 2022
+MSH2	p.Val267Leu	Likely benign	criteria provided, single submitter	2453506	NM_000251.3(MSH2):c.799G>C (p.Val267Leu)	Mar 09, 2023
+MSH2	p.Val317Ala	Likely benign	criteria provided, single submitter	3230861	NM_000251.3(MSH2):c.950T>C (p.Val317Ala)	Nov 22, 2023
+MSH2	p.Val34Leu	Likely benign	criteria provided, single submitter	1797888	NM_000251.3(MSH2):c.100G>C (p.Val34Leu)	Jun 14, 2022
+MSH2	p.Val437Glu	Likely benign	criteria provided, single submitter	2453459	NM_000251.3(MSH2):c.1310T>A (p.Val437Glu)	Nov 17, 2022
+MSH2	p.Val532Phe	Likely benign	criteria provided, single submitter	4111028	NM_000251.3(MSH2):c.1594G>T (p.Val532Phe)	Jun 30, 2025
+MSH2	p.Val57Ala	Likely benign	criteria provided, single submitter	1778539	NM_000251.3(MSH2):c.170T>C (p.Val57Ala)	Nov 29, 2021
+MSH2	p.Val606Ile	Likely benign	criteria provided, single submitter	1780677	NM_000251.3(MSH2):c.1816G>A (p.Val606Ile)	Jun 08, 2022
+MSH2	p.Val611Ala	Likely benign	criteria provided, single submitter	1780989	NM_000251.3(MSH2):c.1832T>C (p.Val611Ala)	Apr 05, 2022
+MSH2	p.Val617Ala	Likely benign	criteria provided, single submitter	619565	NM_000251.3(MSH2):c.1850T>C (p.Val617Ala)	May 01, 2018
+MSH2	p.Val617Ile	Likely benign	criteria provided, single submitter	2496168	NM_000251.3(MSH2):c.1849G>A (p.Val617Ile)	Dec 21, 2022
+MSH2	p.Val644Ile	Likely benign	criteria provided, single submitter	1782882	NM_000251.3(MSH2):c.1930G>A (p.Val644Ile)	Jan 31, 2022
+MSH2	p.Val644Phe	Likely benign	criteria provided, single submitter	2567772	NM_000251.3(MSH2):c.1930G>T (p.Val644Phe)	Jun 13, 2023
+MSH2	p.Val655Leu	Likely benign	criteria provided, single submitter	2453504	NM_000251.3(MSH2):c.1963G>T (p.Val655Leu)	Mar 03, 2023
+MSH2	p.Val684Met	Likely benign	criteria provided, single submitter	2561327	NM_000251.3(MSH2):c.2050G>A (p.Val684Met)	Apr 28, 2023
+MSH2	p.Val923Leu	Likely benign	criteria provided, single submitter	1795753	NM_000251.3(MSH2):c.2767G>C (p.Val923Leu)	Jun 18, 2025
+MSH2	p.Val95Leu	Likely benign	criteria provided, single submitter	821880	NM_000251.3(MSH2):c.283G>C (p.Val95Leu)	Aug 16, 2023
+GCK	p.Ala119Asp	Likely pathogenic	criteria provided, single submitter	1338287	NM_000162.5(GCK):c.356C>A (p.Ala119Asp)	Aug 09, 2018
+GCK	p.Ala188Pro	Likely pathogenic	criteria provided, single submitter	2502089	NM_000162.5(GCK):c.562G>C (p.Ala188Pro)	Nov 14, 2022
+GCK	p.Ala232Asp	Pathogenic	criteria provided, single submitter	1756314	NM_000162.5(GCK):c.695C>A (p.Ala232Asp)	Aug 30, 2015
+GCK	p.Arg303Leu	Pathogenic	criteria provided, single submitter	447424	NM_000162.5(GCK):c.908G>T (p.Arg303Leu)	Nov 08, 2023
+GCK	p.Arg369Cys	Likely pathogenic	criteria provided, single submitter	4685066	NM_000162.5(GCK):c.1105C>T (p.Arg369Cys)	Jul 07, 2025
+GCK	p.Arg369Pro	Pathogenic	criteria provided, single submitter	2632567	NM_000162.5(GCK):c.1106G>C (p.Arg369Pro)	Jun 17, 2023
+GCK	p.Arg397Pro	Likely pathogenic	criteria provided, single submitter	4077058	NM_000162.5(GCK):c.1190G>C (p.Arg397Pro)	Jul 28, 2025
+GCK	p.Arg43Pro	Likely pathogenic	criteria provided, single submitter	585913	NM_000162.5(GCK):c.128G>C (p.Arg43Pro)	Jul 12, 2018
+GCK	p.Arg46Lys	Benign	criteria provided, single submitter	1802664	NM_000162.5(GCK):c.137G>A (p.Arg46Lys)	-
+GCK	p.Asn204Lys	Likely pathogenic	criteria provided, single submitter	3234078	NM_000162.5(GCK):c.612T>A (p.Asn204Lys)	Jan 12, 2024
+GCK	p.Asp198Val	Likely pathogenic	criteria provided, single submitter	3338871	NM_000162.5(GCK):c.593A>T (p.Asp198Val)	Nov 26, 2025
+GCK	p.Asp205Gly	Likely pathogenic	criteria provided, single submitter	1679543	NM_000162.5(GCK):c.614A>G (p.Asp205Gly)	-
+GCK	p.Asp205His	Pathogenic	criteria provided, single submitter	2579457	NM_000162.5(GCK):c.613G>C (p.Asp205His)	Sep 04, 2023
+GCK	p.Asp205Tyr	Likely pathogenic	criteria provided, single submitter	2136522	NM_000162.5(GCK):c.613G>T (p.Asp205Tyr)	Jun 25, 2023
+GCK	p.Asp205Val	Likely pathogenic	criteria provided, single submitter	1679544	NM_000162.5(GCK):c.614A>T (p.Asp205Val)	-
+GCK	p.Asp278Glu	Pathogenic	criteria provided, single submitter	2735003	NM_000162.5(GCK):c.834C>A (p.Asp278Glu)	Dec 15, 2023
+GCK	p.Cys129Phe	Likely pathogenic	criteria provided, single submitter	1807282	NM_000162.5(GCK):c.386G>T (p.Cys129Phe)	Jul 02, 2025
+GCK	p.Cys213Arg	Pathogenic	criteria provided, single submitter	2735011	NM_000162.5(GCK):c.637T>C (p.Cys213Arg)	Nov 18, 2023
+GCK	p.Cys382Ser	Likely pathogenic	criteria provided, single submitter	1709202	NM_000162.5(GCK):c.1145G>C (p.Cys382Ser)	Feb 21, 2022
+GCK	p.Cys434Phe	Likely pathogenic	criteria provided, single submitter	3720735	NM_000162.5(GCK):c.1301G>T (p.Cys434Phe)	May 12, 2025
+GCK	p.Gln106Pro	Likely pathogenic	criteria provided, single submitter	2576969	NM_000162.5(GCK):c.317A>C (p.Gln106Pro)	Apr 14, 2023
+GCK	p.Glu236Lys	Pathogenic	criteria provided, single submitter	129146	NM_000162.5(GCK):c.706G>A (p.Glu236Lys)	Jul 23, 2013
+GCK	p.Gly170Val	Likely pathogenic	criteria provided, single submitter	36225	NM_000162.5(GCK):c.509G>T (p.Gly170Val)	Aug 18, 2011
+GCK	p.Gly229Arg	Likely pathogenic	criteria provided, single submitter	3340323	NM_000162.5(GCK):c.685G>C (p.Gly229Arg)	Dec 20, 2023
+GCK	p.Gly294Val	Likely pathogenic	criteria provided, single submitter	1707504	NM_000162.5(GCK):c.881G>T (p.Gly294Val)	Aug 03, 2022
+GCK	p.Gly299Asp	Pathogenic	criteria provided, single submitter	2734999	NM_000162.5(GCK):c.896G>A (p.Gly299Asp)	Apr 29, 2024
+GCK	p.Gly299Ser	Likely pathogenic	criteria provided, single submitter	3767575	NM_000162.5(GCK):c.895G>A (p.Gly299Ser)	Sep 09, 2024
+GCK	p.Gly80Cys	Likely pathogenic	criteria provided, single submitter	3897233	NM_000162.5(GCK):c.238G>T (p.Gly80Cys)	Oct 30, 2024
+GCK	p.Gly80Ser	Likely pathogenic	criteria provided, single submitter	449415	NM_000162.5(GCK):c.238G>A (p.Gly80Ser)	Oct 12, 2017
+GCK	p.Gly81Asp	Likely pathogenic	criteria provided, single submitter	3236689	NM_000162.5(GCK):c.242G>A (p.Gly81Asp)	May 22, 2024
+GCK	p.Gly81Val	Likely pathogenic	criteria provided, single submitter	3766875	NM_000162.5(GCK):c.242G>T (p.Gly81Val)	Jan 02, 2024
+GCK	p.His156Asn	Likely pathogenic	criteria provided, single submitter	4070585	NM_000162.5(GCK):c.466C>A (p.His156Asn)	Jan 17, 2025
+GCK	p.Ile110Asn	Likely pathogenic	criteria provided, single submitter	4747574	NM_000162.5(GCK):c.329T>A (p.Ile110Asn)	Jun 22, 2025
+GCK	p.Ile19Met	Likely pathogenic	criteria provided, single submitter	36230	NM_000162.5(GCK):c.57C>G (p.Ile19Met)	Aug 18, 2011
+GCK	p.Ile211Thr	Pathogenic	criteria provided, single submitter	2684209	NM_000162.5(GCK):c.632T>C (p.Ile211Thr)	Sep 02, 2023
+GCK	p.Leu164Phe	Likely pathogenic	criteria provided, single submitter	3766600	NM_000162.5(GCK):c.490C>T (p.Leu164Phe)	May 06, 2024
+GCK	p.Leu165Phe	Likely pathogenic	criteria provided, single submitter	4687710	NM_000162.5(GCK):c.493C>T (p.Leu165Phe)	Oct 27, 2025
+GCK	p.Leu185Pro	Likely pathogenic	criteria provided, single submitter	2664850	NM_000162.5(GCK):c.554T>C (p.Leu185Pro)	Dec 09, 2022
+GCK	p.Leu20Pro	Likely pathogenic	criteria provided, single submitter	2504386	NM_000162.5(GCK):c.59T>C (p.Leu20Pro)	Jul 19, 2023
+GCK	p.Leu243Pro	Pathogenic	criteria provided, single submitter	1456947	NM_000162.5(GCK):c.728T>C (p.Leu243Pro)	Oct 05, 2023
+GCK	p.Leu25Pro	Likely pathogenic	criteria provided, single submitter	4262524	NM_000162.5(GCK):c.74T>C (p.Leu25Pro)	Jun 25, 2025
+GCK	p.Leu306Gln	Likely pathogenic	criteria provided, single submitter	1685328	NM_000162.5(GCK):c.917T>A (p.Leu306Gln)	May 04, 2022
+GCK	p.Leu309Pro	Pathogenic	criteria provided, single submitter	1338573	NM_000162.5(GCK):c.926T>C (p.Leu309Pro)	Mar 18, 2020
+GCK	p.Leu314Arg	Likely pathogenic	criteria provided, single submitter	1679546	NM_000162.5(GCK):c.941T>G (p.Leu314Arg)	-
+GCK	p.Lys161Arg	Likely pathogenic	criteria provided, single submitter	2580878	NM_000162.5(GCK):c.482A>G (p.Lys161Arg)	Nov 01, 2022
+GCK	p.Lys414Met	Likely pathogenic	criteria provided, single submitter	3594705	NM_000162.5(GCK):c.1241A>T (p.Lys414Met)	Apr 25, 2024
+GCK	p.Lys420Asn	Likely pathogenic	criteria provided, single submitter	1763107	NM_000162.5(GCK):c.1260G>T (p.Lys420Asn)	Jul 02, 2019
+GCK	p.Met1Leu	Likely benign	criteria provided, single submitter	2503474	NM_000162.5(GCK):c.1A>T (p.Met1Leu)	-
+GCK	p.Met251Lys	Likely pathogenic	criteria provided, single submitter	3383341	NM_000162.5(GCK):c.752T>A (p.Met251Lys)	Nov 14, 2024
+GCK	p.Met251Thr	Likely pathogenic	criteria provided, single submitter	36251	NM_000162.5(GCK):c.752T>C (p.Met251Thr)	Aug 18, 2011
+GCK	p.Met41Arg	Likely pathogenic	criteria provided, single submitter	1700673	NM_000162.5(GCK):c.122T>G (p.Met41Arg)	Aug 02, 2022
+GCK	p.Phe171Cys	Pathogenic	criteria provided, single submitter	4747572	NM_000162.5(GCK):c.512T>G (p.Phe171Cys)	Aug 29, 2025
+GCK	p.Phe171Val	Likely pathogenic	criteria provided, single submitter	1338246	NM_000162.5(GCK):c.511T>G (p.Phe171Val)	Jul 07, 2017
+GCK	p.Phe330Ser	Likely pathogenic	criteria provided, single submitter	522430	NM_000162.5(GCK):c.989T>C (p.Phe330Ser)	-
+GCK	p.Ser151Tyr	Likely pathogenic	criteria provided, single submitter	1346275	NM_000162.5(GCK):c.452C>A (p.Ser151Tyr)	Sep 15, 2021
+GCK	p.Ser411Pro	Likely pathogenic	criteria provided, single submitter	4685911	NM_000162.5(GCK):c.1231T>C (p.Ser411Pro)	Dec 02, 2024
+GCK	p.Thr103Ser	Likely pathogenic	criteria provided, single submitter	2136529	NM_000162.5(GCK):c.308C>G (p.Thr103Ser)	Dec 19, 2021
+GCK	p.Thr206Ala	Likely pathogenic	criteria provided, single submitter	3720741	NM_000162.5(GCK):c.616A>G (p.Thr206Ala)	Jul 01, 2022
+GCK	p.Thr332Met	Likely pathogenic	criteria provided, single submitter	1801684	NM_000162.5(GCK):c.995C>T (p.Thr332Met)	-
+GCK	p.Thr82Ile	Likely pathogenic	criteria provided, single submitter	1723231	NM_000162.5(GCK):c.245C>T (p.Thr82Ile)	Nov 14, 2022
+GCK	p.Trp167Cys	Pathogenic	criteria provided, single submitter	1685845	NM_000162.5(GCK):c.501G>C (p.Trp167Cys)	May 04, 2022
+GCK	p.Tyr214Cys	Pathogenic	criteria provided, single submitter	16144	NM_000162.5(GCK):c.641A>G (p.Tyr214Cys)	Dec 24, 2025
+GCK	p.Val154Ala	Likely pathogenic	criteria provided, single submitter	1700679	NM_000162.5(GCK):c.461T>C (p.Val154Ala)	Aug 02, 2022
+GCK	p.Val154Met	Likely pathogenic	criteria provided, single submitter	3383432	NM_000162.5(GCK):c.460G>A (p.Val154Met)	Aug 12, 2024
+GCK	p.Val182Leu	Likely pathogenic	criteria provided, single submitter	4055754	NM_000162.5(GCK):c.544G>T (p.Val182Leu)	Jan 02, 2025
+GCK	p.Val200Leu	Likely pathogenic	criteria provided, single submitter	3342694	NM_000162.5(GCK):c.598G>T (p.Val200Leu)	Nov 04, 2022
+GCK	p.Val226Gly	Likely pathogenic	criteria provided, single submitter	2580858	NM_000162.5(GCK):c.677T>G (p.Val226Gly)	Nov 01, 2022
+GCK	p.Val244Gly	Likely pathogenic	criteria provided, single submitter	1758315	NM_000162.5(GCK):c.731T>G (p.Val244Gly)	Mar 22, 2019
+GCK	p.Val253Leu	Likely pathogenic	no assertion criteria provided	3346399	NM_000162.5(GCK):c.757G>C (p.Val253Leu)	Jun 13, 2024
+GCK	p.Val253Phe	Likely pathogenic	criteria provided, single submitter	449696	NM_000162.5(GCK):c.757G>T (p.Val253Phe)	Oct 01, 2025
+GCK	p.Val302Glu	Likely pathogenic	criteria provided, single submitter	3571584	NM_000162.5(GCK):c.905T>A (p.Val302Glu)	Feb 16, 2024
+GCK	p.Val389Leu	Pathogenic	criteria provided, single submitter	435300	NM_000162.5(GCK):c.1165G>C (p.Val389Leu)	Jan 12, 2017
+GCK	p.Val412Leu	Likely pathogenic	criteria provided, single submitter	1879689	NM_000162.5(GCK):c.1234G>C (p.Val412Leu)	Nov 01, 2022
+GCK	p.Val452Leu	Likely pathogenic	criteria provided, single submitter	2506148	NM_000162.5(GCK):c.1354G>C (p.Val452Leu)	May 03, 2023
+GCK	p.Val455Met	Pathogenic	criteria provided, single submitter	16140	NM_000162.5(GCK):c.1363G>A (p.Val455Met)	Aug 06, 2022
+GCK	p.Val91Leu	Pathogenic	criteria provided, single submitter	4747575	NM_000162.5(GCK):c.271G>T (p.Val91Leu)	Sep 03, 2025
+F9	p.Ala173Gly	Likely pathogenic	criteria provided, single submitter	3598107	NM_000133.4(F9):c.518C>G (p.Ala173Gly)	Jan 19, 2024
+F9	p.Ala233Thr	Pathogenic	no assertion criteria provided	10601	NM_000133.4(F9):c.697G>A (p.Ala233Thr)	Sep 01, 1989
+F9	p.Ala266Thr	Likely pathogenic	criteria provided, single submitter	2138740	NM_000133.4(F9):c.796G>A (p.Ala266Thr)	Jan 11, 2022
+F9	p.Ala279Pro	Likely pathogenic	criteria provided, single submitter	1477908	NM_000133.4(F9):c.835G>C (p.Ala279Pro)	Oct 11, 2021
+F9	p.Ala37Val	Pathogenic	no assertion criteria provided	10661	NM_000133.4(F9):c.110C>T (p.Ala37Val)	Jul 01, 1997
+F9	p.Ala380Thr	Pathogenic	criteria provided, single submitter	1698768	NM_000133.4(F9):c.1138G>A (p.Ala380Thr)	Jun 24, 2020
+F9	p.Ala397Pro	Pathogenic	no assertion criteria provided	10662	NM_000133.4(F9):c.1189G>C (p.Ala397Pro)	May 01, 1998
+F9	p.Ala397Val	Pathogenic	criteria provided, single submitter	2138746	NM_000133.4(F9):c.1190C>T (p.Ala397Val)	Apr 14, 2022
+F9	p.Ala436Glu	Pathogenic	no assertion criteria provided	10622	NM_000133.4(F9):c.1307C>A (p.Ala436Glu)	Oct 09, 2017
+F9	p.Ala436Thr	Pathogenic	criteria provided, single submitter	4688446	NM_000133.4(F9):c.1306G>A (p.Ala436Thr)	Dec 09, 2025
+F9	p.Ala436Val	Pathogenic	no assertion criteria provided	10623	NM_000133.4(F9):c.1307C>T (p.Ala436Val)	Dec 01, 1988
+F9	p.Arg140Ser	Likely pathogenic	criteria provided, single submitter	4688439	NM_000133.4(F9):c.420A>T (p.Arg140Ser)	Dec 09, 2025
+F9	p.Arg294Leu	Pathogenic	criteria provided, single submitter	2138741	NM_000133.4(F9):c.881G>T (p.Arg294Leu)	Mar 28, 2022
+F9	p.Arg379Leu	Pathogenic	criteria provided, single submitter	4783891	NM_000133.4(F9):c.1136G>T (p.Arg379Leu)	Mar 30, 2025
+F9	p.Arg384Leu	Pathogenic	no assertion criteria provided	10668	NM_000133.4(F9):c.1151G>T (p.Arg384Leu)	Oct 22, 2009
+F9	p.Arg384Pro	Pathogenic	no assertion criteria provided	10660	NM_000133.4(F9):c.1151G>C (p.Arg384Pro)	Aug 04, 2016
+F9	p.Arg3Cys	Benign	criteria provided, single submitter	765903	NM_000133.4(F9):c.7C>T (p.Arg3Cys)	Jan 13, 2026
+F9	p.Arg3Ser	Likely benign	criteria provided, single submitter	2929110	NM_000133.4(F9):c.7C>A (p.Arg3Ser)	Jun 09, 2023
+F9	p.Arg43Leu	Pathogenic	criteria provided, single submitter	993549	NM_000133.4(F9):c.128G>T (p.Arg43Leu)	Jul 24, 2019
+F9	p.Arg46Ser	Pathogenic	no assertion criteria provided	10565	NM_000133.4(F9):c.138G>Y (p.Arg46Ser)	Aug 01, 1986
+F9	p.Asn138His	Pathogenic	criteria provided, single submitter	2138737	NM_000133.4(F9):c.412A>C (p.Asn138His)	May 24, 2022
+F9	p.Asn166Tyr	Pathogenic	no assertion criteria provided	10582	NM_000133.4(F9):c.496A>T (p.Asn166Tyr)	Apr 01, 1989
+F9	p.Asn306Ser	Likely pathogenic	criteria provided, single submitter	10604	NM_000133.4(F9):c.917A>G (p.Asn306Ser)	Jul 22, 2024
+F9	p.Asn36Asp	Likely benign	criteria provided, single submitter	1078704	NM_000133.4(F9):c.106A>G (p.Asn36Asp)	Jul 03, 2024
+F9	p.Asn48Asp	Pathogenic	criteria provided, single submitter	2925690	NM_000133.4(F9):c.142A>G (p.Asn48Asp)	Mar 22, 2023
+F9	p.Asn48Tyr	Pathogenic	no assertion criteria provided	973812	NM_000133.4(F9):c.142A>T (p.Asn48Tyr)	Jun 01, 2019
+F9	p.Asn59Lys	Likely benign	criteria provided, single submitter	994375	NM_000133.4(F9):c.177C>A (p.Asn59Lys)	Sep 07, 2021
+F9	p.Asp110Asn	Pathogenic	no assertion criteria provided	10643	NM_000133.4(F9):c.328G>A (p.Asp110Asn)	Oct 09, 2017
+F9	p.Asp110Gly	Pathogenic	no assertion criteria provided	10580	NM_000133.4(F9):c.329A>G (p.Asp110Gly)	Apr 01, 1989
+F9	p.Asp315Glu	Likely pathogenic	criteria provided, single submitter	4783890	NM_000133.4(F9):c.945C>A (p.Asp315Glu)	Feb 06, 2025
+F9	p.Asp315Gly	Pathogenic	criteria provided, single submitter	2925695	NM_000133.4(F9):c.944A>G (p.Asp315Gly)	Aug 25, 2023
+F9	p.Asp405Val	Likely pathogenic	criteria provided, single submitter	2429487	NM_000133.4(F9):c.1214A>T (p.Asp405Val)	Feb 13, 2023
+F9	p.Asp410His	Pathogenic	no assertion criteria provided	10651	NM_000133.4(F9):c.1228G>C (p.Asp410His)	Mar 01, 1992
+F9	p.Asp410Val	Likely pathogenic	criteria provided, single submitter	994026	NM_000133.4(F9):c.1229A>T (p.Asp410Val)	Jul 24, 2019
+F9	p.Asp93Gly	Pathogenic	no assertion criteria provided	10576	NM_000133.4(F9):c.278A>G (p.Asp93Gly)	Jun 25, 1990
+F9	p.Asp95Ala	Likely pathogenic	no assertion criteria provided	973816	NM_000133.4(F9):c.284A>C (p.Asp95Ala)	Jun 01, 2019
+F9	p.Asp95Val	Likely pathogenic	no assertion criteria provided	1684373	NM_000133.4(F9):c.284A>T (p.Asp95Val)	-
+F9	p.Cys119Tyr	Pathogenic	criteria provided, single submitter	2138736	NM_000133.4(F9):c.356G>A (p.Cys119Tyr)	Sep 16, 2022
+F9	p.Cys128Arg	Likely pathogenic	criteria provided, single submitter	2131311	NM_000133.4(F9):c.382T>C (p.Cys128Arg)	Oct 23, 2025
+F9	p.Cys134Ser	Pathogenic	no assertion criteria provided	973818	NM_000133.4(F9):c.401G>C (p.Cys134Ser)	Jun 01, 2019
+F9	p.Cys141Tyr	Pathogenic	criteria provided, single submitter	811510	NM_000133.4(F9):c.422G>A (p.Cys141Tyr)	Jul 10, 2018
+F9	p.Cys155Ser	Likely pathogenic	criteria provided, single submitter	2637194	NM_000133.4(F9):c.464G>C (p.Cys155Ser)	Sep 27, 2022
+F9	p.Cys157Tyr	Pathogenic	criteria provided, single submitter	4688845	NM_000133.4(F9):c.470G>A (p.Cys157Tyr)	Dec 24, 2025
+F9	p.Cys170Tyr	Pathogenic	criteria provided, single submitter	811517	NM_000133.4(F9):c.509G>A (p.Cys170Tyr)	Jun 28, 2019
+F9	p.Cys178Arg	Pathogenic	criteria provided, single submitter	1459950	NM_000133.4(F9):c.532T>C (p.Cys178Arg)	Feb 07, 2021
+F9	p.Cys178Phe	Pathogenic	criteria provided, single submitter	811518	NM_000133.4(F9):c.533G>T (p.Cys178Phe)	May 26, 2019
+F9	p.Cys178Tyr	Pathogenic	criteria provided, single submitter	4537255	NM_000133.4(F9):c.533G>A (p.Cys178Tyr)	Nov 28, 2025
+F9	p.Cys18Arg	Pathogenic	no assertion criteria provided	10568	NM_000133.4(F9):c.52T>C (p.Cys18Arg)	Oct 09, 2017
+F9	p.Cys252Ser	Pathogenic	no assertion criteria provided	10666	NM_000133.4(F9):c.755G>C (p.Cys252Ser)	Jun 01, 2003
+F9	p.Cys252Trp	Likely pathogenic	no assertion criteria provided	375453	NM_000133.4(F9):c.756T>G (p.Cys252Trp)	Dec 17, 2016
+F9	p.Cys28Arg	Pathogenic	criteria provided, single submitter	10657	NM_000133.4(F9):c.82T>C (p.Cys28Arg)	Feb 02, 2021
+F9	p.Cys335Phe	Likely pathogenic	criteria provided, single submitter	2691657	NM_000133.4(F9):c.1004G>T (p.Cys335Phe)	Dec 13, 2023
+F9	p.Cys335Trp	Likely pathogenic	no assertion criteria provided	973811	NM_000133.4(F9):c.1005C>G (p.Cys335Trp)	Jun 01, 2019
+F9	p.Cys335Tyr	Likely pathogenic	criteria provided, single submitter	2444124	NM_000133.4(F9):c.1004G>A (p.Cys335Tyr)	Feb 23, 2023
+F9	p.Cys382Arg	Pathogenic	criteria provided, single submitter	10614	NM_000133.4(F9):c.1144T>C (p.Cys382Arg)	May 02, 2023
+F9	p.Cys382Ser	Likely pathogenic	criteria provided, single submitter	116175	NM_000133.4(F9):c.1144T>A (p.Cys382Ser)	May 14, 2019
+F9	p.Cys396Ser	Pathogenic	criteria provided, single submitter	810871	NM_000133.4(F9):c.1186T>A (p.Cys396Ser)	Mar 18, 2019
+F9	p.Cys396Tyr	Pathogenic	criteria provided, single submitter	2138745	NM_000133.4(F9):c.1187G>A (p.Cys396Tyr)	Jan 04, 2022
+F9	p.Cys407Ser	Likely pathogenic	criteria provided, single submitter	2925700	NM_000133.4(F9):c.1219T>A (p.Cys407Ser)	Jun 28, 2023
+F9	p.Cys64Tyr	Pathogenic	criteria provided, single submitter	1076388	NM_000133.4(F9):c.191G>A (p.Cys64Tyr)	Aug 22, 2020
+F9	p.Cys69Ser	Likely pathogenic	criteria provided, single submitter	1330991	NM_000133.4(F9):c.205T>A (p.Cys69Ser)	Apr 07, 2021
+F9	p.Cys69Tyr	Pathogenic	criteria provided, single submitter	994405	NM_000133.4(F9):c.206G>A (p.Cys69Tyr)	Aug 29, 2019
+F9	p.Gln167His	Pathogenic	criteria provided, single submitter	4526076	NM_000133.4(F9):c.501G>T (p.Gln167His)	Jul 08, 2025
+F9	p.Gln237Leu	Pathogenic	no assertion criteria provided	10596	NM_000133.4(F9):c.710A>T (p.Gln237Leu)	Oct 09, 2017
+F9	p.Gln241Arg	Likely pathogenic	criteria provided, single submitter	3910035	NM_000133.4(F9):c.722A>G (p.Gln241Arg)	Feb 16, 2025
+F9	p.Gln96Pro	Likely pathogenic	criteria provided, single submitter	10577	NM_000133.4(F9):c.287A>C (p.Gln96Pro)	May 08, 2024
+F9	p.Glu291Val	Pathogenic	no assertion criteria provided	10652	NM_000133.4(F9):c.872A>T (p.Glu291Val)	Mar 01, 1992
+F9	p.Glu320Gly	Likely pathogenic	criteria provided, single submitter	2683975	NM_000133.4(F9):c.959A>G (p.Glu320Gly)	Aug 28, 2023
+F9	p.Glu433Gly	Likely pathogenic	no assertion criteria provided	4067837	NM_000133.4(F9):c.1298A>G (p.Glu433Gly)	Jan 07, 2025
+F9	p.Glu54Lys	Pathogenic	criteria provided, single submitter	3759686	NM_000133.4(F9):c.160G>A (p.Glu54Lys)	Apr 14, 2024
+F9	p.Glu54Val	Likely pathogenic	criteria provided, single submitter	618117	NM_000133.4(F9):c.161A>T (p.Glu54Val)	Dec 11, 2017
+F9	p.Glu73Val	Pathogenic	no assertion criteria provided	10571	NM_000133.4(F9):c.218A>T (p.Glu73Val)	Feb 19, 1990
+F9	p.Glu76Lys	Pathogenic	criteria provided, single submitter	811519	NM_000133.4(F9):c.226G>A (p.Glu76Lys)	Dec 09, 2018
+F9	p.Glu79Asp	Pathogenic	no assertion criteria provided	10574	NM_000133.4(F9):c.237A>C (p.Glu79Asp)	Sep 01, 1989
+F9	p.Glu79Val	Likely pathogenic	criteria provided, single submitter	2925691	NM_000133.4(F9):c.236A>T (p.Glu79Val)	May 30, 2023
+F9	p.Glu7Asp	Pathogenic	no assertion criteria provided	10566	E7D	Jul 26, 1986
+F9	p.Gly105Asp	Likely pathogenic	criteria provided, single submitter	1676742	NM_000133.4(F9):c.314G>A (p.Gly105Asp)	-
+F9	p.Gly105Val	Likely pathogenic	criteria provided, single submitter	3759689	NM_000133.4(F9):c.314G>T (p.Gly105Val)	Jun 12, 2024
+F9	p.Gly122Val	Likely pathogenic	no assertion criteria provided	1684372	NM_000133.4(F9):c.365G>T (p.Gly122Val)	-
+F9	p.Gly125Arg	Likely pathogenic	criteria provided, single submitter	4081674	NM_000133.4(F9):c.373G>A (p.Gly125Arg)	Jun 17, 2025
+F9	p.Gly160Ala	Pathogenic	no assertion criteria provided	10581	NM_000133.4(F9):c.479G>C (p.Gly160Ala)	Mar 11, 1990
+F9	p.Gly160Arg	Pathogenic	criteria provided, single submitter	2138738	NM_000133.4(F9):c.478G>A (p.Gly160Arg)	Feb 25, 2022
+F9	p.Gly160Glu	Likely pathogenic	criteria provided, single submitter	4783887	NM_000133.4(F9):c.479G>A (p.Gly160Glu)	Nov 11, 2025
+F9	p.Gly230Arg	Likely pathogenic	criteria provided, single submitter	4081673	NM_000133.4(F9):c.688G>A (p.Gly230Arg)	Feb 18, 2025
+F9	p.Gly236Leu	Likely pathogenic	criteria provided, single submitter	2635268	NM_000133.4(F9):c.706_707delinsCT (p.Gly236Leu)	Nov 29, 2022
+F9	p.Gly253Arg	Likely pathogenic	criteria provided, single submitter	627130	NM_000133.4(F9):c.757G>A (p.Gly253Arg)	Feb 01, 2019
+F9	p.Gly254Ser	Pathogenic	criteria provided, single submitter	3896563	NM_000133.4(F9):c.760G>A (p.Gly254Ser)	Apr 02, 2025
+F9	p.Gly280Ala	Likely pathogenic	criteria provided, single submitter	4795939	NM_000133.4(F9):c.839G>C (p.Gly280Ala)	Jul 27, 2025
+F9	p.Gly280Asp	Pathogenic	criteria provided, single submitter	1070513	NM_000133.4(F9):c.839G>A (p.Gly280Asp)	Mar 08, 2020
+F9	p.Gly355Val	Pathogenic	no assertion criteria provided	10609	NM_000133.4(F9):c.1064G>T (p.Gly355Val)	Oct 09, 2017
+F9	p.Gly357Glu	Pathogenic	criteria provided, single submitter	10647	NM_000133.4(F9):c.1070G>A (p.Gly357Glu)	Aug 08, 2019
+F9	p.Gly357Val	Pathogenic	criteria provided, single submitter	3907396	NM_000133.4(F9):c.1070G>T (p.Gly357Val)	Jun 04, 2025
+F9	p.Gly398Val	Likely pathogenic	criteria provided, single submitter	2444307	NM_000133.4(F9):c.1193G>T (p.Gly398Val)	Feb 23, 2023
+F9	p.Gly402Arg	Likely pathogenic	criteria provided, single submitter	4535627	NM_000133.4(F9):c.1204G>A (p.Gly402Arg)	Sep 10, 2025
+F9	p.Gly409Arg	Likely pathogenic	criteria provided, single submitter	3338825	NM_000133.4(F9):c.1225G>A (p.Gly409Arg)	Jan 17, 2024
+F9	p.Gly409Val	Likely pathogenic	criteria provided, single submitter	4687707	NM_000133.4(F9):c.1226G>T (p.Gly409Val)	Oct 28, 2025
+F9	p.Gly432Ala	Likely pathogenic	criteria provided, single submitter	837906	NM_000133.4(F9):c.1295G>C (p.Gly432Ala)	Jan 16, 2019
+F9	p.Gly432Ser	Pathogenic	criteria provided, single submitter	2925702	NM_000133.4(F9):c.1294G>A (p.Gly432Ser)	Apr 15, 2023
+F9	p.Gly50Ala	Likely pathogenic	criteria provided, single submitter	1524877	NM_000133.4(F9):c.149G>C (p.Gly50Ala)	Feb 18, 2024
+F9	p.Gly50Ser	Pathogenic	criteria provided, single submitter	454495	NM_000133.4(F9):c.148G>A (p.Gly50Ser)	Sep 13, 2022
+F9	p.Gly94Arg	Likely pathogenic	criteria provided, single submitter	454496	NM_000133.4(F9):c.280G>A (p.Gly94Arg)	Jul 28, 2017
+F9	p.His282Tyr	Likely benign	criteria provided, single submitter	1142361	NM_000133.4(F9):c.844C>T (p.His282Tyr)	Feb 14, 2024
+F9	p.Ile344Thr	Pathogenic	no assertion criteria provided	10665	NM_000133.4(F9):c.1031T>C (p.Ile344Thr)	Aug 15, 2000
+F9	p.Ile390Phe	Likely pathogenic	criteria provided, single submitter	2632738	NM_000133.4(F9):c.1168A>T (p.Ile390Phe)	Jun 05, 2023
+F9	p.Ile428Phe	Likely pathogenic	criteria provided, single submitter	3380935	NM_000133.4(F9):c.1282A>T (p.Ile428Phe)	Aug 21, 2024
+F9	p.Ile454Thr	Pathogenic	criteria provided, single submitter	810865	NM_000133.4(F9):c.1361T>C (p.Ile454Thr)	Mar 01, 2019
+F9	p.Leu20Ser	Pathogenic	criteria provided, single submitter	4783884	NM_000133.4(F9):c.59T>C (p.Leu20Ser)	Jul 21, 2025
+F9	p.Leu23Pro	Pathogenic	criteria provided, single submitter	2683971	NM_000133.4(F9):c.68T>C (p.Leu23Pro)	Jun 23, 2023
+F9	p.Leu383His	Pathogenic	criteria provided, single submitter	2925699	NM_000133.4(F9):c.1148T>A (p.Leu383His)	Dec 29, 2022
+F9	p.Lys362Glu	Likely pathogenic	criteria provided, single submitter	2683967	NM_000133.4(F9):c.1084A>G (p.Lys362Glu)	Nov 29, 2022
+F9	p.Lys39Arg	Likely benign	criteria provided, single submitter	1160362	NM_000133.4(F9):c.116A>G (p.Lys39Arg)	Jan 30, 2024
+F9	p.Met394Ile	Pathogenic	criteria provided, single submitter	2138744	NM_000133.4(F9):c.1182G>A (p.Met394Ile)	Feb 03, 2022
+F9	p.Met394Val	Pathogenic	no assertion criteria provided	10616	NM_000133.4(F9):c.1180A>G (p.Met394Val)	Oct 09, 2017
+F9	p.Phe123Ser	Likely pathogenic	criteria provided, single submitter	1508905	NM_000133.4(F9):c.368T>C (p.Phe123Ser)	May 18, 2021
+F9	p.Phe360Ser	Likely pathogenic	criteria provided, single submitter	2925698	NM_000133.4(F9):c.1079T>C (p.Phe360Ser)	Sep 29, 2023
+F9	p.Phe378Leu	Pathogenic	no assertion criteria provided	10621	F378L	Oct 09, 2017
+F9	p.Phe395Ile	Pathogenic	criteria provided, single submitter	1364269	NM_000133.4(F9):c.1183T>A (p.Phe395Ile)	Apr 18, 2021
+F9	p.Phe424Leu	Likely pathogenic	criteria provided, single submitter	2020181	NM_000133.4(F9):c.1272C>A (p.Phe424Leu)	Jul 29, 2022
+F9	p.Phe87Cys	Pathogenic	criteria provided, single submitter	811521	NM_000133.4(F9):c.260T>G (p.Phe87Cys)	Jun 07, 2019
+F9	p.Pro101Gln	Likely pathogenic	criteria provided, single submitter	1067340	NM_000133.4(F9):c.302C>A (p.Pro101Gln)	Dec 01, 2025
+F9	p.Pro175Ser	Benign	criteria provided, single submitter	700019	NM_000133.4(F9):c.523C>T (p.Pro175Ser)	Dec 09, 2025
+F9	p.Pro197Ser	Likely benign	criteria provided, single submitter	1959260	NM_000133.4(F9):c.589C>T (p.Pro197Ser)	Feb 03, 2024
+F9	p.Pro333Leu	Pathogenic	no assertion criteria provided	10605	NM_000133.4(F9):c.998C>T (p.Pro333Leu)	Oct 09, 2017
+F9	p.Pro414Leu	Pathogenic	criteria provided, single submitter	811507	NM_000133.4(F9):c.1241C>T (p.Pro414Leu)	Jan 11, 2019
+F9	p.Pro414Thr	Pathogenic	no assertion criteria provided	10620	NM_000133.4(F9):c.1240C>A (p.Pro414Thr)	Oct 09, 2017
+F9	p.Ser169Pro	Likely pathogenic	criteria provided, single submitter	1803132	NM_000133.4(F9):c.505T>C (p.Ser169Pro)	Oct 20, 2021
+F9	p.Ser354Arg	Pathogenic	criteria provided, single submitter	1417984	NM_000133.4(F9):c.1062T>A (p.Ser354Arg)	May 20, 2021
+F9	p.Ser406Leu	Pathogenic	no assertion criteria provided	10617	NM_000133.4(F9):c.1217C>T (p.Ser406Leu)	Oct 09, 2017
+F9	p.Ser411Gly	Pathogenic	criteria provided, single submitter	10650	NM_000133.4(F9):c.1231A>G (p.Ser411Gly)	Apr 21, 2022
+F9	p.Ser411Ile	Pathogenic	no assertion criteria provided	10649	NM_000133.4(F9):c.1232G>T (p.Ser411Ile)	Mar 01, 1992
+F9	p.Ser430Arg	Likely pathogenic	criteria provided, single submitter	812043	NM_000133.4(F9):c.1290C>A (p.Ser430Arg)	May 20, 2019
+F9	p.Ser430Asn	Likely pathogenic	criteria provided, single submitter	618644	NM_000133.4(F9):c.1289G>A (p.Ser430Asn)	Mar 29, 2018
+F9	p.Thr84Ala	Likely benign	criteria provided, single submitter	695975	NM_000133.4(F9):c.250A>G (p.Thr84Ala)	Oct 27, 2025
+F9	p.Thr84Ile	Likely pathogenic	criteria provided, single submitter	2925692	NM_000133.4(F9):c.251C>T (p.Thr84Ile)	Mar 03, 2023
+F9	p.Trp240Gly	Likely pathogenic	criteria provided, single submitter	1491111	NM_000133.4(F9):c.718T>G (p.Trp240Gly)	Mar 03, 2021
+F9	p.Trp431Cys	Pathogenic	criteria provided, single submitter	2925701	NM_000133.4(F9):c.1293G>T (p.Trp431Cys)	Apr 12, 2023
+F9	p.Trp453Arg	Pathogenic	no assertion criteria provided	10628	NM_000133.4(F9):c.1357T>C (p.Trp453Arg)	Sep 01, 1989
+F9	p.Tyr161Cys	Likely pathogenic	criteria provided, single submitter	963994	NM_000133.4(F9):c.482A>G (p.Tyr161Cys)	Sep 09, 2019
+F9	p.Tyr305Cys	Likely pathogenic	no assertion criteria provided	812973	NM_000133.4(F9):c.914A>G (p.Tyr305Cys)	-
+F9	p.Tyr450Cys	Likely pathogenic	criteria provided, single submitter	4542502	NM_000133.4(F9):c.1349A>G (p.Tyr450Cys)	Sep 02, 2025
+F9	p.Tyr91Asn	Likely pathogenic	no assertion criteria provided	1684374	NM_000133.4(F9):c.271T>A (p.Tyr91Asn)	-
+F9	p.Val153Ala	Likely pathogenic	criteria provided, single submitter	3380933	NM_000133.4(F9):c.458T>C (p.Val153Ala)	Aug 21, 2024
+F9	p.Val153Met	Likely pathogenic	no assertion criteria provided	2631132	NM_000133.4(F9):c.457G>A (p.Val153Met)	Dec 06, 2023
+F9	p.Val181Phe	Pathogenic	no assertion criteria provided	10592	NM_000133.4(F9):c.541G>T (p.Val181Phe)	Oct 09, 2017
+F9	p.Val195Gly	Likely benign	criteria provided, single submitter	2184672	NM_000133.4(F9):c.584T>G (p.Val195Gly)	Aug 23, 2023
+F9	p.Val227Ala	Pathogenic	criteria provided, single submitter	4688182	NM_000133.4(F9):c.680T>C (p.Val227Ala)	Jan 30, 2026
+F9	p.Val227Ile	Benign	criteria provided, single submitter	1596936	NM_000133.4(F9):c.679G>A (p.Val227Ile)	Nov 02, 2020
+F9	p.Val228Leu	Pathogenic	no assertion criteria provided	10594	NM_000133.4(F9):c.682G>C (p.Val228Leu)	Jun 01, 1990
+F9	p.Val228Phe	Pathogenic	no assertion criteria provided	10593	NM_000133.4(F9):c.682G>T (p.Val228Phe)	May 01, 1989
+F9	p.Val30Leu	Pathogenic	criteria provided, single submitter	627400	NM_000133.4(F9):c.88G>C (p.Val30Leu)	Feb 01, 2019
+F9	p.Val374Phe	Pathogenic	criteria provided, single submitter	10639	NM_000133.4(F9):c.1120G>T (p.Val374Phe)	Dec 18, 2018
+F9	p.Val377Leu	Likely pathogenic	no assertion criteria provided	3774330	NM_000133.4(F9):c.1129G>C (p.Val377Leu)	Mar 04, 2025
+F9	p.Val419Glu	Pathogenic	no assertion criteria provided	10658	NM_000133.4(F9):c.1256T>A (p.Val419Glu)	Jan 01, 1994
+F9	p.Val419Gly	Likely pathogenic	criteria provided, single submitter	618116	NM_000133.4(F9):c.1256T>G (p.Val419Gly)	Jun 19, 2019

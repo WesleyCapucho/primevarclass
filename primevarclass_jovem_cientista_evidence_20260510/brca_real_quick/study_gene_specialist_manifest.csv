@@ -1,0 +1,3 @@
+gene,specialist_experiment,selected_experiment,feature_set,model_family,training_origin,balanced_internal_score,auc_roc,auc_pr,mcc,n_variants,n_features
+BRCA1,gene_balanced_specialist,hybrid_plus_external__logistic_regression,hybrid_plus_external,logistic_regression,gene_local,0.6465342400798508,0.76576852418861,0.6721224494959521,0.38247746244623104,372,83
+BRCA2,gene_balanced_specialist,hybrid_plus_external__logistic_regression,hybrid_plus_external,logistic_regression,gene_local,0.5423581003009921,0.7504740620344035,0.3426412706932111,0.3258430064419502,497,83

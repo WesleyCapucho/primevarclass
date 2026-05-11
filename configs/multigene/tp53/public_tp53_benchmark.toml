@@ -1,0 +1,23 @@
+[study]
+name = "Public TP53 Benchmark Scaffold"
+mode = "hybrid"
+high_confidence_only = false
+keep_metadata = true
+primary_metric = "auc_roc"
+baseline_experiment = "external_predictors_only"
+n_bootstrap = 100
+
+[[cohorts]]
+name = "tp53_training"
+role = "train"
+source_config = "configs/multigene/tp53/public_tp53_real.toml"
+
+[[cohorts]]
+name = "tp53_clinical_external_validation"
+role = "external_test"
+source_config = "configs/multigene/tp53/public_tp53_external_clinical.toml"
+
+[[cohorts]]
+name = "tp53_secondary_external_validation"
+role = "external_test"
+source_config = "configs/multigene/tp53/public_tp53_external_secondary.toml"

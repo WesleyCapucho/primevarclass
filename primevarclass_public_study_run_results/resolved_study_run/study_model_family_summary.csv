@@ -1,0 +1,2 @@
+model_family,n_experiments,auc_roc_mean,auc_pr_mean,mcc_mean,best_auc_roc,best_auc_pr,best_mcc
+random_forest,7,0.5,0.5,0.0,0.5,0.5,0.0

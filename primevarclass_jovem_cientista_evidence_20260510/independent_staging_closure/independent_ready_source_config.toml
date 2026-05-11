@@ -1,0 +1,186 @@
+# PrimeVarClass staged independent source config
+# Generated from local inventory. Review every source before publication-grade training.
+
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_local_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/clinvar/variant_summary.txt"
+preset = "clinvar_variant_summary"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "clinical_labels"
+
+[[sources]]
+name = "clingen_erepo_local_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/clingen_erepo/clingen_erepo_classifications.tsv"
+preset = "clingen_erepo_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "expert_curation"
+
+[[sources]]
+name = "brca_exchange_enigma_local_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/brca_exchange/brca_exchange_lovd_external.tsv"
+preset = "enigma_brca"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "expert_brca_curation"
+
+[[sources]]
+name = "gnomad_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/external_data/gnomad/gnomad_r4_target_genes/gnomad_gene_subset_variants.tsv"
+preset = "gnomad_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "population_frequency"
+
+[[sources]]
+name = "mavedb_local_staged"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/mavedb/brca_function_scores.csv"
+preset = "mavedb_score_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 59
+# evidence_lane = "functional_assay"
+
+[[sources]]
+name = "uniprot_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/uniprot/target_gene_features.tsv"
+preset = "uniprot_feature_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "protein_context"
+
+[[sources]]
+name = "alphafold_db_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/alphafold/target_gene_models.tsv"
+preset = "alphafold_model_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "predicted_structure"
+
+[[sources]]
+name = "pdb_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/pdb/target_gene_structures.tsv"
+preset = "pdb_structure_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "experimental_structure"
+
+[[sources]]
+name = "civic_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/civic/target_gene_civic.tsv"
+preset = "civic_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "translational_oncology"
+
+[[sources]]
+name = "cbioportal_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/cbioportal/brca_tcga_pan_can_mutations.tsv"
+preset = "cbioportal_mutation_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "somatic_cancer_cohorts"
+
+[[sources]]
+name = "gdc_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/gdc/target_gene_metadata.tsv"
+preset = "gdc_maf_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "tcga_gdc_cancer_cohorts"
+
+[[sources]]
+name = "gwas_catalog_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/gwas_catalog/target_gene_associations.tsv"
+preset = "gwas_catalog_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "genetic_association"
+
+[[sources]]
+name = "opentargets_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/opentargets/target_disease_associations.tsv"
+preset = "opentargets_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "target_disease_evidence"
+
+[[sources]]
+name = "pharmgkb_local_staged"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/pharmgkb/target_gene_pharmgkb.tsv"
+preset = "pharmgkb_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene"]
+# staging_score_percent = 100
+# evidence_lane = "pharmacogenomics"
+
+[[sources]]
+name = "lovd_local_staged"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:/Users/Wesley Capucho/Documents/IA dos números primos/data/raw/brca_exchange/brca_exchange_lovd_external.tsv"
+preset = "lovd_variant_table"
+gene_allowlist = ["BRCA1", "BRCA2", "TP53", "PTEN", "MSH2", "KRAS", "GCK", "F9"]
+join_on = ["gene", "hgvs_p"]
+# staging_score_percent = 100
+# evidence_lane = "locus_specific_variation"

@@ -1,0 +1,5 @@
+gene,hgvs_pro,score,score_se,annotation,urn,title
+BRCA1,p.Arg71Gly,-1.95,0.12,loss_of_function,urn:mavedb:BRCA1-RING-VAL,BRCA1 RING validation assay
+BRCA1,p.Met18Thr,0.39,0.09,functional,urn:mavedb:BRCA1-RING-VAL,BRCA1 RING validation assay
+BRCA2,p.Asp2723His,-1.15,0.14,damaging,urn:mavedb:BRCA2-DBD-VAL,BRCA2 DBD validation assay
+BRCA2,p.Trp1692Cys,-1.72,0.13,damaging,urn:mavedb:BRCA2-DBD-VAL,BRCA2 DBD validation assay

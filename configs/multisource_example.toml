@@ -1,0 +1,19 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_demo"
+kind = "cohort"
+type = "file"
+format = "csv"
+path = "data/examples/clinvar_like_brca.csv"
+preset = "clinvar"
+
+[[sources]]
+name = "annotation_demo"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/examples/annotation_scores.csv"
+join_on = ["gene", "hgvs_p"]

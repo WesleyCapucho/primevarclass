@@ -1,0 +1,5 @@
+GeneSymbol	Name	ClinicalSignificance	ReviewStatus	Type	VariationID
+BRCA1	NM_007294.4(BRCA1):c.211A>G (p.Arg71Gly)	Pathogenic	reviewed by expert panel	single nucleotide variant	17662
+BRCA1	NM_007294.4(BRCA1):c.53T>C (p.Met18Thr)	Likely benign	criteria provided, multiple submitters, no conflicts	single nucleotide variant	55357
+BRCA2	NM_000059.4(BRCA2):c.8167G>C (p.Asp2723His)	Likely pathogenic	criteria provided, multiple submitters, no conflicts	single nucleotide variant	37887
+BRCA2	NM_000059.4(BRCA2):c.5074T>G (p.Trp1692Cys)	Pathogenic	reviewed by expert panel	single nucleotide variant	93105

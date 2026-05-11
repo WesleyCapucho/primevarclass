@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Final Mile Package",
+    "generated_at": "2026-04-03T04:33:16Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_final_mile_percent": 46,
+    "overall_status": "gap",
+    "ready_for_real_data_execution": false,
+    "ready_for_final_evidence_round": false,
+    "ready_for_submission_closeout": false,
+    "ready_for_live_transition": false,
+    "n_blockers": 6,
+    "n_critical_blockers": 4,
+    "top_blocker_phase": "data",
+    "top_blocker_title": "Coortes reais finais ainda nao estao congeladas"
+  },
+  "critical_gaps": [
+    "Real-data cohort lock",
+    "Operational handoff closure",
+    "Final comparative evidence round"
+  ],
+  "recommended_actions": [
+    "Substituir os arquivos de exemplo pelas coortes publicas finais e rerresolver o estudo.",
+    "Executar study_real_data_handoff_tasks.csv ate zerar os bloqueios criticos.",
+    "Elevar a evidencia ate pelo menos um claim tier moderado com coortes reais finais.",
+    "Rodar o benchmark definitivo nas coortes reais e reforcar a comparacao head-to-head.",
+    "Fechar os criterios restantes do publication readiness e do validation lock.",
+    "Manter a adocao em shadow mode ate os bloqueios cientificos centrais serem resolvidos."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\final_mile_package.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\final_mile_package.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\final_mile_package_criteria.csv",
+  "blockers_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\final_mile_package_blockers.csv",
+  "checklist_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\final_mile_package_checklist.csv"
+}

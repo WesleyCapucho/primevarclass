@@ -1,0 +1,45 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "clinvar_variant_summary"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\clinvar_variant_summary_like.tsv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "clinvar_variant_summary"
+
+[[sources]]
+name = "gnomad_brca_annotations"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "gnomad_variant_table"
+
+[[sources]]
+name = "mavedb_brca_scores"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\mavedb_brca_scores.csv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "mavedb_score_table"

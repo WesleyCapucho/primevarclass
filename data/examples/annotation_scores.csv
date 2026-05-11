@@ -1,0 +1,5 @@
+gene,hgvs_p,revel,bayesdel,alphamissense,cadd
+BRCA1,p.Cys61Gly,0.99,0.74,0.995,30.1
+BRCA1,p.Ile21Val,0.05,-0.39,0.08,1.5
+BRCA2,p.Gly2508Ser,0.91,0.55,0.95,25.0
+BRCA2,p.Val2109Ile,0.10,-0.24,0.19,3.4

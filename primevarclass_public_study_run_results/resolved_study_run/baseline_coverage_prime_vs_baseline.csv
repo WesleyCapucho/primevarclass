@@ -1,0 +1,6 @@
+cohort,experiment,baseline_experiment,feature_set,delta_mean,ci_lower_95,ci_upper_95,supported_gain
+bridges_like_external_validation,hybrid_plus_external,external_predictors_only,hybrid_plus_external,0.0,0.0,0.0,False
+bridges_like_external_validation,hybrid_plus_conservation,external_predictors_only,hybrid_plus_conservation,-0.850877192982456,-1.0,-0.5,False
+bridges_like_external_validation,hybrid_plus_conservation_structure,external_predictors_only,hybrid_plus_conservation_structure,-0.850877192982456,-1.0,-0.5,False
+bridges_like_external_validation,hybrid,external_predictors_only,hybrid,-1.0,-1.0,-1.0,False
+bridges_like_external_validation,prime_only,external_predictors_only,prime_only,-1.0,-1.0,-1.0,False

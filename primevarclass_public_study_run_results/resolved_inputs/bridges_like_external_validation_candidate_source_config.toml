@@ -1,0 +1,45 @@
+[ingestion]
+deduplicate_on = ["gene", "hgvs_p", "label"]
+prefer_annotation_values = true
+
+[[sources]]
+name = "bridges_like_validation"
+kind = "cohort"
+type = "file"
+format = "tsv"
+path = "data/examples/bridges_like_brca_test.tsv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "clinvar_variant_summary"
+
+[[sources]]
+name = "gnomad_validation_annotations"
+kind = "annotation"
+type = "file"
+format = "tsv"
+path = "data/examples/gnomad_brca_validation.tsv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "gnomad_variant_table"
+
+[[sources]]
+name = "mavedb_validation_scores"
+kind = "annotation"
+type = "file"
+format = "csv"
+path = "data/examples/mavedb_brca_validation.csv"
+delimiter = ","
+encoding = "utf-8"
+timeout_seconds = 60
+http_method = "GET"
+join_on = ["gene", "hgvs_p"]
+gene_allowlist = ["BRCA1", "BRCA2"]
+preset = "mavedb_score_table"

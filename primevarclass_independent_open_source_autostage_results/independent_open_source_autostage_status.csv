@@ -1,0 +1,11 @@
+source_id	status	path	size_bytes	url	row_count	skipped_genes
+clingen_erepo	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\clingen_erepo\clingen_erepo_classifications.tsv	29666864	https://erepo.clinicalgenome.org/evrepo/api/summary/classifications/download		
+uniprot	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\uniprot\target_gene_features.tsv	920		8	
+alphafold_db	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\alphafold\target_gene_models.tsv	1359		7	BRCA2
+pdb	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\pdb\target_gene_structures.tsv	3645		64	
+civic	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\civic\target_gene_civic.tsv	4781		7	
+cbioportal	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\cbioportal\brca_tcga_pan_can_mutations.tsv	52797		499	
+gdc	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\gdc\target_gene_metadata.tsv	953		8	
+gwas_catalog	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\gwas_catalog\target_gene_associations.tsv	6522		64	
+opentargets	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\opentargets\target_disease_associations.tsv	3501		40	
+pharmgkb	staged	C:\Users\Wesley Capucho\Documents\IA dos números primos\data\raw\pharmgkb\target_gene_pharmgkb.tsv	820		8	

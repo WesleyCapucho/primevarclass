@@ -1,0 +1,2 @@
+cohort,cohort_role,n_pairwise_experiments,has_supported_gain,has_positive_gain,prime_supported_gain,prime_positive_gain,best_supported_experiment,best_supported_feature_set,best_supported_delta_auc_roc,best_supported_ci_lower_95,best_positive_experiment,best_positive_feature_set,best_positive_delta_auc_roc
+bridges_like_external_validation,external_test,7,False,False,False,False,,,,,,,

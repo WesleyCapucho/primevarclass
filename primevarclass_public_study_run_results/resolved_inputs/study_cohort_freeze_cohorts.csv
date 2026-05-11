@@ -1,0 +1,3 @@
+cohort_name,cohort_role,config_path,overall_real_data_readiness_percent,overall_status,n_sources,n_recognized_public_sources,n_ready_real_sources,n_missing_sources,n_example_sources,n_placeholder_release_sources,n_raw_data_sources,ready_for_real_data_lock
+public_brca_training,train,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\resolved_cohorts\public_brca_training\resolved_source_config.toml,19,gap,3,3,0,0,3,3,0,False
+bridges_like_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\resolved_cohorts\bridges_like_external_validation\resolved_source_config.toml,19,gap,3,3,0,0,3,3,0,False

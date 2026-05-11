@@ -1,0 +1,7 @@
+algorithm,readiness_tier,best_use,backend_family,target_count,mean_readiness_score_percent
+prime_guided_initialization,active_methodological_layer,"Use prime-derived transition classes, active-space seeds, and shot ladders to compare mutant and reference fragments under matched workflows.",heuristic layer over Qiskit Nature; PennyLane; OpenFermion,12,72.9
+VQE,immediate_template_ready,Estimate ground-state fragment energy shifts for mutation-centered QM fragments.,Qiskit Nature; PennyLane qchem; OpenFermion/PySCF,12,87.4
+ADAPT-VQE,recommended_for_high_value_targets,Reduce ansatz overhead for chemically structured active spaces after VQE screening.,Qiskit/PennyLane/OpenFermion-compatible workflow,6,87.4
+VQD,secondary_hypothesis_layer,Explore low-lying excited-state sensitivity only after ground-state VQE is stable.,PennyLane or custom variational workflow,4,79.4
+QPE,fault_tolerant_future_reference,Long-term benchmark for precise phase/energy estimation when hardware supports it.,future fault-tolerant quantum stack,0,0.0
+classical_QM_crosscheck,mandatory_control,xTB/DFT baselines required before any quantum-computing claim.,xTB; Psi4; PySCF,12,100.0

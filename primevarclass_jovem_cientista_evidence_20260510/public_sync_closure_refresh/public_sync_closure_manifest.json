@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-05-11T00:14:07Z",
+  "summary": {
+    "generated_at": "2026-05-11T00:14:07Z",
+    "variant_row_count": 1668,
+    "gnomad_queryable_percent": 100,
+    "gnomad_cached_attempt_percent": 100,
+    "gnomad_cache_row_count": 1666,
+    "local_gnomad_release_rows_matched": 547,
+    "local_gnomad_release_absent_inferred_count": 1119,
+    "local_gnomad_gene_subset_scope": {
+      "is_complete_gene_subset": true,
+      "manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_manifest.json",
+      "dataset": "gnomad_r4",
+      "target_genes": [
+        "TP53",
+        "PTEN",
+        "MSH2",
+        "KRAS",
+        "GCK",
+        "F9"
+      ],
+      "variant_row_count": 18535,
+      "scope": "gene_level_public_api_subset"
+    },
+    "gnomad_cached_found_count": 547,
+    "gnomad_cached_not_found_count": 1119,
+    "gnomad_cached_found_percent": 33,
+    "gnomad_definitive_cached_percent": 100,
+    "effective_gnomad_line_evidence_percent": 100,
+    "gnomad_retryable_error_count": 0,
+    "gnomad_pending_or_retry_count": 0,
+    "gnomad_coordinate_missing_count": 2,
+    "coordinate_exception_reviewed_count": 2,
+    "mavedb_line_evidence_percent": 90,
+    "source_trace_coverage_percent": 100,
+    "effective_line_level_annotation_readiness_percent": 98,
+    "mavedb_reconciliation_rows": 1668,
+    "local_gnomad_release_bonus_percent": 15,
+    "sync_infrastructure_readiness_percent": 98,
+    "public_sync_closure_percent": 99,
+    "ready_for_public_sync_completion": false,
+    "ready_for_full_row_level_claim": false,
+    "ready_for_row_level_claim_with_documented_exceptions": true,
+    "public_sources": {
+      "gnomad_graphql_endpoint": "https://gnomad.broadinstitute.org/api",
+      "mavedb_api_base": "https://api.mavedb.org/api/v1"
+    },
+    "source_manifest_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\multigene_annotation_enrichment_refresh\\multigene_annotation_enrichment_manifest.json",
+    "existing_gnomad_cache_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_sync_closure_results\\gnomad_sync_cache.csv",
+    "gnomad_release_table_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_variants.tsv"
+  },
+  "gnomad_sync_cache_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\gnomad_sync_cache.csv",
+  "gnomad_sync_queue_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\gnomad_sync_queue.csv",
+  "gnomad_sync_status_by_gene_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\gnomad_sync_status_by_gene.csv",
+  "mavedb_reconciliation_queue_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\mavedb_reconciliation_queue.csv",
+  "coordinate_exception_review_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\coordinate_exception_review.csv",
+  "resume_gnomad_sync_script_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\resume_gnomad_sync.py",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\public_sync_closure_report.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_jovem_cientista_evidence_20260510\\public_sync_closure_refresh\\public_sync_closure_report.html"
+}

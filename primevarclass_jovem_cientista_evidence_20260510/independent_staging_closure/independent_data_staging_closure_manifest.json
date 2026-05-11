@@ -1,0 +1,704 @@
+{
+  "generated_at": "2026-05-11T00:01:33Z",
+  "summary": {
+    "workspace_root": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos",
+    "target_genes": [
+      "BRCA1",
+      "BRCA2",
+      "TP53",
+      "PTEN",
+      "MSH2",
+      "KRAS",
+      "GCK",
+      "F9"
+    ],
+    "database_count": 16,
+    "ready_source_count": 14,
+    "partial_source_count": 1,
+    "missing_source_count": 1,
+    "critical_source_count": 5,
+    "critical_ready_source_count": 4,
+    "significant_file_count": 30,
+    "total_size_bytes": 3935142221,
+    "line_level_real_data_execution_percent": 91,
+    "independent_data_staging_closure_percent": 94,
+    "ready_for_next_training_round": true,
+    "ready_for_full_independent_retraining": false
+  },
+  "artifact_paths": {
+    "inventory_csv": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_data_staging_inventory.csv",
+    "gap_plan_csv": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_data_staging_gap_plan.csv",
+    "ready_source_config_toml": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_ready_source_config.toml",
+    "stage_runner_powershell": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_data_stage_runner.ps1",
+    "markdown_report": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_data_staging_closure_report.md",
+    "html_report": "primevarclass_jovem_cientista_evidence_20260510\\independent_staging_closure\\independent_data_staging_closure_report.html"
+  },
+  "inventory": [
+    {
+      "source_id": "clinvar",
+      "display_name": "ClinVar",
+      "priority": "critical",
+      "evidence_lane": "clinical_labels",
+      "recommended_use": "training_and_external_holdout",
+      "source_kind": "cohort",
+      "preset": "clinvar_variant_summary",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "automatable",
+      "official_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/",
+      "download_url_hint": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz",
+      "local_stage_path": "data/raw/clinvar/variant_summary.txt.gz",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 8,
+      "significant_file_count": 8,
+      "total_size_bytes": 3898286756,
+      "significant_size_bytes": 3898286756,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\variant_summary.txt",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "clingen_erepo",
+      "display_name": "ClinGen Evidence Repository",
+      "priority": "critical",
+      "evidence_lane": "expert_curation",
+      "recommended_use": "independent_validation",
+      "source_kind": "cohort",
+      "preset": "clingen_erepo_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "automatable",
+      "official_url": "https://erepo.clinicalgenome.org/evrepo/",
+      "download_url_hint": "https://erepo.genome.network/",
+      "local_stage_path": "data/raw/clingen_erepo/clingen_erepo_gene_panel.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 29666864,
+      "significant_size_bytes": 29666864,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clingen_erepo\\clingen_erepo_classifications.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "",
+      "gene_coverage_percent": 0,
+      "next_action": "Export gene-filtered ClinGen ERepo classifications and keep them as an independent expert holdout."
+    },
+    {
+      "source_id": "brca_exchange_enigma",
+      "display_name": "BRCA Exchange / ENIGMA",
+      "priority": "critical",
+      "evidence_lane": "expert_brca_curation",
+      "recommended_use": "brca_external_validation",
+      "source_kind": "cohort",
+      "preset": "enigma_brca",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "manual_assisted",
+      "official_url": "https://enigmaconsortium.org/",
+      "download_url_hint": "stage BRCA Exchange or ENIGMA-derived release file locally",
+      "local_stage_path": "data/raw/brca_exchange/brca_exchange_enigma_curated.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 5,
+      "significant_file_count": 4,
+      "total_size_bytes": 157753,
+      "significant_size_bytes": 157564,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external.tsv",
+      "target_gene_count": 2,
+      "covered_genes": "BRCA1;BRCA2",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "gnomad",
+      "display_name": "gnomAD",
+      "priority": "critical",
+      "evidence_lane": "population_frequency",
+      "recommended_use": "annotation_and_calibration",
+      "source_kind": "annotation",
+      "preset": "gnomad_variant_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "semi_automatable",
+      "official_url": "https://gnomad.broadinstitute.org/downloads",
+      "download_url_hint": "use gene-filtered browser table, Hail table, or GraphQL/toolbox extraction",
+      "local_stage_path": "data/raw/gnomad/target_gene_missense_annotations.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 12,
+      "significant_file_count": 4,
+      "total_size_bytes": 5574248,
+      "significant_size_bytes": 5573178,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_variants.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "mavedb",
+      "display_name": "MaveDB",
+      "priority": "critical",
+      "evidence_lane": "functional_assay",
+      "recommended_use": "functional_validation",
+      "source_kind": "annotation",
+      "preset": "mavedb_score_table",
+      "format": "csv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "automatable",
+      "official_url": "https://www.mavedb.org/",
+      "download_url_hint": "use public score-set CSVs, mapped variants, or bulk release dump",
+      "local_stage_path": "data/raw/mavedb/target_gene_function_scores.csv",
+      "staging_state": "partial",
+      "staging_status": "partial",
+      "staging_score_percent": 59,
+      "file_count": 7,
+      "significant_file_count": 1,
+      "total_size_bytes": 1263550,
+      "significant_size_bytes": 1263286,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\brca_function_scores.csv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2",
+      "gene_coverage_percent": 25,
+      "next_action": "Stage score sets for all target genes with MaveDB URNs, assay metadata, and mapped variant tables."
+    },
+    {
+      "source_id": "alphamissense",
+      "display_name": "AlphaMissense",
+      "priority": "high",
+      "evidence_lane": "external_predictor",
+      "recommended_use": "baseline_comparator_and_disagreement_discovery",
+      "source_kind": "annotation",
+      "preset": "alphamissense_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "semi_automatable",
+      "official_url": "https://storage.googleapis.com/dm_alphamissense/README.pdf",
+      "download_url_hint": "stage AlphaMissense_hg38.tsv.gz or amino-acid substitution subset",
+      "local_stage_path": "data/raw/alphamissense/target_gene_alphamissense.tsv",
+      "staging_state": "missing",
+      "staging_status": "missing",
+      "staging_score_percent": 0,
+      "file_count": 0,
+      "significant_file_count": 0,
+      "total_size_bytes": 0,
+      "significant_size_bytes": 0,
+      "best_local_path": "",
+      "target_gene_count": 8,
+      "covered_genes": "",
+      "gene_coverage_percent": 0,
+      "next_action": "Stage this source from https://storage.googleapis.com/dm_alphamissense/README.pdf and lock provenance."
+    },
+    {
+      "source_id": "uniprot",
+      "display_name": "UniProt",
+      "priority": "high",
+      "evidence_lane": "protein_context",
+      "recommended_use": "protein_annotation",
+      "source_kind": "annotation",
+      "preset": "uniprot_feature_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "automatable",
+      "official_url": "https://www.uniprot.org/api-documentation",
+      "download_url_hint": "REST reviewed human gene/accession export",
+      "local_stage_path": "data/raw/uniprot/target_gene_uniprot_features.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 920,
+      "significant_size_bytes": 920,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\uniprot\\target_gene_features.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "alphafold_db",
+      "display_name": "AlphaFold DB",
+      "priority": "high",
+      "evidence_lane": "predicted_structure",
+      "recommended_use": "structure_prior",
+      "source_kind": "annotation",
+      "preset": "alphafold_model_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "semi_automatable",
+      "official_url": "https://alphafold.ebi.ac.uk/",
+      "download_url_hint": "stage accession-specific model metadata and coordinate URLs",
+      "local_stage_path": "data/raw/alphafold/target_gene_alphafold_models.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 1359,
+      "significant_size_bytes": 1359,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\alphafold\\target_gene_models.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 88,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "pdb",
+      "display_name": "RCSB PDB",
+      "priority": "high",
+      "evidence_lane": "experimental_structure",
+      "recommended_use": "structural_validation_overlay",
+      "source_kind": "annotation",
+      "preset": "pdb_structure_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "semi_automatable",
+      "official_url": "https://www.rcsb.org/",
+      "download_url_hint": "stage Data API/Search API structure metadata by accession/gene",
+      "local_stage_path": "data/raw/pdb/target_gene_pdb_structures.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 3645,
+      "significant_size_bytes": 3645,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pdb\\target_gene_structures.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "civic",
+      "display_name": "CIViC",
+      "priority": "high",
+      "evidence_lane": "translational_oncology",
+      "recommended_use": "translational_validation",
+      "source_kind": "annotation",
+      "preset": "civic_variant_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "automatable",
+      "official_url": "https://docs.civicdb.org/en/latest/using/data_releases.html",
+      "download_url_hint": "nightly or historical monthly TSV/VCF release",
+      "local_stage_path": "data/raw/civic/target_gene_civic_evidence.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 4781,
+      "significant_size_bytes": 4781,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\civic\\target_gene_civic.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 88,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "cbioportal",
+      "display_name": "cBioPortal Datahub",
+      "priority": "high",
+      "evidence_lane": "somatic_cancer_cohorts",
+      "recommended_use": "cancer_context_external_validation",
+      "source_kind": "annotation",
+      "preset": "cbioportal_mutation_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "semi_automatable",
+      "official_url": "https://github.com/cBioPortal/datahub",
+      "download_url_hint": "download selected public study folders, e.g. public/brca_tcga",
+      "local_stage_path": "data/raw/cbioportal/target_gene_cbioportal_mutations.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 52797,
+      "significant_size_bytes": 52797,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\cbioportal\\brca_tcga_pan_can_mutations.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "gdc",
+      "display_name": "NCI Genomic Data Commons",
+      "priority": "high",
+      "evidence_lane": "tcga_gdc_cancer_cohorts",
+      "recommended_use": "open_cancer_context_validation",
+      "source_kind": "annotation",
+      "preset": "gdc_maf_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "semi_automatable",
+      "official_url": "https://gdc.cancer.gov/access-data",
+      "download_url_hint": "use open MAF/project metadata via GDC API; controlled files require dbGaP",
+      "local_stage_path": "data/raw/gdc/target_gene_gdc_open_maf.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 953,
+      "significant_size_bytes": 953,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gdc\\target_gene_metadata.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "gwas_catalog",
+      "display_name": "GWAS Catalog",
+      "priority": "medium",
+      "evidence_lane": "genetic_association",
+      "recommended_use": "disease_trait_context",
+      "source_kind": "annotation",
+      "preset": "gwas_catalog_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "automatable",
+      "official_url": "https://www.ebi.ac.uk/gwas/rest/api/v2/docs",
+      "download_url_hint": "REST API by trait, variant, study, or mapped gene",
+      "local_stage_path": "data/raw/gwas_catalog/target_gene_gwas_associations.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 6522,
+      "significant_size_bytes": 6522,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gwas_catalog\\target_gene_associations.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "opentargets",
+      "display_name": "Open Targets Platform",
+      "priority": "medium",
+      "evidence_lane": "target_disease_evidence",
+      "recommended_use": "translational_target_prioritization",
+      "source_kind": "annotation",
+      "preset": "opentargets_variant_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "automatable",
+      "official_url": "https://platform-docs.opentargets.org/variant",
+      "download_url_hint": "GraphQL API or bulk data filtered by target/disease/variant",
+      "local_stage_path": "data/raw/opentargets/target_gene_opentargets_evidence.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 3501,
+      "significant_size_bytes": 3501,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\opentargets\\target_disease_associations.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "pharmgkb",
+      "display_name": "PharmGKB / ClinPGx",
+      "priority": "medium",
+      "evidence_lane": "pharmacogenomics",
+      "recommended_use": "drug_response_context",
+      "source_kind": "annotation",
+      "preset": "pharmgkb_table",
+      "format": "tsv",
+      "join_on": "gene",
+      "automation_level": "automatable",
+      "official_url": "https://api.pharmgkb.org/",
+      "download_url_hint": "ClinPGx API or PharmGKB bulk downloads under applicable terms",
+      "local_stage_path": "data/raw/pharmgkb/target_gene_pharmgkb_annotations.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 1,
+      "significant_file_count": 1,
+      "total_size_bytes": 820,
+      "significant_size_bytes": 820,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pharmgkb\\target_gene_pharmgkb.tsv",
+      "target_gene_count": 8,
+      "covered_genes": "BRCA1;BRCA2;F9;GCK;KRAS;MSH2;PTEN;TP53",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    },
+    {
+      "source_id": "lovd",
+      "display_name": "LOVD",
+      "priority": "conditional",
+      "evidence_lane": "locus_specific_variation",
+      "recommended_use": "supplemental_external_validation",
+      "source_kind": "cohort",
+      "preset": "lovd_variant_table",
+      "format": "tsv",
+      "join_on": "gene,hgvs_p",
+      "automation_level": "manual_assisted",
+      "official_url": "https://www.lovd.nl/2.0/index_list.php",
+      "download_url_hint": "stage gene-specific export after database-level QC",
+      "local_stage_path": "data/raw/lovd/target_gene_lovd_variants.tsv",
+      "staging_state": "ready",
+      "staging_status": "ready",
+      "staging_score_percent": 100,
+      "file_count": 3,
+      "significant_file_count": 3,
+      "total_size_bytes": 117752,
+      "significant_size_bytes": 117752,
+      "best_local_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external.tsv",
+      "target_gene_count": 2,
+      "covered_genes": "BRCA1;BRCA2",
+      "gene_coverage_percent": 100,
+      "next_action": "Freeze file hash, row count, schema, and release before benchmark use."
+    }
+  ],
+  "source_fingerprints": {
+    "clinvar": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\variant_summary.txt",
+        "size_bytes": 3898076888,
+        "sha256": "3b48730d51126a17f2af5f80c1828690df5c561364a5389c34bf86fa96cb4a74",
+        "modified_at_epoch": 1775192334.1844141
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clinvar\\brca_missense_variant_summary.tsv",
+        "size_bytes": 121111,
+        "sha256": "1fa35f56428f183b1974b995403bcc4b4e50f7492860920d24832e4bcf2582ea",
+        "modified_at_epoch": 1776373869.3035178
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\msh2\\msh2_clinvar_training.tsv",
+        "size_bytes": 32650,
+        "sha256": "be1fcad3b448272576c70729afef90fab93647c21cb07dd7094721327396500d",
+        "modified_at_epoch": 1777008672.4500043
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\f9\\f9_clinvar_training.tsv",
+        "size_bytes": 18986,
+        "sha256": "0417a595121b893bd5e4a12ebe80c3d0b645e9ac2f7912d046a31994a9c8ba3c",
+        "modified_at_epoch": 1777008672.515008
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\multigene\\tp53\\tp53_clinvar_training.tsv",
+        "size_bytes": 12865,
+        "sha256": "af25cd8fb1072986dffa22614e8298190d24c5ff7ff8058dae4237a3aec24c8d",
+        "modified_at_epoch": 1777008672.4050074
+      }
+    ],
+    "clingen_erepo": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\clingen_erepo\\clingen_erepo_classifications.tsv",
+        "size_bytes": 29666864,
+        "sha256": "5a1fe976e4cd07f8312332bc3332ea8db47cefc33d8b858a3b5444932c844e4b",
+        "modified_at_epoch": 1777650939.657601
+      }
+    ],
+    "brca_exchange_enigma": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external.tsv",
+        "size_bytes": 58828,
+        "sha256": "3fc134b2ef8855a7762bf87cf14843e90360ffc02fb891dc238d7b320a88d45c",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\enigma_brca_curated.tsv",
+        "size_bytes": 39812,
+        "sha256": "e6bbe56583f1dc292e3ea4f5b2e47e1bd72e8ac197516438b687aae163aa4ee8",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external_brca2.tsv",
+        "size_bytes": 37294,
+        "sha256": "2ce7ad0b6ba948cb5a6608407094229fb5c7e94dff12d9ff8e692376bbb542ca",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external_brca1.tsv",
+        "size_bytes": 21630,
+        "sha256": "6020df8eb2dc942144dff5159d9871a51c61303932a43318bbd8b0183e6e8018",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_enigma_external.tsv",
+        "size_bytes": 189,
+        "sha256": "0b9ece317c09815e6fa33027f5aa9b23457c506271289bf34aa1900261c73402",
+        "modified_at_epoch": 1775225194.8098843
+      }
+    ],
+    "gnomad": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_variants.tsv",
+        "size_bytes": 4608889,
+        "sha256": "d5c854dc2077533e17c51df0bc79f7a26a9e389dde0eed2d14509a337ef34e57",
+        "modified_at_epoch": 1777083450.7784064
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gnomad\\brca_missense_annotations.tsv",
+        "size_bytes": 961924,
+        "sha256": "0cb5993fbcd16c37e50d3481a7547410e9d0aba62b57b97eaa37b2bee33c3eda",
+        "modified_at_epoch": 1776373869.3760288
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_manifest.json",
+        "size_bytes": 1373,
+        "sha256": "dd7a497849ab442af3675f405b185246af123af6e64aef12376206d5d59c921b",
+        "modified_at_epoch": 1777083450.7824063
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_report.html",
+        "size_bytes": 992,
+        "sha256": "5f46eabc5c2f501c7550c79c970cd9032c2fca693d714e935609ae5b2350e08d",
+        "modified_at_epoch": 1777083450.7824063
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\external_data\\gnomad\\gnomad_r4_target_genes\\gnomad_gene_subset_report.md",
+        "size_bytes": 496,
+        "sha256": "fc9b671d1884f805b63bdd004418b5b802d8d31e030401a44cbb4ce1069989c3",
+        "modified_at_epoch": 1777083450.7814052
+      }
+    ],
+    "mavedb": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\brca_function_scores.csv",
+        "size_bytes": 1263286,
+        "sha256": "432fa7f9ae9a6238a9962735a1c5e51d3141341dbb56946f87a465b723c796c5",
+        "modified_at_epoch": 1776373869.4260354
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\f9_function_scores.csv",
+        "size_bytes": 44,
+        "sha256": "ca52230bc6ee843869d6cbfda01e75caff8ed41b5b943915312538c9fe92acff",
+        "modified_at_epoch": 1776492108.2597468
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\gck_function_scores.csv",
+        "size_bytes": 44,
+        "sha256": "ca52230bc6ee843869d6cbfda01e75caff8ed41b5b943915312538c9fe92acff",
+        "modified_at_epoch": 1776492108.1785433
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\kras_function_scores.csv",
+        "size_bytes": 44,
+        "sha256": "ca52230bc6ee843869d6cbfda01e75caff8ed41b5b943915312538c9fe92acff",
+        "modified_at_epoch": 1776492108.2917602
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\mavedb\\msh2_function_scores.csv",
+        "size_bytes": 44,
+        "sha256": "ca52230bc6ee843869d6cbfda01e75caff8ed41b5b943915312538c9fe92acff",
+        "modified_at_epoch": 1776492108.2334795
+      }
+    ],
+    "alphamissense": [],
+    "uniprot": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\uniprot\\target_gene_features.tsv",
+        "size_bytes": 920,
+        "sha256": "5e5d0fa92749624949a7a27c0524da1098d966809e99db6a6a14f2ca1eb32b17",
+        "modified_at_epoch": 1777650954.6752203
+      }
+    ],
+    "alphafold_db": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\alphafold\\target_gene_models.tsv",
+        "size_bytes": 1359,
+        "sha256": "a4c9583e41361da0e5d7972fc0dc9ce9bec15d84113da2375ae49bd08dc44b91",
+        "modified_at_epoch": 1777650957.1185515
+      }
+    ],
+    "pdb": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pdb\\target_gene_structures.tsv",
+        "size_bytes": 3645,
+        "sha256": "847f7fcb684de04ee7cf8b7df59711d489331b7d8db84296973d4c6215781c3c",
+        "modified_at_epoch": 1777651006.4253466
+      }
+    ],
+    "civic": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\civic\\target_gene_civic.tsv",
+        "size_bytes": 4781,
+        "sha256": "73600563e9f0e8aa9a899a9cf3dfa48311cbbae974d00f3d41064cefee836bb9",
+        "modified_at_epoch": 1777651007.0976007
+      }
+    ],
+    "cbioportal": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\cbioportal\\brca_tcga_pan_can_mutations.tsv",
+        "size_bytes": 52797,
+        "sha256": "d3049d7d7585be16854972b20f466835f695dc0cdb3a016ea9c54a53b3e9d3cb",
+        "modified_at_epoch": 1777651011.4966352
+      }
+    ],
+    "gdc": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gdc\\target_gene_metadata.tsv",
+        "size_bytes": 953,
+        "sha256": "73d9490024d9ef361ab213924bc7bd4d910e57eea0cf171b8f84191127909ac4",
+        "modified_at_epoch": 1777651017.439548
+      }
+    ],
+    "gwas_catalog": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\gwas_catalog\\target_gene_associations.tsv",
+        "size_bytes": 6522,
+        "sha256": "11ee0c9fa024783cff8af9f1d95f76e63ae56765a34182bb1339fd799a0c45fa",
+        "modified_at_epoch": 1777651029.9985614
+      }
+    ],
+    "opentargets": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\opentargets\\target_disease_associations.tsv",
+        "size_bytes": 3501,
+        "sha256": "60a6a2f643ace9f0a8ae683366f1b75805174d48bb47174a44d6207645a54235",
+        "modified_at_epoch": 1777651032.3106058
+      }
+    ],
+    "pharmgkb": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\pharmgkb\\target_gene_pharmgkb.tsv",
+        "size_bytes": 820,
+        "sha256": "ec3eeb822f032b494566f61384113b3f006bd7672502a8baf1f6e5db6e211548",
+        "modified_at_epoch": 1777651041.2585564
+      }
+    ],
+    "lovd": [
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external.tsv",
+        "size_bytes": 58828,
+        "sha256": "3fc134b2ef8855a7762bf87cf14843e90360ffc02fb891dc238d7b320a88d45c",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external_brca2.tsv",
+        "size_bytes": 37294,
+        "sha256": "2ce7ad0b6ba948cb5a6608407094229fb5c7e94dff12d9ff8e692376bbb542ca",
+        "modified_at_epoch": 1776373869.3135235
+      },
+      {
+        "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\raw\\brca_exchange\\brca_exchange_lovd_external_brca1.tsv",
+        "size_bytes": 21630,
+        "sha256": "6020df8eb2dc942144dff5159d9871a51c61303932a43318bbd8b0183e6e8018",
+        "modified_at_epoch": 1776373869.3135235
+      }
+    ]
+  },
+  "report_context": {
+    "report_purpose": "cli_independent_data_staging_closure"
+  }
+}

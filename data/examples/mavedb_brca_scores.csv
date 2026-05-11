@@ -1,0 +1,5 @@
+gene,hgvs_pro,score,score_se,annotation,urn,title
+BRCA1,p.Cys61Gly,-1.85,0.11,loss_of_function,urn:mavedb:BRCA1-RING-EXAMPLE,BRCA1 RING functional assay
+BRCA1,p.Ile21Val,0.42,0.08,functional,urn:mavedb:BRCA1-RING-EXAMPLE,BRCA1 RING functional assay
+BRCA2,p.Gly2508Ser,-1.10,0.15,damaging,urn:mavedb:BRCA2-DBD-EXAMPLE,BRCA2 DBD functional assay
+BRCA2,p.Val2109Ile,0.35,0.09,functional,urn:mavedb:BRCA2-DBD-EXAMPLE,BRCA2 DBD functional assay

@@ -1,0 +1,6 @@
+cohort_name,cohort_role,config_path,overall_real_data_readiness_percent,overall_status,n_sources,n_recognized_public_sources,n_ready_real_sources,n_missing_sources,n_example_sources,n_placeholder_release_sources,n_raw_data_sources,ready_for_real_data_lock
+public_brca_training,train,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_real.toml,100,ready,3,3,3,0,0,0,3,True
+clinvar_expert_external_validation_brca1,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real_clinvar_expert_brca1.toml,100,ready,3,3,3,0,0,0,3,True
+clinvar_expert_external_validation_brca2,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real_clinvar_expert_brca2.toml,100,ready,3,3,3,0,0,0,3,True
+bridges_like_external_validation_brca1,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real_brca1.toml,100,ready,3,3,3,0,0,0,3,True
+bridges_like_external_validation_brca2,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real_brca2.toml,100,ready,3,3,3,0,0,0,3,True

@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-04-03T04:33:16Z",
+  "summary": {
+    "title": "Public BRCA Benchmark Example - Translational Pilot Package",
+    "generated_at": "2026-04-03T04:33:16Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_pilot_package_percent": 87,
+    "overall_status": "ready",
+    "pilot_mode": "shadow_mode",
+    "ready_for_demo_pilot": true,
+    "ready_for_shadow_pilot": true,
+    "ready_for_live_pilot": false,
+    "package_artifact_percent": 100,
+    "lab_handoff_percent": 100,
+    "shadow_pilot_percent": 90,
+    "live_pilot_percent": 49,
+    "n_critical_gaps": 1
+  },
+  "critical_gaps": [
+    "Live translational candidate"
+  ],
+  "recommended_actions": [
+    "Trocar datasets demo por coortes reais e fortalecer claim/validation antes de qualquer piloto live."
+  ],
+  "report_context": {},
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_pilot_package.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_pilot_package.html",
+  "criteria_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_pilot_package_criteria.csv",
+  "checklist_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\translational_pilot_package_checklist.csv"
+}

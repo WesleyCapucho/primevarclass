@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "config_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\resolved_cohorts\\public_brca_training\\resolved_source_config.toml",
+    "n_sources": 3,
+    "n_recognized_public_sources": 3,
+    "n_sources_with_release": 0,
+    "release_coverage_percent": 45,
+    "schema_coverage_percent": 100,
+    "n_schema_ready_sources": 3,
+    "overall_readiness_percent": 72,
+    "ready_for_public_benchmark": false
+  },
+  "sources": [
+    {
+      "source_name": "clinvar_variant_summary",
+      "kind": "cohort",
+      "source_format": "tsv",
+      "preset": "clinvar_variant_summary",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\clinvar_variant_summary_like.tsv",
+      "url": null,
+      "gene_allowlist": [
+        "BRCA1",
+        "BRCA2"
+      ],
+      "recognized_public_source": true,
+      "profile_id": "clinvar",
+      "display_name": "ClinVar",
+      "release_value": null,
+      "release_date": null,
+      "release_method": "missing",
+      "evidence": [
+        {
+          "label": "config.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\clinvar_variant_summary_like.tsv"
+        },
+        {
+          "label": "config.name",
+          "value": "clinvar_variant_summary"
+        },
+        {
+          "label": "provenance.file.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\clinvar_variant_summary_like.tsv"
+        }
+      ],
+      "coverage_percent": 45,
+      "citation_url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+      "warnings": [
+        "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+      ],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "label",
+        "review_status"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "protein_change_raw",
+        "label",
+        "review_status",
+        "meta_clinvar_type",
+        "variant_id",
+        "source",
+        "hgvs_p",
+        "meta_dataset",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "GeneSymbol",
+        "Name",
+        "ClinicalSignificance",
+        "ReviewStatus",
+        "Type",
+        "VariationID"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 72,
+      "ready_for_public_use": false
+    },
+    {
+      "source_name": "gnomad_brca_annotations",
+      "kind": "annotation",
+      "source_format": "tsv",
+      "preset": "gnomad_variant_table",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv",
+      "url": null,
+      "gene_allowlist": [
+        "BRCA1",
+        "BRCA2"
+      ],
+      "recognized_public_source": true,
+      "profile_id": "gnomad",
+      "display_name": "gnomAD",
+      "release_value": null,
+      "release_date": null,
+      "release_method": "missing",
+      "evidence": [
+        {
+          "label": "config.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv"
+        },
+        {
+          "label": "config.name",
+          "value": "gnomad_brca_annotations"
+        },
+        {
+          "label": "provenance.file.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\gnomad_brca_annotations.tsv"
+        }
+      ],
+      "coverage_percent": 45,
+      "citation_url": "https://gnomad.broadinstitute.org/",
+      "warnings": [
+        "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+      ],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_gnomad_af"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_gnomad_af",
+        "feature_gnomad_ac",
+        "feature_gnomad_an",
+        "feature_gnomad_nhomalt",
+        "feature_gnomad_popmax_af",
+        "meta_dataset",
+        "source",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "gene",
+        "hgvsp",
+        "af",
+        "ac",
+        "an",
+        "nhomalt",
+        "popmax_af"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 72,
+      "ready_for_public_use": false
+    },
+    {
+      "source_name": "mavedb_brca_scores",
+      "kind": "annotation",
+      "source_format": "csv",
+      "preset": "mavedb_score_table",
+      "path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\mavedb_brca_scores.csv",
+      "url": null,
+      "gene_allowlist": [
+        "BRCA1",
+        "BRCA2"
+      ],
+      "recognized_public_source": true,
+      "profile_id": "mavedb",
+      "display_name": "MaveDB",
+      "release_value": null,
+      "release_date": null,
+      "release_method": "missing",
+      "evidence": [
+        {
+          "label": "config.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\mavedb_brca_scores.csv"
+        },
+        {
+          "label": "config.name",
+          "value": "mavedb_brca_scores"
+        },
+        {
+          "label": "provenance.file.path",
+          "value": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\data\\examples\\mavedb_brca_scores.csv"
+        }
+      ],
+      "coverage_percent": 45,
+      "citation_url": "https://www.mavedb.org/",
+      "warnings": [
+        "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+      ],
+      "schema_recognized": true,
+      "schema_coverage_percent": 100,
+      "expected_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_mave_score"
+      ],
+      "available_normalized_columns": [
+        "gene",
+        "hgvs_p",
+        "feature_mave_score",
+        "feature_mave_se",
+        "feature_mave_annotation",
+        "meta_mavedb_urn",
+        "meta_assay_name",
+        "meta_dataset",
+        "source",
+        "source_name",
+        "source_kind",
+        "source_type"
+      ],
+      "available_raw_columns": [
+        "gene",
+        "hgvs_pro",
+        "score",
+        "score_se",
+        "annotation",
+        "urn",
+        "title"
+      ],
+      "missing_expected_columns": [],
+      "schema_ready": true,
+      "schema_warnings": [],
+      "readiness_percent": 72,
+      "ready_for_public_use": false
+    }
+  ],
+  "warnings": [
+    "Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+  ],
+  "markdown_report": "# Public Source Catalog Assessment\n\n- Config path: C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\resolved_cohorts\\public_brca_training\\resolved_source_config.toml\n- Total sources: 3\n- Recognized public sources: 3\n- Sources with explicit or inferred release: 0\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Ready for public benchmark: not yet\n\n## Sources\n\n### clinvar_variant_summary\n\n- Recognized: yes\n- Public source: ClinVar\n- Release: -\n- Release method: missing\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Citation: https://www.ncbi.nlm.nih.gov/clinvar/\n\n- Warning: Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo.\n\n### gnomad_brca_annotations\n\n- Recognized: yes\n- Public source: gnomAD\n- Release: -\n- Release method: missing\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Citation: https://gnomad.broadinstitute.org/\n\n- Warning: Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo.\n\n### mavedb_brca_scores\n\n- Recognized: yes\n- Public source: MaveDB\n- Release: -\n- Release method: missing\n- Release coverage: 45%\n- Schema coverage: 100%\n- Overall readiness: 72%\n- Citation: https://www.mavedb.org/\n\n- Warning: Release/version nao identificada automaticamente; recomenda-se preencher release_version ou release_date no catalogo."
+}

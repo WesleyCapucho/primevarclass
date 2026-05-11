@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-04-03T04:29:31Z",
+  "summary": {
+    "generated_at": "2026-04-03T04:29:31Z",
+    "study_name": "Public BRCA Benchmark Example",
+    "overall_handoff_reconciliation_percent": 0,
+    "overall_status": "gap",
+    "n_tasks": 6,
+    "n_validated_tasks": 0,
+    "n_claimed_complete_tasks": 0,
+    "n_pending_tasks": 6,
+    "n_in_progress_tasks": 0,
+    "n_blocked_tasks": 0,
+    "n_invalid_tasks": 0,
+    "n_critical_pending_tasks": 6,
+    "n_high_pending_tasks": 0,
+    "ready_to_rerun_resolution": false,
+    "ready_to_rerun_public_study": false
+  },
+  "recommended_actions": [
+    "Substituir o arquivo de exemplo por um dataset publico real e versionado."
+  ],
+  "report_context": {},
+  "tracker_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_handoff_tracker.csv",
+  "markdown_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_handoff_reconciliation.md",
+  "html_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_handoff_reconciliation.html",
+  "validation_rows_path": "C:\\Users\\Wesley Capucho\\Documents\\IA dos números primos\\primevarclass_public_study_run_results\\resolved_inputs\\study_real_data_handoff_reconciliation_tasks.csv"
+}

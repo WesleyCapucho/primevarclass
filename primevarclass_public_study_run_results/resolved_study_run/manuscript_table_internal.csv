@@ -1,0 +1,8 @@
+feature_set,experiment,model_family,auc_roc,auc_pr,mcc,n_features
+biochemical_only,biochemical_only,random_forest,0.5,0.5,0.0,28
+external_predictors_only,external_predictors_only,random_forest,0.5,0.5,0.0,12
+hybrid,hybrid,random_forest,0.5,0.5,0.0,41
+hybrid_plus_conservation,hybrid_plus_conservation,random_forest,0.5,0.5,0.0,46
+hybrid_plus_conservation_structure,hybrid_plus_conservation_structure,random_forest,0.5,0.5,0.0,55
+hybrid_plus_external,hybrid_plus_external,random_forest,0.5,0.5,0.0,67
+prime_only,prime_only,random_forest,0.5,0.5,0.0,15

@@ -1,0 +1,7 @@
+remaining_action
+Complete full scheduled gnomAD/MaveDB row-level sync for every multigene benchmark variant while preserving frozen external splits.
+Generate reviewed mutant side-chain coordinates and run paired reference-vs-mutant xTB/DFT/OpenMM/Vina/Qiskit-Nature logs.
+"Run xTB/DFT controls before interpreting VQE outputs; VQE remains a hypothesis-refinement layer, not standalone proof."
+Upgrade the prime-guided vs non-prime benchmark from paired proxy evidence to real fragment/Hamiltonian execution on identical curated fragments.
+Validate top mechanistic hypotheses with orthogonal biochemical or cellular assays.
+"Only advance drug-development or patent-strength therapeutic claims after experimental rescue, binding, or functional evidence."

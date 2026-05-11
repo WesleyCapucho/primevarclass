@@ -1,0 +1,24 @@
+PrimeVarClass Study Report - Public BRCA Benchmark Example
+============================================================
+
+1. Cohort manifest
+- public_brca_training (train): n=4, labels=2, source_tables=3
+- bridges_like_external_validation (external_test): n=4, labels=2, source_tables=3
+
+2. Best internal experiment
+- biochemical_only: AUC-ROC=0.5000, AUC-PR=0.5000, MCC=0.0000
+
+3. Consensus ensemble
+- Consensus members: biochemical_only, external_predictors_only, hybrid
+
+4. External evaluation
+- bridges_like_external_validation: best=external_predictors_only (AUC-ROC=1.0000, AUC-PR=1.0000, MCC=1.0000)
+
+5. Pairwise deltas vs baseline
+- bridges_like_external_validation: hybrid_plus_external vs external_predictors_only delta AUC-ROC=0.0000 [0.0000, 0.0000]
+
+6. Cohort independence
+- independence=100% | max train/external overlap=0% | ready=yes
+
+7. Real-data cohort freeze
+- readiness=19% | ready=not yet | example-blocked=2 | placeholder-release-blocked=2

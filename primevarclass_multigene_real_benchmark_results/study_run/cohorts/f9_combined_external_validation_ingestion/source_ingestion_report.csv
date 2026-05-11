@@ -1,0 +1,2 @@
+name,kind,source_type,rows_loaded,rows_normalized,columns_loaded,columns_normalized,join_on
+f9_combined_external,cohort,file,62,62,7,12,"gene,hgvs_p"

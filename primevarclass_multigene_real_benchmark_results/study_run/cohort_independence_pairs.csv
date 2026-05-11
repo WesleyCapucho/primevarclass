@@ -1,0 +1,29 @@
+left_cohort,left_role,right_cohort,right_role,pair_role,shared_variant_count,shared_variant_examples,shared_variant_percent_smaller,shared_gene_count,shared_gene_examples,shared_gene_percent_smaller,label_conflict_count,has_exact_variant_overlap,has_label_conflict
+multigene_training,train,multigene_combined_external_validation,external_test,train_external,0,,0.0,4,"F9, GCK, MSH2, TP53",100.0,0,False,False
+multigene_training,train,tp53_combined_external_validation,external_test,train_external,0,,0.0,1,TP53,100.0,0,False,False
+multigene_training,train,pten_combined_external_validation,external_test,train_external,0,,0.0,0,,0.0,0,False,False
+multigene_training,train,msh2_combined_external_validation,external_test,train_external,0,,0.0,1,MSH2,100.0,0,False,False
+multigene_training,train,kras_combined_external_validation,external_test,train_external,0,,0.0,0,,0.0,0,False,False
+multigene_training,train,gck_combined_external_validation,external_test,train_external,0,,0.0,1,GCK,100.0,0,False,False
+multigene_training,train,f9_combined_external_validation,external_test,train_external,0,,0.0,1,F9,100.0,0,False,False
+multigene_combined_external_validation,external_test,tp53_combined_external_validation,external_test,external_test__external_test,264,"TP53 p.A138P, TP53 p.A138V, TP53 p.A159D, TP53 p.A159V, TP53 p.A161T",100.0,1,TP53,100.0,0,True,False
+multigene_combined_external_validation,external_test,pten_combined_external_validation,external_test,external_test__external_test,167,"PTEN p.A126D, PTEN p.A126P, PTEN p.A126T, PTEN p.A126V, PTEN p.A34P",100.0,1,PTEN,100.0,0,True,False
+multigene_combined_external_validation,external_test,msh2_combined_external_validation,external_test,external_test__external_test,164,"MSH2 p.A207V, MSH2 p.A272V, MSH2 p.A2T, MSH2 p.A328S, MSH2 p.A328V",100.0,1,MSH2,100.0,0,True,False
+multigene_combined_external_validation,external_test,kras_combined_external_validation,external_test,external_test__external_test,32,"KRAS p.A146P, KRAS p.A146V, KRAS p.A59S, KRAS p.D119N, KRAS p.D153G",100.0,1,KRAS,100.0,0,True,False
+multigene_combined_external_validation,external_test,gck_combined_external_validation,external_test,external_test__external_test,289,"GCK p.A11T, GCK p.A188T, GCK p.A201S, GCK p.A208P, GCK p.A208T",100.0,1,GCK,100.0,0,True,False
+multigene_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,62,"F9 p.A279T, F9 p.A317V, F9 p.A337P, F9 p.A337T, F9 p.A337V",100.0,1,F9,100.0,0,True,False
+tp53_combined_external_validation,external_test,pten_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+tp53_combined_external_validation,external_test,msh2_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+tp53_combined_external_validation,external_test,kras_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+tp53_combined_external_validation,external_test,gck_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+tp53_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+pten_combined_external_validation,external_test,msh2_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+pten_combined_external_validation,external_test,kras_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+pten_combined_external_validation,external_test,gck_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+pten_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+msh2_combined_external_validation,external_test,kras_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+msh2_combined_external_validation,external_test,gck_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+msh2_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+kras_combined_external_validation,external_test,gck_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+kras_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
+gck_combined_external_validation,external_test,f9_combined_external_validation,external_test,external_test__external_test,0,,0.0,0,,0.0,0,False,False
