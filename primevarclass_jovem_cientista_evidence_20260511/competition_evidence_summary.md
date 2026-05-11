@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-11T05:13:50Z`
-- Git commit: `4699538052907dcc0092e34bf5b1abf36295cf6e`
+- Generated at: `2026-05-11T14:52:38Z`
+- Git commit: `8d6785328d49a3fff961659d56c29370fa501071`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
@@ -15,7 +15,8 @@
 - Validation lock: `94%`
 - Claim strength: `98%` (`strong`)
 - External robustness: `75%`
-- Targeted automated tests: `35/35` passed
+- Diagnostic calibration safety: `50%` -> `100%`
+- Targeted automated tests: `36/36` passed
 
 ## Best external results by cohort
 
@@ -30,9 +31,10 @@
 - Validation lock: 94.0% (ready) - claim=strong; translational pilot=True
 - Claim strength: 98.0% (strong) - hybrid_plus_external__logistic_regression
 - External robustness: 75.0% (partial) - pooled calibration/discrimination support with remaining calibration-safety gap
+- Calibration rescue: 100.0% (ready) - safety 50% -> 100%
 - Cohort independence: 100.0% (ready) - 0% train/external overlap in frozen cohorts
 - Baseline and ablation: 74.0% (partial) - needs final ablation narrative and full-campaign confirmation
-- Targeted automated tests: 100.0% (passed) - 35/35 targeted tests passed in 797.6s
+- Targeted automated tests: 100.0% (passed) - 36/36 targeted tests passed in 798.3s
 
 ## Automated test evidence
 
@@ -40,6 +42,7 @@
 - targeted_scientific_modules_tests: passed, 8 tests, 1.334s
 - targeted_study_benchmark_tests: passed, 9 tests, 670.078s
 - targeted_api_operational_tests_fixed: passed, 5 tests, 123.264s
+- targeted_calibration_rescue_tests: passed, 1 tests, 0.711s
 
 ## Main strengths for the article
 
@@ -47,6 +50,7 @@
 - Cohort independence is locked at 100%, with no train/external variant overlap in the audited run.
 - The central prime-aware hybrid claim is strong in the current quick-pass evidence package.
 - The API and user-facing documentation endpoints are covered by targeted operational tests.
+- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.
 - The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.
 
 ## Honest gaps to close before a top-tier paper
@@ -55,7 +59,8 @@
 - BRCA1 LOVD selected-model errors: `32` errors across `168` variants.
 - gnomAD coverage in the weak BRCA1 LOVD cohort: `36.31%`.
 - MaveDB coverage in the weak BRCA1 LOVD cohort: `6.55%`.
-- External robustness is still `75%`, mainly limited by calibration safety and cross-cohort heterogeneity.
+- External robustness is still `75%`; diagnostic recalibration improves safety to `100%`, but this must be confirmed in a locked calibration holdout.
+- Persistent BRCA1/LOVD errors after calibration: `64`.
 - Baseline/ablation coverage is `74%`; this needs a final ablation narrative before a high-impact submission.
 - The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.
 

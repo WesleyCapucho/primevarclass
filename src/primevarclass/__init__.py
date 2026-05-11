@@ -3,6 +3,7 @@ from .analytics import build_team_dashboard
 from .audit import PrimeVarClassAuditLogger
 from .biological_discovery import build_biological_discovery_package, export_biological_discovery_package
 from .candidate_public_runner import run_candidate_public_benchmark_pipeline
+from .calibration_rescue import build_calibration_rescue_package, export_calibration_rescue_package
 from .baseline_coverage import build_baseline_coverage_assessment, export_baseline_coverage_assessment
 from .claim_strength import build_claim_strength_assessment, export_claim_strength_package
 from .cohort_freeze import export_study_cohort_freeze
@@ -138,6 +139,7 @@ __all__ = [
     "app",
     "create_app",
     "build_biological_discovery_package",
+    "build_calibration_rescue_package",
     "build_baseline_coverage_assessment",
     "build_claim_strength_assessment",
     "build_cohort_independence_assessment",
@@ -195,6 +197,7 @@ __all__ = [
     "build_study_execution_board",
     "execute_public_source_bootstrap_bundle",
     "export_biological_discovery_package",
+    "export_calibration_rescue_package",
     "export_baseline_coverage_assessment",
     "export_claim_strength_package",
     "export_study_cohort_freeze",

@@ -90,6 +90,7 @@ def build_summary(campaign_root: Path) -> dict:
     validation = _safe_summary(brca_dir / "study_validation_lock_manifest.json")
     claim = _safe_summary(brca_dir / "claim_strength_manifest.json")
     robustness = _safe_summary(brca_dir / "external_robustness_manifest.json")
+    calibration_rescue = _read_json(campaign_root / "calibration_rescue" / "calibration_rescue_manifest.json")
     brca_error = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
 
     cohort_manifest = pd.read_csv(brca_dir / "study_cohort_manifest.csv")
@@ -107,6 +108,7 @@ def build_summary(campaign_root: Path) -> dict:
         campaign_root / "test_logs" / "targeted_scientific_modules_tests.log",
         campaign_root / "test_logs" / "targeted_study_benchmark_tests.log",
         campaign_root / "test_logs" / "targeted_api_operational_tests_fixed.log",
+        campaign_root / "test_logs" / "targeted_calibration_rescue_tests.log",
     ]
     test_matrix = pd.DataFrame([_parse_unittest_log(path) for path in log_paths])
     test_matrix_path = output_dir / "competition_test_matrix.csv"
@@ -140,6 +142,12 @@ def build_summary(campaign_root: Path) -> dict:
             "score_percent": robustness.get("overall_external_robustness_percent"),
             "status": robustness.get("overall_status"),
             "evidence": "pooled calibration/discrimination support with remaining calibration-safety gap",
+        },
+        {
+            "area": "Calibration rescue",
+            "score_percent": calibration_rescue.get("calibrated_safety_rate_percent"),
+            "status": calibration_rescue.get("status"),
+            "evidence": f"safety {calibration_rescue.get('raw_calibration_safety_rate_percent')}% -> {calibration_rescue.get('calibrated_safety_rate_percent')}%",
         },
         {
             "area": "Cohort independence",
@@ -199,6 +207,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Validation lock: `{validation.get('overall_validation_lock_percent')}%`",
             f"- Claim strength: `{claim.get('overall_claim_strength_percent')}%` (`{claim.get('claim_tier')}`)",
             f"- External robustness: `{robustness.get('overall_external_robustness_percent')}%`",
+            f"- Diagnostic calibration safety: `{calibration_rescue.get('raw_calibration_safety_rate_percent')}%` -> `{calibration_rescue.get('calibrated_safety_rate_percent')}%`",
             f"- Targeted automated tests: `{passed_tests}/{total_targeted_tests}` passed",
             "",
             "## Best external results by cohort",
@@ -219,6 +228,7 @@ def build_summary(campaign_root: Path) -> dict:
             "- Cohort independence is locked at 100%, with no train/external variant overlap in the audited run.",
             "- The central prime-aware hybrid claim is strong in the current quick-pass evidence package.",
             "- The API and user-facing documentation endpoints are covered by targeted operational tests.",
+            "- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.",
             "- The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.",
             "",
             "## Honest gaps to close before a top-tier paper",
@@ -227,7 +237,8 @@ def build_summary(campaign_root: Path) -> dict:
             f"- BRCA1 LOVD selected-model errors: `{brca_error.get('selected_model_error_count')}` errors across `{brca_error.get('variant_count')}` variants.",
             f"- gnomAD coverage in the weak BRCA1 LOVD cohort: `{brca_error.get('feature_coverage', {}).get('gnomad_af_coverage_percent')}%`.",
             f"- MaveDB coverage in the weak BRCA1 LOVD cohort: `{brca_error.get('feature_coverage', {}).get('mavedb_score_coverage_percent')}%`.",
-            f"- External robustness is still `{robustness.get('overall_external_robustness_percent')}%`, mainly limited by calibration safety and cross-cohort heterogeneity.",
+            f"- External robustness is still `{robustness.get('overall_external_robustness_percent')}%`; diagnostic recalibration improves safety to `{calibration_rescue.get('calibrated_safety_rate_percent')}%`, but this must be confirmed in a locked calibration holdout.",
+            f"- Persistent BRCA1/LOVD errors after calibration: `{calibration_rescue.get('persistent_focus_errors')}`.",
             f"- Baseline/ablation coverage is `{validation.get('baseline_coverage_percent')}%`; this needs a final ablation narrative before a high-impact submission.",
             "- The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.",
             "",

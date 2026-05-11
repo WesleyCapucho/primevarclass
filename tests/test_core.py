@@ -26,6 +26,7 @@ from primevarclass import (
     create_app,
     dataset_schema_template,
     encode_variant_features,
+    export_calibration_rescue_package,
     export_claim_strength_package,
     export_brca1_engine_execution_package,
     export_brca1_fragment_preparation_package,
@@ -3602,6 +3603,70 @@ class StudyBenchmarkTests(unittest.TestCase):
             self.assertGreaterEqual(manifest["summary"]["pooled_high_confidence_clinical_support_percent"], 40)
             self.assertGreaterEqual(manifest["summary"]["effective_high_confidence_clinical_robustness_percent"], 60)
             self.assertEqual(Path(manifest["pooled_support_path"]).name, "external_robustness_pooled_support.csv")
+
+    def test_export_calibration_rescue_package_generates_thresholds_and_error_queue(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            study_dir = tmp_path / "study"
+            study_dir.mkdir()
+            (study_dir / "claim_strength_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "summary": {
+                            "selected_experiment": "hybrid__random_forest",
+                            "selected_baseline_experiment": "external_predictors_only__random_forest",
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pd.DataFrame(
+                [
+                    {"variant": "BRCA1 p.Cys61Gly", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.72, "score__external_predictors_only__random_forest": 0.61},
+                    {"variant": "BRCA1 p.Met1775Arg", "gene": "BRCA1", "label": 1, "score__hybrid__random_forest": 0.62, "score__external_predictors_only__random_forest": 0.58},
+                    {"variant": "BRCA1 p.Val1736Ala", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.70, "score__external_predictors_only__random_forest": 0.48},
+                    {"variant": "BRCA1 p.Ser1613Gly", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.56, "score__external_predictors_only__random_forest": 0.41},
+                    {"variant": "BRCA1 p.Ala1708Glu", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.42, "score__external_predictors_only__random_forest": 0.36},
+                    {"variant": "BRCA1 p.Arg1699Gln", "gene": "BRCA1", "label": 0, "score__hybrid__random_forest": 0.39, "score__external_predictors_only__random_forest": 0.33},
+                ]
+            ).to_csv(study_dir / "study_scores_bridges_like_external_validation_brca1.csv", index=False)
+            pd.DataFrame(
+                [
+                    {"variant": "BRCA2 p.Asp2723His", "gene": "BRCA2", "label": 1, "score__hybrid__random_forest": 0.81, "score__external_predictors_only__random_forest": 0.62},
+                    {"variant": "BRCA2 p.Trp2626Cys", "gene": "BRCA2", "label": 1, "score__hybrid__random_forest": 0.77, "score__external_predictors_only__random_forest": 0.59},
+                    {"variant": "BRCA2 p.Lys3326Ter", "gene": "BRCA2", "label": 0, "score__hybrid__random_forest": 0.31, "score__external_predictors_only__random_forest": 0.42},
+                    {"variant": "BRCA2 p.Asn372His", "gene": "BRCA2", "label": 0, "score__hybrid__random_forest": 0.24, "score__external_predictors_only__random_forest": 0.39},
+                ]
+            ).to_csv(study_dir / "study_scores_clinvar_expert_external_brca2.csv", index=False)
+            cohort_dir = study_dir / "cohorts"
+            cohort_dir.mkdir()
+            pd.DataFrame(
+                [
+                    {"variant": "BRCA1 p.Cys61Gly", "feature_gnomad_af": None, "feature_mave_score": 0.14, "prime_diff": 12, "prime_ratio": 1.3},
+                    {"variant": "BRCA1 p.Val1736Ala", "feature_gnomad_af": None, "feature_mave_score": None, "prime_diff": -4, "prime_ratio": 0.8},
+                    {"variant": "BRCA1 p.Ser1613Gly", "feature_gnomad_af": 0.0001, "feature_mave_score": None, "prime_diff": 2, "prime_ratio": 1.1},
+                ]
+            ).to_csv(cohort_dir / "bridges_like_external_validation_brca1_processed_dataset.csv", index=False)
+
+            results = export_calibration_rescue_package(
+                study_dir=str(study_dir),
+                output_dir=str(tmp_path / "calibration_rescue"),
+                focus_cohort="bridges_like_external_validation_brca1",
+            )
+
+            self.assertTrue(Path(results["calibration_rescue_manifest_path"]).exists())
+            self.assertTrue(Path(results["calibration_rescue_thresholds_path"]).exists())
+            self.assertTrue(Path(results["calibration_rescue_error_triage_queue_path"]).exists())
+            manifest = json.loads(Path(results["calibration_rescue_manifest_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(manifest["candidate_experiment"], "hybrid__random_forest")
+            self.assertEqual(manifest["baseline_experiment"], "external_predictors_only__random_forest")
+            self.assertGreaterEqual(manifest["n_cohorts"], 2)
+            summary = pd.read_csv(results["calibration_rescue_summary_path"])
+            self.assertIn("calibrated_ece", summary.columns)
+            self.assertIn("best_calibrated_threshold", summary.columns)
+            queue = pd.read_csv(results["calibration_rescue_error_triage_queue_path"])
+            self.assertIn("priority_score", queue.columns)
+            self.assertIn("calibration_effect", queue.columns)
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

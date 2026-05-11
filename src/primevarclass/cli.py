@@ -4,6 +4,7 @@ import argparse
 
 from .api import run_api
 from .biological_discovery import export_biological_discovery_package
+from .calibration_rescue import export_calibration_rescue_package
 from .candidate_public_runner import run_candidate_public_benchmark_pipeline
 from .continuous_learning import export_continuous_learning_package
 from .core import demo_full_pipeline_run, print_usage_guide, run_full_training_pipeline
@@ -60,6 +61,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-prospective-validation-closure", action="store_true", help="Gerar protocolo prospectivo e fila de confirmacao funcional/estrutural")
     parser.add_argument("--build-development-progress", action="store_true", help="Recalcular tabela global de progresso da plataforma")
     parser.add_argument("--build-validation-credibility-closure", action="store_true", help="Consolidar evidencias de validacao, credibilidade e lacunas restantes")
+    parser.add_argument("--build-calibration-rescue", action="store_true", help="Gerar recalibracao diagnostica, limiares e triagem de erros externos")
     parser.add_argument("--build-continuous-learning", action="store_true", help="Gerar o pacote de aprendizado continuo com sync publico, resolucao e retraining automatizavel")
     parser.add_argument("--build-independent-data-expansion", action="store_true", help="Gerar plano e templates para ampliar treino/validacao com bancos reais independentes")
     parser.add_argument("--autostage-open-independent-sources", action="store_true", help="Baixar/stagear fontes publicas abertas independentes via APIs oficiais")
@@ -115,6 +117,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--top-k-genes", type=int, default=12, help="Numero de genes recomendados no pacote de expansao")
     parser.add_argument("--workspace-root", type=str, default=None, help="Raiz do workspace onde os artefatos canonicos e configs reais serao escritos")
     parser.add_argument("--launch-workspace-root", type=str, default=None, help="Raiz do workspace a auditar no pacote de launch readiness")
+    parser.add_argument("--study-dir", type=str, default=None, help="Diretorio de estudo exportado para pacotes de evidencia pos-estudo")
+    parser.add_argument("--candidate-experiment", type=str, default=None, help="Experimento candidato para pacotes de evidencia pos-estudo")
+    parser.add_argument("--baseline-experiment", type=str, default=None, help="Experimento baseline para pacotes de evidencia pos-estudo")
+    parser.add_argument("--focus-cohort", type=str, default="bridges_like_external_validation_brca1", help="Coorte foco para triagem detalhada de erros")
     parser.add_argument("--public-study-run", action="store_true", help="Executar o fluxo integrado de estudo publico: resolucao + preflight + benchmark + execution board")
     parser.add_argument("--candidate-public-study-run", action="store_true", help="Executar a rerrodada controlada a partir de um candidate study config")
     parser.add_argument("--candidate-promotion-manifest", type=str, default=None, help="Manifesto opcional do candidate-promotion package")
@@ -372,6 +378,21 @@ def main(argv: list[str] | None = None) -> int:
         print("PrimeVarClass validation-credibility closure finished.")
         print(f"Validation closure manifest: {results['validation_credibility_closure_manifest_path']}")
         print(f"Validation closure report: {results['validation_credibility_report_markdown_path']}")
+        return 0
+    if args.build_calibration_rescue:
+        if not args.study_dir:
+            parser.error("--build-calibration-rescue exige --study-dir.")
+        results = export_calibration_rescue_package(
+            study_dir=args.study_dir,
+            output_dir=args.output_dir,
+            candidate_experiment=args.candidate_experiment,
+            baseline_experiment=args.baseline_experiment,
+            focus_cohort=args.focus_cohort,
+        )
+        print("PrimeVarClass calibration rescue package finished.")
+        print(f"Calibration rescue manifest: {results['calibration_rescue_manifest_path']}")
+        print(f"Calibration rescue report: {results['calibration_rescue_report_markdown_path']}")
+        print(f"Error triage queue: {results['calibration_rescue_error_triage_queue_path']}")
         return 0
     if args.build_development_progress:
         results = export_development_progress_dashboard(
