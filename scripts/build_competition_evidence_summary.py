@@ -93,6 +93,8 @@ def build_summary(campaign_root: Path) -> dict:
     calibration_rescue = _read_json(campaign_root / "calibration_rescue" / "calibration_rescue_manifest.json")
     locked_holdout_path = campaign_root / "locked_calibration_holdout" / "locked_calibration_holdout_manifest.json"
     locked_holdout = _read_json(locked_holdout_path) if locked_holdout_path.exists() else {}
+    competition_readiness_path = campaign_root / "competition_readiness" / "competition_readiness_manifest.json"
+    competition_readiness = _read_json(competition_readiness_path) if competition_readiness_path.exists() else {}
     brca_error = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
 
     cohort_manifest = pd.read_csv(brca_dir / "study_cohort_manifest.csv")
@@ -112,6 +114,7 @@ def build_summary(campaign_root: Path) -> dict:
         campaign_root / "test_logs" / "targeted_api_operational_tests_fixed.log",
         campaign_root / "test_logs" / "targeted_calibration_rescue_tests.log",
         campaign_root / "test_logs" / "targeted_locked_calibration_holdout_tests.log",
+        campaign_root / "test_logs" / "targeted_competition_readiness_tests.log",
     ]
     test_matrix = pd.DataFrame([_parse_unittest_log(path) for path in log_paths])
     test_matrix_path = output_dir / "competition_test_matrix.csv"
@@ -157,6 +160,12 @@ def build_summary(campaign_root: Path) -> dict:
             "score_percent": locked_holdout.get("locked_calibrated_test_safety_rate_percent"),
             "status": locked_holdout.get("status"),
             "evidence": f"heldout n={locked_holdout.get('n_heldout_test_variants')}; safety {locked_holdout.get('raw_test_calibration_safety_rate_percent')}% -> {locked_holdout.get('locked_calibrated_test_safety_rate_percent')}%",
+        },
+        {
+            "area": "Competition readiness",
+            "score_percent": competition_readiness.get("competition_readiness_percent"),
+            "status": "ready" if competition_readiness.get("ready_for_competition_dossier") else "partial",
+            "evidence": f"paper {competition_readiness.get('paper_readiness_percent')}%; priority variants {competition_readiness.get('priority_variant_count')}",
         },
         {
             "area": "Cohort independence",
@@ -218,6 +227,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- External robustness: `{robustness.get('overall_external_robustness_percent')}%`",
             f"- Diagnostic calibration safety: `{calibration_rescue.get('raw_calibration_safety_rate_percent')}%` -> `{calibration_rescue.get('calibrated_safety_rate_percent')}%`",
             f"- Locked calibration holdout safety: `{locked_holdout.get('raw_test_calibration_safety_rate_percent')}%` -> `{locked_holdout.get('locked_calibrated_test_safety_rate_percent')}%` on `{locked_holdout.get('n_heldout_test_variants')}` held-out variants",
+            f"- Competition readiness: `{competition_readiness.get('competition_readiness_percent')}%`",
             f"- Targeted automated tests: `{passed_tests}/{total_targeted_tests}` passed",
             "",
             "## Best external results by cohort",
@@ -240,6 +250,7 @@ def build_summary(campaign_root: Path) -> dict:
             "- The API and user-facing documentation endpoints are covered by targeted operational tests.",
             "- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.",
             "- A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.",
+            "- A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.",
             "- The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.",
             "",
             "## Honest gaps to close before a top-tier paper",
@@ -283,6 +294,7 @@ def build_summary(campaign_root: Path) -> dict:
         "passed_targeted_tests": passed_tests,
         "total_targeted_tests": total_targeted_tests,
         "locked_calibration_holdout_manifest_path": str(locked_holdout_path) if locked_holdout_path.exists() else None,
+        "competition_readiness_manifest_path": str(competition_readiness_path) if competition_readiness_path.exists() else None,
         "scorecard_path": str(scorecard_path),
         "external_best_metrics_path": str(external_best_path),
         "test_matrix_path": str(test_matrix_path),

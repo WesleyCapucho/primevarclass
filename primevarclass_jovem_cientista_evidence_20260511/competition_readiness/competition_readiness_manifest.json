@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-11T15:18:43Z",
+  "campaign_root": "primevarclass_jovem_cientista_evidence_20260511",
+  "competition_readiness_percent": 91.6,
+  "paper_readiness_percent": 89.6,
+  "web_launch_scientific_readiness_percent": 87.6,
+  "ready_for_competition_dossier": true,
+  "ready_for_top_tier_submission_draft": true,
+  "ready_for_definitive_clinical_claims": false,
+  "why_not_100_percent": "Full BRCA campaign, prospective independent validation and experimental functional/structural confirmation are still required.",
+  "priority_variant_count": 50,
+  "strategy_front_count": 6,
+  "claims_boundary_count": 5,
+  "top_priority_variants": [
+    "BRCA1 p.C1501Y",
+    "BRCA1 p.R213M",
+    "BRCA1 p.C818F",
+    "BRCA1 p.C644F",
+    "BRCA1 p.C636F",
+    "BRCA1 p.G394D",
+    "BRCA1 p.L1844P",
+    "BRCA1 p.R1520S",
+    "BRCA1 p.L152P",
+    "BRCA1 p.E438V"
+  ],
+  "source_evidence": {
+    "locked_holdout_status": "ready",
+    "locked_holdout_test_variants": 417,
+    "locked_holdout_safety_percent": 100,
+    "diagnostic_calibration_safety_percent": 100,
+    "external_robustness_percent": 75,
+    "prospective_readiness_percent": 88,
+    "alphamissense_target_genes": [
+      "BRCA1",
+      "BRCA2",
+      "TP53",
+      "PTEN",
+      "MSH2",
+      "KRAS",
+      "GCK",
+      "F9"
+    ]
+  },
+  "priority_queue_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_priority_variant_queue.csv",
+  "strategy_matrix_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_strategy_matrix.csv",
+  "claims_boundary_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\scientific_claims_boundary.csv",
+  "paper_evidence_map_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\paper_evidence_map.csv",
+  "markdown_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_readiness_report.md",
+  "html_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_readiness_report.html"
+}

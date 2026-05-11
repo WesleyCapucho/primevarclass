@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-11T15:07:10Z`
-- Git commit: `02dd63aec524ce4501e653edc06a79ed71cc3c7f`
+- Generated at: `2026-05-11T15:19:28Z`
+- Git commit: `7a7038f6d9faa2c993dd1c6a97f40d4f99c94310`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
@@ -17,7 +17,8 @@
 - External robustness: `75%`
 - Diagnostic calibration safety: `50%` -> `100%`
 - Locked calibration holdout safety: `50%` -> `100%` on `417` held-out variants
-- Targeted automated tests: `37/37` passed
+- Competition readiness: `91.6%`
+- Targeted automated tests: `38/38` passed
 
 ## Best external results by cohort
 
@@ -34,9 +35,10 @@
 - External robustness: 75.0% (partial) - pooled calibration/discrimination support with remaining calibration-safety gap
 - Calibration rescue: 100.0% (ready) - safety 50% -> 100%
 - Locked calibration holdout: 100.0% (ready) - heldout n=417; safety 50% -> 100%
+- Competition readiness: 91.6% (ready) - paper 89.6%; priority variants 50
 - Cohort independence: 100.0% (ready) - 0% train/external overlap in frozen cohorts
 - Baseline and ablation: 74.0% (partial) - needs final ablation narrative and full-campaign confirmation
-- Targeted automated tests: 100.0% (passed) - 37/37 targeted tests passed in 799.3s
+- Targeted automated tests: 100.0% (passed) - 38/38 targeted tests passed in 799.5s
 
 ## Automated test evidence
 
@@ -46,6 +48,7 @@
 - targeted_api_operational_tests_fixed: passed, 5 tests, 123.264s
 - targeted_calibration_rescue_tests: passed, 1 tests, 0.711s
 - targeted_locked_calibration_holdout_tests: passed, 1 tests, 0.959s
+- targeted_competition_readiness_tests: passed, 1 tests, 0.181s
 
 ## Main strengths for the article
 
@@ -55,6 +58,7 @@
 - The API and user-facing documentation endpoints are covered by targeted operational tests.
 - A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.
 - A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.
+- A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.
 - The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.
 
 ## Honest gaps to close before a top-tier paper

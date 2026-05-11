@@ -29,6 +29,7 @@ from primevarclass import (
     export_calibration_rescue_package,
     export_locked_calibration_holdout_package,
     export_claim_strength_package,
+    export_competition_readiness_package,
     export_brca1_engine_execution_package,
     export_brca1_fragment_preparation_package,
     export_brca1_paired_mutant_execution_package,
@@ -3727,6 +3728,115 @@ class StudyBenchmarkTests(unittest.TestCase):
             self.assertTrue(set(assignments["split"]).issuperset({"calibration", "test"}))
             overlap = assignments.groupby(["cohort", "variant"])["split"].nunique().max()
             self.assertEqual(overlap, 1)
+
+    def test_export_competition_readiness_prioritizes_claims_and_variants(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            campaign = tmp_path / "campaign"
+            brca = campaign / "brca_real_quick"
+            locked_dir = campaign / "locked_calibration_holdout"
+            calibration_dir = campaign / "calibration_rescue"
+            error_dir = campaign / "brca1_lovd_error_analysis"
+            alpha_dir = campaign / "alphamissense_subset_plan"
+            prospective_dir = tmp_path / "prospective"
+            for path in [brca, locked_dir, calibration_dir, error_dir, alpha_dir, prospective_dir]:
+                path.mkdir(parents=True)
+            (brca / "publication_readiness_manifest.json").write_text(json.dumps({"summary": {"overall_readiness_percent": 95}}), encoding="utf-8")
+            (brca / "study_validation_lock_manifest.json").write_text(json.dumps({"summary": {"overall_validation_lock_percent": 94, "cohort_independence_percent": 100}}), encoding="utf-8")
+            (brca / "claim_strength_manifest.json").write_text(json.dumps({"summary": {"overall_claim_strength_percent": 98}}), encoding="utf-8")
+            (brca / "external_robustness_manifest.json").write_text(json.dumps({"summary": {"overall_external_robustness_percent": 75}}), encoding="utf-8")
+            (campaign / "competition_evidence_manifest.json").write_text(
+                json.dumps({"passed_targeted_tests": 37, "total_targeted_tests": 37}),
+                encoding="utf-8",
+            )
+            locked_queue_path = locked_dir / "locked_calibration_holdout_error_queue.csv"
+            pd.DataFrame(
+                [
+                    {
+                        "cohort": "bridges_like_external_validation_brca1",
+                        "variant": "BRCA1 p.C1501Y",
+                        "gene": "BRCA1",
+                        "label": 0,
+                        "calibration_effect": "persistent_on_locked_test",
+                        "raw_score": 0.97,
+                        "locked_calibrated_score": 0.88,
+                        "baseline_score": 0.49,
+                        "priority_score": 1.7,
+                        "feature_gnomad_af": "",
+                        "feature_mave_score": "",
+                        "prime_diff": 12,
+                        "prime_ratio": 3.4,
+                        "biochemical_severity_score": 7.8,
+                    }
+                ]
+            ).to_csv(locked_queue_path, index=False)
+            (locked_dir / "locked_calibration_holdout_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "status": "ready",
+                        "n_heldout_test_variants": 417,
+                        "raw_test_calibration_safety_rate_percent": 50,
+                        "locked_calibrated_test_safety_rate_percent": 100,
+                        "error_queue_path": str(locked_queue_path),
+                    }
+                ),
+                encoding="utf-8",
+            )
+            calibration_queue_path = calibration_dir / "calibration_rescue_error_triage_queue.csv"
+            pd.DataFrame([{"variant": "BRCA1 p.C1501Y", "gene": "BRCA1"}]).to_csv(calibration_queue_path, index=False)
+            (calibration_dir / "calibration_rescue_manifest.json").write_text(
+                json.dumps({"calibrated_safety_rate_percent": 100, "error_triage_queue_path": str(calibration_queue_path)}),
+                encoding="utf-8",
+            )
+            selected_errors_path = error_dir / "brca1_lovd_selected_model_errors.csv"
+            pd.DataFrame([{"variant": "BRCA1 p.C1501Y", "gene": "BRCA1", "error_type": "false_positive"}]).to_csv(selected_errors_path, index=False)
+            (error_dir / "brca1_lovd_error_analysis_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "selected_model_error_count": 32,
+                        "selected_model_errors_path": str(selected_errors_path),
+                        "feature_coverage": {"gnomad_af_coverage_percent": 36.31, "mavedb_score_coverage_percent": 6.55},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (alpha_dir / "alphamissense_subset_plan_manifest.json").write_text(
+                json.dumps({"target_genes": ["BRCA1", "BRCA2"], "plan_path": "alpha.md"}),
+                encoding="utf-8",
+            )
+            prospective_queue_path = prospective_dir / "functional_structural_confirmation_queue.csv"
+            pd.DataFrame([{"gene": "BRCA1", "hgvs_p": "p.C1501Y", "lab_status": "not_started"}]).to_csv(prospective_queue_path, index=False)
+            prospective_manifest_path = prospective_dir / "prospective_validation_closure_manifest.json"
+            prospective_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "summary": {
+                            "prospective_validation_readiness_percent": 88,
+                            "functional_structural_confirmation_queue_count": 1,
+                        },
+                        "functional_structural_confirmation_queue_path": str(prospective_queue_path),
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            exported = export_competition_readiness_package(
+                campaign_root=str(campaign),
+                output_dir=str(tmp_path / "competition_readiness"),
+                prospective_validation_closure_manifest_path=str(prospective_manifest_path),
+                max_priority_variants=10,
+            )
+
+            manifest = json.loads(Path(exported["competition_readiness_manifest_path"]).read_text(encoding="utf-8"))
+            self.assertGreaterEqual(manifest["competition_readiness_percent"], 80)
+            self.assertFalse(manifest["ready_for_definitive_clinical_claims"])
+            queue = pd.read_csv(exported["competition_priority_variant_queue_path"])
+            self.assertEqual(queue.iloc[0]["variant"], "BRCA1 p.C1501Y")
+            self.assertIn("recommended_next_action", queue.columns)
+            claims = pd.read_csv(exported["scientific_claims_boundary_path"])
+            self.assertIn("not_yet", set(claims["status"]))
+            strategy = pd.read_csv(exported["competition_strategy_matrix_path"])
+            self.assertIn("Locked external validation", set(strategy["front"]))
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

@@ -6,6 +6,7 @@ from .api import run_api
 from .biological_discovery import export_biological_discovery_package
 from .calibration_rescue import export_calibration_rescue_package, export_locked_calibration_holdout_package
 from .candidate_public_runner import run_candidate_public_benchmark_pipeline
+from .competition_readiness import export_competition_readiness_package
 from .continuous_learning import export_continuous_learning_package
 from .core import demo_full_pipeline_run, print_usage_guide, run_full_training_pipeline
 from .data_sources import ingest_sources_from_config, train_from_source_config
@@ -63,6 +64,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-validation-credibility-closure", action="store_true", help="Consolidar evidencias de validacao, credibilidade e lacunas restantes")
     parser.add_argument("--build-calibration-rescue", action="store_true", help="Gerar recalibracao diagnostica, limiares e triagem de erros externos")
     parser.add_argument("--build-locked-calibration-holdout", action="store_true", help="Gerar holdout travado de calibracao/teste para evidencia externa sem vazamento")
+    parser.add_argument("--build-competition-readiness", action="store_true", help="Consolidar estrategia, claims permitidos e variantes prioritarias para artigo/competicao")
     parser.add_argument("--build-continuous-learning", action="store_true", help="Gerar o pacote de aprendizado continuo com sync publico, resolucao e retraining automatizavel")
     parser.add_argument("--build-independent-data-expansion", action="store_true", help="Gerar plano e templates para ampliar treino/validacao com bancos reais independentes")
     parser.add_argument("--autostage-open-independent-sources", action="store_true", help="Baixar/stagear fontes publicas abertas independentes via APIs oficiais")
@@ -124,6 +126,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--focus-cohort", type=str, default="bridges_like_external_validation_brca1", help="Coorte foco para triagem detalhada de erros")
     parser.add_argument("--calibration-fraction", type=float, default=0.5, help="Fracao estratificada usada para ajuste no holdout travado")
     parser.add_argument("--split-seed-prime", type=int, default=104729, help="Semente prima para divisao deterministica e auditavel do holdout")
+    parser.add_argument("--campaign-root", type=str, default=None, help="Raiz do pacote de evidencias da campanha para readiness de competicao/artigo")
+    parser.add_argument("--max-priority-variants", type=int, default=40, help="Numero maximo de variantes priorizadas no pacote de readiness")
     parser.add_argument("--public-study-run", action="store_true", help="Executar o fluxo integrado de estudo publico: resolucao + preflight + benchmark + execution board")
     parser.add_argument("--candidate-public-study-run", action="store_true", help="Executar a rerrodada controlada a partir de um candidate study config")
     parser.add_argument("--candidate-promotion-manifest", type=str, default=None, help="Manifesto opcional do candidate-promotion package")
@@ -413,6 +417,19 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Locked holdout manifest: {results['locked_calibration_holdout_manifest_path']}")
         print(f"Locked holdout report: {results['locked_calibration_holdout_report_markdown_path']}")
         print(f"Locked holdout error queue: {results['locked_calibration_holdout_error_queue_path']}")
+        return 0
+    if args.build_competition_readiness:
+        campaign_root = args.campaign_root or "primevarclass_jovem_cientista_evidence_20260511"
+        results = export_competition_readiness_package(
+            campaign_root=campaign_root,
+            output_dir=args.output_dir,
+            prospective_validation_closure_manifest_path=args.prospective_validation_closure_manifest_path,
+            max_priority_variants=args.max_priority_variants,
+        )
+        print("PrimeVarClass competition readiness package finished.")
+        print(f"Competition readiness manifest: {results['competition_readiness_manifest_path']}")
+        print(f"Competition readiness report: {results['competition_readiness_report_markdown_path']}")
+        print(f"Priority variant queue: {results['competition_priority_variant_queue_path']}")
         return 0
     if args.build_development_progress:
         results = export_development_progress_dashboard(
