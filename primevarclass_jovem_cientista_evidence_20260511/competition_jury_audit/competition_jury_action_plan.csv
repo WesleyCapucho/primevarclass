@@ -1,0 +1,7 @@
+rank,risk_id,action,owner_mode,expected_jury_gain_points,acceptance_evidence
+1,R4,Frame this honestly as research-use evidence and attach a blinded prospective protocol with top targets.,PrimeVarClass development,4.5,Blinded prospective protocol plus mechanistic target queue.
+2,R1,Run or stage a full AlphaMissense-enriched BRCA benchmark and compare against the frozen quick pass.,PrimeVarClass development,4.0,AlphaMissense-enriched BRCA comparison table or explicit staged benchmark plan with runnable configs.
+3,R2,"Include prime-only, biochemical-only, external-only, hybrid and hybrid-plus-external comparisons in the application.",PrimeVarClass development,3.5,Prime ablation matrix and narrative included in final paper figures.
+4,R3,"Finalize the clean module-by-module interface, registration flow, bilingual UX, feedback area and exportable report.",PrimeVarClass development,3.0,"Public demo smoke test, registration path and bilingual interface checklist."
+5,R5,"Convert evidence assets into a 20-25 page paper with figures, limitations and a non-diagnostic claim boundary.",PrimeVarClass development,2.5,Portuguese 20-25 page manuscript draft following PJC structure.
+6,R6,"Put research-use-only, privacy, uncertainty and human-review safeguards in the demo and paper abstract.",PrimeVarClass development,2.0,Claims boundary and responsible-AI safeguards visible in paper and UI.

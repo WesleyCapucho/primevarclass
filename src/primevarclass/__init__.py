@@ -15,6 +15,7 @@ from .calibration_rescue import (
 )
 from .baseline_coverage import build_baseline_coverage_assessment, export_baseline_coverage_assessment
 from .claim_strength import build_claim_strength_assessment, export_claim_strength_package
+from .competition_jury_audit import build_competition_jury_audit_package, export_competition_jury_audit_package
 from .competition_readiness import build_competition_readiness_package, export_competition_readiness_package
 from .cohort_freeze import export_study_cohort_freeze
 from .cohort_validation import build_cohort_independence_assessment, export_cohort_independence_package
@@ -154,6 +155,7 @@ __all__ = [
     "build_locked_calibration_holdout_package",
     "build_baseline_coverage_assessment",
     "build_claim_strength_assessment",
+    "build_competition_jury_audit_package",
     "build_competition_readiness_package",
     "build_cohort_independence_assessment",
     "build_comparative_evidence_assessment",
@@ -215,6 +217,7 @@ __all__ = [
     "export_locked_calibration_holdout_package",
     "export_baseline_coverage_assessment",
     "export_claim_strength_package",
+    "export_competition_jury_audit_package",
     "export_competition_readiness_package",
     "export_study_cohort_freeze",
     "export_cohort_independence_package",

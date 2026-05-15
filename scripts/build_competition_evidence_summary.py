@@ -99,6 +99,8 @@ def build_summary(campaign_root: Path) -> dict:
     alphamissense_enrichment_path = campaign_root / "alphamissense_priority_enrichment" / "alphamissense_priority_enrichment_manifest.json"
     alphamissense_enrichment = _read_json(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else {}
     alphamissense_benchmark = alphamissense_enrichment.get("priority_benchmark", {}) or {}
+    jury_audit_path = campaign_root / "competition_jury_audit" / "competition_jury_audit_manifest.json"
+    jury_audit = _read_json(jury_audit_path) if jury_audit_path.exists() else {}
     brca_error = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
 
     cohort_manifest = pd.read_csv(brca_dir / "study_cohort_manifest.csv")
@@ -171,6 +173,12 @@ def build_summary(campaign_root: Path) -> dict:
             "score_percent": competition_readiness.get("competition_readiness_percent"),
             "status": "ready" if competition_readiness.get("ready_for_competition_dossier") else "partial",
             "evidence": f"paper {competition_readiness.get('paper_readiness_percent')}%; priority variants {competition_readiness.get('priority_variant_count')}",
+        },
+        {
+            "area": "Competition jury audit",
+            "score_percent": jury_audit.get("estimated_jury_points"),
+            "status": "first_place_contender" if jury_audit.get("estimated_jury_points", 0) >= 90 else "needs_closure",
+            "evidence": f"attackable points {jury_audit.get('estimated_remaining_attackable_points')}; high-risk objections {jury_audit.get('high_risk_objection_count')}",
         },
         {
             "area": "AlphaMissense priority staging",
@@ -253,6 +261,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Diagnostic calibration safety: `{calibration_rescue.get('raw_calibration_safety_rate_percent')}%` -> `{calibration_rescue.get('calibrated_safety_rate_percent')}%`",
             f"- Locked calibration holdout safety: `{locked_holdout.get('raw_test_calibration_safety_rate_percent')}%` -> `{locked_holdout.get('locked_calibrated_test_safety_rate_percent')}%` on `{locked_holdout.get('n_heldout_test_variants')}` held-out variants",
             f"- Competition readiness: `{competition_readiness.get('competition_readiness_percent')}%`",
+            f"- Jury-audit score estimate: `{jury_audit.get('estimated_jury_points')}/100`; attackable points `{jury_audit.get('estimated_remaining_attackable_points')}`",
             f"- AlphaMissense priority staging: `{alphamissense_enrichment.get('coordinate_ready_percent')}%` coordinate-ready; `{alphamissense_enrichment.get('local_subset_coverage_percent')}%` local coverage",
             f"- AlphaMissense priority overlay: best AUC-ROC `{alphamissense_benchmark.get('best_auc_roc')}`; support rate `{alphamissense_benchmark.get('functional_support_rate_percent')}%`; discordance hypotheses `{alphamissense_benchmark.get('discordance_hypothesis_count')}`",
             f"- Targeted automated tests: `{passed_tests}/{total_targeted_tests}` passed",
@@ -278,6 +287,7 @@ def build_summary(campaign_root: Path) -> dict:
             "- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.",
             "- A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.",
             "- A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.",
+            "- A jury-audit package now maps the project to the official Prêmio Jovem Cientista rubric and exposes remaining high-risk objections.",
             "- An AlphaMissense priority-staging package now creates exact target lists, a safe streaming extraction command, priority benchmark metrics and discordant functional hypotheses for persistent BRCA1/LOVD variants.",
             "- The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.",
             "",
@@ -313,6 +323,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Best external metrics: `{external_best_path}`",
             f"- Test matrix: `{test_matrix_path}`",
             f"- First-place strategy: `{strategy_path}`",
+            f"- Jury audit: `{jury_audit_path}`",
         ]
     )
     markdown_path.write_text(markdown + "\n", encoding="utf-8")
@@ -332,6 +343,8 @@ def build_summary(campaign_root: Path) -> dict:
         "alphamissense_priority_enrichment_manifest_path": str(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else None,
         "alphamissense_priority_benchmark_status": alphamissense_benchmark.get("status"),
         "alphamissense_priority_benchmark_best_auc_roc": alphamissense_benchmark.get("best_auc_roc"),
+        "competition_jury_audit_manifest_path": str(jury_audit_path) if jury_audit_path.exists() else None,
+        "competition_jury_estimated_points": jury_audit.get("estimated_jury_points"),
         "scorecard_path": str(scorecard_path),
         "external_best_metrics_path": str(external_best_path),
         "test_matrix_path": str(test_matrix_path),

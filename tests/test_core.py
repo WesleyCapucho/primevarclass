@@ -30,6 +30,7 @@ from primevarclass import (
     export_calibration_rescue_package,
     export_locked_calibration_holdout_package,
     export_claim_strength_package,
+    export_competition_jury_audit_package,
     export_competition_readiness_package,
     export_brca1_engine_execution_package,
     export_brca1_fragment_preparation_package,
@@ -3933,6 +3934,102 @@ class StudyBenchmarkTests(unittest.TestCase):
             self.assertTrue(Path(exported["alphamissense_priority_discordance_hypotheses_path"]).exists())
             self.assertTrue(Path(exported["alphamissense_priority_extractor_script_path"]).exists())
             self.assertTrue(Path(exported["alphamissense_priority_aa_extractor_script_path"]).exists())
+
+    def test_export_competition_jury_audit_scores_official_rubric_and_actions(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            campaign = tmp_path / "campaign"
+            (campaign / "competition_readiness").mkdir(parents=True)
+            (campaign / "alphamissense_priority_enrichment").mkdir(parents=True)
+            (campaign / "brca_real_quick").mkdir(parents=True)
+            (campaign / "competition_evidence_summary.md").write_text("# summary", encoding="utf-8")
+            (campaign / "competition_first_place_strategy.md").write_text("# strategy", encoding="utf-8")
+            (campaign / "competition_evidence_manifest.json").write_text(
+                json.dumps({"passed_targeted_tests": 10, "total_targeted_tests": 10}),
+                encoding="utf-8",
+            )
+            (campaign / "competition_readiness" / "competition_readiness_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "competition_readiness_percent": 93.1,
+                        "paper_readiness_percent": 91.1,
+                        "web_launch_scientific_readiness_percent": 89.1,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (campaign / "alphamissense_priority_enrichment" / "alphamissense_priority_enrichment_manifest.json").write_text(
+                json.dumps(
+                    {
+                        "local_subset_coverage_percent": 100,
+                        "priority_benchmark": {
+                            "best_auc_roc": 0.97,
+                            "functional_support_rate_percent": 92,
+                            "status": "priority_overlay_evaluated",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pd.DataFrame(
+                [
+                    {"area": "Validation lock", "score_percent": 94, "status": "ready", "evidence": ""},
+                    {"area": "AlphaMissense priority benchmark", "score_percent": 97.3, "status": "ready", "evidence": ""},
+                    {"area": "External robustness", "score_percent": 75, "status": "partial", "evidence": ""},
+                    {"area": "Calibration rescue", "score_percent": 100, "status": "ready", "evidence": ""},
+                    {"area": "Locked calibration holdout", "score_percent": 100, "status": "ready", "evidence": ""},
+                    {"area": "Baseline and ablation", "score_percent": 74, "status": "partial", "evidence": ""},
+                    {"area": "Claim strength", "score_percent": 98, "status": "strong", "evidence": ""},
+                ]
+            ).to_csv(campaign / "competition_evidence_scorecard.csv", index=False)
+            for filename, payload in {
+                "study_validation_lock_manifest.json": {"summary": {"overall_validation_lock_percent": 94}},
+                "claim_strength_manifest.json": {"summary": {"overall_claim_strength_percent": 98}},
+                "publication_readiness_manifest.json": {"summary": {"overall_readiness_percent": 95}},
+                "external_robustness_manifest.json": {"summary": {"overall_external_robustness_percent": 75}},
+            }.items():
+                (campaign / "brca_real_quick" / filename).write_text(json.dumps(payload), encoding="utf-8")
+            pd.DataFrame(
+                [
+                    {"feature_set": "prime_only", "experiment": "prime_only__logistic_regression", "auc_roc": 0.71, "auc_pr": 0.55, "mcc": 0.2},
+                    {"feature_set": "hybrid", "experiment": "hybrid__logistic_regression", "auc_roc": 0.82, "auc_pr": 0.7, "mcc": 0.4},
+                ]
+            ).to_csv(campaign / "brca_real_quick" / "study_training_metrics.csv", index=False)
+            pd.DataFrame(
+                [
+                    {"cohort": "external_a", "evaluation_group": "combined", "feature_set": "prime_only", "auc_roc": 0.68},
+                    {"cohort": "external_a", "evaluation_group": "combined", "feature_set": "hybrid", "auc_roc": 0.8},
+                ]
+            ).to_csv(campaign / "brca_real_quick" / "study_external_evaluation.csv", index=False)
+            pd.DataFrame(
+                [
+                    {
+                        "variant": "BRCA1 p.L1844P",
+                        "gene": "BRCA1",
+                        "label": 0,
+                        "locked_calibrated_score": 0.67,
+                        "feature_alphamissense_pathogenicity": 0.89,
+                        "feature_alphamissense_class": "pathogenic",
+                        "alphamissense_label_alignment": "discordant_am_pathogenic_for_benign_label",
+                        "hypothesis_priority": "highest",
+                        "evidence_gap": "needs confirmation",
+                    }
+                ]
+            ).to_csv(campaign / "alphamissense_priority_enrichment" / "alphamissense_priority_discordance_hypotheses.csv", index=False)
+
+            exported = export_competition_jury_audit_package(
+                campaign_root=str(campaign),
+                output_dir=str(tmp_path / "jury_audit"),
+            )
+
+            manifest = json.loads(Path(exported["competition_jury_audit_manifest_path"]).read_text(encoding="utf-8"))
+            self.assertGreater(manifest["estimated_jury_points"], 80)
+            scorecard = pd.read_csv(exported["competition_jury_scorecard_path"])
+            self.assertEqual(int(scorecard["official_points"].sum()), 100)
+            risks = pd.read_csv(exported["competition_jury_risk_register_path"])
+            self.assertIn("R1", set(risks["risk_id"]))
+            cases_text = Path(exported["mechanistic_case_studies_path"]).read_text(encoding="utf-8")
+            self.assertIn("BRCA1 p.L1844P", cases_text)
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

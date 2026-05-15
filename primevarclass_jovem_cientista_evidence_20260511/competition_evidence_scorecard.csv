@@ -6,6 +6,7 @@ External robustness,75.0,partial,pooled calibration/discrimination support with 
 Calibration rescue,100.0,ready,safety 50% -> 100%
 Locked calibration holdout,100.0,ready,heldout n=417; safety 50% -> 100%
 Competition readiness,93.1,ready,paper 91.1%; priority variants 50
+Competition jury audit,92.94,first_place_contender,attackable points 7.06; high-risk objections 4
 AlphaMissense priority staging,100.0,ready_to_benchmark,targets 50; local coverage 100.0%; support 92.0%
 AlphaMissense priority benchmark,97.3,priority_overlay_evaluated,best=AlphaMissense priority overlay; discordance hypotheses=4
 Cohort independence,100.0,ready,0% train/external overlap in frozen cohorts

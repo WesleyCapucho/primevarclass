@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-15T16:51:33Z`
-- Git commit: `c7d7e9258bdde196f4c379b854f89aedb694ba2c`
+- Generated at: `2026-05-15T17:01:54Z`
+- Git commit: `9c7721b77edeacb7b9e7ec6bca86326f28ecb8a5`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
@@ -18,6 +18,7 @@
 - Diagnostic calibration safety: `50%` -> `100%`
 - Locked calibration holdout safety: `50%` -> `100%` on `417` held-out variants
 - Competition readiness: `93.1%`
+- Jury-audit score estimate: `92.94/100`; attackable points `7.06`
 - AlphaMissense priority staging: `30.0%` coordinate-ready; `100.0%` local coverage
 - AlphaMissense priority overlay: best AUC-ROC `0.973333`; support rate `92.0%`; discordance hypotheses `4`
 - Targeted automated tests: `39/39` passed
@@ -38,6 +39,7 @@
 - Calibration rescue: 100.0% (ready) - safety 50% -> 100%
 - Locked calibration holdout: 100.0% (ready) - heldout n=417; safety 50% -> 100%
 - Competition readiness: 93.1% (ready) - paper 91.1%; priority variants 50
+- Competition jury audit: 92.94% (first_place_contender) - attackable points 7.06; high-risk objections 4
 - AlphaMissense priority staging: 100.0% (ready_to_benchmark) - targets 50; local coverage 100.0%; support 92.0%
 - AlphaMissense priority benchmark: 97.3% (priority_overlay_evaluated) - best=AlphaMissense priority overlay; discordance hypotheses=4
 - Cohort independence: 100.0% (ready) - 0% train/external overlap in frozen cohorts
@@ -64,6 +66,7 @@
 - A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.
 - A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.
 - A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.
+- A jury-audit package now maps the project to the official Prêmio Jovem Cientista rubric and exposes remaining high-risk objections.
 - An AlphaMissense priority-staging package now creates exact target lists, a safe streaming extraction command, priority benchmark metrics and discordant functional hypotheses for persistent BRCA1/LOVD variants.
 - The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.
 
@@ -95,3 +98,4 @@
 - Best external metrics: `primevarclass_jovem_cientista_evidence_20260511\competition_external_best_metrics.csv`
 - Test matrix: `primevarclass_jovem_cientista_evidence_20260511\competition_test_matrix.csv`
 - First-place strategy: `primevarclass_jovem_cientista_evidence_20260511\competition_first_place_strategy.md`
+- Jury audit: `primevarclass_jovem_cientista_evidence_20260511\competition_jury_audit\competition_jury_audit_manifest.json`

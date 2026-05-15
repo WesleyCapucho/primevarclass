@@ -7,6 +7,7 @@ from .api import run_api
 from .biological_discovery import export_biological_discovery_package
 from .calibration_rescue import export_calibration_rescue_package, export_locked_calibration_holdout_package
 from .candidate_public_runner import run_candidate_public_benchmark_pipeline
+from .competition_jury_audit import export_competition_jury_audit_package
 from .competition_readiness import export_competition_readiness_package
 from .continuous_learning import export_continuous_learning_package
 from .core import demo_full_pipeline_run, print_usage_guide, run_full_training_pipeline
@@ -66,6 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-calibration-rescue", action="store_true", help="Gerar recalibracao diagnostica, limiares e triagem de erros externos")
     parser.add_argument("--build-locked-calibration-holdout", action="store_true", help="Gerar holdout travado de calibracao/teste para evidencia externa sem vazamento")
     parser.add_argument("--build-competition-readiness", action="store_true", help="Consolidar estrategia, claims permitidos e variantes prioritarias para artigo/competicao")
+    parser.add_argument("--build-competition-jury-audit", action="store_true", help="Auditar o pacote como uma banca do Premio Jovem Cientista e gerar plano de fechamento")
     parser.add_argument("--build-alphamissense-priority-enrichment", action="store_true", help="Gerar alvos AlphaMissense prioritarios e cobertura local sem baixar arquivo gigante")
     parser.add_argument("--build-continuous-learning", action="store_true", help="Gerar o pacote de aprendizado continuo com sync publico, resolucao e retraining automatizavel")
     parser.add_argument("--build-independent-data-expansion", action="store_true", help="Gerar plano e templates para ampliar treino/validacao com bancos reais independentes")
@@ -435,6 +437,19 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Competition readiness manifest: {results['competition_readiness_manifest_path']}")
         print(f"Competition readiness report: {results['competition_readiness_report_markdown_path']}")
         print(f"Priority variant queue: {results['competition_priority_variant_queue_path']}")
+        return 0
+    if args.build_competition_jury_audit:
+        campaign_root = args.campaign_root or "primevarclass_jovem_cientista_evidence_20260511"
+        results = export_competition_jury_audit_package(
+            campaign_root=campaign_root,
+            output_dir=args.output_dir,
+        )
+        summary = results.get("competition_jury_audit") or {}
+        print("PrimeVarClass competition jury audit package finished.")
+        print(f"Estimated jury points: {summary.get('estimated_jury_points')}/100")
+        print(f"Jury audit manifest: {results['competition_jury_audit_manifest_path']}")
+        print(f"Jury audit report: {results['competition_jury_audit_report_markdown_path']}")
+        print(f"Action plan: {results['competition_jury_action_plan_path']}")
         return 0
     if args.build_alphamissense_priority_enrichment:
         campaign_root = args.campaign_root or "primevarclass_jovem_cientista_evidence_20260511"
