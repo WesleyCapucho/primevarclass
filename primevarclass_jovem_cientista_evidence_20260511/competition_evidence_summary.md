@@ -1,7 +1,7 @@
 # PrimeVarClass evidence summary for article and competition
 
-- Generated at: `2026-05-15T16:50:16Z`
-- Git commit: `2964c1e91f4e60d2d7b8af854510262924451421`
+- Generated at: `2026-05-15T16:51:33Z`
+- Git commit: `c7d7e9258bdde196f4c379b854f89aedb694ba2c`
 - Evidence run: `Jovem Cientista BRCA Real Evidence Quick Pass`
 - Canonical release assets: `https://github.com/WesleyCapucho/primevarclass/releases/tag/data-artifacts-2026-05-11`
 
