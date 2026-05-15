@@ -8,9 +8,18 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+from sklearn.metrics import (
+    accuracy_score,
+    average_precision_score,
+    balanced_accuracy_score,
+    confusion_matrix,
+    matthews_corrcoef,
+    roc_auc_score,
+)
 
 
 OFFICIAL_ALPHAMISSENSE_HG38_URL = "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_hg38.tsv.gz"
+OFFICIAL_ALPHAMISSENSE_AA_URL = "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_aa_substitutions.tsv.gz"
 
 
 def _now_utc() -> str:
@@ -56,6 +65,16 @@ def _safe_int(value: Any, default: int = 0) -> int:
         return int(float(value))
     except Exception:
         return default
+
+
+def _json_float(value: Any) -> float | None:
+    try:
+        numeric = float(value)
+    except Exception:
+        return None
+    if math.isnan(numeric) or math.isinf(numeric):
+        return None
+    return round(numeric, 6)
 
 
 def _missing(series: pd.Series) -> pd.Series:
@@ -191,6 +210,238 @@ def _render_markdown_html(markdown: str, title: str) -> str:
     )
 
 
+def _label_int(value: Any) -> int | None:
+    text = "" if value is None else str(value).strip().lower()
+    try:
+        numeric = float(text)
+        if numeric == 1.0:
+            return 1
+        if numeric == 0.0:
+            return 0
+    except Exception:
+        pass
+    if text in {"1", "pathogenic", "likely pathogenic"}:
+        return 1
+    if text in {"0", "benign", "likely benign"}:
+        return 0
+    return None
+
+
+def _functional_alignment(row: pd.Series) -> str:
+    label = _label_int(row.get("label"))
+    am_class = str(row.get("feature_alphamissense_class") or "").strip().lower()
+    if not am_class:
+        return "missing_alphamissense"
+    if "ambiguous" in am_class:
+        return "ambiguous_functional_signal"
+    if label == 1 and "pathogenic" in am_class:
+        return "supports_external_label"
+    if label == 0 and "benign" in am_class:
+        return "supports_external_label"
+    if label == 0 and "pathogenic" in am_class:
+        return "discordant_am_pathogenic_for_benign_label"
+    if label == 1 and "benign" in am_class:
+        return "discordant_am_benign_for_pathogenic_label"
+    return "unresolved_alignment"
+
+
+def _functional_interpretation(row: pd.Series) -> str:
+    alignment = str(row.get("alphamissense_label_alignment") or "")
+    label = _label_int(row.get("label"))
+    model_score = _safe_float(row.get("locked_calibrated_score", row.get("raw_score", 0.0)))
+    if alignment == "supports_external_label" and label == 0 and model_score >= 0.5:
+        return "AlphaMissense supports benign external label; prioritize as model false-positive mechanism."
+    if alignment == "supports_external_label" and label == 1 and model_score < 0.5:
+        return "AlphaMissense supports pathogenic external label; prioritize as model false-negative mechanism."
+    if alignment.startswith("discordant_am_pathogenic"):
+        return "AlphaMissense is pathogenic despite benign external label; review curation, isoform and functional assay context."
+    if alignment.startswith("discordant_am_benign"):
+        return "AlphaMissense is benign despite pathogenic external label; review clinical evidence and mechanism."
+    if alignment == "ambiguous_functional_signal":
+        return "AlphaMissense is ambiguous; combine with MAVE, gnomAD and structural review."
+    return "Use as supporting functional annotation in the next benchmark rerun."
+
+
+def _binary_score_metrics(
+    predictions: pd.DataFrame,
+    score_column: str,
+    model_name: str,
+    threshold: float = 0.5,
+) -> dict[str, Any]:
+    if predictions.empty or score_column not in predictions.columns:
+        return {
+            "model": model_name,
+            "score_column": score_column,
+            "n_evaluated": 0,
+            "n_positive": 0,
+            "n_negative": 0,
+            "auc_roc": None,
+            "auc_pr": None,
+            "accuracy": None,
+            "balanced_accuracy": None,
+            "mcc": None,
+            "threshold": threshold,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "status": "missing_score",
+        }
+
+    work = predictions[["label", score_column]].copy()
+    work["label"] = work["label"].map(_label_int)
+    work[score_column] = pd.to_numeric(work[score_column], errors="coerce")
+    work = work.dropna(subset=["label", score_column]).copy()
+    if work.empty:
+        return {
+            "model": model_name,
+            "score_column": score_column,
+            "n_evaluated": 0,
+            "n_positive": 0,
+            "n_negative": 0,
+            "auc_roc": None,
+            "auc_pr": None,
+            "accuracy": None,
+            "balanced_accuracy": None,
+            "mcc": None,
+            "threshold": threshold,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "tn": 0,
+            "status": "no_complete_rows",
+        }
+
+    y_true = work["label"].astype(int)
+    y_score = work[score_column].astype(float)
+    y_pred = (y_score >= threshold).astype(int)
+    tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+    has_two_classes = int(y_true.nunique()) == 2
+    return {
+        "model": model_name,
+        "score_column": score_column,
+        "n_evaluated": int(len(work)),
+        "n_positive": int(y_true.sum()),
+        "n_negative": int(len(work) - y_true.sum()),
+        "auc_roc": _json_float(roc_auc_score(y_true, y_score)) if has_two_classes else None,
+        "auc_pr": _json_float(average_precision_score(y_true, y_score)) if has_two_classes else None,
+        "accuracy": _json_float(accuracy_score(y_true, y_pred)),
+        "balanced_accuracy": _json_float(balanced_accuracy_score(y_true, y_pred)) if has_two_classes else None,
+        "mcc": _json_float(matthews_corrcoef(y_true, y_pred)) if has_two_classes else None,
+        "threshold": threshold,
+        "tp": int(tp),
+        "fp": int(fp),
+        "fn": int(fn),
+        "tn": int(tn),
+        "status": "evaluated" if has_two_classes else "single_class_only",
+    }
+
+
+def _build_priority_benchmark(functional_overlay: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, dict[str, Any]]:
+    if functional_overlay.empty:
+        metrics = pd.DataFrame(
+            [
+                _binary_score_metrics(pd.DataFrame(), "feature_alphamissense_pathogenicity", "AlphaMissense priority overlay"),
+            ]
+        )
+        return pd.DataFrame(), metrics, pd.DataFrame(), {
+            "status": "missing_overlay",
+            "n_variants": 0,
+            "n_complete_alphamissense_rows": 0,
+            "best_model_by_auc_roc": None,
+            "best_auc_roc": None,
+            "functional_support_rate_percent": 0.0,
+        }
+
+    predictions = functional_overlay.copy()
+    predictions["label_int"] = predictions.get("label", pd.Series(index=predictions.index)).map(_label_int)
+    predictions["feature_alphamissense_pathogenicity"] = pd.to_numeric(
+        predictions.get("feature_alphamissense_pathogenicity"),
+        errors="coerce",
+    )
+    for column in ["locked_calibrated_score", "raw_score", "baseline_score"]:
+        if column in predictions.columns:
+            predictions[column] = pd.to_numeric(predictions[column], errors="coerce")
+    if "locked_calibrated_score" in predictions.columns:
+        predictions["simple_mean_locked_alpha"] = predictions[
+            ["locked_calibrated_score", "feature_alphamissense_pathogenicity"]
+        ].mean(axis=1, skipna=False)
+    if "raw_score" in predictions.columns:
+        predictions["simple_mean_raw_alpha"] = predictions[
+            ["raw_score", "feature_alphamissense_pathogenicity"]
+        ].mean(axis=1, skipna=False)
+
+    metric_specs = [
+        ("feature_alphamissense_pathogenicity", "AlphaMissense priority overlay"),
+        ("locked_calibrated_score", "PrimeVarClass locked calibrated"),
+        ("raw_score", "PrimeVarClass raw score"),
+        ("baseline_score", "External baseline score"),
+        ("simple_mean_locked_alpha", "Simple mean: locked PrimeVarClass + AlphaMissense"),
+        ("simple_mean_raw_alpha", "Simple mean: raw PrimeVarClass + AlphaMissense"),
+    ]
+    metrics = pd.DataFrame(
+        [
+            _binary_score_metrics(predictions, score_column, model_name)
+            for score_column, model_name in metric_specs
+            if score_column in predictions.columns
+        ]
+    )
+    discordance = predictions[
+        predictions.get("alphamissense_label_alignment", pd.Series("", index=predictions.index))
+        .astype(str)
+        .ne("supports_external_label")
+    ].copy()
+    if not discordance.empty:
+        discordance["hypothesis_priority"] = discordance.apply(
+            lambda row: (
+                "highest"
+                if str(row.get("alphamissense_label_alignment", "")).startswith("discordant")
+                else "high"
+                if str(row.get("alphamissense_label_alignment", "")) == "ambiguous_functional_signal"
+                else "medium"
+            ),
+            axis=1,
+        )
+        priority_order = {"highest": 0, "high": 1, "medium": 2}
+        discordance["_hypothesis_priority_rank"] = discordance["hypothesis_priority"].map(priority_order).fillna(9)
+        discordance = discordance.sort_values(
+            ["_hypothesis_priority_rank", "competition_priority_score", "feature_alphamissense_pathogenicity"],
+            ascending=[True, False, False],
+            kind="stable",
+        ).drop(columns=["_hypothesis_priority_rank"], errors="ignore")
+
+    valid_metric_rows = metrics[metrics["auc_roc"].notna()].copy() if not metrics.empty else pd.DataFrame()
+    best_model = None
+    best_auc = None
+    if not valid_metric_rows.empty:
+        best_row = valid_metric_rows.sort_values(["auc_roc", "auc_pr"], ascending=[False, False]).iloc[0]
+        best_model = str(best_row["model"])
+        best_auc = _json_float(best_row["auc_roc"])
+    support_counts = predictions.get("alphamissense_label_alignment", pd.Series(dtype=str)).value_counts().to_dict()
+    support_rate = (
+        100.0 * float(support_counts.get("supports_external_label", 0)) / max(len(predictions), 1)
+        if len(predictions)
+        else 0.0
+    )
+    summary = {
+        "status": "priority_overlay_evaluated",
+        "n_variants": int(len(predictions)),
+        "n_complete_alphamissense_rows": int(predictions["feature_alphamissense_pathogenicity"].notna().sum()),
+        "n_positive": int(predictions["label_int"].fillna(0).astype(int).sum()),
+        "n_negative": int(predictions["label_int"].notna().sum() - predictions["label_int"].fillna(0).astype(int).sum()),
+        "best_model_by_auc_roc": best_model,
+        "best_auc_roc": best_auc,
+        "functional_support_rate_percent": round(support_rate, 2),
+        "functional_alignment_counts": support_counts,
+        "discordance_hypothesis_count": int(len(discordance)),
+        "competition_claim_scope": (
+            "Independent AlphaMissense overlay was evaluated on the locked priority-error queue; "
+            "treat as functional hypothesis evidence, not definitive clinical validation."
+        ),
+    }
+    return predictions, metrics, discordance, summary
+
+
 def build_alphamissense_priority_enrichment_package(
     campaign_root: str,
     output_dir: str | None = None,
@@ -287,12 +538,31 @@ def build_alphamissense_priority_enrichment_package(
         if not matched.empty
         else pd.Series(dtype=bool)
     )
+    functional_overlay = matched.copy()
+    if not functional_overlay.empty:
+        functional_overlay["alphamissense_label_alignment"] = functional_overlay.apply(_functional_alignment, axis=1)
+        functional_overlay["functional_interpretation"] = functional_overlay.apply(_functional_interpretation, axis=1)
+        functional_overlay["feature_alphamissense_pathogenicity"] = pd.to_numeric(
+            functional_overlay.get("feature_alphamissense_pathogenicity"),
+            errors="coerce",
+        )
+        functional_overlay = functional_overlay.sort_values(
+            ["alphamissense_label_alignment", "feature_alphamissense_pathogenicity", "competition_priority_score"],
+            ascending=[True, False, False],
+            kind="stable",
+        )
+    benchmark_predictions, benchmark_metrics, discordance_hypotheses, benchmark_summary = _build_priority_benchmark(
+        functional_overlay
+    )
     coordinate_ready_percent = round(float(target_table["coordinate_ready"].mean() * 100), 2) if len(target_table) else 0.0
     local_subset_coverage_percent = round(float(alpha_covered.mean() * 100), 2) if len(matched) else 0.0
     target_genes = sorted(set(protein_targets.get("gene", pd.Series(dtype=str)).astype(str).str.upper()) - {""})
+    local_subset_exists = local_subset_path.exists()
     status = (
         "ready_to_benchmark"
         if local_subset_coverage_percent >= 80
+        else "needs_identifier_mapping"
+        if local_subset_exists and len(target_table) and local_subset_coverage_percent == 0
         else "ready_to_extract"
         if len(coordinate_targets) > 0
         else "needs_coordinate_resolution"
@@ -301,16 +571,26 @@ def build_alphamissense_priority_enrichment_package(
     protein_targets_path = output_root / "alphamissense_priority_protein_targets.tsv"
     coordinate_targets_path = output_root / "alphamissense_priority_coordinate_targets.csv"
     matched_path = output_root / "alphamissense_priority_matched_coverage.csv"
+    functional_overlay_path = output_root / "alphamissense_priority_functional_overlay.csv"
+    benchmark_predictions_path = output_root / "alphamissense_priority_benchmark_predictions.csv"
+    benchmark_metrics_path = output_root / "alphamissense_priority_benchmark_metrics.csv"
+    discordance_hypotheses_path = output_root / "alphamissense_priority_discordance_hypotheses.csv"
     missing_path = output_root / "alphamissense_priority_missing_targets.csv"
     source_config_path = output_root / "alphamissense_priority_source_config.toml"
     extractor_script_path = output_root / "extract_priority_alphamissense.ps1"
+    aa_extractor_script_path = output_root / "extract_priority_alphamissense_aa.ps1"
     report_path = output_root / "alphamissense_priority_enrichment_report.md"
     html_path = output_root / "alphamissense_priority_enrichment_report.html"
     manifest_path = output_root / "alphamissense_priority_enrichment_manifest.json"
+    extraction_attempts_path = output_root / "alphamissense_extraction_attempts.json"
 
     protein_targets.to_csv(protein_targets_path, sep="\t", index=False)
     coordinate_targets.to_csv(coordinate_targets_path, index=False)
     matched.to_csv(matched_path, index=False)
+    functional_overlay.to_csv(functional_overlay_path, index=False)
+    benchmark_predictions.to_csv(benchmark_predictions_path, index=False)
+    benchmark_metrics.to_csv(benchmark_metrics_path, index=False)
+    discordance_hypotheses.to_csv(discordance_hypotheses_path, index=False)
     matched[~alpha_covered].to_csv(missing_path, index=False)
     source_config_path.write_text(_build_source_config(local_subset_path, target_genes), encoding="utf-8")
     extractor_script_path.write_text(
@@ -319,8 +599,24 @@ def build_alphamissense_priority_enrichment_package(
                 "# Generated by PrimeVarClass. Run only when you want to stream the official AlphaMissense table.",
                 "$ErrorActionPreference = 'Stop'",
                 "py -3.14 scripts\\extract_alphamissense_subset.py `",
+                "  --mode genomic `",
                 f"  --alphamissense-input \"{OFFICIAL_ALPHAMISSENSE_HG38_URL}\" `",
                 f"  --targets \"{_display_path(coordinate_targets_path)}\" `",
+                f"  --output \"{_display_path(local_subset_path)}\"",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    aa_extractor_script_path.write_text(
+        "\n".join(
+            [
+                "# Generated by PrimeVarClass. Protein-substitution extraction is preferred when VCF coordinates do not align.",
+                "$ErrorActionPreference = 'Stop'",
+                "py -3.14 scripts\\extract_alphamissense_subset.py `",
+                "  --mode aa `",
+                f"  --alphamissense-input \"{OFFICIAL_ALPHAMISSENSE_AA_URL}\" `",
+                f"  --targets \"{_display_path(protein_targets_path)}\" `",
                 f"  --output \"{_display_path(local_subset_path)}\"",
                 "",
             ]
@@ -336,14 +632,24 @@ def build_alphamissense_priority_enrichment_package(
         "coordinate_ready_count": int(len(coordinate_targets)),
         "coordinate_ready_percent": coordinate_ready_percent,
         "local_alphamissense_subset_path": _display_path(local_subset_path),
-        "local_subset_exists": local_subset_path.exists(),
+        "local_subset_exists": local_subset_exists,
         "local_subset_coverage_percent": local_subset_coverage_percent,
         "matched_alphamissense_count": int(alpha_covered.sum()) if len(alpha_covered) else 0,
         "missing_alphamissense_count": int((~alpha_covered).sum()) if len(alpha_covered) else int(len(target_table)),
+        "functional_alignment_counts": (
+            functional_overlay["alphamissense_label_alignment"].value_counts().to_dict()
+            if not functional_overlay.empty and "alphamissense_label_alignment" in functional_overlay.columns
+            else {}
+        ),
+        "priority_benchmark": benchmark_summary,
         "target_genes": target_genes,
         "official_alphamissense_hg38_url": OFFICIAL_ALPHAMISSENSE_HG38_URL,
+        "official_alphamissense_aa_url": OFFICIAL_ALPHAMISSENSE_AA_URL,
         "status": status,
         "next_action": (
+            "Resolve UniProt/transcript/protein-variant harmonization before rerunning extraction; direct genomic and protein matching did not cover the current targets."
+            if status == "needs_identifier_mapping"
+            else
             "Run the generated PowerShell extractor or provide a local AlphaMissense subset, then rerun this package."
             if status != "ready_to_benchmark"
             else "Rerun the BRCA benchmark with the generated AlphaMissense source config."
@@ -364,6 +670,8 @@ def build_alphamissense_priority_enrichment_package(
         "- AlphaMissense is an independent functional predictor and is especially valuable for persistent BRCA1/LOVD errors with missing MAVE evidence.",
         "- This package avoids downloading large files automatically; it creates exact target lists and a streaming extraction command.",
         "- Coordinate-ready targets can be extracted directly from the official hg38 table. Protein-only targets remain useful for manual curation or coordinate resolution.",
+        "- If local coverage remains zero after extraction, treat this as an identifier/transcript harmonization problem rather than as biological absence.",
+        "- When local coverage is available, the package also benchmarks AlphaMissense against locked PrimeVarClass scores on the priority queue and exports discordant mechanistic hypotheses.",
         "",
         "## Next action",
         "",
@@ -374,10 +682,17 @@ def build_alphamissense_priority_enrichment_package(
         f"- Protein targets: `{_display_path(protein_targets_path)}`",
         f"- Coordinate targets: `{_display_path(coordinate_targets_path)}`",
         f"- Matched coverage: `{_display_path(matched_path)}`",
+        f"- Functional overlay: `{_display_path(functional_overlay_path)}`",
+        f"- Priority benchmark metrics: `{_display_path(benchmark_metrics_path)}`",
+        f"- Priority benchmark predictions: `{_display_path(benchmark_predictions_path)}`",
+        f"- Discordance hypotheses: `{_display_path(discordance_hypotheses_path)}`",
         f"- Missing targets: `{_display_path(missing_path)}`",
         f"- Source config: `{_display_path(source_config_path)}`",
         f"- Extractor script: `{_display_path(extractor_script_path)}`",
+        f"- Protein extractor script: `{_display_path(aa_extractor_script_path)}`",
     ]
+    if extraction_attempts_path.exists():
+        lines.append(f"- Extraction attempts audit: `{_display_path(extraction_attempts_path)}`")
     report = "\n".join(lines).strip() + "\n"
     report_path.write_text(report, encoding="utf-8")
     html_path.write_text(_render_markdown_html(report, "AlphaMissense Priority Enrichment"), encoding="utf-8")
@@ -386,9 +701,15 @@ def build_alphamissense_priority_enrichment_package(
             "protein_targets_path": _display_path(protein_targets_path),
             "coordinate_targets_path": _display_path(coordinate_targets_path),
             "matched_coverage_path": _display_path(matched_path),
+            "functional_overlay_path": _display_path(functional_overlay_path),
+            "benchmark_predictions_path": _display_path(benchmark_predictions_path),
+            "benchmark_metrics_path": _display_path(benchmark_metrics_path),
+            "discordance_hypotheses_path": _display_path(discordance_hypotheses_path),
             "missing_targets_path": _display_path(missing_path),
             "source_config_path": _display_path(source_config_path),
             "extractor_script_path": _display_path(extractor_script_path),
+            "aa_extractor_script_path": _display_path(aa_extractor_script_path),
+            "extraction_attempts_path": _display_path(extraction_attempts_path) if extraction_attempts_path.exists() else None,
             "markdown_path": _display_path(report_path),
             "html_path": _display_path(html_path),
         }
@@ -402,9 +723,14 @@ def build_alphamissense_priority_enrichment_package(
         "alphamissense_priority_protein_targets_path": str(protein_targets_path),
         "alphamissense_priority_coordinate_targets_path": str(coordinate_targets_path),
         "alphamissense_priority_matched_coverage_path": str(matched_path),
+        "alphamissense_priority_functional_overlay_path": str(functional_overlay_path),
+        "alphamissense_priority_benchmark_predictions_path": str(benchmark_predictions_path),
+        "alphamissense_priority_benchmark_metrics_path": str(benchmark_metrics_path),
+        "alphamissense_priority_discordance_hypotheses_path": str(discordance_hypotheses_path),
         "alphamissense_priority_missing_targets_path": str(missing_path),
         "alphamissense_priority_source_config_path": str(source_config_path),
         "alphamissense_priority_extractor_script_path": str(extractor_script_path),
+        "alphamissense_priority_aa_extractor_script_path": str(aa_extractor_script_path),
     }
 
 

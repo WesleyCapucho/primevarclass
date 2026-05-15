@@ -85,6 +85,7 @@ def build_summary(campaign_root: Path) -> dict:
     brca_dir = campaign_root / "brca_real_quick"
     output_dir = campaign_root
     output_dir.mkdir(parents=True, exist_ok=True)
+    strategy_path = campaign_root / "competition_first_place_strategy.md"
 
     publication = _safe_summary(brca_dir / "publication_readiness_manifest.json")
     validation = _safe_summary(brca_dir / "study_validation_lock_manifest.json")
@@ -97,6 +98,7 @@ def build_summary(campaign_root: Path) -> dict:
     competition_readiness = _read_json(competition_readiness_path) if competition_readiness_path.exists() else {}
     alphamissense_enrichment_path = campaign_root / "alphamissense_priority_enrichment" / "alphamissense_priority_enrichment_manifest.json"
     alphamissense_enrichment = _read_json(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else {}
+    alphamissense_benchmark = alphamissense_enrichment.get("priority_benchmark", {}) or {}
     brca_error = _read_json(campaign_root / "brca1_lovd_error_analysis" / "brca1_lovd_error_analysis_manifest.json")
 
     cohort_manifest = pd.read_csv(brca_dir / "study_cohort_manifest.csv")
@@ -172,9 +174,23 @@ def build_summary(campaign_root: Path) -> dict:
         },
         {
             "area": "AlphaMissense priority staging",
-            "score_percent": alphamissense_enrichment.get("coordinate_ready_percent"),
+            "score_percent": (
+                alphamissense_enrichment.get("local_subset_coverage_percent")
+                if alphamissense_enrichment.get("status") == "ready_to_benchmark"
+                else alphamissense_enrichment.get("coordinate_ready_percent")
+            ),
             "status": alphamissense_enrichment.get("status"),
-            "evidence": f"targets {alphamissense_enrichment.get('target_count')}; local coverage {alphamissense_enrichment.get('local_subset_coverage_percent')}%",
+            "evidence": f"targets {alphamissense_enrichment.get('target_count')}; local coverage {alphamissense_enrichment.get('local_subset_coverage_percent')}%; support {alphamissense_benchmark.get('functional_support_rate_percent')}%",
+        },
+        {
+            "area": "AlphaMissense priority benchmark",
+            "score_percent": (
+                round(float(alphamissense_benchmark.get("best_auc_roc")) * 100, 1)
+                if alphamissense_benchmark.get("best_auc_roc") is not None
+                else None
+            ),
+            "status": alphamissense_benchmark.get("status"),
+            "evidence": f"best={alphamissense_benchmark.get('best_model_by_auc_roc')}; discordance hypotheses={alphamissense_benchmark.get('discordance_hypothesis_count')}",
         },
         {
             "area": "Cohort independence",
@@ -238,6 +254,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Locked calibration holdout safety: `{locked_holdout.get('raw_test_calibration_safety_rate_percent')}%` -> `{locked_holdout.get('locked_calibrated_test_safety_rate_percent')}%` on `{locked_holdout.get('n_heldout_test_variants')}` held-out variants",
             f"- Competition readiness: `{competition_readiness.get('competition_readiness_percent')}%`",
             f"- AlphaMissense priority staging: `{alphamissense_enrichment.get('coordinate_ready_percent')}%` coordinate-ready; `{alphamissense_enrichment.get('local_subset_coverage_percent')}%` local coverage",
+            f"- AlphaMissense priority overlay: best AUC-ROC `{alphamissense_benchmark.get('best_auc_roc')}`; support rate `{alphamissense_benchmark.get('functional_support_rate_percent')}%`; discordance hypotheses `{alphamissense_benchmark.get('discordance_hypothesis_count')}`",
             f"- Targeted automated tests: `{passed_tests}/{total_targeted_tests}` passed",
             "",
             "## Best external results by cohort",
@@ -261,7 +278,7 @@ def build_summary(campaign_root: Path) -> dict:
             "- A new diagnostic calibration-rescue package shows that simple cohort-level recalibration can close the calibration-safety gap in the audited BRCA quick pass.",
             "- A locked calibration holdout now separates calibration/threshold fitting from held-out test evaluation using a deterministic prime-seeded split.",
             "- A competition-readiness package now maps allowed scientific claims, paper sections, priority variants and the next experimental strategy.",
-            "- An AlphaMissense priority-staging package now creates exact target lists and a safe streaming extraction command for persistent BRCA1/LOVD variants.",
+            "- An AlphaMissense priority-staging package now creates exact target lists, a safe streaming extraction command, priority benchmark metrics and discordant functional hypotheses for persistent BRCA1/LOVD variants.",
             "- The GitHub repository and Release assets separate source code from large scientific artifacts with checksums.",
             "",
             "## Honest gaps to close before a top-tier paper",
@@ -272,7 +289,11 @@ def build_summary(campaign_root: Path) -> dict:
             f"- MaveDB coverage in the weak BRCA1 LOVD cohort: `{brca_error.get('feature_coverage', {}).get('mavedb_score_coverage_percent')}%`.",
             f"- External robustness is still `{robustness.get('overall_external_robustness_percent')}%`; diagnostic recalibration and locked holdout both support `{calibration_rescue.get('calibrated_safety_rate_percent')}%` calibration safety, but this must be repeated in a larger blinded/prospective holdout.",
             f"- Locked holdout status is `{locked_holdout.get('status')}` with `{locked_holdout.get('persistent_focus_errors')}` persistent focus-cohort test errors; the next step is a larger blinded/prospective holdout.",
-            f"- AlphaMissense local coverage is still `{alphamissense_enrichment.get('local_subset_coverage_percent')}%`; run the generated extractor or provide a local subset before claiming functional-predictor validation.",
+            (
+                f"- AlphaMissense priority coverage is `{alphamissense_enrichment.get('local_subset_coverage_percent')}%`; priority-overlay benchmark status is `{alphamissense_benchmark.get('status')}`. The remaining step is rerunning the full BRCA benchmark with this predictor before claiming full-cohort functional-predictor validation."
+                if alphamissense_enrichment.get("status") == "ready_to_benchmark"
+                else f"- AlphaMissense local coverage is still `{alphamissense_enrichment.get('local_subset_coverage_percent')}%`; run the generated extractor or provide a local subset before claiming functional-predictor validation."
+            ),
             f"- Persistent BRCA1/LOVD errors after calibration: `{calibration_rescue.get('persistent_focus_errors')}`.",
             f"- Baseline/ablation coverage is `{validation.get('baseline_coverage_percent')}%`; this needs a final ablation narrative before a high-impact submission.",
             "- The full unittest suite exceeded the interactive time budget and should be run as sharded CI jobs instead of one monolithic local command.",
@@ -291,6 +312,7 @@ def build_summary(campaign_root: Path) -> dict:
             f"- Scorecard: `{scorecard_path}`",
             f"- Best external metrics: `{external_best_path}`",
             f"- Test matrix: `{test_matrix_path}`",
+            f"- First-place strategy: `{strategy_path}`",
         ]
     )
     markdown_path.write_text(markdown + "\n", encoding="utf-8")
@@ -308,9 +330,12 @@ def build_summary(campaign_root: Path) -> dict:
         "locked_calibration_holdout_manifest_path": str(locked_holdout_path) if locked_holdout_path.exists() else None,
         "competition_readiness_manifest_path": str(competition_readiness_path) if competition_readiness_path.exists() else None,
         "alphamissense_priority_enrichment_manifest_path": str(alphamissense_enrichment_path) if alphamissense_enrichment_path.exists() else None,
+        "alphamissense_priority_benchmark_status": alphamissense_benchmark.get("status"),
+        "alphamissense_priority_benchmark_best_auc_roc": alphamissense_benchmark.get("best_auc_roc"),
         "scorecard_path": str(scorecard_path),
         "external_best_metrics_path": str(external_best_path),
         "test_matrix_path": str(test_matrix_path),
+        "competition_first_place_strategy_path": str(strategy_path) if strategy_path.exists() else None,
         "markdown_path": str(markdown_path),
     }
     manifest_path = output_dir / "competition_evidence_manifest.json"

@@ -197,10 +197,12 @@ def _build_strategy_matrix(inputs: dict[str, Any]) -> pd.DataFrame:
     prospective_summary = _summary(inputs["prospective"])
     alpha = inputs["alpha"]
     alpha_enrichment = inputs["alpha_enrichment"]
+    alpha_benchmark = alpha_enrichment.get("priority_benchmark", {}) if alpha_enrichment else {}
     alpha_current = (
         f"{alpha_enrichment.get('target_count', 0)} priority targets; "
         f"{alpha_enrichment.get('coordinate_ready_percent', 0)}% coordinate-ready; "
-        f"{alpha_enrichment.get('local_subset_coverage_percent', 0)}% local AlphaMissense coverage."
+        f"{alpha_enrichment.get('local_subset_coverage_percent', 0)}% local AlphaMissense coverage; "
+        f"priority-overlay best AUC-ROC {alpha_benchmark.get('best_auc_roc')}."
         if alpha_enrichment
         else f"AlphaMissense subset plan for {len(alpha.get('target_genes', []))} target genes."
     )
@@ -217,9 +219,9 @@ def _build_strategy_matrix(inputs: dict[str, Any]) -> pd.DataFrame:
         {
             "front": "Functional predictor expansion",
             "current_evidence": alpha_current,
-            "gap_to_close": "Stage target-gene AlphaMissense rows and rerun benchmark with external functional predictor.",
-            "action": "Use the generated priority target list and streaming extractor; do not load the full table into memory.",
-            "impact_for_prize": "Adds independent functional evidence to weak BRCA1/LOVD calls.",
+            "gap_to_close": "Rerun the full BRCA benchmark with AlphaMissense annotations, then replicate in prospective or blinded external data.",
+            "action": "Use the priority overlay to nominate discordant functional hypotheses and then expand from the 50 priority variants to a full target-gene subset.",
+            "impact_for_prize": "Adds independent functional evidence and testable biological hypotheses to weak BRCA1/LOVD calls.",
             "status": alpha_status,
         },
         {
@@ -309,15 +311,21 @@ def _readiness_scores(inputs: dict[str, Any]) -> dict[str, Any]:
     alpha_enrichment = inputs["alpha_enrichment"]
     alpha_plan = 85.0 if inputs["alpha"] else 0.0
     if alpha_enrichment:
-        alpha_plan = max(
-            alpha_plan,
-            min(
-                100.0,
-                55.0
-                + _safe_float(alpha_enrichment.get("coordinate_ready_percent")) * 0.25
-                + _safe_float(alpha_enrichment.get("local_subset_coverage_percent")) * 0.20,
-            ),
-        )
+        alpha_benchmark = alpha_enrichment.get("priority_benchmark", {}) or {}
+        if alpha_enrichment.get("status") == "ready_to_benchmark":
+            alpha_plan = 100.0
+        if alpha_benchmark.get("status") == "priority_overlay_evaluated":
+            alpha_plan = max(alpha_plan, 100.0)
+        else:
+            alpha_plan = max(
+                alpha_plan,
+                min(
+                    100.0,
+                    55.0
+                    + _safe_float(alpha_enrichment.get("coordinate_ready_percent")) * 0.25
+                    + _safe_float(alpha_enrichment.get("local_subset_coverage_percent")) * 0.20,
+                ),
+            )
     competition_readiness = min(
         96,
         round(
@@ -370,7 +378,7 @@ def _build_paper_evidence_map(inputs: dict[str, Any]) -> pd.DataFrame:
                 "paper_section": "Mechanism",
                 "evidence_asset": "BRCA1 LOVD persistent-error queue, structural/quantum queue and AlphaMissense plan",
                 "status": "hypothesis_ready",
-                "next_action": "Add AlphaMissense rows and run prioritized functional/structural confirmation.",
+                "next_action": "Use AlphaMissense discordances to select the first wet-lab/structural confirmation targets.",
             },
             {
                 "paper_section": "Limitations",
@@ -443,6 +451,9 @@ def build_competition_readiness_package(
             "alphamissense_priority_status": inputs["alpha_enrichment"].get("status"),
             "alphamissense_priority_coordinate_ready_percent": inputs["alpha_enrichment"].get("coordinate_ready_percent"),
             "alphamissense_priority_local_subset_coverage_percent": inputs["alpha_enrichment"].get("local_subset_coverage_percent"),
+            "alphamissense_priority_benchmark_status": (inputs["alpha_enrichment"].get("priority_benchmark") or {}).get("status"),
+            "alphamissense_priority_benchmark_best_auc_roc": (inputs["alpha_enrichment"].get("priority_benchmark") or {}).get("best_auc_roc"),
+            "alphamissense_priority_functional_support_rate_percent": (inputs["alpha_enrichment"].get("priority_benchmark") or {}).get("functional_support_rate_percent"),
         },
     }
 
@@ -473,7 +484,8 @@ def build_competition_readiness_package(
         "",
         "- The project now has frozen BRCA external validation, cohort-independence evidence, locked calibration holdout support and a transparent weak-cohort error queue.",
         "- The prime-number component should be framed as a reproducible feature-engineering hypothesis that improves the hybrid methodology, not as a standalone biological proof.",
-        "- The highest-impact next step is to enrich persistent BRCA1/LOVD errors with AlphaMissense and functional/structural confirmation.",
+        "- The AlphaMissense overlay now turns persistent BRCA1/LOVD errors into independent functional evidence and testable discordance hypotheses.",
+        "- The highest-impact next step is to scale this overlay to a full BRCA benchmark and then connect top discordances to functional/structural confirmation.",
         "",
         "## Top priority variants",
         "",

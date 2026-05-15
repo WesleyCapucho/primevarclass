@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-11T15:29:34Z",
+  "generated_at": "2026-05-15T16:47:44Z",
   "campaign_root": "primevarclass_jovem_cientista_evidence_20260511",
-  "competition_readiness_percent": 91.6,
-  "paper_readiness_percent": 89.6,
-  "web_launch_scientific_readiness_percent": 87.6,
+  "competition_readiness_percent": 93.1,
+  "paper_readiness_percent": 91.1,
+  "web_launch_scientific_readiness_percent": 89.1,
   "ready_for_competition_dossier": true,
   "ready_for_top_tier_submission_draft": true,
   "ready_for_definitive_clinical_claims": false,
@@ -40,9 +40,12 @@
       "GCK",
       "F9"
     ],
-    "alphamissense_priority_status": "ready_to_extract",
+    "alphamissense_priority_status": "ready_to_benchmark",
     "alphamissense_priority_coordinate_ready_percent": 30.0,
-    "alphamissense_priority_local_subset_coverage_percent": 0.0
+    "alphamissense_priority_local_subset_coverage_percent": 100.0,
+    "alphamissense_priority_benchmark_status": "priority_overlay_evaluated",
+    "alphamissense_priority_benchmark_best_auc_roc": 0.973333,
+    "alphamissense_priority_functional_support_rate_percent": 92.0
   },
   "priority_queue_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_priority_variant_queue.csv",
   "strategy_matrix_path": "primevarclass_jovem_cientista_evidence_20260511\\competition_readiness\\competition_strategy_matrix.csv",

@@ -1,9 +1,9 @@
 # PrimeVarClass competition readiness package
 
-- Generated at: `2026-05-11T15:29:34Z`
-- Competition readiness: `91.6%`
-- Paper readiness: `89.6%`
-- Web-launch scientific readiness: `87.6%`
+- Generated at: `2026-05-15T16:47:44Z`
+- Competition readiness: `93.1%`
+- Paper readiness: `91.1%`
+- Web-launch scientific readiness: `89.1%`
 - Ready for competition dossier: `True`
 - Ready for top-tier submission draft: `True`
 - Ready for definitive clinical claims: `False`
@@ -12,7 +12,8 @@
 
 - The project now has frozen BRCA external validation, cohort-independence evidence, locked calibration holdout support and a transparent weak-cohort error queue.
 - The prime-number component should be framed as a reproducible feature-engineering hypothesis that improves the hybrid methodology, not as a standalone biological proof.
-- The highest-impact next step is to enrich persistent BRCA1/LOVD errors with AlphaMissense and functional/structural confirmation.
+- The AlphaMissense overlay now turns persistent BRCA1/LOVD errors into independent functional evidence and testable discordance hypotheses.
+- The highest-impact next step is to scale this overlay to a full BRCA benchmark and then connect top discordances to functional/structural confirmation.
 
 ## Top priority variants
 

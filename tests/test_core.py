@@ -3864,7 +3864,7 @@ class StudyBenchmarkTests(unittest.TestCase):
                         "variant": "BRCA1 p.R213M",
                         "gene": "BRCA1",
                         "hgvs_p": "p.R213M",
-                        "label": 0,
+                        "label": 1,
                         "cohort": "bridges_like_external_validation_brca1",
                         "calibration_effect": "persistent_on_locked_test",
                     },
@@ -3900,6 +3900,12 @@ class StudyBenchmarkTests(unittest.TestCase):
                         "hgvs_p": "p.C1501Y",
                         "feature_alphamissense_pathogenicity": 0.91,
                         "feature_alphamissense_class": "likely_pathogenic",
+                    },
+                    {
+                        "gene": "BRCA1",
+                        "hgvs_p": "p.R213M",
+                        "feature_alphamissense_pathogenicity": 0.88,
+                        "feature_alphamissense_class": "pathogenic",
                     }
                 ]
             ).to_csv(alpha_subset, sep="\t", index=False)
@@ -3914,12 +3920,19 @@ class StudyBenchmarkTests(unittest.TestCase):
             manifest = json.loads(Path(exported["alphamissense_priority_enrichment_manifest_path"]).read_text(encoding="utf-8"))
             self.assertEqual(manifest["target_count"], 2)
             self.assertEqual(manifest["coordinate_ready_count"], 1)
-            self.assertEqual(manifest["matched_alphamissense_count"], 1)
+            self.assertEqual(manifest["matched_alphamissense_count"], 2)
+            self.assertEqual(manifest["priority_benchmark"]["n_complete_alphamissense_rows"], 2)
             coordinate_targets = pd.read_csv(exported["alphamissense_priority_coordinate_targets_path"])
             self.assertEqual(coordinate_targets.iloc[0]["chromosome"], "chr17")
             matched = pd.read_csv(exported["alphamissense_priority_matched_coverage_path"])
             self.assertIn("feature_alphamissense_pathogenicity", matched.columns)
+            overlay = pd.read_csv(exported["alphamissense_priority_functional_overlay_path"])
+            self.assertIn("alphamissense_label_alignment", overlay.columns)
+            benchmark = pd.read_csv(exported["alphamissense_priority_benchmark_metrics_path"])
+            self.assertIn("AlphaMissense priority overlay", set(benchmark["model"]))
+            self.assertTrue(Path(exported["alphamissense_priority_discordance_hypotheses_path"]).exists())
             self.assertTrue(Path(exported["alphamissense_priority_extractor_script_path"]).exists())
+            self.assertTrue(Path(exported["alphamissense_priority_aa_extractor_script_path"]).exists())
 
     def test_export_study_validation_lock_generates_manifest(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

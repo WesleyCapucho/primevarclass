@@ -11,6 +11,18 @@ from typing import Iterable, TextIO
 import pandas as pd
 
 
+GENE_UNIPROT = {
+    "BRCA1": "P38398",
+    "BRCA2": "P51587",
+    "TP53": "P04637",
+    "PTEN": "P60484",
+    "MSH2": "P43246",
+    "KRAS": "P01116",
+    "GCK": "P35557",
+    "F9": "P00740",
+}
+
+
 def _canonical_chrom(value: object) -> str:
     text = str(value or "").strip()
     if not text:
@@ -65,12 +77,51 @@ def _load_targets(path: Path) -> dict[str, dict[str, str]]:
     return target_map
 
 
+def _protein_variant(value: object) -> str:
+    text = str(value or "").strip()
+    if text.startswith("p."):
+        text = text[2:]
+    return text.replace("(", "").replace(")", "")
+
+
+def _base_uniprot(value: object) -> str:
+    return str(value or "").strip().split("-", 1)[0]
+
+
+def _load_protein_targets(path: Path) -> dict[str, dict[str, str]]:
+    targets = pd.read_csv(path, sep="\t" if path.suffix.lower() == ".tsv" else ",")
+    target_map: dict[str, dict[str, str]] = {}
+    for _, row in targets.iterrows():
+        gene = str(row.get("gene") or "").strip().upper()
+        hgvs_p = str(row.get("hgvs_p") or "").strip()
+        if not hgvs_p and row.get("variant"):
+            parts = str(row.get("variant")).split()
+            if len(parts) >= 2:
+                gene = gene or parts[0].upper()
+                hgvs_p = parts[1]
+        uniprot_id = str(row.get("uniprot_id") or row.get("meta_uniprot_accession") or "").strip()
+        uniprot_id = uniprot_id or GENE_UNIPROT.get(gene, "")
+        protein_variant = _protein_variant(row.get("protein_variant") or hgvs_p)
+        if not gene or not uniprot_id or not protein_variant:
+            continue
+        key = f"{_base_uniprot(uniprot_id)}:{protein_variant}"
+        target_map[key] = {
+            "gene": gene,
+            "hgvs_p": hgvs_p,
+            "uniprot_id": uniprot_id,
+            "protein_variant": protein_variant,
+            "variation_id": str(row.get("variant_id") or row.get("variation_id") or "").strip(),
+            "target_key": key,
+        }
+    return target_map
+
+
 def _iter_alphamissense_rows(handle: Iterable[str]) -> Iterable[dict[str, str]]:
     header: list[str] | None = None
     for line in handle:
         if not line.strip():
             continue
-        if line.startswith("##"):
+        if line.startswith("#") and not line.startswith("#CHROM"):
             continue
         if header is None:
             header = line.rstrip("\n").split("\t")
@@ -95,6 +146,7 @@ def extract_subset(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     scanned = 0
     matched = 0
+    matched_target_keys: set[str] = set()
     fieldnames = [
         "gene",
         "hgvs_p",
@@ -138,22 +190,106 @@ def extract_subset(
                     }
                 )
                 matched += 1
+                matched_target_keys.add(key)
                 if max_matches is not None and matched >= max_matches:
+                    break
+                if len(matched_target_keys) >= len(targets):
                     break
             if max_lines is not None and scanned >= max_lines:
                 break
-    return {"target_count": len(targets), "rows_scanned": scanned, "rows_matched": matched}
+    return {
+        "target_count": len(targets),
+        "rows_scanned": scanned,
+        "rows_matched": matched,
+        "unique_targets_matched": len(matched_target_keys),
+        "missing_targets": max(len(targets) - len(matched_target_keys), 0),
+    }
+
+
+def extract_aa_subset(
+    *,
+    alphamissense_input: str,
+    targets_path: Path,
+    output_path: Path,
+    max_lines: int | None = None,
+    max_matches: int | None = None,
+) -> dict[str, int]:
+    targets = _load_protein_targets(targets_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    scanned = 0
+    matched = 0
+    matched_target_keys: set[str] = set()
+    fieldnames = [
+        "gene",
+        "hgvs_p",
+        "feature_alphamissense_pathogenicity",
+        "feature_alphamissense_class",
+        "meta_alphamissense_transcript_id",
+        "meta_genome_build",
+        "meta_uniprot_accession",
+        "meta_chrom",
+        "meta_pos",
+        "meta_ref",
+        "meta_alt",
+        "meta_alphamissense_protein_variant",
+        "meta_clinvar_variation_id",
+        "target_key",
+    ]
+    with _open_text(alphamissense_input) as handle, output_path.open("w", newline="", encoding="utf-8") as out:
+        writer = csv.DictWriter(out, fieldnames=fieldnames, delimiter="\t")
+        writer.writeheader()
+        for row in _iter_alphamissense_rows(handle):
+            scanned += 1
+            row_uniprot = str(row.get("uniprot_id") or "").strip()
+            key = f"{_base_uniprot(row_uniprot)}:{_protein_variant(row.get('protein_variant'))}"
+            target = targets.get(key)
+            if target:
+                writer.writerow(
+                    {
+                        "gene": target["gene"],
+                        "hgvs_p": target["hgvs_p"],
+                        "feature_alphamissense_pathogenicity": row.get("am_pathogenicity", ""),
+                        "feature_alphamissense_class": row.get("am_class", ""),
+                        "meta_alphamissense_transcript_id": row.get("transcript_id", ""),
+                        "meta_genome_build": row.get("genome", ""),
+                        "meta_uniprot_accession": row.get("uniprot_id", ""),
+                        "meta_chrom": row.get("CHROM") or row.get("#CHROM", ""),
+                        "meta_pos": row.get("POS", ""),
+                        "meta_ref": row.get("REF", ""),
+                        "meta_alt": row.get("ALT", ""),
+                        "meta_alphamissense_protein_variant": row.get("protein_variant", ""),
+                        "meta_clinvar_variation_id": target["variation_id"],
+                        "target_key": key,
+                    }
+                )
+                matched += 1
+                matched_target_keys.add(key)
+                if max_matches is not None and matched >= max_matches:
+                    break
+                if len(matched_target_keys) >= len(targets):
+                    break
+            if max_lines is not None and scanned >= max_lines:
+                break
+    return {
+        "target_count": len(targets),
+        "rows_scanned": scanned,
+        "rows_matched": matched,
+        "unique_targets_matched": len(matched_target_keys),
+        "missing_targets": max(len(targets) - len(matched_target_keys), 0),
+    }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Extract a target-variant AlphaMissense subset by genomic coordinate.")
+    parser.add_argument("--mode", choices=["genomic", "aa"], default="genomic", help="Use genomic VCF coordinates or UniProt protein substitutions.")
     parser.add_argument("--alphamissense-input", required=True, help="Local file or URL, for example AlphaMissense_hg38.tsv.gz.")
     parser.add_argument("--targets", required=True, help="CSV with frozen variants and GRCh38 coordinates.")
     parser.add_argument("--output", default="data/raw/alphamissense/target_gene_alphamissense.tsv")
     parser.add_argument("--max-lines", type=int, default=None, help="Optional safety cap for smoke tests.")
     parser.add_argument("--max-matches", type=int, default=None, help="Optional stop after N matched rows.")
     args = parser.parse_args()
-    summary = extract_subset(
+    extractor = extract_aa_subset if args.mode == "aa" else extract_subset
+    summary = extractor(
         alphamissense_input=args.alphamissense_input,
         targets_path=Path(args.targets),
         output_path=Path(args.output),

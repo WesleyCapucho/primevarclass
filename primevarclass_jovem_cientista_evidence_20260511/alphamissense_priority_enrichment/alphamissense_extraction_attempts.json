@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-05-11T16:20:00Z",
+  "interpretation": "resolved_by_aa_substitution_extraction",
+  "summary": {
+    "matched_targets": 50,
+    "target_count": 50,
+    "coverage_percent": 100,
+    "final_status": "ready_to_benchmark",
+    "next_action": "Use the generated AlphaMissense priority subset as an independent functional predictor in the next BRCA benchmark rerun."
+  },
+  "attempts": [
+    {
+      "method": "AlphaMissense_aa_substitutions base-UniProt/protein extraction after official-comment parser correction",
+      "input": "https://storage.googleapis.com/dm_alphamissense/AlphaMissense_aa_substitutions.tsv.gz",
+      "target_count": 50,
+      "rows_scanned": 59830540,
+      "rows_matched": 50,
+      "unique_targets_matched": 50,
+      "missing_targets": 0,
+      "conclusion": "Protein-substitution extraction recovered all priority BRCA targets."
+    }
+  ]
+}
