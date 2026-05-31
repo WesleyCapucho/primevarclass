@@ -17,8 +17,7 @@ This repository was organized from the consolidated prototype you shared so it c
 - Study runner for publication-style benchmarking with external validation cohorts
 - Biological-discovery package to turn real public data into hotspot windows, review-upgrade candidates, and hypothesis variants
 - Protein-impact package to convert biological-discovery hits into proteomic/3D modeling queues, mechanism tags, assay suggestions, and prime-mechanistic rationale
-- Quantum-proteomics engine to turn protein-impact hits into QM/QM-MM/MD/docking target packages and job templates for deeper mechanistic investigation
-- Prime-guided quantum coupling layer to turn prime encodings into active-space seeds, shot ladders, and VQE initialization hints instead of leaving the prime signal as a passive score
+- Prime-guided coupling layer to turn prime encodings into structural active-space seeds instead of leaving the prime signal as a passive score
 - Validation-credibility closure package to consolidate evidence, proof layers, and remaining actions without overclaiming therapeutic readiness
 - Gene-expansion package to rank the strongest next genes for multicohort and multigene scaling beyond BRCA
 - Multigene-rollout package to turn gene expansion plus prime intelligence into a phased execution plan for the next real studies
@@ -268,15 +267,15 @@ primevarclass --build-protein-impact \
 
 This package exports a variant triage table, a modeling queue, region-level summaries, mechanism tags, recommended assays, and a prime-mechanistic alignment score so the prime-number encoding remains visible as a mechanistic differentiator.
 
-Generate a quantum-proteomics package for QM/QM-MM, local molecular dynamics, and docking follow-up:
+Generate a structural-proteomics package for local molecular dynamics and docking follow-up:
 
 ```bash
-primevarclass --build-quantum-proteomics \
+primevarclass --build-structural-proteomics \
   --protein-impact-manifest-path "primevarclass_protein_impact_results/protein_impact_manifest.json" \
-  --output-dir primevarclass_quantum_proteomics_results
+  --output-dir primevarclass_structural_proteomics_results
 ```
 
-This package does not claim therapeutic efficacy. It prioritizes quantum/structural hypotheses, exports target tables plus a prime-quantum bridge, and creates templates for Psi4, xTB, OpenMM, AutoDock Vina, Qiskit Nature VQE, PennyLane VQE, and OpenFermion-style VQE that must be completed with reviewed 3D coordinates, protonation states, charge states, active spaces, prime-guided seeds, and experimental controls before execution.
+This package does not claim therapeutic efficacy. It prioritizes structural hypotheses, exports target tables plus a prime-structural bridge, and creates templates for OpenMM and AutoDock Vina that must be completed with reviewed 3D coordinates, protonation states, charge states, and experimental controls before execution.
 
 Consolidate validation credibility across statistical, biological, structural, quantum, and multigene evidence layers:
 
