@@ -19,9 +19,34 @@ dependencies = [
   "uvicorn>=0.30",
 ]
 
+[project.optional-dependencies]
+boosting = [
+  "xgboost>=2.0",
+  "lightgbm>=4.0",
+]
+explain = [
+  "shap>=0.43",
+]
+all = [
+  "xgboost>=2.0",
+  "lightgbm>=4.0",
+  "shap>=0.43",
+]
+dev = [
+  "pytest>=7.0",
+  "ruff>=0.4",
+]
+
 [project.scripts]
 primevarclass = "primevarclass.cli:main"
 primevarclass-api = "primevarclass.api:main"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 140
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

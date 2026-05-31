@@ -4,6 +4,7 @@ from __future__ import annotations
 import math
 import os
 import re
+import warnings
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Tuple
 
@@ -25,6 +26,19 @@ from sklearn.metrics import (
 from sklearn.model_selection import StratifiedKFold, cross_val_predict, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+# Optional gradient boosting imports (graceful degradation)
+try:
+    from xgboost import XGBClassifier
+    _HAS_XGBOOST = True
+except ImportError:
+    _HAS_XGBOOST = False
+
+try:
+    from lightgbm import LGBMClassifier
+    _HAS_LIGHTGBM = True
+except ImportError:
+    _HAS_LIGHTGBM = False
 
 
 # ============================================================
@@ -112,7 +126,7 @@ EXCLUDED_LABELS = {"vus", "uncertain significance", "variant of uncertain signif
 ACMG_PATHOGENIC_LR_THRESHOLDS = {"supporting": 2.08, "moderate": 4.33, "strong": 18.7}
 ACMG_BENIGN_LR_THRESHOLDS = {"supporting": 0.48, "moderate": 0.23, "strong": 0.05}
 DEFAULT_MODEL_FAMILY = "random_forest"
-SUPPORTED_MODEL_FAMILIES = {"random_forest", "extra_trees", "logistic_regression"}
+SUPPORTED_MODEL_FAMILIES = {"random_forest", "extra_trees", "logistic_regression", "xgboost", "lightgbm"}
 MODEL_FAMILY_ALIASES = {
     "rf": "random_forest",
     "randomforest": "random_forest",
@@ -123,6 +137,12 @@ MODEL_FAMILY_ALIASES = {
     "logistic": "logistic_regression",
     "logreg": "logistic_regression",
     "logistic_regression": "logistic_regression",
+    "xgboost": "xgboost",
+    "xgb": "xgboost",
+    "gradient_boosting": "xgboost",
+    "lightgbm": "lightgbm",
+    "lgbm": "lightgbm",
+    "lgb": "lightgbm",
 }
 
 
@@ -778,6 +798,42 @@ def _build_estimator(model_family: str, random_state: int = 42):
             solver="liblinear",
             max_iter=2000,
             random_state=random_state,
+        )
+    if normalized_family == "xgboost":
+        if not _HAS_XGBOOST:
+            raise ImportError(
+                "XGBoost nao esta instalado. Instale com: pip install xgboost>=2.0"
+            )
+        return XGBClassifier(
+            n_estimators=300,
+            max_depth=6,
+            learning_rate=0.1,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            min_child_weight=2,
+            scale_pos_weight=1.0,
+            use_label_encoder=False,
+            eval_metric="logloss",
+            random_state=random_state,
+            n_jobs=DEFAULT_PARALLEL_JOBS,
+            verbosity=0,
+        )
+    if normalized_family == "lightgbm":
+        if not _HAS_LIGHTGBM:
+            raise ImportError(
+                "LightGBM nao esta instalado. Instale com: pip install lightgbm>=4.0"
+            )
+        return LGBMClassifier(
+            n_estimators=300,
+            max_depth=6,
+            learning_rate=0.1,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            min_child_samples=5,
+            is_unbalance=True,
+            random_state=random_state,
+            n_jobs=DEFAULT_PARALLEL_JOBS,
+            verbose=-1,
         )
     raise ValueError(f"Familia de modelo nao suportada: {model_family}")
 
