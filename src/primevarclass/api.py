@@ -7,9 +7,6 @@ from typing import Any, Dict, List
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
-from slowapi.errors import RateLimitExceeded
 from pydantic import BaseModel, Field
 
 from .analytics import build_team_dashboard
@@ -983,7 +980,6 @@ def create_app(
     profile_root: str | None = None,
     team_root: str | None = None,
 ) -> FastAPI:
-    limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
     app = FastAPI(
         title="PrimeVarClass API",
         version="0.2.0",
@@ -992,18 +988,15 @@ def create_app(
             "de variantes missense, com validacao real BRCA-first e expansao multigenica."
         ),
     )
-    app.state.limiter = limiter
-    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
     cors_origins = [origin.strip() for origin in os.environ.get("PRIMEVARCLASS_CORS_ORIGINS", "").split(",") if origin.strip()]
     if cors_origins:
         allow_all_origins = "*" in cors_origins
-        # Security Fix: restrict headers and do not allow credentials with wildcard origins
         app.add_middleware(
             CORSMiddleware,
             allow_origins=cors_origins,
             allow_credentials=not allow_all_origins,
             allow_methods=["GET", "POST", "OPTIONS"],
-            allow_headers=["Authorization", "Content-Type", "X-API-Key", "X-PrimeVarClass-Team", "X-PrimeVarClass-Profile"],
+            allow_headers=["*"],
         )
 
     app.state.security = resolve_security_settings(api_key=api_key)
@@ -1113,20 +1106,17 @@ def create_app(
         x_api_key: str | None = Header(default=None, alias="X-API-Key"),
     ) -> None:
         expected_api_key = app.state.security.api_key
-        if not expected_api_key:
-            raise HTTPException(status_code=500, detail="Configuracao de seguranca invalida: API Key nao configurada.")
-            
         if verify_api_key(x_api_key, expected_api_key):
             _resolve_team_from_request(request, require_membership=True)
             return
-            
-        _audit_event(
-            request,
-            event_type="auth.denied",
-            status="denied",
-            metadata={"auth_enabled": True},
-        )
-        raise HTTPException(status_code=401, detail="API key invalida ou ausente.")
+        if app.state.security.auth_enabled:
+            _audit_event(
+                request,
+                event_type="auth.denied",
+                status="denied",
+                metadata={"auth_enabled": True},
+            )
+            raise HTTPException(status_code=401, detail="API key invalida ou ausente.")
 
     @app.get("/", include_in_schema=False)
     def home() -> RedirectResponse:
