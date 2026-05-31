@@ -79,7 +79,7 @@ def run_shap_analysis(output_dir: Path):
     
     csv_path = output_dir / "shap_feature_importance.csv"
     feature_importance.to_csv(csv_path, index=False)
-    print(f"✅ Tabela de importância SHAP salva em: {csv_path}")
+    print(f"Tabela de importância SHAP salva em: {csv_path}")
     
     # 5. Gerar Summary Plot
     plt.figure(figsize=(10, 8))
@@ -90,7 +90,7 @@ def run_shap_analysis(output_dir: Path):
     plot_path = output_dir / "shap_summary_plot.png"
     plt.savefig(plot_path, dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"✅ Gráfico SHAP Summary salvo em: {plot_path}")
+    print(f"Gráfico SHAP Summary salvo em: {plot_path}")
     
     # 6. Gerar Narrativa
     report = [
@@ -118,7 +118,7 @@ def run_shap_analysis(output_dir: Path):
     
     report_path = output_dir / "shap_report.md"
     report_path.write_text("\n".join(report), encoding="utf-8")
-    print(f"✅ Relatório SHAP salvo em: {report_path}")
+    print(f"Relatório SHAP salvo em: {report_path}")
 
 if __name__ == "__main__":
     out_dir = Path("output/shap_analysis")
