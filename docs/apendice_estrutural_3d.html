@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Apêndice Visual 3D — PrimeVarClass | Estruturas BRCA1 e Mutações-Alvo</title>
+    <meta name="description" content="Visualização interativa 3D do domínio RING do BRCA1 para o projeto PrimeVarClass.">
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e17;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #header {
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #0d1321 0%, #1a1f35 100%);
+            border-bottom: 2px solid #00e5a0;
+            text-align: center;
+        }
+        #header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #00e5a0;
+            letter-spacing: 1px;
+        }
+        #header p {
+            font-size: 0.85rem;
+            color: #8899aa;
+            margin-top: 4px;
+        }
+        #controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            background: #111827;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 22px;
+            border: 1px solid #00e5a0;
+            background: transparent;
+            color: #00e5a0;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+        }
+        .btn:hover {
+            background: #00e5a0;
+            color: #0a0e17;
+        }
+        .btn.active {
+            background: #00e5a0;
+            color: #0a0e17;
+        }
+        #main-container {
+            flex: 1;
+            display: flex;
+            position: relative;
+        }
+        #viewer-container {
+            flex: 1;
+            position: relative;
+        }
+        #sidebar {
+            width: 340px;
+            background: #111827;
+            border-left: 1px solid #1e293b;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #sidebar h3 {
+            color: #00e5a0;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 8px;
+        }
+        #sidebar p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #b0bec5;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        .stat-label { color: #8899aa; font-size: 0.8rem; }
+        .stat-value { color: #ffffff; font-weight: 600; font-size: 0.85rem; }
+        #loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10,14,23,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.5s;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 4px solid #1e293b;
+            border-top-color: #00e5a0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .legend {
+            margin-top: 16px;
+            padding: 12px;
+            background: #1a1f35;
+            border-radius: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+        .legend-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>APÊNDICE ESTRUTURAL 3D — PRIMEVARCLASS</h1>
+        <p>Domínio RING do BRCA1 (PDB: 1JM7) | Mutações Patogênicas e Confiança Estrutural</p>
+    </div>
+
+    <div id="controls">
+        <button class="btn active" onclick="resetView(this)">Vista Geral (Cartoon)</button>
+        <button class="btn" onclick="focusMutation(this)">Mutação L100R (Patogênica)</button>
+        <button class="btn" onclick="showSurface(this)">Superfície Molecular</button>
+        <button class="btn" onclick="colorByBfactor(this)">Colorir B-factor</button>
+        <button class="btn" onclick="showZincSite(this)">Sítio de Zinco (Zn²⁺)</button>
+    </div>
+
+    <div id="main-container">
+        <div id="viewer-container">
+            <div id="loading-overlay">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <div id="sidebar">
+            <h3 id="panel-title">Informações Estruturais</h3>
+            <p id="panel-desc">Carregando estrutura cristalográfica do domínio RING do BRCA1 (PDB: 1JM7)...</p>
+
+            <div style="margin-top: 16px;">
+                <div class="stat-row">
+                    <span class="stat-label">PDB ID</span>
+                    <span class="stat-value">1JM7</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Gene</span>
+                    <span class="stat-value">BRCA1 (Homo sapiens)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Domínio</span>
+                    <span class="stat-value">RING finger (1-109)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Resolução</span>
+                    <span class="stat-value">1.85 Å (Raio-X)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Ligante</span>
+                    <span class="stat-value">2× Zn²⁺ (catalítico)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Parceiro</span>
+                    <span class="stat-value">BARD1 (heterodímero)</span>
+                </div>
+            </div>
+
+            <div class="legend" id="legend-box">
+                <h3 style="font-size: 0.85rem; margin-bottom: 8px;">Legenda</h3>
+                <div class="legend-item"><div class="legend-dot" style="background: #ff4444;"></div> Patogênico (L100R)</div>
+                <div class="legend-item"><div class="legend-dot" style="background: #44aaff;"></div> Hidrofílico (KD &lt; 0)</div>
+                <div class="legend-item"><div class="legend-dot" style="background: #ffaa00;"></div> Hidrofóbico (KD &gt; 0)</div>
+                <div class="legend-item"><div class="legend-dot" style="background: #aaaaaa;"></div> Zn²⁺ coordenação</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let viewer = null;
+        let structureLoaded = false;
+
+        function initViewer() {
+            const container = document.getElementById('viewer-container');
+            viewer = $3Dmol.createViewer(container, {
+                backgroundColor: '#0a0e17',
+                antialias: true
+            });
+
+            // Fetch PDB from RCSB
+            fetch('https://files.rcsb.org/download/1JM7.pdb')
+                .then(response => {
+                    if (!response.ok) throw new Error('Falha ao carregar PDB');
+                    return response.text();
+                })
+                .then(pdbData => {
+                    viewer.addModel(pdbData, "pdb");
+                    structureLoaded = true;
+                    resetView();
+                    document.getElementById('loading-overlay').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loading-overlay').style.display = 'none';
+                    }, 500);
+                    updatePanel(
+                        'Estrutura Carregada',
+                        'O domínio RING do BRCA1 (resíduos 1-109) forma um heterodímero com o BARD1, coordenando dois íons Zn²⁺ essenciais para a atividade E3 ubiquitina-ligase. Mutações neste domínio comprometem o reparo por Recombinação Homóloga (HRR).'
+                    );
+                })
+                .catch(err => {
+                    document.getElementById('panel-desc').innerText =
+                        'Erro ao carregar a estrutura: ' + err.message + '. Verifique sua conexão com a internet.';
+                    document.getElementById('loading-overlay').innerHTML =
+                        '<p style="color:#ff4444;font-size:1.1rem;">Falha no carregamento. Verifique a rede.</p>';
+                });
+        }
+
+        function setActiveBtn(btn) {
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        function updatePanel(title, desc) {
+            document.getElementById('panel-title').innerText = title;
+            document.getElementById('panel-desc').innerText = desc;
+        }
+
+        function resetView(btn) {
+            if (!structureLoaded) return;
+            setActiveBtn(btn);
+            viewer.removeAllLabels();
+            viewer.removeAllSurfaces();
+            viewer.setStyle({}, { cartoon: { color: 'spectrum' } });
+            viewer.zoomTo();
+            viewer.render();
+            updatePanel(
+                'Vista Geral — Cartoon',
+                'Representação em cartoon colorida pelo espectro (N-terminal → C-terminal). O domínio RING contém dois loops de coordenação de zinco (Cys3-His2-Cys3 e Cys3-Cys2-His-Cys). Resíduos hidrofóbicos no core mantêm a estabilidade estrutural.'
+            );
+        }
+
+        function focusMutation(btn) {
+            if (!structureLoaded) return;
+            setActiveBtn(btn);
+            viewer.removeAllLabels();
+            viewer.removeAllSurfaces();
+
+            // Background
+            viewer.setStyle({}, { cartoon: { color: '#555555', opacity: 0.6 } });
+
+            // Highlight Leu100 (stick + sphere)
+            viewer.setStyle({ resi: 100 }, {
+                stick: { colorscheme: 'greenCarbon', radius: 0.2 },
+                sphere: { radius: 0.6, color: '#ff4444' }
+            });
+
+            // Highlight neighboring residues
+            viewer.setStyle({ resi: [98, 99, 101, 102] }, {
+                stick: { color: '#ffaa00', radius: 0.15 }
+            });
+
+            viewer.addLabel("L100 (→R)", {
+                position: { resi: 100 },
+                backgroundColor: '#ff4444',
+                fontColor: 'white',
+                fontSize: 14,
+                borderThickness: 1,
+                borderColor: '#ffffff'
+            });
+
+            viewer.zoomTo({ resi: 100 }, 500);
+            viewer.render();
+
+            updatePanel(
+                'Mutação-Alvo: L100R',
+                'A leucina na posição 100 (Leu100) ocupa o núcleo hidrofóbico do domínio RING. A substituição L100R introduz uma arginina carregada positivamente (ΔCharge = +1, ΔVdW = +6.7 Å³), causando choque estérico severo e desestabilização termodinâmica (ΔΔG estimado > 3 kcal/mol). O Prime Gap para esta substituição é |61 − 2| = 59, sinalizando alta distância no espaço primo. A Distância de Grantham correspondente é 145 (radical).'
+            );
+        }
+
+        function showSurface(btn) {
+            if (!structureLoaded) return;
+            setActiveBtn(btn);
+            viewer.removeAllLabels();
+            viewer.removeAllSurfaces();
+            viewer.setStyle({}, { cartoon: { color: 'spectrum', opacity: 0.3 } });
+            viewer.addSurface($3Dmol.SurfaceType.VDW, {
+                opacity: 0.7,
+                color: '#2288cc'
+            });
+            viewer.zoomTo();
+            viewer.render();
+
+            updatePanel(
+                'Superfície de Van der Waals',
+                'A superfície molecular revela o envelope estérico do domínio RING. Cavidades internas acomodam os íons Zn²⁺. Resíduos buried (SASA < 25 Å²) são intolerantes a substituições volumosas — mutações nessas posições têm alta probabilidade de patogenicidade no modelo PrimeVarClass.'
+            );
+        }
+
+        function colorByBfactor(btn) {
+            if (!structureLoaded) return;
+            setActiveBtn(btn);
+            viewer.removeAllLabels();
+            viewer.removeAllSurfaces();
+
+            // B-factor coloring: blue=low (rigid), red=high (flexible)
+            viewer.setStyle({}, {
+                cartoon: {
+                    colorscheme: { prop: 'b', gradient: 'rwb', min: 10, max: 60 }
+                }
+            });
+            viewer.zoomTo();
+            viewer.render();
+
+            updatePanel(
+                'Coloração por B-factor',
+                'Regiões azuis indicam alta rigidez cristalográfica (B-factor baixo) — equivalentes a alta confiança estrutural (pLDDT > 90 no AlphaFold2). Regiões vermelhas indicam flexibilidade (loops e terminais). Mutações em zonas azuis (rígidas) tendem a ser mais disruptivas e patogênicas.'
+            );
+        }
+
+        function showZincSite(btn) {
+            if (!structureLoaded) return;
+            setActiveBtn(btn);
+            viewer.removeAllLabels();
+            viewer.removeAllSurfaces();
+
+            viewer.setStyle({}, { cartoon: { color: '#445566', opacity: 0.5 } });
+
+            // Zinc ions
+            viewer.setStyle({ elem: 'Zn' }, {
+                sphere: { radius: 1.2, color: '#aaaaaa' }
+            });
+
+            // Coordinating cysteines and histidines
+            const zincCoords = [24, 27, 44, 47, 39, 41, 61, 64];
+            viewer.setStyle({ resi: zincCoords }, {
+                stick: { colorscheme: 'Jmol', radius: 0.18 }
+            });
+
+            zincCoords.forEach(r => {
+                viewer.addLabel("C/H" + r, {
+                    position: { resi: r },
+                    backgroundColor: '#333333',
+                    fontColor: '#00e5a0',
+                    fontSize: 10
+                });
+            });
+
+            viewer.addLabel("Zn²⁺", {
+                position: { elem: 'Zn' },
+                backgroundColor: '#aaaaaa',
+                fontColor: 'black',
+                fontSize: 14,
+                borderThickness: 1
+            });
+
+            viewer.zoomTo({ elem: 'Zn' }, 300);
+            viewer.render();
+
+            updatePanel(
+                'Sítios de Coordenação do Zinco',
+                'O domínio RING coordena dois íons Zn²⁺ através de resíduos Cys e His conservados. A perda de qualquer resíduo de coordenação (ex: C24Y, C27R) abole a ligação ao zinco e destrói a função E3 ligase. Essas mutações são classificadas como Patogênicas pelo ACMG/AMP (critério PS3).'
+            );
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', initViewer);
+    </script>
+</body>
+</html>
