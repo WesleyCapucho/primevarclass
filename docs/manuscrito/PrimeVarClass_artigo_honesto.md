@@ -86,6 +86,12 @@ Mapeamos cada posição de resíduo aos domínios funcionais curados das proteí
 
 Definimos duas características: `functional_domain` (categórica) e `in_critical_domain` (binária). O ponto essencial é que essas características são funções de **região**, não do índice único do resíduo — portanto codificam biologia transferível em vez de memorizar quais posições exatas foram patogênicas no treino.
 
+As proteínas-alvo e seus domínios funcionais são apresentados na Figura 1, a partir de estruturas experimentais reais depositadas no Protein Data Bank (PDB).
+
+![Figura 1](figuras/fig_protein_structures.png)
+
+**Figura 1.** Estruturas tridimensionais experimentais das proteínas-alvo (traçado do esqueleto Cα a partir de coordenadas reais do PDB). **BRCA1 — domínio RING** (PDB 1JM7): heterodímero BRCA1 (laranja)/BARD1 (cinza); as cisteínas de coordenação de zinco (vermelho), dispostas em torno dos dois íons de zinco (esferas escuras), formam o núcleo estrutural onde se concentram variantes patogênicas de perda de função (por exemplo, Cys61 e Cys64). **BRCA1 — repetições BRCT** (PDB 1JNX): domínio crítico C-terminal de reconhecimento de fosfopeptídeos. **BRCA2 — domínio de ligação ao DNA** (PDB 1MJE): BRCA2 (azul) em complexo com DSS1 (cinza) e ssDNA (laranja), conforme Yang et al. (2002).
+
 ### 2.5 Protocolo de validação anti-vazamento
 
 Adotamos dois níveis de avaliação:
@@ -160,51 +166,51 @@ Sanidade biológica: a taxa de patogenicidade dentro de domínios críticos é d
 
 DeLong (domínio vs bioquímico): p = 3,2 × 10⁻⁹ (interno) e **p = 1,8 × 10⁻¹³** (externo). Decisivamente, o modelo de domínio (0,847) **supera** o de posição bruta (0,791) *justamente nas coortes externas* — ou seja, o sinal de região **transfere-se** para dados novos, enquanto a posição **memoriza** e falha ao generalizar. Este é o resultado central do trabalho.
 
-As Figuras 1 e 2 ilustram a base biológica desse resultado. A Figura 1 mapeia as variantes observadas sobre a arquitetura de domínios de BRCA1 e BRCA2: as variantes patogênicas (riscos vermelhos, inferiores) concentram-se visivelmente nas regiões críticas — RING e repetições BRCT em BRCA1; domínio de ligação ao DNA em BRCA2 —, enquanto as benignas (superiores) espalham-se pelas regiões ligantes. A Figura 2 quantifica o padrão: a fração de variantes patogênicas é de **44,5%** (n = 373) dentro de domínios críticos, contra **6,8%** (n = 146) em domínios não críticos e **10,0%** (n = 350) em regiões ligantes.
+As Figuras 2 e 3 ilustram a base biológica desse resultado. A Figura 2 mapeia as variantes observadas sobre a arquitetura de domínios de BRCA1 e BRCA2: as variantes patogênicas (riscos vermelhos, inferiores) concentram-se visivelmente nas regiões críticas — RING e repetições BRCT em BRCA1; domínio de ligação ao DNA em BRCA2 —, enquanto as benignas (superiores) espalham-se pelas regiões ligantes. A Figura 3 quantifica o padrão: a fração de variantes patogênicas é de **44,5%** (n = 373) dentro de domínios críticos, contra **6,8%** (n = 146) em domínios não críticos e **10,0%** (n = 350) em regiões ligantes.
 
-![Figura 1](figuras/fig_domain_architecture.png)
+![Figura 2](figuras/fig_domain_architecture.png)
 
-**Figura 1.** Arquitetura de domínios funcionais de BRCA1 (P38398, 1863 aa) e BRCA2 (P51587, 3418 aa), com as variantes reais da coorte interna sobrepostas. Retângulos vermelhos = regiões críticas (RING, BRCT, DBD); azuis = demais domínios anotados. Riscos: patogênicas (abaixo, vermelho) versus benignas (acima, verde-água).
+**Figura 2.** Arquitetura de domínios funcionais de BRCA1 (P38398, 1863 aa) e BRCA2 (P51587, 3418 aa), com as variantes reais da coorte interna sobrepostas. Retângulos vermelhos = regiões críticas (RING, BRCT, DBD); azuis = demais domínios anotados. Riscos: patogênicas (abaixo, vermelho) versus benignas (acima, verde-água).
 
-![Figura 2](figuras/fig_pathogenicity_by_domain.png)
+![Figura 3](figuras/fig_pathogenicity_by_domain.png)
 
-**Figura 2.** Fração de variantes patogênicas por região funcional na coorte interna. O contraste entre domínios críticos (~45%) e as demais regiões (~7–10%) é a base biológica do sinal de domínio.
+**Figura 3.** Fração de variantes patogênicas por região funcional na coorte interna. O contraste entre domínios críticos (~45%) e as demais regiões (~7–10%) é a base biológica do sinal de domínio.
 
 ### 3.4 Robustez estatística: bootstrap, permutação, estabilidade e calibração
 
 Para assegurar que a vantagem do modelo consciente de domínio não decorre do acaso nem de uma partição específica dos dados, executamos uma bateria de robustez sobre as coortes reais.
 
-**Intervalos de confiança por bootstrap (B = 2000).** Na generalização externa, a AUC do modelo domínio-consciente é 0,847 (IC95% 0,810–0,881), **sem sobreposição** com o intervalo do modelo bioquímico (0,717; IC95% 0,668–0,760). A diferença de AUC é de **+0,131** (IC95% 0,097–0,167) sobre o bioquímico e **+0,056** (IC95% 0,029–0,084) sobre a posição bruta; em nenhuma das 2000 reamostragens a diferença foi ≤ 0 (p < 0,0005 em ambos os casos). A distribuição bootstrap das três AUCs é mostrada na Figura 3.
+**Intervalos de confiança por bootstrap (B = 2000).** Na generalização externa, a AUC do modelo domínio-consciente é 0,847 (IC95% 0,810–0,881), **sem sobreposição** com o intervalo do modelo bioquímico (0,717; IC95% 0,668–0,760). A diferença de AUC é de **+0,131** (IC95% 0,097–0,167) sobre o bioquímico e **+0,056** (IC95% 0,029–0,084) sobre a posição bruta; em nenhuma das 2000 reamostragens a diferença foi ≤ 0 (p < 0,0005 em ambos os casos). A distribuição bootstrap das três AUCs é mostrada na Figura 4.
 
-**Teste de permutação (N = 2000).** Permutando os rótulos externos para construir a distribuição sob a hipótese nula, a AUC nula tem média 0,501; a AUC observada (0,847) situa-se muito além dela, com **p = 5 × 10⁻⁴** (o mínimo detectável com N = 2000). O desempenho não é atribuível ao acaso (Figura 4).
+**Teste de permutação (N = 2000).** Permutando os rótulos externos para construir a distribuição sob a hipótese nula, a AUC nula tem média 0,501; a AUC observada (0,847) situa-se muito além dela, com **p = 5 × 10⁻⁴** (o mínimo detectável com N = 2000). O desempenho não é atribuível ao acaso (Figura 5).
 
-**Estabilidade entre sementes.** Repetindo a validação cruzada bloqueada por posição em **12 sementes independentes**, a AUC média é **0,828 ± 0,005** (domínio), 0,818 ± 0,006 (posição bruta) e 0,763 ± 0,005 (bioquímico): o modelo de domínio é consistentemente superior, com variabilidade mínima (Figura 5).
+**Estabilidade entre sementes.** Repetindo a validação cruzada bloqueada por posição em **12 sementes independentes**, a AUC média é **0,828 ± 0,005** (domínio), 0,818 ± 0,006 (posição bruta) e 0,763 ± 0,005 (bioquímico): o modelo de domínio é consistentemente superior, com variabilidade mínima (Figura 6).
 
-**Calibração.** O escore de Brier do modelo domínio-consciente nas coortes externas é **0,108**, e a curva de confiabilidade acompanha a diagonal (Figura 6), indicando probabilidades bem calibradas — propriedade importante para uso como apoio à decisão, e não apenas ordenação.
+**Calibração.** O escore de Brier do modelo domínio-consciente nas coortes externas é **0,108**, e a curva de confiabilidade acompanha a diagonal (Figura 7), indicando probabilidades bem calibradas — propriedade importante para uso como apoio à decisão, e não apenas ordenação.
 
-![Figura 3](figuras/fig_bootstrap_auc.png)
+![Figura 4](figuras/fig_bootstrap_auc.png)
 
-**Figura 3.** Distribuição bootstrap (B = 2000) da AUC nas coortes externas para os três modelos. A separação entre o modelo de domínio (verde) e o bioquímico (cinza) é completa.
+**Figura 4.** Distribuição bootstrap (B = 2000) da AUC nas coortes externas para os três modelos. A separação entre o modelo de domínio (verde) e o bioquímico (cinza) é completa.
 
-![Figura 4](figuras/fig_permutation.png)
+![Figura 5](figuras/fig_permutation.png)
 
-**Figura 4.** Teste de permutação (N = 2000). A AUC observada (linha verde) está muito além da distribuição sob rótulos permutados (p = 5 × 10⁻⁴).
+**Figura 5.** Teste de permutação (N = 2000). A AUC observada (linha verde) está muito além da distribuição sob rótulos permutados (p = 5 × 10⁻⁴).
 
-![Figura 5](figuras/fig_repeated_cv.png)
+![Figura 6](figuras/fig_repeated_cv.png)
 
-**Figura 5.** Estabilidade da AUC em 12 sementes de validação cruzada bloqueada por posição.
+**Figura 6.** Estabilidade da AUC em 12 sementes de validação cruzada bloqueada por posição.
 
-![Figura 6](figuras/fig_calibration.png)
+![Figura 7](figuras/fig_calibration.png)
 
-**Figura 6.** Curva de calibração (confiabilidade) e escore de Brier do modelo domínio-consciente nas coortes externas.
+**Figura 7.** Curva de calibração (confiabilidade) e escore de Brier do modelo domínio-consciente nas coortes externas.
 
-![Figura 7](figuras/fig_roc_external.png)
+![Figura 8](figuras/fig_roc_external.png)
 
-**Figura 7.** Curvas ROC nas coortes externas para os três modelos comparados.
+**Figura 8.** Curvas ROC nas coortes externas para os três modelos comparados.
 
 ### 3.5 Meta-análise de generalização entre coortes independentes
 
-Para quantificar a robustez de forma conservadora, tratamos cada uma das quatro coortes externas como um "estudo" independente e agrupamos suas AUCs por um modelo de **efeitos aleatórios** (estimador DerSimonian-Laird sobre a AUC em escala logit; incerteza por bootstrap). O resultado (Figura 8, Tabela 4) é honesto e informativo.
+Para quantificar a robustez de forma conservadora, tratamos cada uma das quatro coortes externas como um "estudo" independente e agrupamos suas AUCs por um modelo de **efeitos aleatórios** (estimador DerSimonian-Laird sobre a AUC em escala logit; incerteza por bootstrap). O resultado (Figura 9, Tabela 4) é honesto e informativo.
 
 **Tabela 4. Meta-análise da AUC externa por coorte (modelo domínio-consciente).**
 
@@ -218,9 +224,9 @@ Para quantificar a robustez de forma conservadora, tratamos cada uma das quatro 
 
 A AUC agrupada é **0,801** (IC95% 0,638–0,902), com **alta heterogeneidade** (I² = 88,2%; Q = 25,5; p < 0,001). O modelo é **excelente nas coortes de painel especialista** (0,864–0,888), precisamente onde os rótulos têm máxima confiança, e mais fraco em uma coorte externa de BRCA1 (0,599). Reportamos essa heterogeneidade de forma explícita: ela mostra que o desempenho depende da qualidade e composição da coorte, e que a generalização, embora forte no conjunto agregado e nas coortes de especialista, **não é uniforme**. Discutimos as implicações em §4.1.
 
-![Figura 8](figuras/fig_meta_forest.png)
+![Figura 9](figuras/fig_meta_forest.png)
 
-**Figura 8.** Forest plot da meta-análise de generalização externa. Quadrados = AUC por coorte (com IC95%); losango = estimativa agrupada por efeitos aleatórios.
+**Figura 9.** Forest plot da meta-análise de generalização externa. Quadrados = AUC por coorte (com IC95%); losango = estimativa agrupada por efeitos aleatórios.
 
 ### 3.6 Camada de aprendizado profundo autêntico (ESM-2), implementada no sistema
 
@@ -298,14 +304,15 @@ Todos os resultados derivam de dados **públicos** (ClinVar, painéis de especia
 
 ## Lista de Figuras e Tabelas
 
-- **Figura 1.** Arquitetura de domínios funcionais de BRCA1/BRCA2 com variantes sobrepostas.
-- **Figura 2.** Fração de variantes patogênicas por região funcional.
-- **Figura 3.** Distribuição bootstrap (B = 2000) da AUC externa.
-- **Figura 4.** Teste de permutação (N = 2000).
-- **Figura 5.** Estabilidade da AUC em 12 sementes de validação cruzada.
-- **Figura 6.** Curva de calibração e escore de Brier.
-- **Figura 7.** Curvas ROC nas coortes externas.
-- **Figura 8.** Forest plot da meta-análise de generalização externa.
+- **Figura 1.** Estruturas 3D experimentais das proteínas-alvo (BRCA1 RING/BRCT; BRCA2 DBD–DSS1–ssDNA).
+- **Figura 2.** Arquitetura de domínios funcionais de BRCA1/BRCA2 com variantes sobrepostas.
+- **Figura 3.** Fração de variantes patogênicas por região funcional.
+- **Figura 4.** Distribuição bootstrap (B = 2000) da AUC externa.
+- **Figura 5.** Teste de permutação (N = 2000).
+- **Figura 6.** Estabilidade da AUC em 12 sementes de validação cruzada.
+- **Figura 7.** Curva de calibração e escore de Brier.
+- **Figura 8.** Curvas ROC nas coortes externas.
+- **Figura 9.** Forest plot da meta-análise de generalização externa.
 - **Tabela 1.** Desempenho por conjunto de características (refutação dos primos).
 - **Tabela 2.** Comparações pareadas (DeLong).
 - **Tabela 3.** Modelo consciente de domínio: CV bloqueada por posição e generalização externa.
