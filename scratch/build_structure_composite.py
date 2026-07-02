@@ -11,9 +11,9 @@ from PIL import Image, ImageChops
 
 OUT = "primevarclass_manuscript_analysis/fig_protein_structures.png"
 PANELS = [
-    ("scratch/rcsb/1JM7.jpeg", "BRCA1 — domínio RING\n(PDB 1JM7: BRCA1 + BARD1; íons de zinco)"),
-    ("scratch/rcsb/1JNX.jpeg", "BRCA1 — repetições BRCT\n(PDB 1JNX: domínio crítico C-terminal)"),
-    ("scratch/rcsb/1MJE.jpeg", "BRCA2 — domínio de ligação ao DNA\n(PDB 1MJE: BRCA2 + DSS1 + ssDNA)"),
+    ("scratch/pymol/1JM7.png", "BRCA1 — domínio RING (PDB 1JM7)\nBRCA1 (verde) + BARD1 (ciano); Zn (roxo); Cys em vermelho"),
+    ("scratch/pymol/1JNX.png", "BRCA1 — repetições BRCT (PDB 1JNX)\ndomínio crítico C-terminal (N→C: azul→vermelho)"),
+    ("scratch/pymol/1MJE.png", "BRCA2 — domínio de ligação ao DNA (PDB 1MJE)\nBRCA2 + DSS1; ssDNA (laranja)"),
 ]
 
 
@@ -33,7 +33,7 @@ for ax, (path, title) in zip(axes, PANELS):
     ax.imshow(trim(Image.open(path)))
     ax.set_title(title, fontsize=8.5)
     ax.axis("off")
-fig.text(0.5, 0.02, "Representação em cartoon de estruturas experimentais reais. Imagens: RCSB Protein Data Bank.",
+fig.text(0.5, 0.02, "Representação em cartoon de estruturas experimentais reais do PDB, renderizadas com PyMOL (open-source).",
          ha="center", fontsize=7.5, style="italic", color="#444444")
 plt.tight_layout(rect=(0, 0.04, 1, 1))
 plt.savefig(OUT, bbox_inches="tight", facecolor="white")
