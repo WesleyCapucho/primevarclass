@@ -90,7 +90,7 @@ As proteínas-alvo e seus domínios funcionais são apresentados na Figura 1, a 
 
 ![Figura 1](figuras/fig_protein_structures.png)
 
-**Figura 1.** Estruturas tridimensionais experimentais das proteínas-alvo (traçado do esqueleto Cα a partir de coordenadas reais do PDB). **BRCA1 — domínio RING** (PDB 1JM7): heterodímero BRCA1 (laranja)/BARD1 (cinza); as cisteínas de coordenação de zinco (vermelho), dispostas em torno dos dois íons de zinco (esferas escuras), formam o núcleo estrutural onde se concentram variantes patogênicas de perda de função (por exemplo, Cys61 e Cys64). **BRCA1 — repetições BRCT** (PDB 1JNX): domínio crítico C-terminal de reconhecimento de fosfopeptídeos. **BRCA2 — domínio de ligação ao DNA** (PDB 1MJE): BRCA2 (azul) em complexo com DSS1 (cinza) e ssDNA (laranja), conforme Yang et al. (2002).
+**Figura 1.** Estruturas tridimensionais experimentais das proteínas-alvo, em representação de *cartoon* (estruturas reais depositadas no Protein Data Bank; imagens do RCSB PDB). **BRCA1 — domínio RING** (PDB 1JM7): heterodímero BRCA1 (laranja) / BARD1 (verde), com os dois íons de zinco que estabilizam o domínio; é a região onde se concentram variantes patogênicas de perda de função (por exemplo, Cys61 e Cys64). **BRCA1 — repetições BRCT** (PDB 1JNX): domínio crítico C-terminal de reconhecimento de fosfopeptídeos (coloração do N-terminal, azul, ao C-terminal, vermelho). **BRCA2 — domínio de ligação ao DNA** (PDB 1MJE): BRCA2 (roxo) em complexo com DSS1 (verde) e ssDNA (laranja), conforme Yang et al. (2002). As três regiões destacadas são os domínios funcionais críticos usados pelo modelo consciente de domínio.
 
 ### 2.5 Protocolo de validação anti-vazamento
 
