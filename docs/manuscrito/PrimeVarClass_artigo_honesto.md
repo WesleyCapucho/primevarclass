@@ -18,12 +18,6 @@ A interpretação de variantes de significado incerto (VUS) em genes de predispo
 
 **Palavras-chave:** classificação de variantes de significado incerto; BRCA1/BRCA2; validação externa; domínios funcionais de proteínas; inteligência artificial em saúde.
 
-## Abstract
-
-Interpreting variants of uncertain significance (VUS) in cancer-predisposition genes such as *BRCA1* and *BRCA2* is a clinical and research bottleneck. We present **PrimeVarClass**, an explainable AI system for prioritising *missense* variants, built on a principle of methodological rigour and scientific honesty. We began with an original hypothesis — encoding amino acids as prime numbers — and tested it on real ClinVar/expert-panel/gnomAD data. The hypothesis was **transparently refuted**: prime-derived features underperformed a plain amino-acid identity model (AUC 0.742 vs 0.902) and *lowered* accuracy when added to a biochemical model (0.834 → 0.810; DeLong p < 0.0001). We diagnosed a **positional-leakage trap** whereby the raw residue index memorises the training set (internal AUC 0.885) but collapses externally. We then built a **domain-aware** classifier that replaces raw position with UniProt functional-region features (BRCA1 RING/BRCT, BRCA2 DNA-binding domain). It **generalises to independent external cohorts** at AUC **0.847**, beating both the biochemical baseline (0.717) and the raw-position model (0.791; DeLong p = 1.8 × 10⁻¹³), indicating transferable biology rather than memorisation. The main contribution is an honest, auditable, generalisable method to support responsible genetic research.
-
-**Keywords:** variant classification; BRCA1; BRCA2; machine learning; external validation; data leakage; protein domains; explainable AI; precision health.
-
 ---
 
 ## 1. Introdução
