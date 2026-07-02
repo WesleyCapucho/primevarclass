@@ -41,10 +41,10 @@ for hs, sz in [("Heading 1", 14), ("Heading 2", 12), ("Heading 3", 12), ("Title"
 sec = doc.sections[0]
 sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)
 for m in ("top_margin", "bottom_margin"):
-    setattr(sec, m, Cm(2.5))
+    setattr(sec, m, Cm(2.0))
 for m in ("left_margin", "right_margin"):
-    setattr(sec, m, Cm(3.0))
-CONTENT_CM = 13.0
+    setattr(sec, m, Cm(2.5))
+CONTENT_CM = 11.0
 
 INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*]+?\*|`[^`]+?`)")
 
