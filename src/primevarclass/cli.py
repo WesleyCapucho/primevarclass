@@ -31,7 +31,6 @@ from .multigene_study_factory import export_multigene_study_factory
 from .protein_impact import export_protein_impact_package
 from .prospective_validation_closure import export_prospective_validation_closure_package
 from .public_sync_closure import export_public_sync_closure_package
-from .quantum_proteomics import export_quantum_proteomics_package
 from .real_data_preparation import export_real_data_preparation_bundle
 from .public_study_runner import run_public_benchmark_pipeline
 from .study_compare import build_study_comparison, export_study_comparison
@@ -53,7 +52,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--build-multigene-study-factory", action="store_true", help="Gerar scaffolds de estudos reais por gene a partir do rollout multigenico")
     parser.add_argument("--build-biological-discovery", action="store_true", help="Gerar um pacote de hotspots, variantes prioritarias e hipoteses funcionais a partir do manifesto de dados reais")
     parser.add_argument("--build-protein-impact", action="store_true", help="Gerar uma fila mecanistica para proteomica/modelagem 3D a partir do biological-discovery")
-    parser.add_argument("--build-quantum-proteomics", action="store_true", help="Gerar alvos QM/QM-MM/MD/docking a partir do protein-impact")
     parser.add_argument("--build-multigene-annotation-enrichment", action="store_true", help="Gerar matriz multigenica linha a linha com coordenadas, gnomAD e MaveDB")
     parser.add_argument("--build-gnomad-gene-subset", action="store_true", help="Baixar subset local amplo do gnomAD por genes-alvo via API publica")
     parser.add_argument("--build-public-sync-closure", action="store_true", help="Gerar cache/fila retomavel para sync publico gnomAD/MaveDB")
@@ -86,7 +84,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--multigene-real-benchmark-manifest-path", type=str, default=None, help="Manifesto do benchmark multigenico real")
     parser.add_argument("--multigene-annotation-enrichment-manifest-path", type=str, default=None, help="Manifesto do enriquecimento multigenico linha a linha")
     parser.add_argument("--public-sync-closure-manifest-path", type=str, default=None, help="Manifesto do fechamento de sync publico")
-    parser.add_argument("--protein-impact-manifest-path", type=str, default=None, help="Manifesto do protein-impact para gerar alvos quantum proteomics")
+    parser.add_argument("--protein-impact-manifest-path", type=str, default=None, help="Manifesto do protein-impact para etapas subsequentes")
     parser.add_argument("--brca1-structural-campaign-manifest-path", type=str, default=None, help="Manifesto da campanha estrutural BRCA1")
     parser.add_argument("--brca1-engine-execution-manifest-path", type=str, default=None, help="Manifesto da execucao/preflight BRCA1 com engines")
     parser.add_argument("--brca1-fragment-preparation-manifest-path", type=str, default=None, help="Manifesto do preparo de fragmentos BRCA1 AlphaFold/xTB")
@@ -95,10 +93,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--prospective-validation-closure-manifest-path", type=str, default=None, help="Manifesto do fechamento prospectivo/experimental")
     parser.add_argument("--validation-credibility-closure-manifest-path", type=str, default=None, help="Manifesto do fechamento de validacao e credibilidade")
     parser.add_argument("--independent-data-expansion-manifest-path", type=str, default=None, help="Manifesto do plano de bancos independentes para fechar staging local")
-    parser.add_argument("--quantum-proteomics-manifest-path", type=str, default=None, help="Manifesto do quantum-proteomics para fechamento de credibilidade")
     parser.add_argument("--claim-strength-manifest-path", type=str, default=None, help="Manifesto opcional do claim-strength para fechamento de credibilidade")
     parser.add_argument("--max-modeling-variants", type=int, default=25, help="Numero maximo de variantes na fila de modelagem proteica/3D")
-    parser.add_argument("--max-quantum-targets", type=int, default=12, help="Numero maximo de alvos QM/QM-MM/MD/docking no pacote quantum proteomics")
     parser.add_argument("--max-live-gnomad-queries", type=int, default=48, help="Numero maximo de consultas live gnomAD para enriquecimento multigenico")
     parser.add_argument("--skip-live-gnomad", action="store_true", help="Nao consultar gnomAD ao vivo no enriquecimento multigenico")
     parser.add_argument("--gnomad-batch-size", type=int, default=25, help="Tamanho do lote para o runner retomavel de sync gnomAD")
@@ -276,19 +272,6 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Protein impact report: {results['protein_impact_report_markdown_path']}")
         print(f"Protein modeling queue: {results['protein_modeling_queue_path']}")
         return 0
-    if args.build_quantum_proteomics:
-        if not args.protein_impact_manifest_path:
-            parser.error("--build-quantum-proteomics exige --protein-impact-manifest-path.")
-        results = export_quantum_proteomics_package(
-            protein_impact_manifest_path=args.protein_impact_manifest_path,
-            output_dir=args.output_dir,
-            max_quantum_targets=args.max_quantum_targets,
-        )
-        print("PrimeVarClass quantum-proteomics package finished.")
-        print(f"Quantum proteomics manifest: {results['quantum_proteomics_manifest_path']}")
-        print(f"Quantum targets: {results['quantum_targets_path']}")
-        print(f"Quantum job templates: {results['quantum_job_templates_dir']}")
-        return 0
     if args.build_brca1_engine_execution:
         if not args.brca1_structural_campaign_manifest_path:
             parser.error("--build-brca1-engine-execution exige --brca1-structural-campaign-manifest-path.")
@@ -377,7 +360,6 @@ def main(argv: list[str] | None = None) -> int:
             prime_intelligence_manifest_path=args.prime_intelligence_manifest_path,
             biological_discovery_manifest_path=args.biological_discovery_manifest_path,
             protein_impact_manifest_path=args.protein_impact_manifest_path,
-            quantum_proteomics_manifest_path=args.quantum_proteomics_manifest_path,
             multigene_rollout_manifest_path=args.multigene_rollout_manifest_path,
             brca1_engine_execution_manifest_path=args.brca1_engine_execution_manifest_path,
             multigene_real_benchmark_manifest_path=args.multigene_real_benchmark_manifest_path,
@@ -471,7 +453,6 @@ def main(argv: list[str] | None = None) -> int:
             prime_intelligence_manifest_path=args.prime_intelligence_manifest_path,
             biological_discovery_manifest_path=args.biological_discovery_manifest_path,
             protein_impact_manifest_path=args.protein_impact_manifest_path,
-            quantum_proteomics_manifest_path=args.quantum_proteomics_manifest_path,
             brca1_engine_execution_manifest_path=args.brca1_engine_execution_manifest_path,
             brca1_fragment_preparation_manifest_path=args.brca1_fragment_preparation_manifest_path,
             brca1_paired_mutant_execution_manifest_path=args.brca1_paired_mutant_execution_manifest_path,

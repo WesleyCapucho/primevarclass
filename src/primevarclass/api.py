@@ -42,7 +42,6 @@ from .multigene_study_factory import export_multigene_study_factory
 from .protein_impact import export_protein_impact_package
 from .prospective_validation_closure import export_prospective_validation_closure_package
 from .public_sync_closure import export_public_sync_closure_package
-from .quantum_proteomics import export_quantum_proteomics_package
 from .profiles import PrimeVarClassProfileStore
 from .public_study_runner import run_public_benchmark_pipeline
 from .roadmap import build_roadmap_progress
@@ -281,18 +280,11 @@ class ProteinImpactRequest(BaseModel):
     max_modeling_variants: int = 25
 
 
-class QuantumProteomicsRequest(BaseModel):
-    protein_impact_manifest_path: str
-    output_dir: str = "primevarclass_quantum_proteomics_results"
-    max_quantum_targets: int = 12
-
-
 class ValidationCredibilityClosureRequest(BaseModel):
     output_dir: str = "primevarclass_validation_credibility_closure_results"
     prime_intelligence_manifest_path: str | None = None
     biological_discovery_manifest_path: str | None = None
     protein_impact_manifest_path: str | None = None
-    quantum_proteomics_manifest_path: str | None = None
     multigene_rollout_manifest_path: str | None = None
     brca1_engine_execution_manifest_path: str | None = None
     multigene_real_benchmark_manifest_path: str | None = None
@@ -310,8 +302,6 @@ class DevelopmentProgressRequest(BaseModel):
     prime_intelligence_manifest_path: str | None = None
     biological_discovery_manifest_path: str | None = None
     protein_impact_manifest_path: str | None = None
-    quantum_proteomics_manifest_path: str | None = None
-    quantum_vqe_benchmark_manifest_path: str | None = None
     brca1_structural_campaign_manifest_path: str | None = None
     brca1_engine_execution_manifest_path: str | None = None
     brca1_fragment_preparation_manifest_path: str | None = None
@@ -937,25 +927,6 @@ def _summarize_protein_impact_response(results: dict) -> dict:
         "protein_variant_triage_path": results.get("protein_variant_triage_path"),
         "protein_modeling_queue_path": results.get("protein_modeling_queue_path"),
         "protein_region_summary_path": results.get("protein_region_summary_path"),
-    }
-
-
-def _summarize_quantum_proteomics_response(results: dict) -> dict:
-    bundle = results.get("quantum_proteomics_package") or {}
-    return {
-        "summary": bundle.get("summary") or {},
-        "quantum_proteomics_manifest_path": results.get("quantum_proteomics_manifest_path"),
-        "quantum_targets_path": results.get("quantum_targets_path"),
-        "prime_quantum_bridge_path": results.get("prime_quantum_bridge_path"),
-        "vqe_targets_path": results.get("vqe_targets_path"),
-        "quantum_algorithm_portfolio_path": results.get("quantum_algorithm_portfolio_path"),
-        "quantum_workflow_path": results.get("quantum_workflow_path"),
-        "quantum_job_templates_path": results.get("quantum_job_templates_path"),
-        "quantum_job_templates_dir": results.get("quantum_job_templates_dir"),
-        "vqe_job_templates_path": results.get("vqe_job_templates_path"),
-        "vqe_job_templates_dir": results.get("vqe_job_templates_dir"),
-        "quantum_proteomics_report_markdown_path": results.get("quantum_proteomics_report_markdown_path"),
-        "quantum_proteomics_report_html_path": results.get("quantum_proteomics_report_html_path"),
     }
 
 
@@ -1941,30 +1912,6 @@ def create_app(
         )
         return response
 
-    @app.post("/science/quantum-proteomics")
-    def build_quantum_proteomics(http_request: Request, request: QuantumProteomicsRequest, _: None = Depends(require_api_key)) -> dict:
-        try:
-            results = export_quantum_proteomics_package(
-                protein_impact_manifest_path=request.protein_impact_manifest_path,
-                output_dir=request.output_dir,
-                max_quantum_targets=request.max_quantum_targets,
-            )
-        except Exception as exc:  # pragma: no cover
-            raise HTTPException(status_code=400, detail=str(exc)) from exc
-        response = _summarize_quantum_proteomics_response(results)
-        summary = response.get("summary") or {}
-        _audit_event(
-            http_request,
-            event_type="science.quantum_proteomics_completed",
-            status="ok" if summary.get("quantum_target_count") else "warning",
-            metadata={
-                "output_dir": request.output_dir,
-                "quantum_target_count": summary.get("quantum_target_count"),
-                "mean_quantum_priority_score_percent": summary.get("mean_quantum_priority_score_percent"),
-            },
-        )
-        return response
-
     @app.post("/science/prospective-validation-closure")
     def build_prospective_validation_closure(
         http_request: Request,
@@ -2935,32 +2882,6 @@ def create_app(
             status="queued",
             job_id=job["job_id"],
             metadata={"output_dir": request.output_dir, "max_modeling_variants": request.max_modeling_variants},
-        )
-        return job
-
-    @app.post("/jobs/science/quantum-proteomics")
-    def enqueue_quantum_proteomics(http_request: Request, request: QuantumProteomicsRequest, _: None = Depends(require_api_key)) -> dict:
-        profile = _resolve_profile_from_request(http_request)
-        team = _resolve_team_from_request(http_request, require_membership=True)
-        payload = request.model_dump()
-
-        def _runner(job_payload: dict) -> dict:
-            results = export_quantum_proteomics_package(**job_payload)
-            return _summarize_quantum_proteomics_response(results)
-
-        job = app.state.job_manager.submit_job(
-            job_type="science_quantum_proteomics",
-            payload=payload,
-            runner=_runner,
-            submitted_by=profile,
-            submitted_for_team=team,
-        )
-        _audit_event(
-            http_request,
-            event_type="science.quantum_proteomics_job_enqueued",
-            status="queued",
-            job_id=job["job_id"],
-            metadata={"output_dir": request.output_dir, "max_quantum_targets": request.max_quantum_targets},
         )
         return job
 

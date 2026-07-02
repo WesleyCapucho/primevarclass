@@ -57,8 +57,6 @@ from primevarclass import (
     export_platform_completion_assessment,
     export_protein_impact_package,
     export_public_sync_closure_package,
-    export_quantum_proteomics_package,
-    export_quantum_vqe_benchmark_package,
     export_prime_intelligence_package,
     export_prospective_validation_closure_package,
     export_validation_credibility_closure,
@@ -1570,99 +1568,6 @@ class ScientificDiscoveryTests(unittest.TestCase):
             self.assertIn("RING domain", set(queue["structural_region"].astype(str)))
             self.assertIn("modeling_plan", queue.columns)
 
-    def test_export_quantum_proteomics_package_generates_targets_and_templates(self):
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            tmp_path = Path(tmp_dir)
-            queue_path = tmp_path / "protein_modeling_queue.csv"
-            protein_manifest_path = tmp_path / "protein_impact_manifest.json"
-
-            pd.DataFrame(
-                [
-                    {
-                        "gene": "BRCA1",
-                        "hgvs_p": "p.Cys61Gly",
-                        "model_request_id": "BRCA1_pCys61Gly",
-                        "protein_impact_score_percent": 94.0,
-                        "prime_mechanistic_score_percent": 88.0,
-                        "prime_ref": 3,
-                        "prime_alt": 7,
-                        "prime_diff": 4.0,
-                        "prime_ratio": 2.3333,
-                        "biochemical_severity": 9.5,
-                        "charge_abs_diff": 0,
-                        "hydro_abs_diff": 2.9,
-                        "position": 61,
-                        "aa_ref": "C",
-                        "aa_alt": "G",
-                        "structural_region": "RING domain",
-                        "domain_mechanism": "zinc_binding_or_E3_ligase_interface",
-                        "domain_known": True,
-                        "mechanism_tags": "cysteine_or_disulfide_shift;large_prime_displacement",
-                        "recommended_assays": "mutant_structure_modeling;redox_or_metal_coordination_check",
-                    },
-                    {
-                        "gene": "TP53",
-                        "hgvs_p": "p.Arg175His",
-                        "model_request_id": "TP53_pArg175His",
-                        "protein_impact_score_percent": 91.0,
-                        "prime_mechanistic_score_percent": 72.0,
-                        "prime_ref": 11,
-                        "prime_alt": 7,
-                        "prime_diff": 4.0,
-                        "prime_ratio": 0.6364,
-                        "biochemical_severity": 8.8,
-                        "charge_abs_diff": 1,
-                        "hydro_abs_diff": 3.1,
-                        "position": 175,
-                        "aa_ref": "R",
-                        "aa_alt": "H",
-                        "structural_region": "DNA-binding core domain",
-                        "domain_mechanism": "DNA_binding_or_fold_stability",
-                        "domain_known": True,
-                        "mechanism_tags": "electrostatic_shift;hydrophobic_core_or_surface_shift",
-                        "recommended_assays": "mutant_structure_modeling;DNA_binding_or_repair_readout",
-                    },
-                ]
-            ).to_csv(queue_path, index=False)
-            protein_manifest_path.write_text(
-                json.dumps(
-                    {
-                        "summary": {"modeling_queue_count": 2},
-                        "modeling_queue_path": str(queue_path),
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-
-            exported = export_quantum_proteomics_package(
-                protein_impact_manifest_path=str(protein_manifest_path),
-                output_dir=str(tmp_path / "quantum_proteomics"),
-                max_quantum_targets=2,
-            )
-
-            manifest = json.loads(Path(exported["quantum_proteomics_manifest_path"]).read_text(encoding="utf-8"))
-            targets = pd.read_csv(exported["quantum_targets_path"])
-            bridge = pd.read_csv(exported["prime_quantum_bridge_path"])
-            vqe_targets = pd.read_csv(exported["vqe_targets_path"])
-            templates = pd.read_csv(exported["quantum_job_templates_path"])
-            self.assertEqual(manifest["summary"]["quantum_target_count"], 2)
-            self.assertEqual(manifest["summary"]["vqe_target_count"], 2)
-            self.assertGreaterEqual(manifest["summary"]["mean_quantum_priority_score_percent"], 70)
-            self.assertGreaterEqual(manifest["summary"]["mean_vqe_readiness_score_percent"], 70)
-            self.assertGreaterEqual(manifest["summary"]["mean_prime_quantum_coupling_score_percent"], 60)
-            self.assertIn("metal_redox_or_cysteine_network", set(targets["quantum_vulnerability_class"].astype(str)))
-            self.assertIn("prime_quantum_coupling_score_percent", set(bridge.columns))
-            self.assertIn("prime_topology_signature", set(bridge.columns))
-            self.assertIn("prime_active_space_seed", set(targets.columns))
-            self.assertIn("prime_curvature_score", set(targets.columns))
-            self.assertIn("recommended_ansatz", vqe_targets.columns)
-            self.assertIn("prime_guided_initialization", vqe_targets.columns)
-            self.assertTrue(Path(templates.iloc[0]["psi4_template_path"]).exists())
-            vqe_templates = pd.read_csv(exported["vqe_job_templates_path"])
-            self.assertTrue(Path(vqe_templates.iloc[0]["qiskit_nature_vqe_template_path"]).exists())
-            self.assertTrue(Path(exported["quantum_proteomics_report_markdown_path"]).exists())
-
     def test_export_validation_credibility_closure_separates_software_and_final_proof(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_path = Path(tmp_dir)
@@ -1704,66 +1609,6 @@ class ScientificDiscoveryTests(unittest.TestCase):
             self.assertLessEqual(manifest["summary"]["scientific_credibility_percent"], manifest["summary"]["final_proof_cap_percent"])
             self.assertFalse(manifest["summary"]["ready_for_definitive_therapeutic_claims"])
             self.assertTrue(Path(exported["validation_credibility_report_markdown_path"]).exists())
-
-    def test_export_quantum_vqe_benchmark_package_compares_prime_and_nonprime(self):
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            tmp_path = Path(tmp_dir)
-            vqe_targets_path = tmp_path / "vqe_targets.csv"
-            quantum_manifest_path = tmp_path / "quantum_manifest.json"
-
-            pd.DataFrame(
-                [
-                    {
-                        "gene": "BRCA1",
-                        "hgvs_p": "p.Cys61Gly",
-                        "model_request_id": "BRCA1_pCys61Gly",
-                        "vqe_readiness_score_percent": 92.0,
-                        "quantum_priority_score_percent": 90.0,
-                        "prime_mechanistic_score_percent": 84.0,
-                        "prime_quantum_coupling_score_percent": 81.0,
-                        "prime_topology_signature": "stable_prime_topology",
-                        "prime_fragment_strategy": "metal_shell_fragment_plus_first_coordination_layer",
-                        "prime_active_space_seed": "6e/6o prime-seeded start",
-                        "prime_shot_schedule": "1777;2741;4673",
-                        "quantum_vulnerability_class": "metal_redox_or_cysteine_network",
-                    },
-                    {
-                        "gene": "TP53",
-                        "hgvs_p": "p.Arg175His",
-                        "model_request_id": "TP53_pArg175His",
-                        "vqe_readiness_score_percent": 85.0,
-                        "quantum_priority_score_percent": 88.0,
-                        "prime_mechanistic_score_percent": 73.0,
-                        "prime_quantum_coupling_score_percent": 69.0,
-                        "prime_topology_signature": "curvature_shift_topology",
-                        "prime_fragment_strategy": "dna_binding_fragment",
-                        "prime_active_space_seed": "4e/4o prime-seeded start",
-                        "prime_shot_schedule": "1327;2111;3253",
-                        "quantum_vulnerability_class": "electrostatic_or_dna_binding_surface",
-                    },
-                ]
-            ).to_csv(vqe_targets_path, index=False)
-            quantum_manifest_path.write_text(
-                json.dumps(
-                    {
-                        "vqe_targets_path": str(vqe_targets_path),
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-
-            exported = export_quantum_vqe_benchmark_package(
-                quantum_proteomics_manifest_path=str(quantum_manifest_path),
-                output_dir=str(tmp_path / "quantum_benchmark"),
-            )
-
-            manifest = json.loads(Path(exported["quantum_vqe_benchmark_manifest_path"]).read_text(encoding="utf-8"))
-            table = pd.read_csv(exported["quantum_vqe_paired_benchmark_path"])
-            self.assertEqual(manifest["summary"]["benchmark_target_count"], 2)
-            self.assertGreater(manifest["summary"]["mean_overall_advantage_percent_points"], 0)
-            self.assertGreaterEqual(manifest["summary"]["prime_guided_win_rate_percent"], 50)
-            self.assertIn("paired_same_fragment_proxy", set(table["benchmark_mode"].astype(str)))
 
     def test_export_brca1_structural_campaign_builds_preflight_rows(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -5495,26 +5340,12 @@ class ApiTests(unittest.TestCase):
             self.assertTrue(Path(protein_payload["protein_impact_manifest_path"]).exists())
             self.assertGreaterEqual(protein_payload["summary"]["modeling_queue_count"], 1)
 
-            quantum_response = client.post(
-                "/science/quantum-proteomics",
-                json={
-                    "protein_impact_manifest_path": protein_payload["protein_impact_manifest_path"],
-                    "output_dir": str(tmp_path / "quantum_proteomics"),
-                    "max_quantum_targets": 2,
-                },
-            )
-            self.assertEqual(quantum_response.status_code, 200)
-            quantum_payload = quantum_response.json()
-            self.assertTrue(Path(quantum_payload["quantum_proteomics_manifest_path"]).exists())
-            self.assertGreaterEqual(quantum_payload["summary"]["quantum_target_count"], 1)
-
             closure_response = client.post(
                 "/science/validation-credibility-closure",
                 json={
                     "output_dir": str(tmp_path / "closure"),
                     "biological_discovery_manifest_path": payload["biological_discovery_manifest_path"],
                     "protein_impact_manifest_path": protein_payload["protein_impact_manifest_path"],
-                    "quantum_proteomics_manifest_path": quantum_payload["quantum_proteomics_manifest_path"],
                 },
             )
             self.assertEqual(closure_response.status_code, 200)

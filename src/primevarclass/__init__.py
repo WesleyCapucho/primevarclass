@@ -100,8 +100,6 @@ from .brca1_mutant_geometry_qc import build_brca1_mutant_geometry_qc_package, ex
 from .pilot_package import build_translational_pilot_package, export_translational_pilot_package
 from .platform_completion import build_platform_completion_assessment, export_platform_completion_assessment
 from .protein_impact import build_protein_impact_package, export_protein_impact_package
-from .quantum_proteomics import build_quantum_proteomics_package, export_quantum_proteomics_package
-from .quantum_vqe_benchmark import build_quantum_vqe_benchmark_package, export_quantum_vqe_benchmark_package
 from .prime_intelligence import build_prime_intelligence_assessment, export_prime_intelligence_package
 from .prospective_validation_closure import (
     build_prospective_validation_closure_package,
@@ -189,8 +187,6 @@ __all__ = [
     "build_longitudinal_study_monitor",
     "build_platform_completion_assessment",
     "build_protein_impact_package",
-    "build_quantum_proteomics_package",
-    "build_quantum_vqe_benchmark_package",
     "build_prime_intelligence_assessment",
     "build_prospective_validation_closure_package",
     "build_translational_pilot_package",
@@ -245,13 +241,11 @@ __all__ = [
     "export_manuscript_package",
     "export_platform_completion_assessment",
     "export_protein_impact_package",
-    "export_quantum_proteomics_package",
     "export_brca1_structural_campaign",
     "export_brca1_engine_execution_package",
     "export_brca1_fragment_preparation_package",
     "export_brca1_paired_mutant_execution_package",
     "export_brca1_mutant_geometry_qc_package",
-    "export_quantum_vqe_benchmark_package",
     "export_prime_intelligence_package",
     "export_prospective_validation_closure_package",
     "export_publication_readiness_package",
