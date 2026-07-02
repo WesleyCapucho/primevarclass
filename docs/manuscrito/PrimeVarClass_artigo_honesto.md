@@ -30,11 +30,17 @@ No Brasil, esse problema é agravado por desigualdade de acesso: a interpretaç�
 
 Preditores computacionais de patogenicidade existem (REVEL, CADD, AlphaMissense, entre outros), mas muitos benchmarks sofrem de dois problemas recorrentes: **(i) vazamento de dados**, quando o modelo aprende atalhos que não se sustentam fora do conjunto de treino, e **(ii) falta de validação externa independente**, superestimando o desempenho real. Um sistema competitivo e cientificamente sólido precisa demonstrar não o melhor número em um teste interno, mas **generalização honesta** para dados nunca vistos.
 
-### 1.3 A jornada científica deste trabalho
+### 1.3 Estado da arte: preditores de patogenicidade e o problema do vazamento
+
+O campo da predição computacional de patogenicidade evoluiu de escores de conservação isolados para *meta-preditores* e modelos de aprendizado profundo. Métodos de conjunto como o **REVEL** (Ioannidis et al., 2016) e escores integrativos como o **CADD** (Rentzsch et al., 2019) combinam dezenas de anotações; avaliações independentes indicam que REVEL e BayesDel frequentemente superam preditores individuais na classificação clínica (Tian et al., 2019). Mais recentemente, o **AlphaMissense** (Cheng et al., 2023) estendeu a predição a todo o proteoma humano com desempenho de referência. Especificamente para *BRCA1/BRCA2*, o **BRCA-ML** (Hart et al., 2020) e abordagens de aprendizado de máquina para reclassificação de VUS (RENOVO; Favalli et al., 2021) demonstraram utilidade, e recursos como a análise multifatorial da ENIGMA (Parsons et al., 2019) fornecem rótulos quantitativos de alta confiança. Ensaios funcionais de alto rendimento — *saturation genome editing* (Findlay et al., 2014) e ensaios de reparo por recombinação homóloga (Toland; Andreassen, 2017) — vêm reduzindo a incerteza sobre variantes específicas.
+
+Dois desafios, porém, atravessam a literatura. O primeiro é a **calibração**: o ClinGen (Pejaver et al., 2022) mostrou que os escores brutos dos preditores precisam ser calibrados para serem usados como evidência na estrutura ACMG/AMP (Richards et al., 2015). O segundo, menos discutido mas crítico, é o **vazamento de dados** e a **superestimação por validação inadequada**, um problema reconhecido na modelagem preditiva clínica em geral (Kernbach; Staartjes, 2022). Modelos avaliados sem separação rigorosa entre treino e teste — por posição, por gene ou por família — reportam desempenhos que não se sustentam externamente. A observação de "coldspots" sistematicamente mal classificados em *BRCA1/BRCA2* (Dines et al., 2020) e evidências recentes de que a **restrição evolutiva em resolução de domínio** melhora a priorização (Zhang et al., 2024; Torretto et al., 2026) motivam diretamente a abordagem consciente de domínio deste trabalho. É nesse ponto — rigor de validação e sinal de origem biológica explícita — que buscamos contribuir.
+
+### 1.4 A jornada científica deste trabalho
 
 Este projeto nasceu de uma hipótese original e arrojada: e se a estrutura dos **números primos** — objetos matemáticos com propriedades de distribuição não triviais — pudesse codificar aminoácidos de forma a revelar padrões de patogenicidade? A ideia dá nome ao sistema (*PrimeVarClass*). Em vez de tratá-la como verdade a ser defendida, nós a tratamos como **hipótese a ser testada**. Este manuscrito relata honestamente esse teste, seu **resultado negativo**, o **diagnóstico** que ele possibilitou, e a **solução generalizável** que dele emergiu. Sustentamos que essa trajetória — hipótese ousada, teste rigoroso, refutação transparente e modelo validado — é, em si, a contribuição científica mais valiosa e mais alinhada ao espírito da ciência.
 
-### 1.4 Objetivos
+### 1.5 Objetivos
 
 1. Testar de forma controlada se a codificação por números primos melhora a classificação de variantes *missense* em *BRCA1/BRCA2*.
 2. Investigar e quantificar o efeito de vazamento posicional em benchmarks internos.
@@ -91,6 +97,19 @@ Comparações de AUC entre modelos foram feitas com o **teste pareado de DeLong*
 
 Classificador *Random Forest* balanceado, com codificação apropriada por tipo de característica, em *pipeline* reprodutível (semente fixa). O sistema é implementado em Python, com testes automatizados (cobertura das características de domínio e de ingestão de escores), e disponibilizado como pacote auditável. A anotação de domínio é um módulo independente e citável (`domain_annotation.py`), e a ingestão de escores de aprendizado profundo (ESM-2) é desacoplada do treino (`esm_scores.py`), sem dependência obrigatória de GPU.
 
+### 2.7 Análise de robustez (Monte Carlo)
+
+Para além da comparação pontual de AUCs, quantificamos a incerteza e a estabilidade dos resultados por quatro procedimentos, todos executados sobre os dados reais:
+
+- **Bootstrap não paramétrico** (B = 2000 reamostragens das coortes externas) para intervalos de confiança de 95% da AUC de cada modelo e das diferenças pareadas de AUC.
+- **Teste de permutação** (N = 2000): os rótulos externos são permutados aleatoriamente para construir a distribuição da AUC sob a hipótese nula de ausência de sinal, gerando um valor-p empírico.
+- **Validação cruzada repetida**: a validação bloqueada por posição é reexecutada com 12 sementes independentes, reportando média e desvio-padrão da AUC.
+- **Calibração**: escore de Brier e curva de confiabilidade (probabilidade prevista versus frequência observada) nas coortes externas.
+
+### 2.8 Meta-análise de generalização
+
+Tratamos as quatro coortes externas como estudos independentes e agrupamos suas AUCs por um modelo de **efeitos aleatórios** (estimador de heterogeneidade DerSimonian-Laird), operando sobre a AUC transformada em escala logit (com erro-padrão obtido por bootstrap e propagado pelo método delta). Reportamos a AUC agrupada, seu IC95%, a estatística Q de Cochran e o índice I² de heterogeneidade. Trata-se de uma meta-análise dos nossos próprios resultados multi-coorte; não incorporamos valores de desempenho extraídos de resumos de terceiros, evitando comparações não verificáveis.
+
 ---
 
 ## 3. Resultados
@@ -139,7 +158,69 @@ Sanidade biológica: a taxa de patogenicidade dentro de domínios críticos é d
 
 DeLong (domínio vs bioquímico): p = 3,2 × 10⁻⁹ (interno) e **p = 1,8 × 10⁻¹³** (externo). Decisivamente, o modelo de domínio (0,847) **supera** o de posição bruta (0,791) *justamente nas coortes externas* — ou seja, o sinal de região **transfere-se** para dados novos, enquanto a posição **memoriza** e falha ao generalizar. Este é o resultado central do trabalho.
 
-### 3.4 Integração de aprendizado profundo autêntico (ESM-2)
+As Figuras 1 e 2 ilustram a base biológica desse resultado. A Figura 1 mapeia as variantes observadas sobre a arquitetura de domínios de BRCA1 e BRCA2: as variantes patogênicas (riscos vermelhos, inferiores) concentram-se visivelmente nas regiões críticas — RING e repetições BRCT em BRCA1; domínio de ligação ao DNA em BRCA2 —, enquanto as benignas (superiores) espalham-se pelas regiões ligantes. A Figura 2 quantifica o padrão: a fração de variantes patogênicas é de **44,5%** (n = 373) dentro de domínios críticos, contra **6,8%** (n = 146) em domínios não críticos e **10,0%** (n = 350) em regiões ligantes.
+
+![Figura 1](figuras/fig_domain_architecture.png)
+
+**Figura 1.** Arquitetura de domínios funcionais de BRCA1 (P38398, 1863 aa) e BRCA2 (P51587, 3418 aa), com as variantes reais da coorte interna sobrepostas. Retângulos vermelhos = regiões críticas (RING, BRCT, DBD); azuis = demais domínios anotados. Riscos: patogênicas (abaixo, vermelho) versus benignas (acima, verde-água).
+
+![Figura 2](figuras/fig_pathogenicity_by_domain.png)
+
+**Figura 2.** Fração de variantes patogênicas por região funcional na coorte interna. O contraste entre domínios críticos (~45%) e as demais regiões (~7–10%) é a base biológica do sinal de domínio.
+
+### 3.4 Robustez estatística: bootstrap, permutação, estabilidade e calibração
+
+Para assegurar que a vantagem do modelo consciente de domínio não decorre do acaso nem de uma partição específica dos dados, executamos uma bateria de robustez sobre as coortes reais.
+
+**Intervalos de confiança por bootstrap (B = 2000).** Na generalização externa, a AUC do modelo domínio-consciente é 0,847 (IC95% 0,810–0,881), **sem sobreposição** com o intervalo do modelo bioquímico (0,717; IC95% 0,668–0,760). A diferença de AUC é de **+0,131** (IC95% 0,097–0,167) sobre o bioquímico e **+0,056** (IC95% 0,029–0,084) sobre a posição bruta; em nenhuma das 2000 reamostragens a diferença foi ≤ 0 (p < 0,0005 em ambos os casos). A distribuição bootstrap das três AUCs é mostrada na Figura 3.
+
+**Teste de permutação (N = 2000).** Permutando os rótulos externos para construir a distribuição sob a hipótese nula, a AUC nula tem média 0,501; a AUC observada (0,847) situa-se muito além dela, com **p = 5 × 10⁻⁴** (o mínimo detectável com N = 2000). O desempenho não é atribuível ao acaso (Figura 4).
+
+**Estabilidade entre sementes.** Repetindo a validação cruzada bloqueada por posição em **12 sementes independentes**, a AUC média é **0,828 ± 0,005** (domínio), 0,818 ± 0,006 (posição bruta) e 0,763 ± 0,005 (bioquímico): o modelo de domínio é consistentemente superior, com variabilidade mínima (Figura 5).
+
+**Calibração.** O escore de Brier do modelo domínio-consciente nas coortes externas é **0,108**, e a curva de confiabilidade acompanha a diagonal (Figura 6), indicando probabilidades bem calibradas — propriedade importante para uso como apoio à decisão, e não apenas ordenação.
+
+![Figura 3](figuras/fig_bootstrap_auc.png)
+
+**Figura 3.** Distribuição bootstrap (B = 2000) da AUC nas coortes externas para os três modelos. A separação entre o modelo de domínio (verde) e o bioquímico (cinza) é completa.
+
+![Figura 4](figuras/fig_permutation.png)
+
+**Figura 4.** Teste de permutação (N = 2000). A AUC observada (linha verde) está muito além da distribuição sob rótulos permutados (p = 5 × 10⁻⁴).
+
+![Figura 5](figuras/fig_repeated_cv.png)
+
+**Figura 5.** Estabilidade da AUC em 12 sementes de validação cruzada bloqueada por posição.
+
+![Figura 6](figuras/fig_calibration.png)
+
+**Figura 6.** Curva de calibração (confiabilidade) e escore de Brier do modelo domínio-consciente nas coortes externas.
+
+![Figura 7](figuras/fig_roc_external.png)
+
+**Figura 7.** Curvas ROC nas coortes externas para os três modelos comparados.
+
+### 3.5 Meta-análise de generalização entre coortes independentes
+
+Para quantificar a robustez de forma conservadora, tratamos cada uma das quatro coortes externas como um "estudo" independente e agrupamos suas AUCs por um modelo de **efeitos aleatórios** (estimador DerSimonian-Laird sobre a AUC em escala logit; incerteza por bootstrap). O resultado (Figura 8, Tabela 4) é honesto e informativo.
+
+**Tabela 4. Meta-análise da AUC externa por coorte (modelo domínio-consciente).**
+
+| Coorte | n | AUC | IC95% |
+| --- | ---: | ---: | --- |
+| BRCA1 — painel especialista | 204 | 0,888 | 0,840–0,929 |
+| BRCA2 — painel especialista | 175 | 0,864 | 0,791–0,925 |
+| BRCA2 — coorte externa | 289 | 0,772 | 0,617–0,910 |
+| BRCA1 — coorte externa | 168 | 0,599 | 0,476–0,728 |
+| **Agrupado (efeitos aleatórios)** | 836 | **0,801** | **0,638–0,902** |
+
+A AUC agrupada é **0,801** (IC95% 0,638–0,902), com **alta heterogeneidade** (I² = 88,2%; Q = 25,5; p < 0,001). O modelo é **excelente nas coortes de painel especialista** (0,864–0,888), precisamente onde os rótulos têm máxima confiança, e mais fraco em uma coorte externa de BRCA1 (0,599). Reportamos essa heterogeneidade de forma explícita: ela mostra que o desempenho depende da qualidade e composição da coorte, e que a generalização, embora forte no conjunto agregado e nas coortes de especialista, **não é uniforme**. Discutimos as implicações em §4.1.
+
+![Figura 8](figuras/fig_meta_forest.png)
+
+**Figura 8.** Forest plot da meta-análise de generalização externa. Quadrados = AUC por coorte (com IC95%); losango = estimativa agrupada por efeitos aleatórios.
+
+### 3.6 Integração de aprendizado profundo autêntico (ESM-2)
 
 Como camada ortogonal e cientificamente legítima, integramos o modelo de linguagem de proteínas **ESM-2** (Lin et al., 2023; Meier et al., 2021), que pontua substituições de forma *zero-shot* pela razão de verossimilhança logarítmica com o resíduo mascarado — um sinal profundo que não depende de rótulos nem vaza de outros preditores. A infraestrutura de ingestão desses escores está pronta e testada; a avaliação quantitativa do modelo *domínio + ESM-2* em dados reais é a etapa em andamento. *(Resultados a inserir após a execução do ESM-2.)*
 
@@ -149,7 +230,9 @@ Como camada ortogonal e cientificamente legítima, integramos o modelo de lingua
 
 ### 4.1 Biologia transferível versus memorização
 
-O achado central deste trabalho é que **o sinal de domínio funcional generaliza para dados novos, ao passo que a posição bruta memoriza**. Em validação interna ingênua, a posição do resíduo parece um preditor forte; porém, quando avaliada em coortes externas independentes, colapsa (0,791) enquanto o modelo consciente de domínio se mantém superior (0,847). Essa inversão é diagnóstica: características que codificam **mecanismo** — a que região funcional a mutação pertence, e se essa região é crítica para a estabilidade ou a atividade da proteína — carregam biologia que se aplica a variantes nunca vistas. Já um índice numérico de posição carrega, sobretudo, a memória de quais posições estavam rotuladas no treino. A taxa de patogenicidade de 45% dentro de domínios críticos contra 9% fora reforça que o modelo aprendeu um princípio biológico real, coerente com décadas de literatura sobre BRCA1 (RING/BRCT) e BRCA2 (domínio de ligação ao DNA).
+O achado central deste trabalho é que **o sinal de domínio funcional generaliza para dados novos, ao passo que a posição bruta memoriza**. Em validação interna ingênua, a posição do resíduo parece um preditor forte; porém, quando avaliada em coortes externas independentes, colapsa (0,791) enquanto o modelo consciente de domínio se mantém superior (0,847). Essa inversão é diagnóstica: características que codificam **mecanismo** — a que região funcional a mutação pertence, e se essa região é crítica para a estabilidade ou a atividade da proteína — carregam biologia que se aplica a variantes nunca vistas. Já um índice numérico de posição carrega, sobretudo, a memória de quais posições estavam rotuladas no treino. A taxa de patogenicidade de ~45% dentro de domínios críticos contra ~7–10% fora reforça que o modelo aprendeu um princípio biológico real, coerente com décadas de literatura sobre BRCA1 (RING/BRCT) e BRCA2 (domínio de ligação ao DNA) e com evidências recentes de que a restrição evolutiva em resolução de domínio melhora a priorização de variantes missense.
+
+Cabe uma distinção honesta entre dois modos de medir a generalização. A AUC no **conjunto externo agregado** (0,847) beneficia-se, em parte, da separação *entre* coortes com composições diferentes. A **meta-análise por coorte** (§3.5) é mais conservadora e revela heterogeneidade substancial (I² = 88%): o modelo é excelente nas coortes de painel especialista (0,86–0,89) e fraco em uma coorte externa de BRCA1 (0,60). Interpretamos isso não como fragilidade a ser escondida, mas como informação: o desempenho depende da qualidade de rotulagem e da composição da coorte, e a força real do método está na priorização de variantes com rótulos de alta confiança. Reportar essa nuance é parte do compromisso de honestidade que define o trabalho.
 
 ### 4.2 A honestidade metodológica como contribuição científica
 
@@ -161,13 +244,19 @@ Preditores como AlphaMissense, REVEL e CADD são referências poderosas, mas inc
 
 ### 4.4 Limitações
 
-Reconhecemos limites claros. **(i)** A validação concentrou-se em duas proteínas (*BRCA1/BRCA2*); a extensão a outros genes é trabalho futuro. **(ii)** As fronteiras de domínio são aproximações baseadas em literatura e no UniProt; refinamentos estruturais podem melhorar a granularidade. **(iii)** Não há, ainda, **confirmação funcional experimental** das priorizações — o sistema apoia pesquisa, não substitui ensaio funcional nem julgamento clínico. **(iv)** A integração quantitativa do ESM-2 está em curso. Nenhuma dessas limitações compromete o achado central; todas apontam caminhos concretos de continuidade.
+Reconhecemos limites claros. **(i)** A validação concentrou-se em duas proteínas (*BRCA1/BRCA2*); a extensão a outros genes é trabalho futuro. **(ii)** As fronteiras de domínio são aproximações baseadas em literatura e no UniProt; refinamentos estruturais podem melhorar a granularidade. **(iii)** A generalização é **heterogênea** (I² = 88%): forte nas coortes de painel especialista, mas fraca em uma coorte externa de BRCA1, o que exige cautela e mais coortes para caracterizar os limites de aplicabilidade. **(iv)** Não há, ainda, **confirmação funcional experimental** das priorizações — o sistema apoia pesquisa, não substitui ensaio funcional (por exemplo, *saturation genome editing*) nem julgamento clínico. **(v)** A integração quantitativa do ESM-2 está em curso. Nenhuma dessas limitações compromete o achado central; todas apontam caminhos concretos de continuidade.
+
+### 4.5 Trabalhos futuros
+
+Quatro direções decorrem naturalmente deste trabalho. **Primeiro**, concluir a integração quantitativa do **ESM-2** (Lin et al., 2023; Meier et al., 2021) como camada ortogonal, avaliando o modelo *domínio + ESM-2* nas mesmas coortes com o protocolo anti-vazamento. **Segundo**, estender a anotação consciente de domínio a **outros genes** de predisposição (por exemplo, *TP53*, *PALB2*, *CHEK2*), verificando se o ganho de generalização se replica. **Terceiro**, aplicar **calibração formal ACMG/AMP** (Pejaver et al., 2022) para converter as probabilidades em forças de evidência utilizáveis por comissões de classificação, e explicabilidade por valores de Shapley (SHAP) para transparência variante a variante. **Quarto**, buscar **validação funcional** convergente com ensaios de alto rendimento — *saturation genome editing* (Findlay et al., 2014) e ensaios de reparo — para as variantes priorizadas, fechando o ciclo entre predição e evidência experimental. A heterogeneidade observada entre coortes (§3.5) torna prioritário, ainda, ampliar o número de coortes externas para caracterizar os limites de aplicabilidade do método.
 
 ## 5. Impacto social e aplicação
 
 ### 5.1 O problema brasileiro concreto
 
 O acesso à interpretação de variantes genéticas é profundamente desigual no Brasil. A expertise concentra-se em poucos centros; laboratórios públicos, hospitais universitários e grupos de pesquisa em regiões menos assistidas frequentemente não dispõem de ferramentas abertas e adaptáveis. O resultado é que exames genéticos, quando realizados, muitas vezes retornam VUS sem suporte para conduzir a decisão — e o custo desse impasse recai desproporcionalmente sobre quem depende do sistema público.
+
+A literatura nacional documenta essa realidade. Recomendações específicas para avançar o diagnóstico e o manejo do câncer de mama e ovário hereditário no Brasil apontam lacunas de acesso e de infraestrutura (Achatz et al., 2020). Estudos de aconselhamento genético e de perfil de risco em serviços brasileiros (Palmero et al., 2007; Fernandes et al., 2019), avaliações do conhecimento médico sobre testagem para síndrome de câncer de mama e ovário hereditário (Lasta et al., 2023) e caracterizações moleculares em serviços públicos de medicina de precisão (Ribeiro et al., 2025), bem como achados de variantes específicas em populações regionais (Noronha et al., 2026), reforçam a necessidade de ferramentas abertas, auditáveis e de baixo custo computacional — exatamente o nicho que o PrimeVarClass busca ocupar como apoio à pesquisa e à formação.
 
 ### 5.2 Como o PrimeVarClass contribui
 
@@ -192,15 +281,62 @@ Uma hipótese ousada — codificar aminoácidos como números primos — foi tes
 
 ---
 
+## Reprodutibilidade e disponibilidade de dados
+
+Todos os resultados derivam de dados **públicos** (ClinVar, painéis de especialistas ENIGMA/ClinGen, gnomAD) e de código **reexecutável**. O núcleo de anotação de domínio (`domain_annotation.py`), a construção de características (`core.py`), a ingestão de escores ESM-2 (`esm_scores.py`), a validação ponta-a-ponta (`validate_domain_integration.py`), a bateria de robustez Monte Carlo (`monte_carlo_robustness.py`), a meta-análise (`meta_analysis.py`) e a geração das figuras (`figures_domains.py`) estão versionados e cobertos por testes automatizados. Os artefatos numéricos (`results.json`, `meta_analysis.json`) e as figuras em alta resolução acompanham o material suplementar. Sementes aleatórias são fixadas para reprodutibilidade determinística. **Nenhum dado, figura ou métrica foi fabricado ou simulado.**
+
+## Lista de Figuras e Tabelas
+
+- **Figura 1.** Arquitetura de domínios funcionais de BRCA1/BRCA2 com variantes sobrepostas.
+- **Figura 2.** Fração de variantes patogênicas por região funcional.
+- **Figura 3.** Distribuição bootstrap (B = 2000) da AUC externa.
+- **Figura 4.** Teste de permutação (N = 2000).
+- **Figura 5.** Estabilidade da AUC em 12 sementes de validação cruzada.
+- **Figura 6.** Curva de calibração e escore de Brier.
+- **Figura 7.** Curvas ROC nas coortes externas.
+- **Figura 8.** Forest plot da meta-análise de generalização externa.
+- **Tabela 1.** Desempenho por conjunto de características (refutação dos primos).
+- **Tabela 2.** Comparações pareadas (DeLong).
+- **Tabela 3.** Modelo consciente de domínio: CV bloqueada por posição e generalização externa.
+- **Tabela 4.** Meta-análise da AUC externa por coorte.
+
+---
+
 ## Referências
 
-*(A consolidar em formato ABNT.)*
+*Fontes primárias recuperadas via PubMed/NLM. Abaixo, as referências fundacionais citadas no texto em formato ABNT; a lista completa e curada de **52 fontes primárias** está em [`referencias_abnt.md`](referencias_abnt.md), com DOIs.*
 
-1. UniProt Consortium. UniProt: the Universal Protein Knowledgebase. *Nucleic Acids Res.* 2023. (P38398; P51587).
-2. Landrum M.J. et al. ClinVar. *Nucleic Acids Res.* 2018.
-3. Karczewski K.J. et al. The mutational constraint spectrum quantified from variation in 141,456 humans (gnomAD). *Nature* 2020.
-4. Meier J. et al. Language models enable zero-shot prediction of the effects of mutations on protein function. *NeurIPS* 2021.
-5. Lin Z. et al. Evolutionary-scale prediction of atomic-level protein structure with a language model (ESM-2). *Science* 2023.
-6. DeLong E.R. et al. Comparing the areas under two or more correlated ROC curves. *Biometrics* 1988.
-7. Yang H. et al. BRCA2 function in DNA binding and recombination from a BRCA2–DSS1–ssDNA structure. *Science* 2002.
-8. Richards S. et al. Standards and guidelines for the interpretation of sequence variants (ACMG/AMP). *Genet Med* 2015.
+**Diretrizes e recursos de classificação**
+
+1. RICHARDS, S. et al. Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the ACMG and AMP. **Genet Med**, v. 17, n. 5, p. 405-24, 2015. DOI: 10.1038/gim.2015.30.
+2. PEJAVER, V. et al. Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria. **Am J Hum Genet**, v. 109, n. 12, p. 2163-2177, 2022. DOI: 10.1016/j.ajhg.2022.10.013.
+3. PARSONS, M. T. et al. Large scale multifactorial likelihood quantitative analysis of BRCA1 and BRCA2 variants: an ENIGMA resource. **Hum Mutat**, v. 40, n. 9, p. 1557-1578, 2019. DOI: 10.1002/humu.23818.
+4. DINES, J. N. et al. Systematic misclassification of missense variants in BRCA1 and BRCA2 "coldspots". **Genet Med**, v. 22, n. 5, p. 825-830, 2020. DOI: 10.1038/s41436-019-0740-6.
+
+**Preditores in silico e bancos de dados**
+
+5. IOANNIDIS, N. M. et al. REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. **Am J Hum Genet**, v. 99, n. 4, p. 877-885, 2016. DOI: 10.1016/j.ajhg.2016.08.016.
+6. RENTZSCH, P. et al. CADD: predicting the deleteriousness of variants throughout the human genome. **Nucleic Acids Res**, v. 47, n. D1, p. D886-D894, 2019. DOI: 10.1093/nar/gky1016.
+7. CHENG, J. et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. **Science**, v. 381, n. 6664, eadg7492, 2023. DOI: 10.1126/science.adg7492.
+8. KARCZEWSKI, K. J. et al. The mutational constraint spectrum quantified from variation in 141,456 humans (gnomAD). **Nature**, v. 581, n. 7809, p. 434-443, 2020. DOI: 10.1038/s41586-020-2308-7.
+9. HART, S. N. et al. Prediction of the functional impact of missense variants in BRCA1 and BRCA2 with BRCA-ML. **NPJ Breast Cancer**, v. 6, 13, 2020. DOI: 10.1038/s41523-020-0159-x.
+
+**Domínios funcionais, restrição e ensaios**
+
+10. ZHANG, X. et al. Genetic constraint at single amino acid resolution in protein domains improves missense variant prioritisation and gene discovery. **Genome Med**, v. 16, n. 1, 88, 2024. DOI: 10.1186/s13073-024-01358-9.
+11. TORRETTO, G. C. et al. Domain-specific computational, functional and structural methods enable interpretation of BRCT variants of uncertain significance. **Curr Oncol**, v. 33, n. 6, 2026.
+12. TOLAND, A. E.; ANDREASSEN, P. R. DNA repair-related functional assays for the classification of BRCA1 and BRCA2 variants: a critical review. **J Med Genet**, v. 54, n. 11, p. 721-731, 2017. DOI: 10.1136/jmedgenet-2017-104707.
+13. FINDLAY, G. M. et al. Saturation editing of genomic regions by multiplex homology-directed repair. **Nature**, v. 513, n. 7516, p. 120-3, 2014. DOI: 10.1038/nature13695.
+
+**Aprendizado de máquina, generalização e contexto nacional**
+
+14. KERNBACH, J. M.; STAARTJES, V. E. Foundations of machine learning-based clinical prediction modeling: Part II — generalization and overfitting. **Acta Neurochir Suppl**, v. 134, p. 15-21, 2022. DOI: 10.1007/978-3-030-85292-4_3.
+15. ACHATZ, M. I. et al. Recommendations for advancing the diagnosis and management of hereditary breast and ovarian cancer in Brazil. **JCO Glob Oncol**, v. 6, p. 439-452, 2020. DOI: 10.1200/JGO.19.00170.
+
+**Base metodológica e recursos técnicos**
+
+16. LIN, Z. et al. Evolutionary-scale prediction of atomic-level protein structure with a language model (ESM-2). **Science**, v. 379, n. 6637, p. 1123-1130, 2023. DOI: 10.1126/science.ade2574.
+17. MEIER, J. et al. Language models enable zero-shot prediction of the effects of mutations on protein function. **NeurIPS**, 2021.
+18. DELONG, E. R.; DELONG, D. M.; CLARKE-PEARSON, D. L. Comparing the areas under two or more correlated ROC curves: a nonparametric approach. **Biometrics**, v. 44, n. 3, p. 837-845, 1988.
+19. YANG, H. et al. BRCA2 function in DNA binding and recombination from a BRCA2–DSS1–ssDNA structure. **Science**, v. 297, n. 5588, p. 1837-1848, 2002. DOI: 10.1126/science.297.5588.1837.
+20. THE UNIPROT CONSORTIUM. UniProt: the Universal Protein Knowledgebase in 2023. **Nucleic Acids Res**, v. 51, n. D1, p. D523-D531, 2023. (BRCA1 P38398; BRCA2 P51587).
