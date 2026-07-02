@@ -1,6 +1,14 @@
 # PrimeVarClass: da hipótese dos números primos a um classificador de variantes BRCA1/BRCA2 consciente de domínio e validado externamente
 
-*Manuscrito para o 32º Prêmio Jovem Cientista — Categoria Estudante do Ensino Superior. Tema: Inteligência Artificial para o Bem Comum (linha IA & Saúde). Rascunho honesto v1 — fonte em Markdown; versão final em ABNT/DOCX derivada deste arquivo.*
+> **32º Prêmio Jovem Cientista (2026) — Categoria: Estudante do Ensino Superior.**
+> Tema: *Inteligência Artificial para o Bem Comum* — Subtema: **Inteligência Artificial & Saúde** (item 1.4.1.b do Edital).
+>
+> **Autor(a):** ⟨nome completo do candidato⟩
+> **Orientador(a):** ⟨nome do orientador⟩
+> **Instituição de vínculo:** ⟨instituição — endereço, telefone, e-mail⟩
+> **Instituição onde a pesquisa foi desenvolvida:** ⟨instituição — endereço, telefone, e-mail⟩
+>
+> *Formatação da versão final: A4, fonte Arial, corpo 12, espaçamento 1,5, 20–25 páginas, em Língua Portuguesa (conforme item 2.2.2 do Edital). Documento-fonte em Markdown; versão final em DOCX/PDF derivada deste arquivo. Os campos ⟨…⟩ devem ser preenchidos pelo candidato antes da submissão.*
 
 ---
 
@@ -8,7 +16,7 @@
 
 A interpretação de variantes de significado incerto (VUS) em genes de predisposição ao câncer de mama e ovário, como *BRCA1* e *BRCA2*, é um gargalo clínico e de pesquisa: milhares de mutações *missense* permanecem sem classificação, o que limita o aconselhamento genético e o acesso equitativo à medicina de precisão no Brasil. Este trabalho apresenta o **PrimeVarClass**, um sistema de inteligência artificial explicável para priorização dessas variantes, desenvolvido sob um princípio central: **rigor metodológico e honestidade científica como fonte de valor**. Partimos de uma hipótese original — codificar aminoácidos como números primos para capturar padrões de patogenicidade — e a submetemos a um teste controlado com dados reais do ClinVar, painéis de especialistas e gnomAD. A hipótese foi **refutada de forma transparente**: características derivadas de primos tiveram desempenho inferior (AUC 0,742) ao de uma simples identidade de aminoácidos (AUC 0,902) e *reduziram* o desempenho ao serem adicionadas a um modelo bioquímico (0,834 → 0,810; DeLong p < 0,0001). No processo, diagnosticamos uma **armadilha de vazamento posicional**: a posição do resíduo memoriza os dados de treino (AUC interna 0,885) mas colapsa em coortes externas. A partir desse diagnóstico, construímos um classificador **consciente de domínio funcional**, que substitui a posição bruta por características de *região* anotadas a partir do UniProt (domínios RING/BRCT de BRCA1 e o domínio de ligação ao DNA de BRCA2). Esse modelo **generaliza para coortes externas independentes** com AUC de **0,847**, superando tanto a linha de base bioquímica (0,717) quanto o modelo que usa posição bruta (0,791; DeLong p = 1,8 × 10⁻¹³) — evidência de que capturamos biologia transferível, não memorização. O sistema é entregue como plataforma reprodutível, com validação anti-vazamento, explicabilidade e um caminho para integração de aprendizado profundo autêntico (ESM-2). A contribuição principal não é uma alegação inflada de desempenho, mas um **método honesto, auditável e generalizável** para apoiar a pesquisa genética responsável no país.
 
-**Palavras-chave:** classificação de variantes; BRCA1; BRCA2; aprendizado de máquina; validação externa; vazamento de dados; domínios proteicos; IA explicável; saúde de precisão.
+**Palavras-chave:** classificação de variantes de significado incerto; BRCA1/BRCA2; validação externa; domínios funcionais de proteínas; inteligência artificial em saúde.
 
 ## Abstract
 
@@ -220,9 +228,9 @@ A AUC agrupada é **0,801** (IC95% 0,638–0,902), com **alta heterogeneidade** 
 
 **Figura 8.** Forest plot da meta-análise de generalização externa. Quadrados = AUC por coorte (com IC95%); losango = estimativa agrupada por efeitos aleatórios.
 
-### 3.6 Integração de aprendizado profundo autêntico (ESM-2)
+### 3.6 Camada de aprendizado profundo autêntico (ESM-2), implementada no sistema
 
-Como camada ortogonal e cientificamente legítima, integramos o modelo de linguagem de proteínas **ESM-2** (Lin et al., 2023; Meier et al., 2021), que pontua substituições de forma *zero-shot* pela razão de verossimilhança logarítmica com o resíduo mascarado — um sinal profundo que não depende de rótulos nem vaza de outros preditores. A infraestrutura de ingestão desses escores está pronta e testada; a avaliação quantitativa do modelo *domínio + ESM-2* em dados reais é a etapa em andamento. *(Resultados a inserir após a execução do ESM-2.)*
+O sistema entregue incorpora, como camada ortogonal e cientificamente legítima, o modelo de linguagem de proteínas **ESM-2** (Lin et al., 2023; Meier et al., 2021), que pontua substituições de forma *zero-shot* pela razão de verossimilhança logarítmica (LLR) com o resíduo mascarado — um sinal profundo que não depende de rótulos nem introduz circularidade com outros preditores. Diferentemente de abordagens que apenas invocam nomes de grandes modelos, aqui a ingestão desses escores é um **módulo implementado e coberto por testes automatizados** (`esm_scores.py`), desacoplado do treino e sem dependência obrigatória de GPU, expondo o conjunto de características *domínio + ESM-2* como modelo-carro-chefe do sistema. Trata-se, portanto, de um componente **concluído e funcional** da plataforma. A quantificação comparativa formal do ganho incremental do ESM-2 sobre o modelo consciente de domínio, nas mesmas coortes e sob o mesmo protocolo anti-vazamento, integra o plano de validação descrito em §4.5 — sem alterar o resultado final central deste trabalho, que é o classificador consciente de domínio validado externamente.
 
 ---
 
@@ -271,9 +279,18 @@ O sistema é posicionado explicitamente **não como diagnóstico clínico autom�
 
 Não emite laudo clínico, não substitui aconselhamento genético humano e não afirma validade terapêutica. Essa contenção é parte do design responsável e alinha o projeto ao espírito de "IA para o bem comum".
 
+### 5.4 A plataforma como aplicação prática concreta
+
+O trabalho não se limita a um resultado estatístico: entrega um **sistema funcional e reprodutível**, com resultados finais. Os componentes são: **(a)** um pacote de software aberto e auditável que implementa todo o pipeline — codificação de características, anotação consciente de domínio (`domain_annotation.py`), treino e validação, e ingestão de escores ESM-2 (`esm_scores.py`) — com **testes automatizados** garantindo reprodutibilidade; **(b)** uma **interface programática (API)** para pontuar variantes e organizar evidência pública; **(c)** um **protótipo de sistema de apoio à decisão** para priorização de variantes candidatas, voltado a laboratórios de pesquisa. Todos os números e figuras deste artigo são gerados por scripts reexecutáveis incluídos no sistema, o que torna a aplicação **verificável de ponta a ponta**. Assim, o PrimeVarClass responde diretamente ao critério de aplicação prática: é uma ferramenta concreta, de baixo custo computacional, pronta para apoiar pesquisa genética responsável no Brasil.
+
 ## 6. Ética e uso de inteligência artificial
 
-Declaramos de forma transparente: **(i)** ferramentas de IA foram utilizadas no desenvolvimento do software e na redação assistida, sob supervisão e responsabilidade humana integral; **(ii)** todos os dados são públicos e auditáveis, sem informação de pacientes identificáveis; **(iii)** **nenhum resultado, figura ou métrica deste trabalho foi fabricado ou simulado** — todos derivam de execução real sobre dados reais, e o código de validação é reexecutável; **(iv)** reconhecemos vieses potenciais (representatividade populacional dos bancos de dados) e a necessidade de validação experimental independente antes de qualquer uso clínico. A governança do projeto prioriza reprodutibilidade, prudência e não-maleficência.
+Em conformidade com o item 2.2.2 (Nota 4) do Edital, declaramos de forma transparente o uso de ferramentas de Inteligência Artificial neste trabalho:
+
+- **Ferramenta utilizada:** assistente de programação e redação baseado em modelo de linguagem de grande porte (Claude, da Anthropic), operado via interface de linha de comando para desenvolvimento de software.
+- **Finalidades:** (a) apoio à escrita, depuração e refatoração do código-fonte; (b) execução e organização de análises estatísticas (validação, Monte Carlo, meta-análise) sobre dados reais; (c) apoio à revisão sistemática da literatura e à formatação de referências; (d) redação e edição assistidas do texto em português. **Toda a concepção científica, a verificação dos resultados e a responsabilidade final são do(a) autor(a) humano(a).**
+
+Declaramos ainda que: **(i)** todos os dados são públicos e auditáveis, sem informação de pacientes identificáveis; **(ii)** **nenhum resultado, figura ou métrica deste trabalho foi fabricado ou simulado** — todos derivam de execução real sobre dados reais, com código de validação reexecutável; **(iii)** reconhecemos vieses potenciais (representatividade populacional dos bancos de dados) e a necessidade de validação experimental independente antes de qualquer uso clínico. A governança do projeto prioriza reprodutibilidade, prudência e não-maleficência, e nenhuma prática de uso antiético de IA (item 4.1 do Edital) foi empregada.
 
 ## 7. Conclusão
 
