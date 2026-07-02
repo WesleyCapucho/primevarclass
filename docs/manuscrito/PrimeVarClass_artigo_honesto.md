@@ -147,24 +147,48 @@ Como camada ortogonal e cientificamente legítima, integramos o modelo de lingua
 
 ## 4. Discussão
 
-*(A desenvolver — pontos-chave já definidos.)*
+### 4.1 Biologia transferível versus memorização
 
-- **Biologia transferível vs memorização.** A superioridade externa do modelo de domínio sobre a posição bruta é a evidência mais forte de que o sistema aprende mecanismo funcional, não atalho estatístico.
-- **A honestidade como contribuição.** Reportar a refutação dos primos e o diagnóstico de vazamento fortalece — não enfraquece — o trabalho: é ciência reprodutível e à prova de auditoria.
-- **Posicionamento frente a preditores estabelecidos.** Discutir uso de AlphaMissense/REVEL como *referência* e não como *feature* (para evitar circularidade), e o valor de um método aberto e auditável.
-- **Limitações.** Duas proteínas; fronteiras de domínio aproximadas; ausência de confirmação funcional experimental; escores ESM-2 em integração.
+O achado central deste trabalho é que **o sinal de domínio funcional generaliza para dados novos, ao passo que a posição bruta memoriza**. Em validação interna ingênua, a posição do resíduo parece um preditor forte; porém, quando avaliada em coortes externas independentes, colapsa (0,791) enquanto o modelo consciente de domínio se mantém superior (0,847). Essa inversão é diagnóstica: características que codificam **mecanismo** — a que região funcional a mutação pertence, e se essa região é crítica para a estabilidade ou a atividade da proteína — carregam biologia que se aplica a variantes nunca vistas. Já um índice numérico de posição carrega, sobretudo, a memória de quais posições estavam rotuladas no treino. A taxa de patogenicidade de 45% dentro de domínios críticos contra 9% fora reforça que o modelo aprendeu um princípio biológico real, coerente com décadas de literatura sobre BRCA1 (RING/BRCT) e BRCA2 (domínio de ligação ao DNA).
+
+### 4.2 A honestidade metodológica como contribuição científica
+
+É tentador, em uma competição, apresentar apenas o melhor número. Optamos pelo contrário: relatamos que nossa hipótese fundadora — os números primos — **falhou** em um teste justo, e que um preditor aparentemente forte era, na verdade, um artefato de vazamento. Defendemos que essa transparência é a contribuição mais durável do trabalho. Primeiro, porque é **reprodutível e auditável**: todo o protocolo de bloqueio por posição e validação externa pode ser reexecutado. Segundo, porque o **diagnóstico de vazamento posicional** é um alerta metodológico útil para toda a área de predição de patogenicidade, onde benchmarks internos otimistas são comuns. Ciência não é a ausência de resultados negativos; é o tratamento rigoroso deles. Um resultado negativo bem estabelecido vale mais do que um resultado positivo frágil.
+
+### 4.3 Posicionamento frente a preditores estabelecidos
+
+Preditores como AlphaMissense, REVEL e CADD são referências poderosas, mas incorporá-los como *características* de um novo modelo introduz **circularidade** — eles próprios são treinados em rótulos correlacionados, e seu uso direto infla artificialmente o desempenho. Por isso, tratamo-los como **linha de referência de comparação**, não como insumo do modelo proposto. O valor diferencial do PrimeVarClass não é superar numericamente esses preditores fechados, mas oferecer um método **aberto, interpretável e auditável**, cujo sinal preditivo tem origem biológica explícita (região funcional) e cuja generalização é demonstrada externamente.
+
+### 4.4 Limitações
+
+Reconhecemos limites claros. **(i)** A validação concentrou-se em duas proteínas (*BRCA1/BRCA2*); a extensão a outros genes é trabalho futuro. **(ii)** As fronteiras de domínio são aproximações baseadas em literatura e no UniProt; refinamentos estruturais podem melhorar a granularidade. **(iii)** Não há, ainda, **confirmação funcional experimental** das priorizações — o sistema apoia pesquisa, não substitui ensaio funcional nem julgamento clínico. **(iv)** A integração quantitativa do ESM-2 está em curso. Nenhuma dessas limitações compromete o achado central; todas apontam caminhos concretos de continuidade.
 
 ## 5. Impacto social e aplicação
 
-*(A desenvolver.)* Conexão com o SUS e a desigualdade de acesso à interpretação genética; apoio a laboratórios públicos/universitários; formação de pesquisadores; plataforma web/API auditável; explicitamente **não** um diagnóstico clínico automático, mas uma ferramenta de aceleração de pesquisa responsável.
+### 5.1 O problema brasileiro concreto
+
+O acesso à interpretação de variantes genéticas é profundamente desigual no Brasil. A expertise concentra-se em poucos centros; laboratórios públicos, hospitais universitários e grupos de pesquisa em regiões menos assistidas frequentemente não dispõem de ferramentas abertas e adaptáveis. O resultado é que exames genéticos, quando realizados, muitas vezes retornam VUS sem suporte para conduzir a decisão — e o custo desse impasse recai desproporcionalmente sobre quem depende do sistema público.
+
+### 5.2 Como o PrimeVarClass contribui
+
+O sistema é posicionado explicitamente **não como diagnóstico clínico automático**, mas como **ferramenta de aceleração de pesquisa responsável**:
+
+- **Apoio a laboratórios públicos e universitários**: uma plataforma aberta e auditável para priorizar variantes candidatas e organizar evidência pública (ClinVar, gnomAD), reduzindo o tempo de análise inicial.
+- **Formação de pesquisadores**: por ser explicável e reprodutível, serve de instrumento didático sobre boas práticas — validação externa, prevenção de vazamento, honestidade sobre limites.
+- **Suporte à pesquisa translacional nacional**: geração de hipóteses funcionais rastreáveis para priorizar quais variantes merecem investigação experimental.
+- **Equidade**: por ser software aberto e de baixo custo computacional (não exige GPU para o núcleo), pode ser executado em infraestrutura modesta.
+
+### 5.3 O que o sistema deliberadamente **não** faz
+
+Não emite laudo clínico, não substitui aconselhamento genético humano e não afirma validade terapêutica. Essa contenção é parte do design responsável e alinha o projeto ao espírito de "IA para o bem comum".
 
 ## 6. Ética e uso de inteligência artificial
 
-*(A desenvolver.)* Declaração explícita de uso de IA no desenvolvimento; governança de dados públicos; limites, vieses e necessidade de validação experimental independente; ausência de qualquer dado fabricado.
+Declaramos de forma transparente: **(i)** ferramentas de IA foram utilizadas no desenvolvimento do software e na redação assistida, sob supervisão e responsabilidade humana integral; **(ii)** todos os dados são públicos e auditáveis, sem informação de pacientes identificáveis; **(iii)** **nenhum resultado, figura ou métrica deste trabalho foi fabricado ou simulado** — todos derivam de execução real sobre dados reais, e o código de validação é reexecutável; **(iv)** reconhecemos vieses potenciais (representatividade populacional dos bancos de dados) e a necessidade de validação experimental independente antes de qualquer uso clínico. A governança do projeto prioriza reprodutibilidade, prudência e não-maleficência.
 
 ## 7. Conclusão
 
-*(A desenvolver.)* Uma hipótese ousada, testada e refutada com transparência, conduziu a um classificador consciente de domínio que generaliza externamente — um método honesto e reprodutível para apoiar a saúde de precisão no Brasil.
+Uma hipótese ousada — codificar aminoácidos como números primos — foi testada com rigor e **refutada com transparência**. Esse resultado negativo, longe de ser um fracasso, conduziu a dois avanços concretos: o **diagnóstico da armadilha de vazamento posicional** em benchmarks de patogenicidade e a construção de um **classificador consciente de domínio funcional** que **generaliza para coortes externas independentes** (AUC 0,847; DeLong p = 1,8 × 10⁻¹³), superando modelos que apenas memorizam. O PrimeVarClass entrega esse método de forma aberta, explicável, auditável e eticamente contida, com aplicação direta ao contexto brasileiro de saúde de precisão e formação científica. Sua maior força não é um número, mas um **compromisso com a ciência honesta** — o tipo de trabalho que a comunidade pode confiar, reproduzir e construir em cima.
 
 ---
 
