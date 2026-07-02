@@ -3,12 +3,12 @@
 > **32º Prêmio Jovem Cientista (2026) — Categoria: Estudante do Ensino Superior.**
 > Tema: *Inteligência Artificial para o Bem Comum* — Subtema: **Inteligência Artificial & Saúde** (item 1.4.1.b do Edital).
 >
-> **Autor(a):** ⟨nome completo do candidato⟩
-> **Orientador(a):** ⟨nome do orientador⟩
-> **Instituição de vínculo:** ⟨instituição — endereço, telefone, e-mail⟩
-> **Instituição onde a pesquisa foi desenvolvida:** ⟨instituição — endereço, telefone, e-mail⟩
+> **Autor:** Wesley Felipe Capucho — graduando em Engenharia Bioquímica
+> **Orientador(a):** ⟨nome do(a) orientador(a) — a preencher⟩
+> **Instituição de vínculo:** Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP) — Estrada Municipal do Campinho, s/nº, Ponte Nova, Lorena – SP, CEP 12602-810. Telefone: ⟨a preencher⟩. E-mail: wesleycapucho@usp.br
+> **Instituição onde a pesquisa foi desenvolvida:** Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP), Lorena – SP, Brasil.
 >
-> *Formatação da versão final: A4, fonte Arial, corpo 12, espaçamento 1,5, 20–25 páginas, em Língua Portuguesa (conforme item 2.2.2 do Edital). Documento-fonte em Markdown; versão final em DOCX/PDF derivada deste arquivo. Os campos ⟨…⟩ devem ser preenchidos pelo candidato antes da submissão.*
+> *Formatação: A4, fonte Arial, corpo 12, espaçamento 1,5, em Língua Portuguesa (item 2.2.2 do Edital). Campos restantes entre ⟨…⟩ (nome do orientador e telefone institucional) a preencher antes da submissão.*
 
 ---
 

@@ -26,7 +26,7 @@ normal.font.size = Pt(12)
 normal._element.rPr.rFonts.set(qn("w:eastAsia"), FONT)
 pf = normal.paragraph_format
 pf.line_spacing = 1.5
-pf.space_after = Pt(4)
+pf.space_after = Pt(2)
 
 for hs, sz in [("Heading 1", 14), ("Heading 2", 12), ("Heading 3", 12), ("Title", 16)]:
     try:
