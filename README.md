@@ -1,5 +1,8 @@
 # PrimeVarClass
 
+[![tests](https://github.com/WesleyCapucho/primevarclass/actions/workflows/tests.yml/badge.svg)](https://github.com/WesleyCapucho/primevarclass/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente.**
 
 PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a honestidade científica**.
