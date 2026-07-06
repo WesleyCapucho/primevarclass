@@ -14,7 +14,7 @@
 
 ## Resumo
 
-A interpretação de variantes de significado incerto (VUS) em genes de predisposição ao câncer de mama e ovário, como *BRCA1* e *BRCA2*, é um gargalo clínico e de pesquisa: milhares de mutações *missense* permanecem sem classificação, o que limita o aconselhamento genético e o acesso equitativo à medicina de precisão no Brasil. Este trabalho apresenta o **PrimeVarClass**, um sistema de inteligência artificial explicável para priorização dessas variantes, desenvolvido sob um princípio central: **rigor metodológico e honestidade científica como fonte de valor**. Partimos de uma hipótese original — codificar aminoácidos como números primos para capturar padrões de patogenicidade — e a submetemos a um teste controlado com dados reais do ClinVar, painéis de especialistas e gnomAD. A hipótese foi **refutada de forma transparente**: características derivadas de primos tiveram desempenho inferior (AUC 0,742) ao de uma simples identidade de aminoácidos (AUC 0,902) e *reduziram* o desempenho ao serem adicionadas a um modelo bioquímico (0,834 → 0,810; DeLong p < 0,0001). No processo, diagnosticamos uma **armadilha de vazamento posicional**: a posição do resíduo memoriza os dados de treino (AUC interna 0,885) mas colapsa em coortes externas. A partir desse diagnóstico, construímos um classificador **consciente de domínio funcional**, que substitui a posição bruta por características de *região* anotadas a partir do UniProt (domínios RING/BRCT de BRCA1 e o domínio de ligação ao DNA de BRCA2). Esse modelo **generaliza para coortes externas independentes** com AUC de **0,847**, superando tanto a linha de base bioquímica (0,717) quanto o modelo que usa posição bruta (0,791; DeLong p = 1,8 × 10⁻¹³) — evidência de que capturamos biologia transferível, não memorização. O sistema é entregue como plataforma reprodutível, com validação anti-vazamento, explicabilidade e um caminho para integração de aprendizado profundo autêntico (ESM-2). A contribuição principal não é uma alegação inflada de desempenho, mas um **método honesto, auditável e generalizável** para apoiar a pesquisa genética responsável no país.
+A interpretação de variantes de significado incerto (VUS) em genes de predisposição ao câncer de mama e ovário, como *BRCA1* e *BRCA2*, é um gargalo clínico e de pesquisa: milhares de mutações *missense* permanecem sem classificação, o que limita o aconselhamento genético e o acesso equitativo à medicina de precisão no Brasil. Este trabalho apresenta o **PrimeVarClass**, um sistema de inteligência artificial explicável para priorização dessas variantes, desenvolvido sob um princípio central: **rigor metodológico e honestidade científica como fonte de valor**. Partimos de uma hipótese original — codificar aminoácidos como números primos para capturar padrões de patogenicidade — e a submetemos a um teste controlado com dados reais do ClinVar, painéis de especialistas e gnomAD, sob o mesmo protocolo rigoroso usado em todo o trabalho (validação cruzada bloqueada por posição e generalização em coortes externas). A hipótese foi **refutada de forma transparente**: mesmo nesse regime rigoroso, características derivadas de primos tiveram desempenho inferior ao de uma identidade trivial de aminoácidos sem posição (AUC externa 0,681 vs. 0,718; DeLong p = 0,045) e *reduziram* o desempenho ao serem adicionadas a um modelo bioquímico (AUC externa 0,791 → 0,765; DeLong p < 0,0001). No processo, diagnosticamos uma **armadilha de vazamento posicional**: a posição bruta do resíduo, quando avaliada sob validação ingênua (sem bloqueio), memoriza os dados de treino (AUC de ~0,885) mas essa memorização não se sustenta sob validação rigorosa nem em coortes externas. A partir desse diagnóstico, construímos um classificador **consciente de domínio funcional**, que substitui a posição bruta por características de *região* anotadas a partir do UniProt (domínios RING/BRCT de BRCA1 e o domínio de ligação ao DNA de BRCA2). Esse modelo **generaliza para coortes externas independentes** com AUC de **0,847**, superando tanto a linha de base bioquímica (0,717) quanto o modelo que usa posição bruta (0,791; DeLong p = 1,8 × 10⁻¹³) — evidência de que capturamos biologia transferível, não memorização. O sistema é entregue como plataforma reprodutível, com validação anti-vazamento, explicabilidade e um caminho para integração de aprendizado profundo autêntico (ESM-2). A contribuição principal não é uma alegação inflada de desempenho, mas um **método honesto, auditável e generalizável** para apoiar a pesquisa genética responsável no país.
 
 **Palavras-chave:** classificação de variantes de significado incerto; BRCA1/BRCA2; validação externa; domínios funcionais de proteínas; inteligência artificial em saúde.
 
@@ -61,10 +61,10 @@ Este projeto nasceu de uma hipótese original e arrojada: e se a estrutura dos *
 
 ### 2.1 Fontes de dados (reais e públicas)
 
-Utilizamos exclusivamente dados públicos e auditáveis de variantes *missense* de *BRCA1* (UniProt P38398) e *BRCA2* (UniProt P51587):
+Utilizamos exclusivamente dados públicos e auditáveis de variantes *missense* de *BRCA1* (UniProt P38398) e *BRCA2* (UniProt P51587), conforme a base de dados UniProt (UniProt Consortium, 2023):
 
 - **ClinVar** — classificações clínicas, com subconjunto de alta confiança revisado por painel de especialistas (ENIGMA/ClinGen).
-- **gnomAD** — frequências alélicas populacionais.
+- **gnomAD** — frequências alélicas populacionais (Karczewski et al., 2020).
 - **Coortes externas independentes** — variantes classificadas por especialistas de BRCA1 e BRCA2, mantidas estritamente separadas do conjunto de treino para validação de generalização.
 
 Rótulos foram normalizados em patogênico (1) vs benigno (0); classificações conflitantes ou de baixa confiança foram excluídas. Conjunto de treino: **n = 869**; conjunto externo: **n = 836**.
@@ -111,7 +111,7 @@ Adotamos dois níveis de avaliação:
 - **(A) Validação cruzada bloqueada por posição** (StratifiedGroupKFold, 5 *folds*), em que todas as variantes de uma mesma posição ficam no mesmo *fold*. Isso impede que o modelo "veja" a mesma posição no treino e no teste, neutralizando o vazamento posicional.
 - **(B) Generalização externa**: treino no conjunto interno completo e teste em coortes externas independentes de especialistas.
 
-Comparações de AUC entre modelos foram feitas com o **teste pareado de DeLong**. A métrica primária foi a AUC-ROC.
+Comparações de AUC entre modelos foram feitas com o **teste pareado de DeLong** (DeLong; DeLong; Clarke-Pearson, 1988). A métrica primária foi a AUC-ROC.
 
 ### 2.6 Modelo e implementação
 
@@ -136,37 +136,39 @@ Tratamos as quatro coortes externas como estudos independentes e agrupamos suas 
 
 ### 3.1 A hipótese dos números primos foi refutada
 
-Sob validação bloqueada por posição, com o mesmo classificador, as características derivadas de primos tiveram desempenho **inferior** ao de uma codificação de identidade trivial, e **pioraram** um modelo bioquímico ao serem adicionadas.
+Testamos a hipótese sob o mesmo protocolo anti-vazamento descrito na Seção 2.5 — validação cruzada bloqueada por posição e generalização em coortes externas independentes —, com o mesmo classificador para todos os conjuntos de características (Tabela 1). Sob esse protocolo, as características derivadas de primos tiveram desempenho **inferior** ao de uma codificação de identidade trivial, e **pioraram** um modelo bioquímico ao serem adicionadas.
 
-**Tabela 1. Desempenho por conjunto de características (AUC-ROC, validação *out-of-fold*).**
+**Tabela 1. Desempenho por conjunto de características na refutação da hipótese dos primos, sob o protocolo anti-vazamento (mesmo classificador e mesma amostra de treino, n = 869; ver Seção 2.5).**
 
-| Conjunto de características | nº de *features* | AUC |
-| --- | ---: | ---: |
-| Identidade (gene + aa_ref + aa_alt) | 4 | **0,902** |
-| Bioquímico | 28 | 0,834 |
-| Híbrido + preditores externos | 87 | 0,832 |
-| Híbrido (bioquímico + primos) | 76 | 0,810 |
-| **Apenas primos** | 50 | 0,742 |
-| Apenas preditores externos (só gnomAD AF) | 5 | 0,616 |
+| Conjunto de características | nº de *features* | CV bloqueada por posição | Coortes externas |
+| --- | ---: | ---: | ---: |
+| Identidade (gene + aa_ref + aa_alt + posição)ᵃ | 4 | 0,871 | **0,882** |
+| Bioquímico (inclui gene e posição)ᵃ | 28 | 0,802 | 0,791 |
+| Híbrido (bioquímico + primos)ᵃ | 76 | 0,783 | 0,765 |
+| Identidade (gene + aa_ref + aa_alt, sem posição) | 3 | 0,745 | 0,718 |
+| **Apenas primos** | 50 | 0,717 | 0,681 |
 
-**Tabela 2. Comparações pareadas (DeLong).**
+ᵃ Por definição do pipeline de características, estes três conjuntos incluem o gene e a posição bruta do resíduo. O risco de memorização associado à posição é diagnosticado na Seção 3.2 e removido explicitamente no modelo proposto (Tabela 3).
 
-| Comparação | AUC A | AUC B | Δ | p |
-| --- | ---: | ---: | ---: | ---: |
-| Apenas-primos vs identidade | 0,742 | 0,902 | −0,161 | < 0,0001 |
-| Híbrido vs apenas-bioquímico | 0,810 | 0,834 | −0,025 | < 0,0001 |
+**Tabela 2. Comparações pareadas pelo teste de DeLong (DeLong; DeLong; Clarke-Pearson, 1988), sob o mesmo protocolo anti-vazamento (Tabela 1).**
 
-A conclusão é inequívoca e honesta: **os números primos não agregam sinal preditivo** para esta tarefa; onde parecem contribuir, é por características bioquímicas correlacionadas, e sua adição introduz ruído que reduz o desempenho.
+| Comparação | Protocolo | AUC A | AUC B | Δ | p |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Apenas-primos vs identidade (sem posição) | CV bloqueada por posição | 0,717 | 0,745 | −0,028 | 0,081 |
+| Apenas-primos vs identidade (sem posição) | Coortes externas | 0,681 | 0,718 | −0,038 | 0,045 |
+| Híbrido vs apenas-bioquímicoᵇ | Coortes externas | 0,765 | 0,791 | −0,026 | < 0,0001 |
+
+ᵇ Ambos os conjuntos incluem igualmente gene e posição (nota da Tabela 1); a comparação isola o efeito marginal de adicionar as características derivadas de primos.
+
+Mesmo sob o protocolo mais rigoroso, os primos não superam a identidade trivial: a diferença é uma tendência não significativa na validação cruzada interna (p = 0,081), mas torna-se estatisticamente significativa no teste mais decisivo — a generalização externa (p = 0,045). E quando adicionados a um modelo bioquímico já estabelecido, os primos **pioram** o desempenho de forma inequívoca nas coortes externas (p < 0,0001). A conclusão é honesta e reprodutível: **os números primos não agregam sinal preditivo útil** para esta tarefa; onde parecem contribuir, é por sobreposição com sinal já capturado por outras características, e sua adição introduz ruído que reduz o desempenho de generalização.
 
 ### 3.2 Diagnóstico: a armadilha do vazamento posicional
 
-Investigando por que certos modelos internos pareciam fortes, identificamos que a **posição bruta do resíduo** atinge AUC interna de ~0,885 — mas por **memorização**: como muitas posições aparecem com o mesmo rótulo no treino e no teste em validações ingênuas, o modelo "decora" posições em vez de aprender biologia. Sem a posição, a identidade gene+aa_ref+aa_alt cai para 0,783, e o gene isolado para 0,640. Este é um alerta metodológico central: **benchmarks internos que não bloqueiam a posição superestimam o desempenho real.**
+O motivo de adotarmos o protocolo anti-vazamento fica evidente ao isolar o papel da posição bruta do resíduo. Sob validação cruzada **ingênua** (sem bloqueio por grupo, ainda comum na literatura), a posição usada **isoladamente** como única característica atinge AUC de ~0,885, e o gene isolado, ~0,640 — valores artificialmente altos, pois muitas variantes de uma mesma posição compartilham rótulo e aparecem simultaneamente no treino e no teste, levando o modelo a "decorar" posições em vez de aprender biologia. Esse padrão de memorização é exatamente o que infla os conjuntos que incluem a posição bruta na Tabela 1 (Identidade e Bioquímico), motivando o protocolo de bloqueio por posição adotado em todo este trabalho. Este é o alerta metodológico central: **benchmarks internos que não bloqueiam a posição superestimam sistematicamente o desempenho real.**
 
 ### 3.3 A solução: modelo consciente de domínio, validado externamente
 
-Substituindo a posição bruta por características de **região funcional**, obtivemos um modelo que não só resiste ao bloqueio por posição como **generaliza melhor** para coortes externas independentes.
-
-Sanidade biológica: a taxa de patogenicidade dentro de domínios críticos é de **45%**, contra **9%** fora deles — coerente com o papel funcional dessas regiões.
+Substituindo a posição bruta por características de **região funcional**, obtivemos um modelo que não só resiste ao bloqueio por posição como **generaliza melhor** para coortes externas independentes, como resume a Tabela 3.
 
 **Tabela 3. Consciência de domínio: validação bloqueada por posição e generalização externa (AUC-ROC).**
 
@@ -192,13 +194,13 @@ As Figuras 4 e 5 ilustram a base biológica desse resultado. A Figura 4 mapeia a
 
 Para assegurar que a vantagem do modelo consciente de domínio não decorre do acaso nem de uma partição específica dos dados, executamos uma bateria de robustez sobre as coortes reais.
 
-**Intervalos de confiança por bootstrap (B = 2000).** Na generalização externa, a AUC do modelo domínio-consciente é 0,847 (IC95% 0,810–0,881), **sem sobreposição** com o intervalo do modelo bioquímico (0,717; IC95% 0,668–0,760). A diferença de AUC é de **+0,131** (IC95% 0,097–0,167) sobre o bioquímico e **+0,056** (IC95% 0,029–0,084) sobre a posição bruta; em nenhuma das 2000 reamostragens a diferença foi ≤ 0 (p < 0,0005 em ambos os casos). A distribuição bootstrap das três AUCs é mostrada na Figura 6.
+**Intervalos de confiança por bootstrap (B = 2000).** Na generalização externa, a AUC do modelo consciente de domínio é 0,847 (IC95% 0,810–0,881), **sem sobreposição** com o intervalo do modelo bioquímico (0,717; IC95% 0,668–0,760). A diferença de AUC é de **+0,131** (IC95% 0,097–0,167) sobre o bioquímico e **+0,056** (IC95% 0,029–0,084) sobre a posição bruta; em nenhuma das 2000 reamostragens a diferença foi ≤ 0 (p < 0,0005 em ambos os casos). A distribuição bootstrap das três AUCs é mostrada na Figura 6.
 
 **Teste de permutação (N = 2000).** Permutando os rótulos externos para construir a distribuição sob a hipótese nula, a AUC nula tem média 0,501; a AUC observada (0,847) situa-se muito além dela, com **p = 5 × 10⁻⁴** (o mínimo detectável com N = 2000). O desempenho não é atribuível ao acaso (Figura 7).
 
 **Estabilidade entre sementes.** Repetindo a validação cruzada bloqueada por posição em **12 sementes independentes**, a AUC média é **0,828 ± 0,005** (domínio), 0,818 ± 0,006 (posição bruta) e 0,763 ± 0,005 (bioquímico): o modelo de domínio é consistentemente superior, com variabilidade mínima (Figura 8).
 
-**Calibração.** O escore de Brier do modelo domínio-consciente nas coortes externas é **0,108**, e a curva de confiabilidade acompanha a diagonal (Figura 9), indicando probabilidades bem calibradas — propriedade importante para uso como apoio à decisão, e não apenas ordenação.
+**Calibração.** O escore de Brier do modelo consciente de domínio nas coortes externas é **0,108**, e a curva de confiabilidade acompanha a diagonal (Figura 9), indicando probabilidades bem calibradas — propriedade importante para uso como apoio à decisão, e não apenas ordenação. A Figura 10 complementa essa análise com as curvas ROC completas dos três modelos nas coortes externas, visualizando a mesma separação de desempenho já quantificada na Tabela 3.
 
 ![Figura 6](figuras/fig_bootstrap_auc.png)
 
@@ -214,7 +216,7 @@ Para assegurar que a vantagem do modelo consciente de domínio não decorre do a
 
 ![Figura 9](figuras/fig_calibration.png)
 
-**Figura 9.** Curva de calibração (confiabilidade) e escore de Brier do modelo domínio-consciente nas coortes externas.
+**Figura 9.** Curva de calibração (confiabilidade) e escore de Brier do modelo consciente de domínio nas coortes externas.
 
 ![Figura 10](figuras/fig_roc_external.png)
 
@@ -224,7 +226,7 @@ Para assegurar que a vantagem do modelo consciente de domínio não decorre do a
 
 Para quantificar a robustez de forma conservadora, tratamos cada uma das quatro coortes externas como um "estudo" independente e agrupamos suas AUCs por um modelo de **efeitos aleatórios** (estimador DerSimonian-Laird sobre a AUC em escala logit; incerteza por bootstrap). O resultado (Figura 11, Tabela 4) é honesto e informativo.
 
-**Tabela 4. Meta-análise da AUC externa por coorte (modelo domínio-consciente).**
+**Tabela 4. Meta-análise da AUC externa por coorte (modelo consciente de domínio).**
 
 | Coorte | n | AUC | IC95% |
 | --- | ---: | ---: | --- |
@@ -336,39 +338,32 @@ Todos os resultados derivam de dados **públicos** (ClinVar, painéis de especia
 
 ## Referências
 
-*Fontes primárias recuperadas via PubMed/NLM. Abaixo, as referências fundacionais citadas no texto em formato ABNT; a lista completa e curada de **52 fontes primárias** está em [`referencias_abnt.md`](referencias_abnt.md), com DOIs.*
+*Lista completa, em ordem alfabética (sistema autor-data, NBR 6023), de todas as referências efetivamente citadas no corpo deste artigo. Fontes primárias adicionais consultadas na revisão de literatura, mas não citadas diretamente no texto, estão disponíveis para consulta e transparência em [`referencias_abnt.md`](referencias_abnt.md) (52 registros, com DOIs, recuperados via PubMed/NLM).*
 
-**Diretrizes e recursos de classificação**
-
-1. RICHARDS, S. et al. Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the ACMG and AMP. **Genet Med**, v. 17, n. 5, p. 405-24, 2015. DOI: 10.1038/gim.2015.30.
-2. PEJAVER, V. et al. Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria. **Am J Hum Genet**, v. 109, n. 12, p. 2163-2177, 2022. DOI: 10.1016/j.ajhg.2022.10.013.
-3. PARSONS, M. T. et al. Large scale multifactorial likelihood quantitative analysis of BRCA1 and BRCA2 variants: an ENIGMA resource. **Hum Mutat**, v. 40, n. 9, p. 1557-1578, 2019. DOI: 10.1002/humu.23818.
+1. ACHATZ, M. I. et al. Recommendations for advancing the diagnosis and management of hereditary breast and ovarian cancer in Brazil. **JCO Glob Oncol**, v. 6, p. 439-452, 2020. DOI: 10.1200/JGO.19.00170.
+2. CHENG, J. et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. **Science**, v. 381, n. 6664, eadg7492, 2023. DOI: 10.1126/science.adg7492.
+3. DELONG, E. R.; DELONG, D. M.; CLARKE-PEARSON, D. L. Comparing the areas under two or more correlated ROC curves: a nonparametric approach. **Biometrics**, v. 44, n. 3, p. 837-845, 1988.
 4. DINES, J. N. et al. Systematic misclassification of missense variants in BRCA1 and BRCA2 "coldspots". **Genet Med**, v. 22, n. 5, p. 825-830, 2020. DOI: 10.1038/s41436-019-0740-6.
-
-**Preditores in silico e bancos de dados**
-
-5. IOANNIDIS, N. M. et al. REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. **Am J Hum Genet**, v. 99, n. 4, p. 877-885, 2016. DOI: 10.1016/j.ajhg.2016.08.016.
-6. RENTZSCH, P. et al. CADD: predicting the deleteriousness of variants throughout the human genome. **Nucleic Acids Res**, v. 47, n. D1, p. D886-D894, 2019. DOI: 10.1093/nar/gky1016.
-7. CHENG, J. et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. **Science**, v. 381, n. 6664, eadg7492, 2023. DOI: 10.1126/science.adg7492.
-8. KARCZEWSKI, K. J. et al. The mutational constraint spectrum quantified from variation in 141,456 humans (gnomAD). **Nature**, v. 581, n. 7809, p. 434-443, 2020. DOI: 10.1038/s41586-020-2308-7.
-9. HART, S. N. et al. Prediction of the functional impact of missense variants in BRCA1 and BRCA2 with BRCA-ML. **NPJ Breast Cancer**, v. 6, 13, 2020. DOI: 10.1038/s41523-020-0159-x.
-
-**Domínios funcionais, restrição e ensaios**
-
-10. ZHANG, X. et al. Genetic constraint at single amino acid resolution in protein domains improves missense variant prioritisation and gene discovery. **Genome Med**, v. 16, n. 1, 88, 2024. DOI: 10.1186/s13073-024-01358-9.
-11. TORRETTO, G. C. et al. Domain-specific computational, functional and structural methods enable interpretation of BRCT variants of uncertain significance. **Curr Oncol**, v. 33, n. 6, 2026.
-12. TOLAND, A. E.; ANDREASSEN, P. R. DNA repair-related functional assays for the classification of BRCA1 and BRCA2 variants: a critical review. **J Med Genet**, v. 54, n. 11, p. 721-731, 2017. DOI: 10.1136/jmedgenet-2017-104707.
-13. FINDLAY, G. M. et al. Saturation editing of genomic regions by multiplex homology-directed repair. **Nature**, v. 513, n. 7516, p. 120-3, 2014. DOI: 10.1038/nature13695.
-
-**Aprendizado de máquina, generalização e contexto nacional**
-
-14. KERNBACH, J. M.; STAARTJES, V. E. Foundations of machine learning-based clinical prediction modeling: Part II — generalization and overfitting. **Acta Neurochir Suppl**, v. 134, p. 15-21, 2022. DOI: 10.1007/978-3-030-85292-4_3.
-15. ACHATZ, M. I. et al. Recommendations for advancing the diagnosis and management of hereditary breast and ovarian cancer in Brazil. **JCO Glob Oncol**, v. 6, p. 439-452, 2020. DOI: 10.1200/JGO.19.00170.
-
-**Base metodológica e recursos técnicos**
-
-16. LIN, Z. et al. Evolutionary-scale prediction of atomic-level protein structure with a language model (ESM-2). **Science**, v. 379, n. 6637, p. 1123-1130, 2023. DOI: 10.1126/science.ade2574.
-17. MEIER, J. et al. Language models enable zero-shot prediction of the effects of mutations on protein function. **NeurIPS**, 2021.
-18. DELONG, E. R.; DELONG, D. M.; CLARKE-PEARSON, D. L. Comparing the areas under two or more correlated ROC curves: a nonparametric approach. **Biometrics**, v. 44, n. 3, p. 837-845, 1988.
-19. YANG, H. et al. BRCA2 function in DNA binding and recombination from a BRCA2–DSS1–ssDNA structure. **Science**, v. 297, n. 5588, p. 1837-1848, 2002. DOI: 10.1126/science.297.5588.1837.
-20. THE UNIPROT CONSORTIUM. UniProt: the Universal Protein Knowledgebase in 2023. **Nucleic Acids Res**, v. 51, n. D1, p. D523-D531, 2023. (BRCA1 P38398; BRCA2 P51587).
+5. FAVALLI, V. et al. Machine learning-based reclassification of germline variants of unknown significance: the RENOVO algorithm. **Am J Hum Genet**, v. 108, n. 4, p. 682-695, 2021. DOI: 10.1016/j.ajhg.2021.03.010.
+6. FERNANDES, G. C. et al. Differential profile of BRCA1 vs. BRCA2 mutated families: a characterization of the main differences and similarities in patients. **Asian Pac J Cancer Prev**, v. 20, n. 6, p. 1655-1660, 2019. DOI: 10.31557/APJCP.2019.20.6.1655.
+7. FINDLAY, G. M. et al. Saturation editing of genomic regions by multiplex homology-directed repair. **Nature**, v. 513, n. 7516, p. 120-3, 2014. DOI: 10.1038/nature13695.
+8. HART, S. N. et al. Prediction of the functional impact of missense variants in BRCA1 and BRCA2 with BRCA-ML. **NPJ Breast Cancer**, v. 6, 13, 2020. DOI: 10.1038/s41523-020-0159-x.
+9. IOANNIDIS, N. M. et al. REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. **Am J Hum Genet**, v. 99, n. 4, p. 877-885, 2016. DOI: 10.1016/j.ajhg.2016.08.016.
+10. KARCZEWSKI, K. J. et al. The mutational constraint spectrum quantified from variation in 141,456 humans (gnomAD). **Nature**, v. 581, n. 7809, p. 434-443, 2020. DOI: 10.1038/s41586-020-2308-7.
+11. KERNBACH, J. M.; STAARTJES, V. E. Foundations of machine learning-based clinical prediction modeling: Part II — generalization and overfitting. **Acta Neurochir Suppl**, v. 134, p. 15-21, 2022. DOI: 10.1007/978-3-030-85292-4_3.
+12. LASTA, J. L.; GROTO, A. D.; BRANDALIZE, A. P. C. Assessment of medical knowledge toward genetic testing for individuals with hereditary breast and ovarian cancer syndrome in Brazil. **Prev Med Rep**, v. 35, p. 102356, 2023. DOI: 10.1016/j.pmedr.2023.102356.
+13. LIN, Z. et al. Evolutionary-scale prediction of atomic-level protein structure with a language model (ESM-2). **Science**, v. 379, n. 6637, p. 1123-1130, 2023. DOI: 10.1126/science.ade2574.
+14. MEIER, J. et al. Language models enable zero-shot prediction of the effects of mutations on protein function. **NeurIPS**, 2021.
+15. NORONHA, M. M. et al. Beyond 1100delC: distinct CHEK2 variants and unique cancer phenotypes in Northeast Brazil. **Fam Cancer**, v. 25, n. 1, p. 8, 2026. DOI: 10.1007/s10689-025-00526-z.
+16. PALMERO, E. I. et al. Clinical characterization and risk profile of individuals seeking genetic counseling for hereditary breast cancer in Brazil. **J Genet Couns**, v. 16, n. 3, p. 363-71, 2007. DOI: 10.1007/s10897-006-9073-0.
+17. PARSONS, M. T. et al. Large scale multifactorial likelihood quantitative analysis of BRCA1 and BRCA2 variants: an ENIGMA resource to support clinical variant classification. **Hum Mutat**, v. 40, n. 9, p. 1557-1578, 2019. DOI: 10.1002/humu.23818.
+18. PEJAVER, V. et al. Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria. **Am J Hum Genet**, v. 109, n. 12, p. 2163-2177, 2022. DOI: 10.1016/j.ajhg.2022.10.013.
+19. RENTZSCH, P. et al. CADD: predicting the deleteriousness of variants throughout the human genome. **Nucleic Acids Res**, v. 47, n. D1, p. D886-D894, 2019. DOI: 10.1093/nar/gky1016.
+20. RIBEIRO, A. A. F. et al. Molecular characterization of hereditary breast and ovarian cancer patients from a public precision medicine service in the Southeast Brazilian population. **Sci Rep**, v. 15, n. 1, p. 33495, 2025. DOI: 10.1038/s41598-025-16870-0.
+21. RICHARDS, S. et al. Standards and guidelines for the interpretation of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology. **Genet Med**, v. 17, n. 5, p. 405-24, 2015. DOI: 10.1038/gim.2015.30.
+22. TIAN, Y. et al. REVEL and BayesDel outperform other in silico meta-predictors for clinical variant classification. **Sci Rep**, v. 9, n. 1, p. 12752, 2019. DOI: 10.1038/s41598-019-49224-8.
+23. TOLAND, A. E.; ANDREASSEN, P. R. DNA repair-related functional assays for the classification of BRCA1 and BRCA2 variants: a critical review and needs assessment. **J Med Genet**, v. 54, n. 11, p. 721-731, 2017. DOI: 10.1136/jmedgenet-2017-104707.
+24. TORRETTO, G. C. et al. Domain-specific computational, functional and structural methods enable interpretation of BRCT variants of uncertain significance. **Curr Oncol**, v. 33, n. 6, 2026.
+25. UNIPROT CONSORTIUM, THE. UniProt: the Universal Protein Knowledgebase in 2023. **Nucleic Acids Res**, v. 51, n. D1, p. D523-D531, 2023. (BRCA1 P38398; BRCA2 P51587).
+26. YANG, H. et al. BRCA2 function in DNA binding and recombination from a BRCA2–DSS1–ssDNA structure. **Science**, v. 297, n. 5588, p. 1837-1848, 2002. DOI: 10.1126/science.297.5588.1837.
+27. ZHANG, X. et al. Genetic constraint at single amino acid resolution in protein domains improves missense variant prioritisation and gene discovery. **Genome Med**, v. 16, n. 1, 88, 2024. DOI: 10.1186/s13073-024-01358-9.

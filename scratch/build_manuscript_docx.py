@@ -28,12 +28,17 @@ pf = normal.paragraph_format
 pf.line_spacing = 1.5
 pf.space_after = Pt(2)
 
-for hs, sz in [("Heading 1", 14), ("Heading 2", 12), ("Heading 3", 12), ("Title", 16)]:
+for hs, sz, before, after in [("Heading 1", 14, 10, 4), ("Heading 2", 12, 8, 3),
+                              ("Heading 3", 12, 6, 2), ("Title", 16, 0, 8)]:
     try:
         st = doc.styles[hs]
         st.font.name = FONT
         st.font.size = Pt(sz)
         st.font.color.rgb = RGBColor(0, 0, 0)
+        hpf = st.paragraph_format
+        hpf.space_before = Pt(before)
+        hpf.space_after = Pt(after)
+        hpf.line_spacing = 1.0
     except KeyError:
         pass
 
@@ -41,10 +46,10 @@ for hs, sz in [("Heading 1", 14), ("Heading 2", 12), ("Heading 3", 12), ("Title"
 sec = doc.sections[0]
 sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)
 for m in ("top_margin", "bottom_margin"):
-    setattr(sec, m, Cm(2.0))
+    setattr(sec, m, Cm(1.8))
 for m in ("left_margin", "right_margin"):
-    setattr(sec, m, Cm(2.5))
-CONTENT_CM = 11.0
+    setattr(sec, m, Cm(2.2))
+CONTENT_CM = 10.5
 
 INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*]+?\*|`[^`]+?`)")
 

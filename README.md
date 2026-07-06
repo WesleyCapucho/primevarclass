@@ -12,8 +12,8 @@ PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial p
 
 O projeto nasceu de uma hipótese original — **codificar aminoácidos como números primos** — que **testamos com rigor e refutamos de forma transparente**:
 
-- características derivadas de primos tiveram desempenho **inferior** (AUC 0,742) ao de uma identidade trivial de aminoácidos (0,902);
-- adicioná-las a um modelo bioquímico **reduziu** o desempenho (0,834 → 0,810; DeLong *p* < 0,0001).
+- sob validação cruzada bloqueada por posição e generalização em coortes externas, características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácidos sem posição (AUC externa 0,681 vs. 0,718; DeLong *p* = 0,045);
+- adicioná-las a um modelo bioquímico **reduziu** o desempenho (AUC externa 0,791 → 0,765; DeLong *p* < 0,0001).
 
 No processo, diagnosticamos uma **armadilha de vazamento posicional** (a posição bruta do resíduo memoriza o treino e colapsa em dados externos) e construímos a contribuição real do trabalho: um **classificador consciente de domínio funcional**.
 
