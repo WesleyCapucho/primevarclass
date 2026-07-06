@@ -25,17 +25,14 @@ Tempo esperado na T4: ~5–10 minutos."""),
 !pip -q install "transformers>=4.40" "torch" 2>/dev/null
 import torch
 print("GPU disponível:", torch.cuda.is_available(), "|", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")"""),
-    code("""# 2) Baixar insumos públicos do repositório (sequências UniProt + lista de variantes)
-import urllib.request
-BASE = "https://raw.githubusercontent.com/WesleyCapucho/primevarclass/main/scratch/esm_input/"
-for f in ["BRCA1_P38398.txt", "BRCA2_P51587.txt", "brca_variants_unique.csv"]:
-    urllib.request.urlretrieve(BASE + f, f)
+    code("""# 2) Baixar insumos via git clone (robusto contra rate-limit do raw CDN)
+!git clone -q https://github.com/WesleyCapucho/primevarclass /content/pvc
 import pandas as pd
-SEQ = {"BRCA1": open("BRCA1_P38398.txt").read().strip(),
-       "BRCA2": open("BRCA2_P51587.txt").read().strip()}
-print("BRCA1:", len(SEQ["BRCA1"]), "aa | BRCA2:", len(SEQ["BRCA2"]), "aa")
-var = pd.read_csv("brca_variants_unique.csv")
-print("variantes:", len(var))"""),
+D = "/content/pvc/scratch/esm_input/"
+SEQ = {"BRCA1": open(D + "BRCA1_P38398.txt").read().strip(),
+       "BRCA2": open(D + "BRCA2_P51587.txt").read().strip()}
+var = pd.read_csv(D + "brca_variants_unique.csv")
+print("BRCA1:", len(SEQ["BRCA1"]), "aa | BRCA2:", len(SEQ["BRCA2"]), "aa | variantes:", len(var))"""),
     code("""# 3) Carregar ESM-2 650M
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 MODEL = "facebook/esm2_t33_650M_UR50D"
