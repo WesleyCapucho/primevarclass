@@ -1,0 +1,16 @@
+{
+  "esm_coverage_train": 1.0,
+  "esm_coverage_external": 1.0,
+  "cv": {
+    "ESM-2 sozinho": 0.867388611187139,
+    "Domínio-consciente": 0.8176543885679712,
+    "Domínio + ESM-2": 0.8817650787248448
+  },
+  "external": {
+    "ESM-2 sozinho": 0.9065159360950545,
+    "Domínio-consciente": 0.8472523281952473,
+    "Domínio + ESM-2": 0.9093157915863841
+  },
+  "delong_domesm_vs_dom_cv_p": 4.737458303637057e-12,
+  "delong_domesm_vs_dom_ext_p": 1.516278525145942e-10
+}

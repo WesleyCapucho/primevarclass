@@ -25,10 +25,11 @@ No processo, diagnosticamos uma **armadilha de vazamento posicional** (a posiç�
 | Modelo | CV bloqueada por posição | Coortes externas independentes |
 | --- | ---: | ---: |
 | Bioquímico (sem posição) | 0,743 | 0,717 |
-| **Consciente de domínio (proposto)** | **0,818** | **0,847** |
 | Posição bruta (referência de vazamento) | 0,802 | 0,791 |
+| Consciente de domínio (proposto) | 0,818 | 0,847 |
+| **Domínio + ESM-2 (carro-chefe)** | **0,882** | **0,909** |
 
-O modelo consciente de domínio **generaliza** para coortes externas independentes (AUC **0,847**; DeLong *p* = 1,8 × 10⁻¹³ vs. linha de base), superando a memorização de posição — evidência de **biologia transferível, não memorização**. A robustez é confirmada por *bootstrap* (IC95% 0,810–0,881), teste de permutação (*p* = 5 × 10⁻⁴), validação cruzada multi-semente e meta-análise entre coortes.
+O modelo consciente de domínio **generaliza** para coortes externas independentes (AUC **0,847**; DeLong *p* = 1,8 × 10⁻¹³ vs. posição bruta), evidência de **biologia transferível, não memorização**. Combinado a um modelo de linguagem de proteínas autêntico (**ESM-2**, *zero-shot*, sem rótulos), o modelo-carro-chefe atinge **AUC externa de 0,909** (DeLong *p* = 1,5 × 10⁻¹⁰), com explicabilidade demonstrada por SHAP. A robustez é confirmada por *bootstrap*, teste de permutação (*p* = 5 × 10⁻⁴), CV multi-semente e meta-análise entre coortes.
 
 ---
 

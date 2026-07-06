@@ -18,20 +18,23 @@ import matplotlib.pyplot as plt
 import shap
 from primevarclass.core import get_feature_subsets, _build_pipeline
 from primevarclass.data_sources import build_dataset_from_source_config
+from primevarclass.esm_scores import attach_esm_scores
 RNG = 42
 OUT = "primevarclass_manuscript_analysis"
 os.makedirs(OUT, exist_ok=True)
+ESM = pd.read_csv("scratch/esm_input/esm2_scores.csv")
 
 
 def load(cfg):
     df, _, _ = build_dataset_from_source_config(cfg, mode="hybrid", keep_metadata=True)
     y = pd.to_numeric(df["label"], errors="coerce"); keep = y.notna()
-    return df.loc[keep].reset_index(drop=True), y.loc[keep].astype(int).to_numpy()
+    df = attach_esm_scores(df.loc[keep].reset_index(drop=True), ESM)
+    return df, y.loc[keep].astype(int).to_numpy()
 
 
-print(">> loading cohort + training domain-aware model ...")
+print(">> loading cohort + training domain-aware + ESM-2 model ...")
 df, y = load("configs/public_brca_real.toml")
-cols = [c for c in get_feature_subsets(df)["domain_aware"] if c in df.columns and not df[c].isna().all()]
+cols = [c for c in get_feature_subsets(df)["domain_aware_plus_esm"] if c in df.columns and not df[c].isna().all()]
 pipe = _build_pipeline(df[cols], random_state=RNG)
 pipe.fit(df[cols], y)
 
@@ -49,7 +52,13 @@ Xt_df = pd.DataFrame(Xt, columns=[n.split("__")[-1] for n in names])
 print(f">> computing SHAP values on {Xt_df.shape[0]}x{Xt_df.shape[1]} matrix ...")
 expl = shap.TreeExplainer(model)
 sv = expl.shap_values(Xt_df)
-sv_pos = sv[1] if isinstance(sv, list) else sv  # class-1 (pathogenic) contributions
+if isinstance(sv, list):                 # older SHAP: list per class
+    sv_pos = sv[1]
+elif getattr(sv, "ndim", 2) == 3:        # SHAP >=0.45: (n_samples, n_features, n_classes)
+    sv_pos = sv[:, :, 1]
+else:
+    sv_pos = sv
+sv_pos = np.asarray(sv_pos)
 
 plt.figure()
 shap.summary_plot(sv_pos, Xt_df, max_display=15, show=False)
