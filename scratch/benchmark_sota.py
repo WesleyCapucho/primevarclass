@@ -99,14 +99,14 @@ def vep_batch(hgvses):
     req = urllib.request.Request(
         url, data=body, headers={"Content-Type": "application/json",
                                  "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=120) as r:
+    with urllib.request.urlopen(req, timeout=240) as r:
         return json.load(r)
 
 
 cache = load_cache()
 todo = sorted(set(queries) - set(cache.keys()))
 print(f">> VEP: {len(cache)} cached, {len(todo)} to fetch")
-B = 150
+B = 40
 for i in range(0, len(todo), B):
     chunk = todo[i:i + B]
     for attempt in range(4):
