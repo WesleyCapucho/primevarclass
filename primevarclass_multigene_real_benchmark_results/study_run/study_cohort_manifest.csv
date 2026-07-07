@@ -1,9 +1,0 @@
-cohort_name,role,source_config,valid_rows,n_classes,n_source_tables,input_rows,excluded_missing,excluded_invalid_gene,excluded_invalid_label,excluded_non_missense,excluded_class_imbalance_risk
-multigene_training,train,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/multigene_training.toml,580,2,1,580,0,0,0,0,0
-multigene_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/multigene_combined_external.toml,978,2,1,978,0,0,0,0,0
-tp53_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/tp53_combined_external.toml,264,2,1,264,0,0,0,0,0
-pten_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/pten_combined_external.toml,167,2,1,167,0,0,0,0,0
-msh2_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/msh2_combined_external.toml,164,2,1,164,0,0,0,0,0
-kras_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/kras_combined_external.toml,32,1,1,32,0,0,0,0,0
-gck_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/gck_combined_external.toml,289,2,1,289,0,0,0,0,0
-f9_combined_external_validation,external_test,C:/Users/Wesley Capucho/Documents/IA dos números primos/primevarclass_multigene_real_benchmark_results/configs/f9_combined_external.toml,62,2,1,62,0,0,0,0,0

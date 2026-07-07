@@ -1,3 +1,0 @@
-cohort_name,cohort_role,real_data_readiness_percent,ready_for_real_data_lock,n_tasks,n_critical_tasks,n_high_tasks,n_example_sources,n_placeholder_release_sources,overall_resolution_percent,ready_for_resolved_config
-public_brca_training,train,19,False,3,3,0,3,3,82,True
-bridges_like_external_validation,external_test,19,False,3,3,0,3,3,82,True

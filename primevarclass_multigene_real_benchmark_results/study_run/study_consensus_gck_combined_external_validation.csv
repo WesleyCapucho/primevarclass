@@ -1,4 +1,0 @@
-consensus_experiment,member_rank,member_experiment
-consensus_top3,1,biochemical_only__logistic_regression
-consensus_top3,2,hybrid__logistic_regression
-consensus_top3,3,hybrid_plus_conservation__logistic_regression

@@ -1,8 +1,0 @@
-criterion_id,title,weight,score_percent,status,critical,evidence,next_step
-coverage,External robustness coverage,0.9,100,ready,True,Calibration in 100% and discrimination in 100% of external cohorts.,Guarantee paired score files and external metrics for every frozen cohort.
-calibration_wins,Calibration leadership,1.05,88,ready,True,"Brier win=75%, ECE win=75% and separation win=100% with pooled support=100%.",Improve external calibration and score separation against the declared baseline.
-calibration_safety,Calibration safety,1.0,50,gap,True,50% of external cohorts show no relevant calibration regression.,Reduce calibration regressions before claiming stronger translational use.
-discrimination_wins,Discrimination robustness,1.1,81,partial,True,"AUC-ROC win=75%, AUC-PR win=75% and MCC win=75% with pooled support=100%.",Consolidate external wins across the core benchmark metrics.
-sign_confidence,Exact sign confidence,1.0,100,ready,True,100% directional confidence across external calibration and discrimination wins or losses.,Increase directional confidence with more independent cohorts or stronger signal.
-clinical_holdout_robustness,High-confidence clinical robustness,1.1,98,ready,True,Robustness in high-confidence clinical cohorts = 93% (effective=98%) with pooled support=100%.,Strengthen calibration and discrimination specifically in expert-grade clinical cohorts.
-heterogeneity_stability,Cross-cohort stability,0.9,0,gap,False,Cross-cohort stability based on the spread of AUC-ROC deltas = 0%.,Reduce heterogeneity across external cohorts and genes before framing the result as stable.

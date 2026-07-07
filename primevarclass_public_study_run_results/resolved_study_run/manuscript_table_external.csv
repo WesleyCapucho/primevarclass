@@ -1,9 +1,0 @@
-cohort,cohort_role,experiment,feature_set,model_family,auc_roc,auc_pr,mcc,n_variants
-bridges_like_external_validation,external_test,external_predictors_only,external_predictors_only,random_forest,1.0,1.0,1.0,4
-bridges_like_external_validation,external_test,consensus_top3,consensus,ensemble_mean,1.0,1.0,0.0,4
-bridges_like_external_validation,external_test,hybrid_plus_external,hybrid_plus_external,random_forest,1.0,1.0,0.0,4
-bridges_like_external_validation,external_test,biochemical_only,biochemical_only,random_forest,0.3333333333333333,0.8055555555555556,0.0,4
-bridges_like_external_validation,external_test,hybrid_plus_conservation_structure,hybrid_plus_conservation_structure,random_forest,0.16666666666666666,0.6666666666666666,0.0,4
-bridges_like_external_validation,external_test,hybrid_plus_conservation,hybrid_plus_conservation,random_forest,0.16666666666666666,0.6388888888888888,0.0,4
-bridges_like_external_validation,external_test,hybrid,hybrid,random_forest,0.0,0.6666666666666666,0.0,4
-bridges_like_external_validation,external_test,prime_only,prime_only,random_forest,0.0,0.6388888888888888,0.0,4

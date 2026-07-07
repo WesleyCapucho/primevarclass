@@ -1,4 +1,0 @@
-gene,structural_region,domain_mechanism,variant_count,mean_protein_impact_score_percent,mean_prime_mechanistic_score_percent,high_priority_count
-BRCA1,RING domain,zinc_binding_or_E3_ligase_interface,490,81.31204081632653,38.30224489795918,130
-BRCA2,DNA-binding domain,DNA_binding_or_fold_stability,27,79.18518518518519,36.65925925925926,8
-BRCA1,outside_curated_domain_prior,context_dependent_or_unknown,366,70.89098360655737,34.29972677595629,0

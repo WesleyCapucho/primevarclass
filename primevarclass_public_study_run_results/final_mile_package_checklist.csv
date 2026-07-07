@@ -1,6 +1,0 @@
-check_id,phase,status,action
-close_critical_handoff,data,pending,Fechar todas as tarefas criticas do handoff de dados reais.
-rerun_real_data_benchmark,science,pending,Rerrodar o benchmark publico com coortes reais congeladas.
-strengthen_evidence,science,pending,Elevar comparative evidence e claim strength para o minimo de submissao.
-close_submission_lock,submission,pending,Fechar publication readiness e validation lock para submission closeout.
-shadow_before_live,translation,ready,Usar shadow mode como etapa transicional antes de qualquer piloto live.

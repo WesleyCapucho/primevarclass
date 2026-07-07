@@ -1,9 +1,0 @@
-criterion_id,title,weight,score_percent,status,critical,evidence,next_step
-cohort_independence,Cohort independence lock,1.15,100,ready,True,Independencia entre coortes em 100% com overlap maximo treino/externo de 0%.,Preservar independencia total entre treino e validacao externa na release final.
-comparative_evidence,Comparative evidence lock,1.25,25,gap,True,Evidencia comparativa global em 25% com experimento lider consensus_top3.,Fortalecer a superioridade comparativa do candidato em mais coortes externas reais.
-claim_strength,Claim strength lock,1.35,37,gap,True,Claim tier insufficient em 37% para hybrid_plus_external.,Elevar a forca da alegacao para um nivel moderado ou forte antes da submissao final.
-publication_readiness,Publication readiness lock,1.3,71,partial,True,Publication readiness em 71% com status partial.,Fechar os gaps criticos restantes do pacote de submissao.
-baseline_coverage,Baseline and ablation lock,1.0,79,partial,True,Coverage de baseline/ablation em 79% com melhor experimento primo hybrid_plus_external.,Garantir que a narrativa de ablation e baseline esteja completa na rodada final.
-methods_reproducibility,Methods reproducibility lock,0.95,100,ready,False,Reprodutibilidade metodologica em 100% com melhor experimento interno biochemical_only.,"Assegurar que metodos, metricas internas e registry acompanhem toda release."
-manuscript_translation,Manuscript and translational lock,0.9,65,partial,False,Pacote de manuscrito em 100% e tier translacional da alegacao em 30%.,Usar um claim tier mais forte para sustentar narrativa translacional e de alto impacto.
-artifact_bundle,Validation artifact bundle,0.9,100,ready,False,100% dos artefatos criticos de validacao foram materializados.,Garantir manifests e relatorios de validacao para toda execucao candidata a release.

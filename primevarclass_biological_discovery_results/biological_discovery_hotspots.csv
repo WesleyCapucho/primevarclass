@@ -1,3 +1,0 @@
-gene,window_start,window_end,variant_count,positive_rate,mean_functional_damage_score,median_popmax_af,hotspot_score,window_label,hotspot_score_percent
-BRCA1,1,50,66,0.7575757575757576,0.7527469653959661,5.397146815196169e-06,0.6978519368870885,BRCA1:1-50,69.8
-BRCA2,2601,2650,30,0.7,0.7500515357658214,2.248300113082221e-06,0.6758829557727009,BRCA2:2601-2650,67.6

@@ -1,6 +1,0 @@
-criterion_id,title,weight,score_percent,status,critical,evidence,next_step
-real_data_lock,Real-data cohort lock,1.25,19,gap,True,Real-data readiness em 19% com 6 tarefa(s) critica(s) abertas.,Substituir todas as fontes demo/example por coortes publicas finais e versionadas.
-handoff_closure,Operational handoff closure,1.0,60,partial,True,"Handoff operacional em 100%, mas com 6 tarefa(s) abertas, reconciliacao em 0% e aplicacao candidata em 0% e penalizacao operacional de 40 ponto(s).",Executar e fechar as tarefas do handoff antes da rodada cientifica final.
-final_evidence_round,Final comparative evidence round,1.3,31,gap,True,Comparative evidence em 25% e claim strength em 37%.,Rerrodar o benchmark final em coortes reais ate consolidar comparative evidence e claim strength.
-submission_closeout,Submission closeout,1.15,70,partial,True,Publication readiness em 71% e validation lock em 69%.,Fechar o pacote estatistico e editorial para submission lock.
-translational_transition,Translational transition,0.9,62,partial,False,Pilot package em 87% com modo shadow_mode.,Usar shadow mode para consolidar operacao enquanto a rodada cientifica final e fechada.

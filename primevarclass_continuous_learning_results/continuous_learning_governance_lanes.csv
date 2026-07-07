@@ -1,3 +1,0 @@
-lane,purpose,data_behavior,claim_policy,promotion_gate
-live_learning_lane,keep public evidence current and retrain candidate models,ingest freshest staged public sources and allow frequent candidate refreshes,no definitive scientific or therapeutic claims from this lane alone,must beat or match the frozen release on locked benchmarks
-frozen_release_lane,"support manuscripts, validation packages, and external comparison","use release-frozen artifacts, hashes, manifests, and locked cohort definitions",all major claims and comparisons should point to this lane,immutable until a new versioned release is deliberately created

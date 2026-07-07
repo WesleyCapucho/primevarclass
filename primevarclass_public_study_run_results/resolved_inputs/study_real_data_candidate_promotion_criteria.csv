@@ -1,5 +1,0 @@
-criterion_id,title,weight,score_percent,status,evidence,next_step
-candidate_config_materialized,Candidate config materialized,0.9,100,ready,Arquivo candidato encontrado em C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\study_real_data_candidate_config.toml.,Gerar o candidate config a partir do tracker validado antes de tentar promover a coorte.
-validated_changes_applied,Validated changes applied,1.05,0,gap,0/6 tarefa(s) validada(s) e 0 alteracao(oes) aplicada(s) no candidate config.,Continuar fechando e aplicando as tarefas validadas do tracker ate reduzir o gap operacional.
-candidate_resolution_gate,Candidate resolution gate,1.0,0,gap,Ainda nao ha base suficiente para promover a configuracao candidata a uma nova resolucao.,Validar pelo menos uma entrega real no tracker para liberar a promocao do candidate config.
-candidate_public_study_gate,Candidate public-study gate,1.2,0,gap,Ainda existem 6 tarefa(s) pendente(s) antes da rerrodada controlada do estudo.,Zerar tarefas pendentes e invalidas no tracker para rerrodar o public-study-run com confianca.

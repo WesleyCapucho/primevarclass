@@ -1,7 +1,0 @@
-cohort_name,source_name,source_type,kind,preset,path,url,has_file_fingerprint,has_provenance
-public_brca_training,clinvar_variant_summary,file,cohort,clinvar_variant_summary,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\clinvar_variant_summary_like.tsv,,True,True
-public_brca_training,gnomad_brca_annotations,file,annotation,gnomad_variant_table,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\gnomad_brca_annotations.tsv,,True,True
-public_brca_training,mavedb_brca_scores,file,annotation,mavedb_score_table,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\mavedb_brca_scores.csv,,True,True
-bridges_like_external_validation,bridges_like_validation,file,cohort,clinvar_variant_summary,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\bridges_like_brca_test.tsv,,True,True
-bridges_like_external_validation,gnomad_validation_annotations,file,annotation,gnomad_variant_table,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\gnomad_brca_validation.tsv,,True,True
-bridges_like_external_validation,mavedb_validation_scores,file,annotation,mavedb_score_table,C:\Users\Wesley Capucho\Documents\IA dos números primos\data\examples\mavedb_brca_validation.csv,,True,True

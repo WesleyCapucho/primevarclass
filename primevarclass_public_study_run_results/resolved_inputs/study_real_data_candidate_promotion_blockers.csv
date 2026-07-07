@@ -1,3 +1,0 @@
-blocker_id,priority,title,status,blocking_reason,recommended_action
-critical_pending_tasks,critical,Tarefas criticas do tracker continuam abertas,open,Existem 6 tarefa(s) critica(s) ainda pendente(s) no handoff.,Fechar primeiro as tarefas criticas para reduzir risco na promocao do candidate config.
-candidate_public_study_not_ready,high,Candidate config ainda nao esta pronto para a rerrodada final,open,A aplicacao do handoff esta em 0% e ainda ha pendencias abertas.,Usar o pacote de reconciliacao para fechar as pendencias restantes antes de rerrodar o estudo publico.

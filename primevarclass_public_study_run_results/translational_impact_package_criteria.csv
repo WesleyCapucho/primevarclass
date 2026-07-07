@@ -1,6 +1,0 @@
-criterion_id,title,weight,score_percent,status,evidence,next_step
-platform_enablement,Platform enablement,1.0,100,ready,100% dos artefatos translacionais e manifests foram materializados.,"Garantir que cada rodada publica mantenha os manifests operacionais de piloto, candidate promotion e closeout."
-pilot_operability,Pilot operability,1.2,87,ready,Pacote translacional em 87% e pilot_mode=shadow_mode.,Usar a workbench e a API como superficie principal do piloto assistido.
-candidate_transition,Candidate transition,1.15,22,gap,Candidate promotion em 22% com rerrodada controlada explicitada no pacote.,Promover o candidate config apenas quando o tracker estiver validado e auditado.
-field_feedback,Field feedback signal,1.2,0,gap,"Feedback coverage=0%, satisfacao=0% e incident penalty=0.","Registrar sessoes, feedback e tempo economizado para tornar o impacto medido e nao apenas estimado."
-institutional_rollout,Institutional rollout signal,1.25,44,gap,Rollout em 44% com 0 sessao(oes) concluida(s).,Consolidar pelo menos duas sessoes concluidas com feedback positivo e sem incidentes altos.

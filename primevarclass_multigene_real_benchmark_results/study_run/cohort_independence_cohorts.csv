@@ -1,9 +1,0 @@
-cohort_name,role,n_rows,n_unique_variants,n_unique_genes,has_labels
-multigene_training,train,580,580,4,True
-multigene_combined_external_validation,external_test,978,978,6,True
-tp53_combined_external_validation,external_test,264,264,1,True
-pten_combined_external_validation,external_test,167,167,1,True
-msh2_combined_external_validation,external_test,164,164,1,True
-kras_combined_external_validation,external_test,32,32,1,True
-gck_combined_external_validation,external_test,289,289,1,True
-f9_combined_external_validation,external_test,62,62,1,True

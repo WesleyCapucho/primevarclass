@@ -1,6 +1,0 @@
-criterion_id,title,weight,score_percent,status,critical,evidence,next_step
-pairwise_external_coverage,Pairwise external coverage,1.0,100,ready,True,1/1 coortes externas possuem comparacao AUC-ROC vs baseline.,Garantir comparacao pareada AUC-ROC para todas as coortes externas planejadas.
-supported_external_gain,Supported external gain,1.35,0,gap,True,0% das coortes externas apresentam pelo menos um ganho suportado (IC inferior > 0).,Buscar ganhos suportados em mais coortes externas com dados reais versionados.
-prime_signal_support,Prime-signal support rate,1.2,0,gap,True,Prime/hibrido teve 0% de suporte estrito e 0% de ganho positivo entre as coortes externas.,Fortalecer a vantagem do bloco primo/hibrido contra o baseline em multiplas coortes.
-internal_external_alignment,Internal-external alignment,0.95,35,gap,False,Melhor experimento interno: biochemical_only / feature set biochemical_only.,Alinhar o melhor experimento interno com ganhos positivos sustentados na validacao externa.
-cross_cohort_consistency,Cross-cohort consistency,0.85,0,gap,False,Feature set dominante entre as coortes externas: - com consistencia de 0%.,Buscar consistencia do mesmo bloco de sinal entre as coortes externas do estudo.

@@ -1,7 +1,0 @@
-gene,full_rows,training_rows,reviewed_external_rows,expert_external_rows,combined_external_rows,training_positive_rows,training_negative_rows,study_included
-TP53,364,100,137,127,264,33,67,True
-PTEN,238,71,84,83,167,70,1,False
-MSH2,414,250,91,73,164,28,222,True
-KRAS,71,39,24,8,32,38,1,False
-GCK,365,76,40,249,289,74,2,True
-F9,216,154,27,35,62,143,11,True

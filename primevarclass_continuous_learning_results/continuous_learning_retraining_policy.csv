@@ -1,6 +1,0 @@
-policy_id,sources,active_now,trigger,action,promotion_gate
-live_label_refresh,"ClinVar, ENIGMA",True,"new review statuses, expert curation, or label shifts","execute sync, resolve staged config, run candidate benchmark, and compare against frozen reference",promote only if locked external benchmark and calibration are preserved or improved
-functional_refresh,MaveDB,True,new score set for overlapping genes or stronger assay coverage,"refresh functional annotations, rebuild gene-specialist candidates, and rerank mechanistic targets",promote only after overlap-aware benchmark and assay-consistency checks
-population_refresh,gnomAD,True,new population release or local subset refresh,refresh rarity annotations and recalibrate downstream evidence layers,"annotation refresh can go live, but a new core model still requires a frozen benchmark rerun"
-structure_refresh,"UniProt, AlphaFold DB, RCSB PDB",False,"new accession mapping, structural model, or experimental structure",refresh protein-impact and quantum prioritization without changing core labels,structural evidence strengthens interpretation; it should not alone trigger model promotion
-translational_refresh,CIViC,False,"new disease, drug, or actionability evidence","refresh translational ranking, pilot prioritization, and reporting layers",never use as standalone supervision for pathogenicity classification

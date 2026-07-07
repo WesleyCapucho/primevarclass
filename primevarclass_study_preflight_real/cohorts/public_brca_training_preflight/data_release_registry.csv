@@ -1,2 +1,0 @@
-release_id,release_type,generated_at,config_path,config_sha256,n_rows,n_columns,n_sources,manifest_path
-data_public_brca_real_20260403T141208Z,data_ingestion,2026-04-03T14:12:08Z,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_real.toml,b3eb0a52f582167a95296b06a268fb0e3954f34c8a5f073f40c7b425ba6532cc,1260,21,3,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_study_preflight_real\cohorts\public_brca_training_preflight\data_release_manifest.json

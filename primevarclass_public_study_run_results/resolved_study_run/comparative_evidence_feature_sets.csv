@@ -1,8 +1,0 @@
-feature_set,is_prime_signal,best_experiment,n_experiments,max_supported_gain_rate_percent,max_positive_gain_rate_percent,best_mean_delta_auc_roc,best_internal_rank
-consensus_top3,False,consensus_top3,1,0,0,0.0,
-hybrid_plus_external,True,hybrid_plus_external,1,0,0,0.0,6.0
-biochemical_only,False,biochemical_only,1,0,0,-0.7017543859649124,1.0
-hybrid_plus_conservation,True,hybrid_plus_conservation,1,0,0,-0.850877192982456,4.0
-hybrid_plus_conservation_structure,True,hybrid_plus_conservation_structure,1,0,0,-0.850877192982456,5.0
-hybrid,True,hybrid,1,0,0,-1.0,3.0
-prime_only,True,prime_only,1,0,0,-1.0,7.0

@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Least-privilege by default (security hardening).
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -14,13 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install ruff
-        run: pip install ruff>=0.4
-      - name: Run ruff check
-        run: ruff check src/ --output-format=github
-        continue-on-error: true
+      - run: pip install "ruff>=0.4"
+      - name: Ruff (correctness + import hygiene)
+        run: ruff check src/ tests/ --output-format=github
 
-  test-core:
+  test:
     runs-on: ubuntu-latest
     needs: lint
     steps:
@@ -29,58 +31,22 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - name: Install dependencies
-        run: |
-          pip install -e ".[all,dev]"
-      - name: Run core ingestion tests
-        run: python -m pytest tests/ -k "core" -x --tb=short -q
+      - name: Install package + dev extras
+        run: pip install -e ".[explain,dev]"
+      - name: Run tests
+        run: python -m pytest tests/ -q
         timeout-minutes: 5
 
-  test-scientific:
+  security:
     runs-on: ubuntu-latest
-    needs: lint
+    # Informational: surfaces advisories on our runtime dependencies without
+    # blocking the build when an upstream/transitive CVE is published.
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
-      - name: Install dependencies
-        run: |
-          pip install -e ".[all,dev]"
-      - name: Run scientific module tests
-        run: python -m pytest tests/ -k "scientific" -x --tb=short -q
-        timeout-minutes: 5
-
-  test-api:
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
-      - name: Install dependencies
-        run: |
-          pip install -e ".[all,dev]"
-      - name: Run API operational tests
-        run: python -m pytest tests/ -k "api" -x --tb=short -q
-        timeout-minutes: 10
-
-  test-study:
-    runs-on: ubuntu-latest
-    needs: [test-core, test-scientific]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
-      - name: Install dependencies
-        run: |
-          pip install -e ".[all,dev]"
-      - name: Run study benchmark tests
-        run: python -m pytest tests/ -k "study or benchmark" -x --tb=short -q
-        timeout-minutes: 20
-
+      - run: pip install -e . pip-audit
+      - name: Audit runtime dependencies for known vulnerabilities (CVEs)
+        run: pip-audit --skip-editable --progress-spinner off

@@ -1,7 +1,0 @@
-model,score_column,n_evaluated,n_positive,n_negative,auc_roc,auc_pr,accuracy,balanced_accuracy,mcc,threshold,tp,fp,fn,tn,status
-AlphaMissense priority overlay,feature_alphamissense_pathogenicity,50,5,45,0.973333,0.86,0.94,0.788889,0.638915,0.5,3,1,2,44,evaluated
-PrimeVarClass locked calibrated,locked_calibrated_score,50,5,45,0.275556,0.080888,0.78,0.433333,-0.123091,0.5,0,6,5,39,evaluated
-PrimeVarClass raw score,raw_score,50,5,45,0.044444,0.062893,0.26,0.144444,-0.444444,0.5,0,32,5,13,evaluated
-External baseline score,baseline_score,50,5,45,0.6,0.161905,0.82,0.544444,0.082061,0.5,1,5,4,40,evaluated
-Simple mean: locked PrimeVarClass + AlphaMissense,simple_mean_locked_alpha,50,5,45,0.782222,0.485556,0.94,0.788889,0.638915,0.5,3,1,2,44,evaluated
-Simple mean: raw PrimeVarClass + AlphaMissense,simple_mean_raw_alpha,50,5,45,0.693333,0.435333,0.88,0.755556,0.441899,0.5,3,4,2,41,evaluated

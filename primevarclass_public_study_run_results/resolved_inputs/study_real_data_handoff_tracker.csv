@@ -1,7 +1,0 @@
-task_id,completion_status,provided_path,release_version,release_date,notes
-bridges_like_external_validation::bridges_like_validation::replace_example_source,pending,,,,
-bridges_like_external_validation::gnomad_validation_annotations::replace_example_source,pending,,,,
-bridges_like_external_validation::mavedb_validation_scores::replace_example_source,pending,,,,
-public_brca_training::clinvar_variant_summary::replace_example_source,pending,,,,
-public_brca_training::gnomad_brca_annotations::replace_example_source,pending,,,,
-public_brca_training::mavedb_brca_scores::replace_example_source,pending,,,,

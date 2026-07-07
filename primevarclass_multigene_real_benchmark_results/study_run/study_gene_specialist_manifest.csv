@@ -1,5 +1,0 @@
-gene,specialist_experiment,selected_experiment,feature_set,model_family,training_origin,balanced_internal_score,auc_roc,auc_pr,mcc,n_variants,n_features
-F9,gene_balanced_specialist,hybrid__logistic_regression,hybrid,logistic_regression,gene_local,0.7671554742798002,0.8620470438652257,0.9885704341014236,0.35595737528732635,154,72
-GCK,gene_balanced_specialist,biochemical_only__logistic_regression,biochemical_only,logistic_regression,gene_local,0.6814743568723937,0.8648648648648649,0.9961676977598448,-0.033327162207975755,76,28
-MSH2,gene_balanced_specialist,biochemical_only,biochemical_only,random_forest,gene_local,0.5803320975717515,0.8211872586872587,0.47333644345040227,0.20561742946208647,250,28
-TP53,gene_balanced_specialist,biochemical_only,biochemical_only,random_forest,gene_local,0.6706722205580122,0.7851650836725463,0.6018297170280852,0.5105289978588708,100,28

@@ -1,6 +1,0 @@
-paper_section,evidence_asset,status,next_action
-Methods,"Frozen BRCA study, source configs, release manifests and locked calibration protocol",ready,Convert methods package and locked holdout protocol into LaTeX methods text.
-Results,"External BRCA metrics, claim-strength tables, calibration rescue and locked holdout",strong_but_needs_full_campaign,Rerun full BRCA campaign with bootstrap confidence intervals.
-Ablation,"Prime-only, external-only and hybrid comparison",partial,Write final prime-feature ablation narrative by cohort and gene.
-Mechanism,"BRCA1 LOVD persistent-error queue, structural/quantum queue and AlphaMissense plan",hypothesis_ready,Use AlphaMissense discordances to select the first wet-lab/structural confirmation targets.
-Limitations,Claims boundary table and prospective validation protocol,ready,State non-diagnostic research scope and required prospective/experimental follow-up.

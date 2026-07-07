@@ -1,6 +1,0 @@
-claim,status,evidence,safe_wording
-PrimeVarClass is a reproducible BRCA-first platform using prime-aware features plus external biological predictors.,supported,Claim strength 98%; cohort independence 100%.,Use as a research platform for variant-prioritization and hypothesis generation.
-Locked calibration improves safety on held-out external BRCA variants.,supported_with_scope_limit,Locked holdout safety 50% -> 100% on 417 variants.,"Report as locked retrospective/external evidence, not as clinical deployment proof."
-The platform discovered definitive new biological mechanisms.,not_yet,"Persistent-error queue and structural/functional plan exist, but experimental confirmation is not complete.",Say the platform nominates mechanistic hypotheses and prioritized variants for confirmation.
-The platform is clinically validated for diagnostic use.,not_yet,Prospective independent scoring and wet-lab/clinical confirmation remain open.,"Keep all user-facing and manuscript language in research-use, non-diagnostic scope."
-The approach has high social and translational potential.,supported_with_caveat,"External validation, prioritization queues and partner-lab handoff are in place.","Emphasize triage, education, reproducibility and acceleration of functional validation."

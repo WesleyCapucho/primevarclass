@@ -1,9 +1,0 @@
-gene,hgvs_p,label,review_status,source,clinical_significance,variant_id,phylop,gerp,siphy,rsa,ddg_foldx,functional_domain,protein_interface,distance_to_key_site,revel,bayesdel,alphamissense,cadd
-BRCA1,p.Cys61Gly,Pathogenic,reviewed by expert panel,ClinVar,Pathogenic,cv_brca1_0001,7.8,5.9,11.4,0.05,2.6,RING,interface,2.1,0.97,0.71,0.99,29.4
-BRCA1,p.Met18Thr,Likely benign,"criteria provided, multiple submitters, no conflicts",ClinVar,Likely benign,cv_brca1_0002,0.6,0.4,0.9,0.48,0.2,unknown,no,17.3,0.08,-0.33,0.11,2.7
-BRCA2,p.Gly2508Ser,Likely pathogenic,"criteria provided, multiple submitters, no conflicts",ClinVar,Likely pathogenic,cv_brca2_0001,6.1,4.8,8.6,0.13,1.7,DBD,interface,4.9,0.89,0.57,0.94,24.8
-BRCA2,p.Val2109Ile,Benign,"criteria provided, multiple submitters, no conflicts",ClinVar,Benign,cv_brca2_0002,0.7,0.5,1.0,0.42,0.1,unknown,no,19.8,0.12,-0.21,0.18,3.1
-BRCA1,p.Arg71Gly,Pathogenic,reviewed by expert panel,ClinVar,Pathogenic,cv_brca1_0003,8.1,6.2,12.7,0.07,2.9,RING,interface,1.8,0.98,0.73,0.99,30.2
-BRCA2,p.Asp2723His,Likely pathogenic,"criteria provided, multiple submitters, no conflicts",ClinVar,Likely pathogenic,cv_brca2_0003,5.4,4.1,7.2,0.16,1.4,DBD,interface,6.6,0.84,0.48,0.91,22.3
-BRCA1,p.Ile21Val,Benign,"criteria provided, multiple submitters, no conflicts",ClinVar,Benign,cv_brca1_0004,0.3,0.2,0.6,0.52,0.1,unknown,no,21.4,0.04,-0.37,0.09,1.8
-BRCA2,p.Trp1692Cys,Pathogenic,reviewed by expert panel,ClinVar,Pathogenic,cv_brca2_0004,7.0,5.2,9.8,0.09,2.2,DBD,interface,3.7,0.95,0.69,0.97,28.0

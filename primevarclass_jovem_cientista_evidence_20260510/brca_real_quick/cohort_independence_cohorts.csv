@@ -1,6 +1,0 @@
-cohort_name,role,n_rows,n_unique_variants,n_unique_genes,has_labels
-public_brca_training,train,869,869,2,True
-clinvar_expert_external_validation_brca1,external_test,204,204,1,True
-clinvar_expert_external_validation_brca2,external_test,175,175,1,True
-bridges_like_external_validation_brca1,external_test,168,168,1,True
-bridges_like_external_validation_brca2,external_test,289,289,1,True

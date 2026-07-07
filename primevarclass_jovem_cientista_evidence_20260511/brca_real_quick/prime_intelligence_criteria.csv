@@ -1,3 +1,0 @@
-criterion_id,title,weight,score_percent,status,critical,evidence,next_step
-internal_prime_competitiveness,Internal prime competitiveness,1.4,77,promising,True,Melhor experimento primo/hibrido: hybrid_plus_external__logistic_regression vs melhor nao-primo: biochemical_only__logistic_regression (delta AUC-ROC=0.0062).,Preservar o ganho interno do bloco primo/hibrido nas proximas rodadas multigene.
-external_prime_leadership,External prime leadership,1.7,36,gap,True,"Modelos primos/hibridos lideram 25% das coortes externas em AUC-ROC, com delta medio=-0.0448.",Expandir a lideranca externa para novos genes e novas coortes clinicas independentes.

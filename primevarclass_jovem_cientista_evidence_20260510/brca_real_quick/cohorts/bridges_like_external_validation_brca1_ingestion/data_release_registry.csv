@@ -1,2 +1,0 @@
-release_id,release_type,generated_at,config_path,config_sha256,n_rows,n_columns,n_sources,manifest_path
-data_public_brca_external_real_brca1_20260510T235459Z,data_ingestion,2026-05-10T23:54:59Z,C:\Users\Wesley Capucho\Documents\IA dos números primos\configs\public_brca_external_real_brca1.toml,3098b88294e1107da56777d583594ff49fc20c2e0e0e2cd52f9805544e773aa2,168,25,3,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_jovem_cientista_evidence_20260510\brca_real_quick\cohorts\bridges_like_external_validation_brca1_ingestion\data_release_manifest.json

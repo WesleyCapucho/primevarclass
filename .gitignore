@@ -68,3 +68,8 @@ tmp_gene_specialist_smoke/
 tmp_public_study_resolution_debug/
 tmp_full_test_output.txt
 _tmp_demo/
+
+# CLI model cache
+.primevarclass_cache/
+# benchmark VEP response cache
+scratch/benchmark_cache.json

@@ -1,4 +1,0 @@
-name,kind,source_type,rows_loaded,rows_normalized,columns_loaded,columns_normalized,join_on
-bridges_like_validation,cohort,file,4,4,6,12,"gene,hgvs_p"
-gnomad_validation_annotations,annotation,file,4,4,7,12,"gene,hgvs_p"
-mavedb_validation_scores,annotation,file,4,4,7,12,"gene,hgvs_p"

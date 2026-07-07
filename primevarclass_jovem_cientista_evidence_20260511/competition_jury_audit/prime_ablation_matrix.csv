@@ -1,9 +1,0 @@
-feature_set,best_training_experiment,training_auc_roc,training_auc_pr,training_mcc,best_external_auc_roc,mean_external_auc_roc,external_cohort_count,jury_interpretation
-hybrid_plus_external,hybrid_plus_external__logistic_regression,0.8089,0.5676,0.4039,0.7771,0.7069,4,Best competition story: prime-aware model plus public biological evidence.
-hybrid_plus_conservation_structure,hybrid_plus_conservation_structure__logistic_regression,0.8062,0.5613,0.4029,0.7711,0.7065,4,Supportive ablation layer for robustness and interpretability.
-hybrid,hybrid__logistic_regression,0.8062,0.5613,0.4029,0.7709,0.7064,4,Shows the prime representation works best when fused with biochemical context.
-hybrid_plus_conservation,hybrid_plus_conservation__logistic_regression,0.8062,0.5613,0.4029,0.7709,0.7064,4,Supportive ablation layer for robustness and interpretability.
-biochemical_only,biochemical_only__logistic_regression,0.8027,0.566,0.4193,0.7764,0.7101,4,Non-prime biological baseline for judging the added value of prime features.
-gene_balanced_specialist,gene_balanced_specialist,0.757,0.4837,0.3501,0.9223,0.7297,4,Supportive ablation layer for robustness and interpretability.
-prime_only,prime_only__logistic_regression,0.7104,0.4534,0.2665,0.6843,0.5908,4,"Isolates the prime-number signal; useful for originality, but must not be overclaimed alone."
-external_predictors_only,external_predictors_only__logistic_regression,0.5246,0.2726,0.0363,0.7419,0.5656,4,Baseline comparator; proves the project is not just repackaging external predictors.

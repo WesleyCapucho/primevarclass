@@ -1,3 +1,0 @@
-cohort_name,role,candidate_source_config_path,mode_override,high_confidence_only_override,n_applied_changes,ready_for_candidate
-public_brca_training,train,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\public_brca_training_candidate_source_config.toml,,,0,False
-bridges_like_external_validation,external_test,C:\Users\Wesley Capucho\Documents\IA dos números primos\primevarclass_public_study_run_results\resolved_inputs\bridges_like_external_validation_candidate_source_config.toml,,,0,False
