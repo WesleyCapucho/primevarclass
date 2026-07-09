@@ -34,22 +34,40 @@ Tudo com dados **públicos e reais** (ClinVar), e todo o código versionado.
 
 ## 3. O veredito: a hipótese foi refutada
 
-Os dados foram inequívocos. (Métricas: AUC-ROC em validação cruzada *out-of-fold*;
-comparações por DeLong. Reproduzíveis em [`scratch/decisive_results/`](../scratch/decisive_results).)
+Testamos sob o protocolo mais rigoroso do projeto: validação cruzada **bloqueada
+por posição** (nenhuma posição aparece simultaneamente no treino e no teste) e,
+de forma decisiva, **generalização em coortes externas independentes** — nunca
+tocadas durante o treino. (Reproduzível em
+[`scratch/prime_hypothesis_rigorous_test.py`](../scratch/prime_hypothesis_rigorous_test.py);
+resultado salvo em
+[`primevarclass_manuscript_analysis/prime_hypothesis_rigorous.json`](../primevarclass_manuscript_analysis/prime_hypothesis_rigorous.json).)
 
-| Representação testada | nº de atributos | AUC-ROC |
-|---|---:|---:|
-| **Só números primos** | 50 | **0,742** |
-| Identidade simples do aminoácido (baseline trivial) | 4 | **0,902** |
-| Só bioquímica | 28 | 0,834 |
-| Bioquímica **+ primos** (híbrido) | 76 | 0,810 |
+| Representação testada | nº de atributos | CV bloqueada por posição | Coortes externas |
+|---|---:|---:|---:|
+| Identidade simples (gene + aminoácidos + posição bruta)ᵃ | 4 | 0,871 | 0,882 |
+| Bioquímica (inclui posição bruta)ᵃ | 28 | 0,802 | 0,791 |
+| Bioquímica **+ primos** (híbrido)ᵃ | 76 | 0,783 | 0,765 |
+| Identidade simples (sem posição) | 3 | 0,745 | 0,718 |
+| **Só números primos** | 50 | 0,717 | **0,681** |
 
-Duas conclusões, ambas estatisticamente significativas (DeLong, *p* < 0,001):
+ᵃ Estes três conjuntos incluem a posição bruta do resíduo — um atalho que, como
+mostramos no artigo, **memoriza** o treino e não se sustenta em dados novos; por
+isso a comparação decisiva da hipótese dos primos usa as duas últimas linhas.
 
-1. **Os primos perdem até para o baseline mais ingênuo.** A codificação por primos
-   (0,742) fica muito abaixo de simplesmente informar qual é o aminoácido (0,902).
-2. **Adicionar primos a um modelo bioquímico *piora* o desempenho** (0,834 → 0,810).
-   Longe de ajudar, a informação "prima" introduz ruído.
+Duas conclusões, ambas estatisticamente significativas (DeLong):
+
+1. **Os primos perdem até para a identidade simples do aminoácido**, sem posição
+   (0,681 vs 0,718 nas coortes externas; *p* = 0,045).
+2. **Adicionar primos a um modelo bioquímico *piora* o desempenho** nas coortes
+   externas (0,791 → 0,765; *p* = 3,8 × 10⁻⁸).
+
+> Nota de honestidade: uma verificação preliminar mais simples — validação
+> cruzada **sem** bloqueio por posição
+> ([`scratch/decisive_prime_test.py`](../scratch/decisive_prime_test.py)) — chegou
+> a números diferentes e mais otimistas para a identidade com posição (AUC ≈ 0,90).
+> Não os usamos como veredito: eles **sofrem exatamente do vazamento posicional**
+> que este projeto identifica e neutraliza (ver Seção 4). O teste que vale é o
+> protocolo rigoroso acima.
 
 Poderíamos ter escondido isso. Escolhemos o contrário: **a refutação virou o
 alicerce de credibilidade do projeto.**

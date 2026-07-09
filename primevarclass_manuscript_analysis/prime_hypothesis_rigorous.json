@@ -1,0 +1,67 @@
+{
+  "n_train": 869,
+  "n_external": 836,
+  "n_features": {
+    "identidade_com_posicao": 4,
+    "identidade_sem_posicao": 3,
+    "bioquimico": 28,
+    "hibrido": 76,
+    "apenas_primos": 50
+  },
+  "cv_blocked": {
+    "identidade_com_posicao": 0.8712,
+    "identidade_sem_posicao": 0.7446,
+    "bioquimico": 0.8019,
+    "hibrido": 0.783,
+    "apenas_primos": 0.7165
+  },
+  "external": {
+    "identidade_com_posicao": 0.8818,
+    "identidade_sem_posicao": 0.7184,
+    "bioquimico": 0.7911,
+    "hibrido": 0.7646,
+    "apenas_primos": 0.6808
+  },
+  "delong": [
+    {
+      "scope": "cv_blocked",
+      "a": "apenas_primos",
+      "b": "identidade_sem_posicao",
+      "question": "os primos superam a identidade simples?",
+      "auc_a": 0.7165,
+      "auc_b": 0.7446,
+      "delta": -0.0281,
+      "p": 0.080631
+    },
+    {
+      "scope": "external",
+      "a": "apenas_primos",
+      "b": "identidade_sem_posicao",
+      "question": "os primos superam a identidade simples?",
+      "auc_a": 0.6808,
+      "auc_b": 0.7184,
+      "delta": -0.0376,
+      "p": 0.044972
+    },
+    {
+      "scope": "cv_blocked",
+      "a": "hibrido",
+      "b": "bioquimico",
+      "question": "adicionar primos a um modelo bioquímico ajuda?",
+      "auc_a": 0.783,
+      "auc_b": 0.8019,
+      "delta": -0.0189,
+      "p": 3e-06
+    },
+    {
+      "scope": "external",
+      "a": "hibrido",
+      "b": "bioquimico",
+      "question": "adicionar primos a um modelo bioquímico ajuda?",
+      "auc_a": 0.7646,
+      "auc_b": 0.7911,
+      "delta": -0.0265,
+      "p": 0.0
+    }
+  ]
+}
