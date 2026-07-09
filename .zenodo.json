@@ -1,0 +1,18 @@
+{
+  "title": "PrimeVarClass: domain-aware, externally validated classification of BRCA1/BRCA2 missense variants of uncertain significance",
+  "upload_type": "software",
+  "description": "An open, reproducible and interpretable classifier for missense variants of uncertain significance (VUS) in BRCA1/BRCA2. It combines a curated functional-domain map with zero-shot ESM-2 protein language-model scores under a strict anti-leakage validation protocol, is statistically comparable to state-of-the-art predictors (AlphaMissense, REVEL, CADD), calibrates its score to ACMG/AMP evidence strength (PP3/BP4), decomposes each detected variant's structural mechanism, addresses ancestry equity in variant resolution, and publishes a timestamped prospective prediction registry.",
+  "creators": [
+    {
+      "name": "Capucho, Wesley Felipe",
+      "affiliation": "Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP)"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "variant classification", "BRCA1", "BRCA2", "ESM-2", "protein language model",
+    "ACMG", "hereditary breast and ovarian cancer", "explainable AI",
+    "health equity", "VUS", "AlphaMissense"
+  ]
+}
