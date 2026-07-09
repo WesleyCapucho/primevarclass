@@ -1,29 +1,66 @@
 {
-  "gene": "BRCA1",
-  "am_class_counts": {
-    "likely_benign": 4066,
-    "likely_pathogenic": 774,
-    "ambiguous": 325
+  "BRCA1": {
+    "n_am_ambiguous_total": 325,
+    "part1_classified": {
+      "n_classified_ambiguous": 10,
+      "our_auc": 0.938,
+      "n_resolved": 7,
+      "resolved_accuracy": 1.0
+    },
+    "part2_vus": {
+      "n": 98,
+      "PP3_Strong": 11,
+      "BP4_Moderate": 44,
+      "uninformative": 43,
+      "resolved_frac": 0.561
+    },
+    "part3_conflicting": {
+      "n": 64,
+      "PP3_Strong": 19,
+      "BP4_Moderate": 30,
+      "uninformative": 15,
+      "resolved_frac": 0.766
+    }
   },
-  "part1_accuracy_in_am_greyzone": {
-    "n_classified_ambiguous": 10,
-    "n_pathogenic": 2,
-    "our_auc": 0.938,
-    "n_resolved": 7,
-    "resolved_accuracy": 1.0
+  "BRCA2": {
+    "n_am_ambiguous_total": 319,
+    "part1_classified": {},
+    "part2_vus": {
+      "n": 166,
+      "PP3_Strong": 6,
+      "BP4_Moderate": 81,
+      "uninformative": 79,
+      "resolved_frac": 0.524
+    },
+    "part3_conflicting": {
+      "n": 128,
+      "PP3_Strong": 4,
+      "BP4_Moderate": 71,
+      "uninformative": 53,
+      "resolved_frac": 0.586
+    }
   },
-  "part2_yield_on_ambiguous_VUS": {
-    "n_am_ambiguous": 98,
-    "PP3_Strong": 11,
-    "BP4_Moderate": 44,
-    "uninformative": 43,
-    "resolved_fraction": 0.561
-  },
-  "part3_yield_on_ambiguous_conflicting": {
-    "n_am_ambiguous": 64,
-    "PP3_Strong": 19,
-    "BP4_Moderate": 30,
-    "uninformative": 15,
-    "resolved_fraction": 0.766
+  "BRCA1+BRCA2": {
+    "n_am_ambiguous_total": 644,
+    "part1_classified": {
+      "n_classified_ambiguous": 17,
+      "our_auc": 0.909,
+      "n_resolved": 10,
+      "resolved_accuracy": 1.0
+    },
+    "part2_vus": {
+      "n": 264,
+      "PP3_Strong": 17,
+      "BP4_Moderate": 125,
+      "uninformative": 122,
+      "resolved_frac": 0.538
+    },
+    "part3_conflicting": {
+      "n": 192,
+      "PP3_Strong": 23,
+      "BP4_Moderate": 101,
+      "uninformative": 68,
+      "resolved_frac": 0.646
+    }
   }
 }

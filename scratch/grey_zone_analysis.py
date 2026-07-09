@@ -1,14 +1,16 @@
-"""AlphaMissense grey-zone complement analysis (core of "complement, not
-competitor") on REAL, COMPLETE BRCA1 data:
-  - ClinVar labels (live)                          clinvar_brca_missense_live.csv
-  - AlphaMissense for every possible substitution  alphamissense_brca_full.csv
-  - PrimeVarClass calibrated evidence for all       brca_missense_evidence_resource.csv
+"""AlphaMissense grey-zone complement analysis on REAL ClinVar variants, now for
+BOTH BRCA1 and BRCA2 (the "complement, not competitor" thesis).
 
-Part 1 (rigour): among CLASSIFIED variants (ClinVar Pathogenic vs Benign) that
-  AlphaMissense leaves 'ambiguous', how accurately does PrimeVarClass classify?
-Part 2 (impact): among current VUS that AlphaMissense also leaves 'ambiguous',
-  for how many does PrimeVarClass provide a calibrated ACMG call?
-Bonus: the same, for ClinVar 'Conflicting' variants (labs disagree).
+AlphaMissense source:
+  BRCA1 -> alphamissense_brca_full.csv (complete, from AlphaFold DB)
+  BRCA2 -> alphamissense_brca_live.csv (from Ensembl VEP; AlphaFold DB has no
+           single-fragment file for the 3418-aa BRCA2)
+
+Part 1 (rigour): among CLASSIFIED variants that AlphaMissense leaves 'ambiguous',
+  how accurately does PrimeVarClass classify?
+Part 2 (impact): among VUS that AlphaMissense also leaves 'ambiguous', for how
+  many does PrimeVarClass provide a calibrated ACMG call?
+Part 3: same, for ClinVar 'Conflicting' variants (labs disagree).
 
 Run: python scratch/grey_zone_analysis.py
 """
@@ -27,17 +29,20 @@ from sklearn.metrics import roc_auc_score
 
 ANL = "primevarclass_manuscript_analysis"
 FIG = "docs/suplementar/figuras/fig_grey_zone.png"
-os.makedirs(os.path.dirname(FIG), exist_ok=True)
-GENE = "BRCA1"  # AlphaMissense full coverage available; BRCA2 (fragmented) added later
-
-clin = pd.read_csv("data/raw/clinvar/clinvar_brca_missense_live.csv")
-am = pd.read_csv("data/raw/alphamissense/alphamissense_brca_full.csv")
-res = pd.read_csv(os.path.join(ANL, "brca_missense_evidence_resource.csv"))
 key = ["gene", "position", "aa_ref", "aa_alt"]
 
-df = (clin[clin.gene == GENE]
-      .merge(am[key + ["am_pathogenicity", "am_class"]], on=key, how="inner")
-      .merge(res[key + ["pathogenicity_prob", "acmg_evidence"]], on=key, how="inner"))
+clin = pd.read_csv("data/raw/clinvar/clinvar_brca_missense_live.csv")
+res = pd.read_csv(os.path.join(ANL, "brca_missense_evidence_resource.csv"))
+
+# unified AlphaMissense: complete BRCA1 file + BRCA2 from the live VEP fetch
+am1 = pd.read_csv("data/raw/alphamissense/alphamissense_brca_full.csv")
+am1 = am1[am1.gene == "BRCA1"][key + ["am_pathogenicity", "am_class"]]
+live = pd.read_csv("data/raw/alphamissense/alphamissense_brca_live.csv")
+am2 = live[(live.gene == "BRCA2") & live.am_pathogenicity.notna()][key + ["am_pathogenicity", "am_class"]]
+am = pd.concat([am1, am2], ignore_index=True)
+
+df = (clin.merge(am, on=key, how="inner")
+          .merge(res[key + ["pathogenicity_prob", "acmg_evidence"]], on=key, how="inner"))
 
 
 def truth(s):
@@ -53,58 +58,65 @@ df["label"] = df.clinsig.map(truth)
 df["is_vus"] = df.clinsig.str.contains("ncertain", na=False)
 df["is_conflicting"] = df.clinsig.str.contains("Conflicting", na=False)
 df["am_ambiguous"] = df.am_class.eq("ambiguous")
-print(f">> {GENE}: {len(df)} ClinVar variants with AM + our evidence")
-print("   AlphaMissense class:\n" + df.am_class.value_counts().to_string())
-
-# ---- Part 1: accuracy where AlphaMissense is ambiguous (classified) ----------
-cls = df[df.label.notna() & df.am_ambiguous]
-p1 = {}
-if len(cls) >= 8:
-    y = cls.label.to_numpy().astype(int)
-    call = np.where(cls.acmg_evidence == "PP3_Strong", 1,
-                    np.where(cls.acmg_evidence == "BP4_Moderate", 0, -1))
-    resolved = call != -1
-    p1 = {"n_classified_ambiguous": int(len(cls)), "n_pathogenic": int(y.sum()),
-          "our_auc": round(float(roc_auc_score(y, cls.pathogenicity_prob)), 3) if len(set(y)) > 1 else None,
-          "n_resolved": int(resolved.sum()),
-          "resolved_accuracy": round(float((call[resolved] == y[resolved]).mean()), 3) if resolved.sum() else None}
 
 
-def yield_on(mask):
-    sub = df[mask & df.am_ambiguous]
-    out = {"n_am_ambiguous": int(len(sub))}
+def yield_on(sub):
+    out = {"n": int(len(sub))}
     for lvl in ["PP3_Strong", "BP4_Moderate", "uninformative"]:
         out[lvl] = int((sub.acmg_evidence == lvl).sum())
-    out["resolved_fraction"] = round(float((sub.acmg_evidence != "uninformative").mean()), 3) if len(sub) else 0.0
+    out["resolved_frac"] = round(float((sub.acmg_evidence != "uninformative").mean()), 3) if len(sub) else 0.0
     return out
 
 
-p2 = yield_on(df.is_vus)          # real VUS that AM leaves ambiguous
-p3 = yield_on(df.is_conflicting)  # labs disagree AND AM ambiguous
-result = {"gene": GENE, "am_class_counts": df.am_class.value_counts().to_dict(),
-          "part1_accuracy_in_am_greyzone": p1,
-          "part2_yield_on_ambiguous_VUS": p2,
-          "part3_yield_on_ambiguous_conflicting": p3}
+result = {}
+for scope in ["BRCA1", "BRCA2", "BRCA1+BRCA2"]:
+    d = df if scope == "BRCA1+BRCA2" else df[df.gene == scope]
+    amb = d[d.am_ambiguous]
+    cls = d[d.label.notna() & d.am_ambiguous]
+    p1 = {}
+    if len(cls) >= 8:
+        y = cls.label.to_numpy().astype(int)
+        call = np.where(cls.acmg_evidence == "PP3_Strong", 1,
+                        np.where(cls.acmg_evidence == "BP4_Moderate", 0, -1))
+        rr = call != -1
+        p1 = {"n_classified_ambiguous": int(len(cls)),
+              "our_auc": round(float(roc_auc_score(y, cls.pathogenicity_prob)), 3) if len(set(y)) > 1 else None,
+              "n_resolved": int(rr.sum()),
+              "resolved_accuracy": round(float((call[rr] == y[rr]).mean()), 3) if rr.sum() else None}
+    result[scope] = {"n_am_ambiguous_total": int(len(amb)),
+                     "part1_classified": p1,
+                     "part2_vus": yield_on(d[d.is_vus & d.am_ambiguous]),
+                     "part3_conflicting": yield_on(d[d.is_conflicting & d.am_ambiguous])}
+    print(f">> {scope}: AM-ambiguous={len(amb)} | "
+          f"VUS amb={result[scope]['part2_vus']['n']} (resolvemos {result[scope]['part2_vus']['resolved_frac']*100:.0f}%) | "
+          f"conflitantes amb={result[scope]['part3_conflicting']['n']} (resolvemos {result[scope]['part3_conflicting']['resolved_frac']*100:.0f}%)")
+
 json.dump(result, open(os.path.join(ANL, "grey_zone_analysis.json"), "w"), indent=2, ensure_ascii=False)
 
-# ---- figure: the two impactful panels (VUS and conflicting) -----------------
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(11.8, 5.0), dpi=200)
-for ax, p, titulo, unidade in [
-        (a1, p2, "VUS reais", "VUS"),
-        (a2, p3, "variantes CONFLITANTES (laboratórios discordam)", "variantes")]:
-    ax.bar(["PP3_Forte\n(patogênico)", "BP4_Moderado\n(benigno)", "Não informativo\n(mantém incerta)"],
-           [p["PP3_Strong"], p["BP4_Moderate"], p["uninformative"]],
-           color=["#c0392b", "#2e6fb0", "#bbbbbb"])
-    ax.set_ylabel(f"nº de {unidade}")
-    ax.set_title(f"{titulo} que o AlphaMissense deixa ambíguas (n={p['n_am_ambiguous']})\n"
-                 f"PrimeVarClass fornece evidência para {p['resolved_fraction']*100:.0f}%", fontsize=9.5)
-fig.suptitle(f"Complemento ao AlphaMissense — evidência onde ele se abstém ({GENE}, ClinVar real)",
-             fontweight="bold")
+# ---- figure: VUS (A) and conflicting (B), stacked by resolution, per gene ----
+genes = ["BRCA1", "BRCA2"]
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.6, 5.2), dpi=200)
+for ax, part, titulo, unidade in [(a1, "part2_vus", "VUS reais", "VUS"),
+                                  (a2, "part3_conflicting", "variantes CONFLITANTES (laboratórios discordam)", "variantes")]:
+    pp3 = [result[g][part]["PP3_Strong"] for g in genes]
+    bp4 = [result[g][part]["BP4_Moderate"] for g in genes]
+    uni = [result[g][part]["uninformative"] for g in genes]
+    x = np.arange(len(genes))
+    ax.bar(x, pp3, 0.6, label="PP3_Forte (patogênico)", color="#c0392b")
+    ax.bar(x, bp4, 0.6, bottom=pp3, label="BP4_Moderado (benigno)", color="#2e6fb0")
+    ax.bar(x, uni, 0.6, bottom=np.array(pp3) + np.array(bp4), label="não informativo", color="#c8ccd0")
+    top = max((result[g][part]["n"] for g in genes), default=1)
+    ax.set_ylim(0, top * 1.28)
+    for i, g in enumerate(genes):
+        tot = result[g][part]["n"]
+        frac = result[g][part]["resolved_frac"] * 100
+        ax.text(i, tot + top * 0.03, f"{frac:.0f}% resolvidas", ha="center", fontsize=9.5, fontweight="bold")
+    ax.set_xticks(x); ax.set_xticklabels(genes)
+    ax.set_ylabel(f"nº de {unidade} na zona cinzenta do AlphaMissense")
+    ax.set_title(f"{titulo}", fontsize=10.5)
+    ax.legend(fontsize=8, loc="upper left", framealpha=0.95)
+fig.suptitle("Complemento ao AlphaMissense — evidência calibrada onde ele se abstém (BRCA1 e BRCA2, ClinVar real)",
+             fontweight="bold", fontsize=12)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-
-print("\n===== GREY-ZONE COMPLEMENT (BRCA1) =====")
-print("Part 1 (accuracy where AM ambiguous):", json.dumps(p1, ensure_ascii=False))
-print("Part 2 (yield on ambiguous VUS):     ", json.dumps(p2, ensure_ascii=False))
-print("Part 3 (yield on ambiguous conflicting):", json.dumps(p3, ensure_ascii=False))
 print(f">> wrote {ANL}/grey_zone_analysis.json and {FIG}")
