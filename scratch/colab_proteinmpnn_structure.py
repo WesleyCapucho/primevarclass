@@ -41,15 +41,19 @@ MPNN_AA = "ACDEFGHIKLMNPQRSTVWYX"  # ordem do alfabeto do ProteinMPNN
 os.makedirs("pdbs", exist_ok=True)
 
 # ---- célula 2: baixar estruturas AlphaFold ---------------------------------
+# A URL direta muda de versão (v4->v6...). Resolvemos via API (robusto).
 for gene, up in PROTEINS.items():
-    url = f"https://alphafold.ebi.ac.uk/files/AF-{up}-F1-model_v4.pdb"
     dst = f"pdbs/{gene}.pdb"
-    if not os.path.exists(dst):
-        try:
-            urllib.request.urlretrieve(url, dst)
-            print("baixado", gene, up)
-        except Exception as e:
-            print("FALHOU", gene, up, e)
+    if os.path.exists(dst):
+        continue
+    try:
+        meta = json.load(urllib.request.urlopen(
+            f"https://alphafold.ebi.ac.uk/api/prediction/{up}", timeout=30))
+        pdb_url = meta[0]["pdbUrl"]
+        urllib.request.urlretrieve(pdb_url, dst)
+        print("baixado", gene, up, "->", pdb_url.split("/")[-1])
+    except Exception as e:
+        print("FALHOU", gene, up, e)
 
 # ---- célula 3: rodar ProteinMPNN (probabilidades incondicionais) -----------
 subprocess.run("python ProteinMPNN/helper_scripts/parse_multiple_chains.py "
