@@ -41,7 +41,10 @@ AA3TO1 = {"Ala": "A", "Arg": "R", "Asn": "N", "Asp": "D", "Cys": "C", "Gln": "Q"
           "Glu": "E", "Gly": "G", "His": "H", "Ile": "I", "Leu": "L", "Lys": "K",
           "Met": "M", "Phe": "F", "Pro": "P", "Ser": "S", "Thr": "T", "Trp": "W",
           "Tyr": "Y", "Val": "V"}
-esm_df = pd.read_csv("scratch/esm_input/esm2_scores.csv")
+# full-coverage panel scores (identical LLRs to the clinical set on the overlap,
+# r=1.00) — needed to cover the DMS-assayed positions
+_panel = "scratch/esm_input/esm2_scores_panel.csv"
+esm_df = pd.read_csv(_panel if os.path.exists(_panel) else "scratch/esm_input/esm2_scores.csv")
 
 ASSAYS = {
     "Findlay 2018 (SGE, função)": "urn:mavedb:00001222-b-2",

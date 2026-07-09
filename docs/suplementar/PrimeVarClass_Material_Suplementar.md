@@ -76,7 +76,7 @@ Para tornar o escore **clinicamente acionável**, calibramos o modelo-carro-chef
 
 Um teste independente de rótulos clínicos: o escore acompanha a **função molecular medida em laboratório**? Correlacionamos as predições com ensaios de *saturation genome editing* (Findlay et al., 2018) e de reparo por recombinação homóloga — HDR (Starita et al., 2015) para BRCA1, obtidos do MaveDB (script `scratch/functional_validation.py`).
 
-**Estado atual (honesto).** Os escores ESM-2 pré-computados cobrem a coorte clínica, mas **ainda não** a maioria das posições cobertas por esses ensaios de DMS (por exemplo, apenas 84 variantes do ensaio HDR têm ESM-2 disponível). No subconjunto coberto do ensaio HDR de Starita, o sinal ESM-2 já separa perda de função com **AUC = 0,836** — direção promissora. A validação funcional em escala completa está **em andamento**, alimentada pela expansão da cobertura ESM-2 (execução em GPU, Colab; ver Seção S5 e `scratch/colab_esm2_panel.py`), e será consolidada quando os escores expandidos forem integrados.
+**Estado atual (honesto).** Com a expansão da cobertura ESM-2 (saturação completa de BRCA1/BRCA2 e mais oito genes HBOC, execução em GPU; `scratch/colab_esm2_panel.py`), o ensaio HDR de Starita (2.749 variantes) passou a ter cobertura integral, e o sinal ESM-2 correlaciona-se com a função medida na direção esperada, porém de forma **modesta** (Spearman ≈ 0,20) — coerente com o fato de HDR ser um ensaio específico e ruidoso. O padrão-ouro (Findlay et al., 2018, *saturation genome editing*) exige uma **etapa de mapeamento de coordenadas**: a entrada do MaveDB (`urn:mavedb:00001222`) usa numeração **local** por éxon, não a numeração da proteína completa, de modo que as posições precisam ser convertidas antes da correlação. Reportamos essa limitação com transparência; a validação funcional consolidada acompanhará o mapeamento de coordenadas e não é usada, no estado atual, para sustentar afirmações de desempenho.
 
 ![Figura S3](figuras/fig_functional_validation.png)
 
@@ -107,6 +107,24 @@ python scratch/functional_validation.py # S4 — validação funcional (DMS)
 ```
 
 Sementes aleatórias fixas garantem reprodutibilidade determinística. Artefatos numéricos (`.json`, `.csv`) são gravados em `primevarclass_manuscript_analysis/`.
+
+---
+
+## S6. Recurso de evidência pré-computada para todo o espaço de variantes (complemento clínico)
+
+A síntese das seções anteriores define o **posicionamento do PrimeVarClass: não um concorrente do AlphaMissense, mas uma camada complementar**. Os preditores de escala (AlphaMissense, REVEL) entregam um número de patogenicidade; o que falta ao fluxo clínico é (i) esse número traduzido em **força de evidência ACMG/AMP calibrada** (S3), (ii) **interpretabilidade** (domínio funcional + ESM-2 + SHAP) e (iii) **integração** de múltiplos sinais (S2). O PrimeVarClass fornece exatamente essas três camadas — e a S2 comprova, quantitativamente, que seu sinal é **não redundante** ao do AlphaMissense.
+
+Como entrega concreta desse complemento, pré-computamos um **recurso de evidência para todas as ~100 mil variantes *missense* possíveis** de BRCA1 e BRCA2 (script `scratch/generate_evidence_resource.py`; arquivo `primevarclass_manuscript_analysis/brca_missense_evidence_resource.csv`). Cada variante recebe: domínio funcional, LLR do ESM-2, probabilidade do modelo-carro-chefe e uma **classificação de evidência ACMG** restrita aos dois níveis externamente validados e transferíveis (S3).
+
+**Tabela S6. Distribuição de evidência no espaço completo de variantes (100.339 *missense*).**
+
+| Evidência | *n* | Fração | Interpretação |
+| --- | ---: | ---: | --- |
+| **PP3_Forte** (escore ≥ 0,675) | 4.580 | 4,6% | evidência patogênica forte (94% patogênicas na validação externa, S3) |
+| Não informativo | 24.177 | 24,1% | permanece VUS — abstenção responsável |
+| **BP4_Moderado** (escore ≤ 0,255) | 71.582 | 71,3% | evidência benigna moderada |
+
+Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesquisador pode **consultar a evidência calibrada** para qualquer variante missense de BRCA1/BRCA2 — inclusive as **VUS que o AlphaMissense deixa em zona ambígua** —, com rastreabilidade total até os dados públicos. A extensão para os outros oito genes HBOC já pontuados (ATM, BARD1, CHEK2, PALB2, PTEN, RAD51C, RAD51D, TP53) está em preparação, condicionada à ingestão de rótulos clínicos reais e verificáveis para cada gene.
 
 ---
 
