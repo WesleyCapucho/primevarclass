@@ -73,3 +73,6 @@ _tmp_demo/
 .primevarclass_cache/
 # benchmark VEP response cache
 scratch/benchmark_cache.json
+# continual-learning runtime state (user-generated feedback + version log)
+registro_prospectivo/feedback.jsonl
+registro_prospectivo/model_versions.jsonl

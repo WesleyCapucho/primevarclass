@@ -30,6 +30,7 @@ justamente onde ele se abstém.
 2. [Desempenho vs. estado-da-arte](#2-desempenho--à-altura-dos-melhores-do-mundo)
 3. [Utilidade clínica — o diferencial](#3-utilidade-clínica--onde-fazemos-a-diferença)
 4. [Mecanismo biológico e interpretabilidade](#4-por-que-funciona--mecanismo-e-interpretabilidade)
+5. [Aprendizado contínuo — o software que melhora com o uso](#5-aprendizado-contínuo--o-software-que-melhora-com-o-uso)
 
 ---
 
@@ -293,6 +294,39 @@ de um preditor puramente baseado em sequência.
 A fração de variantes patogênicas **não é uniforme** ao longo da proteína: ela se
 concentra nos domínios funcionais. Essa é a intuição central — e mensurável — por
 trás da abordagem "consciente de domínio".
+
+---
+
+## 5. Aprendizado contínuo — o software que melhora com o uso
+![Aprendizado contínuo](figuras/fig_continual_learning.png)
+
+O PrimeVarClass **aprende à medida que é usado**. Cada variante que um laboratório
+ou usuário confirma (via ClinVar, ensaio funcional ou segregação familiar) é
+registrada com **proveniência** (carimbo de tempo UTC, fonte e hash SHA-256) e
+realimenta o modelo — de forma **segura**:
+
+- **Painel A — ele melhora com os dados.** Mantendo travado um conjunto de
+  variantes recentes (classificadas em 2024+, que o modelo nunca viu), revelamos
+  rótulos confirmados de forma acumulada ao longo do tempo. A AUC no conjunto
+  travado **sobe de 0,895 para 0,92** conforme os rótulos se acumulam — puro ganho
+  por ser alimentado com mais dados reais.
+- **Painel B — feedback ruim nunca entra.** Uma **trava de segurança** só promove
+  um modelo atualizado se ele **não piorar** no conjunto travado. Ao submeter um
+  lote de feedback envenenado (rótulos invertidos), o candidato despenca para 0,73
+  e é **rejeitado** — protegendo contra ruído e envenenamento de dados.
+
+Isso não é promessa de marketing: é o mesmo efeito medido na validação temporal
+(um modelo treinado só com o passado acerta o futuro cada vez melhor). Na prática,
+funciona por dois comandos auditáveis:
+
+```bash
+primevarclass feedback BRCA2 p.Gly2748Asp --label pathogenic --source clinvar
+primevarclass update      # reajusta com trava de segurança; versiona o modelo
+```
+
+Detalhes de implementação (armazenamento de feedback, trava de promoção e registro
+de versões) em [`src/primevarclass/continual.py`](../../src/primevarclass/continual.py);
+demonstração reproduzível em [`scratch/continual_learning_demo.py`](../../scratch/continual_learning_demo.py).
 
 ---
 

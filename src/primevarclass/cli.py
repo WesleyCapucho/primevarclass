@@ -153,6 +153,63 @@ def _cmd_score(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_feedback(args: argparse.Namespace) -> int:
+    """Record a user/lab-confirmed classification so the model can learn from it."""
+    from .continual import FeedbackStore
+
+    gene = str(args.gene).upper()
+    if gene not in {"BRCA1", "BRCA2"}:
+        raise SystemExit(f"Gene não suportado: {gene} (apenas BRCA1 e BRCA2).")
+    ref1, pos, alt1, _, _ = _parse_change(args.change)
+    root = _find_data_root(args.data_root)
+    store = FeedbackStore(root / "registro_prospectivo")
+    rec = store.add(gene, pos, ref1, alt1, args.label, source=args.source,
+                    submitter=args.submitter)
+    if rec is None:
+        print("Já registrado anteriormente — nada a fazer (armazenamento idempotente).")
+        return 0
+    lab = "PATOGÊNICA" if rec.label == 1 else "BENIGNA"
+    print(f"\nFeedback registrado — {gene} p.{ref1}{pos}{alt1}  ->  {lab}")
+    print(f"  fonte      : {rec.source}")
+    print(f"  carimbo UTC: {rec.timestamp}")
+    print(f"  SHA-256    : {rec.sha256[:16]}…")
+    print("  Rode 'primevarclass update' para incorporar o feedback (com trava de segurança).\n")
+    return 0
+
+
+def _cmd_update(args: argparse.Namespace) -> int:
+    """Refit with accumulated feedback; promote only if a locked hold-out doesn't degrade."""
+    import pandas as pd
+
+    from .continual import incremental_update
+    from .data_sources import build_dataset_from_source_config
+
+    root = _find_data_root(args.data_root)
+    holdout_cfgs = ["configs/public_brca_external_real_clinvar_expert_brca1.toml",
+                    "configs/public_brca_external_real_clinvar_expert_brca2.toml"]
+    frames = []
+    for c in holdout_cfgs:
+        df, _, _ = build_dataset_from_source_config(str(root / c), mode="hybrid", keep_metadata=True)
+        y = pd.to_numeric(df["label"], errors="coerce"); keep = y.notna()
+        f = df.loc[keep, ["gene", "position", "aa_ref", "aa_alt"]].copy()
+        f["label"] = y.loc[keep].astype(int).to_numpy()
+        frames.append(f)
+    holdout = pd.concat(frames, ignore_index=True)
+
+    print("Reajustando com o feedback acumulado (trava de segurança ativa)…")
+    entry = incremental_update(root, holdout_ids=holdout,
+                               directory=root / "registro_prospectivo")
+    print(f"\nAtualização contínua — versão candidata v{entry['version']}")
+    print("-" * 52)
+    print(f"  Rótulos de feedback     : {entry['n_feedback']}")
+    print(f"  AUC (modelo atual)      : {entry['baseline_auc']:.3f}")
+    print(f"  AUC (candidato+feedback): {entry['holdout_auc']:.3f}  [conjunto travado]")
+    print(f"  Decisão                 : {'PROMOVIDO ✓' if entry['promoted'] else 'REJEITADO (trava de segurança)'}")
+    print(f"  Hash do modelo          : {entry['model_sha256']}")
+    print("-" * 52 + "\n")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="primevarclass",
@@ -165,6 +222,19 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("change", help="mudança proteica, ex.: p.Arg1699Trp ou R1699W")
     s.add_argument("--data-root", default=None, help="raiz do repositório (auto-detectada por padrão)")
     s.set_defaults(func=_cmd_score)
+
+    fb = sub.add_parser("feedback", help="registra uma classificação confirmada (aprendizado contínuo)")
+    fb.add_argument("gene", help="BRCA1 ou BRCA2")
+    fb.add_argument("change", help="mudança proteica, ex.: p.Arg1699Trp ou R1699W")
+    fb.add_argument("--label", required=True, help="pathogenic|benign")
+    fb.add_argument("--source", default="user", help="origem (clinvar, functional_assay, segregation…)")
+    fb.add_argument("--submitter", default="anon", help="identificação de quem submeteu")
+    fb.add_argument("--data-root", default=None, help="raiz do repositório (auto-detectada por padrão)")
+    fb.set_defaults(func=_cmd_feedback)
+
+    up = sub.add_parser("update", help="reajusta com o feedback acumulado (com trava de segurança)")
+    up.add_argument("--data-root", default=None, help="raiz do repositório (auto-detectada por padrão)")
+    up.set_defaults(func=_cmd_update)
     return p
 
 

@@ -1,0 +1,52 @@
+{
+  "holdout_year": 2024,
+  "holdout_n": 195,
+  "learning_curve": [
+    {
+      "through_year": 2016,
+      "n_feedback": 176,
+      "holdout_auc": 0.8951
+    },
+    {
+      "through_year": 2017,
+      "n_feedback": 178,
+      "holdout_auc": 0.8976
+    },
+    {
+      "through_year": 2018,
+      "n_feedback": 179,
+      "holdout_auc": 0.8976
+    },
+    {
+      "through_year": 2019,
+      "n_feedback": 279,
+      "holdout_auc": 0.9183
+    },
+    {
+      "through_year": 2020,
+      "n_feedback": 280,
+      "holdout_auc": 0.9193
+    },
+    {
+      "through_year": 2021,
+      "n_feedback": 286,
+      "holdout_auc": 0.9223
+    },
+    {
+      "through_year": 2022,
+      "n_feedback": 295,
+      "holdout_auc": 0.9206
+    },
+    {
+      "through_year": 2023,
+      "n_feedback": 304,
+      "holdout_auc": 0.9191
+    }
+  ],
+  "gate": {
+    "clean_auc": 0.9191,
+    "poisoned_auc": 0.7268,
+    "epsilon": 0.005,
+    "poisoned_promoted": false
+  }
+}
