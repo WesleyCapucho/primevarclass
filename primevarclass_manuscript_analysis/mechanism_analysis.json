@@ -1,0 +1,17 @@
+{
+  "ring_residue_mechanism": {
+    "Interface BARD1": 30,
+    "Superfície": 26,
+    "Núcleo estrutural (dobramento)": 19,
+    "Intermediário": 18,
+    "Coordenação de zinco": 10
+  },
+  "detected_variant_mechanism": {
+    "Superfície": 213,
+    "Núcleo estrutural (dobramento)": 197,
+    "Interface BARD1": 173,
+    "Coordenação de zinco": 160,
+    "Intermediário": 109
+  },
+  "n_detected_ring": 852
+}
