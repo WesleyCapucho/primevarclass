@@ -1,0 +1,41 @@
+gene,hgvs_p,position,functional_domain,esm2_llr,pathogenicity_prob,clinvar
+BRCA1,p.Met1689Arg,1689,BRCT1,-10.38226,0.9786,Pathogenic/Likely pathogenic
+BRCA1,p.Met1652Arg,1652,BRCT1,-9.65932,0.9778,
+BRCA1,p.Met1652Lys,1652,BRCT1,-10.31284,0.9739,
+BRCA1,p.Met1689Lys,1689,BRCT1,-9.77332,0.9739,Likely pathogenic
+BRCA1,p.Leu1657Pro,1657,BRCT1,-9.79764,0.9672,
+BRCA1,p.Leu1705Pro,1705,BRCT1,-9.63349,0.9672,Pathogenic/Likely pathogenic
+BRCA1,p.Leu1729Pro,1729,BRCT1,-10.05215,0.9664,
+BRCA1,p.Leu1701Pro,1701,BRCT1,-11.27622,0.9635,
+BRCA1,p.Leu1844Pro,1844,BRCT2,-12.87467,0.9749,
+BRCA1,p.Leu1786Pro,1786,BRCT2,-9.1407,0.9737,
+BRCA1,p.Leu1839Pro,1839,BRCT2,-9.87384,0.9737,
+BRCA1,p.Leu1780Pro,1780,BRCT2,-8.48384,0.9686,Pathogenic/Likely pathogenic
+BRCA1,p.Leu1764Pro,1764,BRCT2,-8.49352,0.9686,
+BRCA1,p.Val1842Gly,1842,BRCT2,-12.48291,0.9649,
+BRCA1,p.Val1838Gly,1838,BRCT2,-12.21812,0.9649,Likely pathogenic
+BRCA1,p.Trp1837Cys,1837,BRCT2,-10.08707,0.9633,Pathogenic/Likely pathogenic
+BRCA1,p.Cys39Gly,39,RING,-12.26054,0.9974,Pathogenic/Likely pathogenic
+BRCA1,p.Cys47Gly,47,RING,-10.83508,0.9972,Likely pathogenic
+BRCA1,p.Cys61Gly,61,RING,-10.89172,0.9972,
+BRCA1,p.Cys64Gly,64,RING,-9.92089,0.9972,Pathogenic
+BRCA1,p.Cys64Tyr,64,RING,-9.52894,0.9967,
+BRCA1,p.Cys39Tyr,39,RING,-9.30135,0.9967,Pathogenic
+BRCA1,p.Cys61Tyr,61,RING,-9.49905,0.9967,Pathogenic
+BRCA1,p.Cys44Tyr,44,RING,-8.19669,0.9967,
+BRCA1,p.Met1411Pro,1411,coiled_coil_PALB2,-7.54519,0.786,
+BRCA1,p.Met1411Asp,1411,coiled_coil_PALB2,-6.53198,0.7742,
+BRCA1,p.Met1411Arg,1411,coiled_coil_PALB2,-3.11662,0.7238,
+BRCA1,p.Met1411Gly,1411,coiled_coil_PALB2,-6.12436,0.7236,
+BRCA1,p.Met1411Thr,1411,coiled_coil_PALB2,-2.8472,0.719,Likely pathogenic
+BRCA1,p.Met1411His,1411,coiled_coil_PALB2,-5.76831,0.7158,
+BRCA1,p.Met1411Lys,1411,coiled_coil_PALB2,-3.33124,0.7117,
+BRCA1,p.Met1411Trp,1411,coiled_coil_PALB2,-6.15632,0.7085,
+BRCA1,p.Gly1748Glu,1748,linker,-9.78519,0.8808,
+BRCA1,p.Gly1738Glu,1738,linker,-8.68737,0.8808,Pathogenic/Likely pathogenic
+BRCA1,p.Gly1743Glu,1743,linker,-8.62774,0.8775,Likely pathogenic
+BRCA1,p.Ala1752Glu,1752,linker,-11.82051,0.858,Pathogenic
+BRCA1,p.Arg1753Ile,1753,linker,-10.82048,0.8534,Likely pathogenic
+BRCA1,p.Arg1751Ile,1751,linker,-9.62741,0.8526,
+BRCA1,p.Arg1753Leu,1753,linker,-9.12774,0.8509,
+BRCA1,p.Arg1744Ile,1744,linker,-7.3208,0.8369,

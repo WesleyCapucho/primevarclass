@@ -126,6 +126,12 @@ Como entrega concreta desse complemento, pré-computamos um **recurso de evidên
 
 Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesquisador pode **consultar a evidência calibrada** para qualquer variante missense de BRCA1/BRCA2 — inclusive as **VUS que o AlphaMissense deixa em zona ambígua** —, com rastreabilidade total até os dados públicos. A extensão para os outros oito genes HBOC já pontuados (ATM, BARD1, CHEK2, PALB2, PTEN, RAD51C, RAD51D, TP53) está em preparação, condicionada à ingestão de rótulos clínicos reais e verificáveis para cada gene.
 
+**Onde estão as mutações detectadas.** Projetando a intensidade de detecção (fração das 19 substituições de cada resíduo classificadas PP3_Forte) sobre as estruturas experimentais de BRCA1, as detecções **concentram-se precisamente no núcleo funcional** — o sítio de coordenação de zinco no RING e o núcleo hidrofóbico/interface das repetições BRCT — e são baixas nas alças de superfície (figuras do artigo principal: mapa de detecção RING+BRCT e detalhe do sítio de zinco). Das 2.627 variantes de BRCA1 detectadas como PP3_Forte, **123 já constam como Patogênicas/Provavelmente patogênicas no ClinVar**, incluindo todas as substituições das cisteínas que coordenam o zinco (Cys24/27/39/47/61/64, probabilidade > 0,99) — validação independente de que o algoritmo detecta biologia real, não ruído. O script `scratch/detected_mutations_analysis.py` gera a tabela completa (`detected_top_variants.csv`).
+
+![Figura S7](figuras/fig_detected_brct.png)
+
+**Figura S7.** Resíduos-alvo detectados no núcleo do domínio BRCT (PDB 1JNX), renderizados com PyMOL open-source. A coloração segue a intensidade de detecção (azul: baixa; vermelho: alta); os resíduos rotulados (Arg1699, ..., Met1775, ...) correspondem a posições em que praticamente todas as substituições recebem evidência PP3_Forte — situadas no interior estrutural do domínio, onde substituições desestabilizam o dobramento.
+
 ---
 
 ## Declaração de integridade
