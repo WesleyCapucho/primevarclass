@@ -1,0 +1,31 @@
+{
+  "RING": {
+    "n_detected": 852,
+    "mechanism": {
+      "Superfície": 213,
+      "Núcleo estrutural (dobramento)": 197,
+      "Interface BARD1": 173,
+      "Coordenação de zinco": 160,
+      "Intermediário": 109
+    }
+  },
+  "BRCT": {
+    "n_detected": 1764,
+    "mechanism": {
+      "Núcleo estrutural (dobramento)": 1092,
+      "Bolso de fosfopeptídeo": 304,
+      "Intermediário": 295,
+      "Superfície": 73
+    }
+  },
+  "DBD": {
+    "n_detected": 1618,
+    "mechanism": {
+      "Núcleo estrutural (dobramento)": 869,
+      "Interface DSS1": 318,
+      "Intermediário": 263,
+      "Superfície": 137,
+      "Ligação ao DNA": 31
+    }
+  }
+}

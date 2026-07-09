@@ -134,6 +134,28 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 ---
 
+## S8. Decomposição de mecanismo — o *porquê* de cada variante (contribuição original)
+
+Os preditores existentes entregam um número de patogenicidade; **nenhum diz o mecanismo**. Aqui está a contribuição mais original do trabalho: para cada variante detectada, atribuímos um **mecanismo estrutural**, cruzando dois eixos ortogonais — o sinal de **sequência** (ESM-2, conservação evolutiva) e o sinal de **estrutura**, calculado a partir das coordenadas experimentais reais (grau de enterramento por Shrake–Rupley + distância ao ligante funcional de cada domínio). Nenhum modelo novo é necessário — apenas geometria de estruturas reais (script `scratch/mechanism_domains.py`).
+
+**Tabela S8. Mecanismo das variantes detectadas (PP3_Forte) nos três domínios críticos.**
+
+| Domínio (estrutura) | Núcleo/dobramento | Sítio funcional | Interface | Superfície |
+| --- | ---: | ---: | ---: | ---: |
+| **BRCA1 RING** (1JM7) | 197 | 160 (coordenação de zinco) | 173 (BARD1) | 213 |
+| **BRCA1 BRCT** (1T29) | 1.092 | 304 (bolso de fosfopeptídeo) | — | 73 |
+| **BRCA2 DBD** (1MJE) | 869 | 31 (ligação ao DNA) | 318 (DSS1) | 137 |
+
+Os padrões são biologicamente coerentes: o RING distribui-se entre coordenação de zinco, interface com BARD1 e núcleo; o BRCT é dominado por desestabilização do dobramento, com um subconjunto claro rompendo o **bolso de reconhecimento de fosfopeptídeo** (parceiros BACH1/BRIP1, CtIP); o DBD combina núcleo, a grande **interface com DSS1** e os poucos resíduos que **contatam o DNA** diretamente.
+
+**Nota de rigor (BRCA2 DBD).** A única estrutura experimental do DBD (1MJE) é de *camundongo*; para atribuir posições humanas corretamente, alinhamos a sequência da estrutura à humana (UniProt P51587) por alinhamento par-a-par e transferimos a numeração — em vez de mapear ingenuamente variantes humanas sobre a numeração de camundongo.
+
+![Figura S8](figuras/fig_mechanism_domains.png)
+
+**Figura S8.** Decomposição de mecanismo das variantes detectadas nos domínios críticos de BRCA1 (RING, BRCT) e BRCA2 (DBD). Cada ponto é uma variante patogênica detectada, posicionada pelo eixo de **sequência** (ESM-2 LLR, horizontal) e de **estrutura** (exposição ao solvente RSA, vertical) e colorida pelo mecanismo inferido. Variantes enterradas (RSA baixo) tendem à desestabilização do dobramento; variantes expostas mas próximas ao ligante funcional atingem a função (ligação a fosfopeptídeo, a DNA, ou a interface com parceiros) — o "porquê" clínico que um escore isolado não fornece.
+
+---
+
 ## Declaração de integridade
 
 Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo de dois genes — estão declaradas em seus respectivos pontos. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
