@@ -1,0 +1,29 @@
+{
+  "gene": "BRCA1",
+  "am_class_counts": {
+    "likely_benign": 4066,
+    "likely_pathogenic": 774,
+    "ambiguous": 325
+  },
+  "part1_accuracy_in_am_greyzone": {
+    "n_classified_ambiguous": 10,
+    "n_pathogenic": 2,
+    "our_auc": 0.938,
+    "n_resolved": 7,
+    "resolved_accuracy": 1.0
+  },
+  "part2_yield_on_ambiguous_VUS": {
+    "n_am_ambiguous": 98,
+    "PP3_Strong": 11,
+    "BP4_Moderate": 44,
+    "uninformative": 43,
+    "resolved_fraction": 0.561
+  },
+  "part3_yield_on_ambiguous_conflicting": {
+    "n_am_ambiguous": 64,
+    "PP3_Strong": 19,
+    "BP4_Moderate": 30,
+    "uninformative": 15,
+    "resolved_fraction": 0.766
+  }
+}
