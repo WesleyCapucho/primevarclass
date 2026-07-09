@@ -1,0 +1,25 @@
+{
+  "appreciable_af_threshold": 0.0001,
+  "gap_by_ancestry": {
+    "europeu": {
+      "n_appreciable": 105,
+      "n_in_clinvar": 97,
+      "pct_resolved_of_clinvar": 55.7
+    },
+    "não-europeu": {
+      "n_appreciable": 645,
+      "n_in_clinvar": 584,
+      "pct_resolved_of_clinvar": 26.2
+    }
+  },
+  "our_contribution_by_ancestry": {
+    "europeu": {
+      "n_unresolved": 50,
+      "evidence_provided_pct": 84.0
+    },
+    "não-europeu": {
+      "n_unresolved": 490,
+      "evidence_provided_pct": 78.0
+    }
+  }
+}

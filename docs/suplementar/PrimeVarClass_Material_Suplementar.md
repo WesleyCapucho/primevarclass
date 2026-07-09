@@ -156,6 +156,29 @@ Os padrões são biologicamente coerentes: o RING distribui-se entre coordenaç�
 
 ---
 
+## S9. Equidade em genômica — evidência que não depende de ancestralidade (impacto social)
+
+As bases de dados clínicas são dominadas por indivíduos de **ancestralidade europeia**; variantes frequentes em outras populações são, por isso, menos estudadas e mais frequentemente deixadas como VUS (Manrai et al., *N Engl J Med*, 2016; Popejoy & Fullerton, *Nature*, 2016). Usando as frequências alélicas **por população do gnomAD v4** (script `scratch/fetch_gnomad_populations.py`), quantificamos essa lacuna em BRCA1/BRCA2 e mostramos que nosso sinal — **cego à ancestralidade** — a atenua.
+
+**A lacuna (variantes clinicamente apreciáveis, AF > 10⁻⁴ na população predominante).**
+
+| Ancestralidade predominante | Variantes apreciáveis | Resolvidas (classificadas) no ClinVar |
+| --- | ---: | ---: |
+| Europeia | 105 | **55,7%** |
+| **Não-europeia** | **645** (6×) | **26,2%** |
+
+Há **seis vezes mais** variantes apreciáveis predominantes em populações não-europeias, e elas são **resolvidas na metade da taxa** — a desigualdade histórica, reproduzida em dados reais atuais.
+
+**A resposta (nossa contribuição).** O sinal de sequência (ESM-2, *zero-shot*) e de estrutura **não depende de quão estudada é uma população**. Entre as variantes apreciáveis **não resolvidas**, o PrimeVarClass fornece evidência ACMG calibrada de forma **equitativa**: **78,0%** das não-europeias (490 variantes) e 84,0% das europeias (50 variantes). Ou seja, atendemos a maior população sub-representada praticamente na mesma taxa — sem herdar o viés eurocêntrico das bases clínicas.
+
+**Nota de honestidade.** A lacuna aparece nas variantes *apreciáveis* (não nas ultra-raras, onde ambas as ancestralidades são igualmente pouco resolvidas). E, embora nossos componentes *zero-shot* (ESM-2/estrutura) sejam cegos a ancestralidade, o classificador Random Forest é treinado em rótulos ClinVar — também eurocêntricos; por isso a contribuição de equidade apoia-se, sobretudo, nesses componentes independentes de população, o que declaramos abertamente.
+
+![Figura S9](figuras/fig_equity.png)
+
+**Figura S9.** Equidade na resolução de variantes de BRCA1/BRCA2. **(A)** Entre variantes clinicamente apreciáveis (gnomAD, AF > 10⁻⁴), as predominantes em populações não-europeias são resolvidas no ClinVar a menos da metade da taxa das europeias (26% vs 56%), apesar de serem seis vezes mais numerosas. **(B)** Entre as não resolvidas, o PrimeVarClass fornece evidência ACMG calibrada em taxa semelhante para ambos os grupos (78% vs 84%) — evidência que não depende de quão estudada é a população.
+
+---
+
 ## Declaração de integridade
 
 Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo de dois genes — estão declaradas em seus respectivos pontos. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
