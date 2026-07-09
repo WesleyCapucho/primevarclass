@@ -46,10 +46,10 @@ def legend(draw, x, y, w, h, title):
     draw.rectangle([x, y, x + w, y + h], outline=(230, 232, 238), width=2)
     fs = font(int(h * 0.82), bold=False)
     ft = font(int(h * 0.82))
-    draw.text((x, y - int(h * 1.35)), title, font=ft, fill=(235, 237, 242))
-    draw.text((x, y + h + int(h * 0.3)), "tolerante", font=fs, fill=(150, 160, 190))
+    draw.text((x, y - int(h * 1.55)), title, font=ft, fill=(235, 237, 242))
+    draw.text((x, y + h + int(h * 0.35)), "tolerante", font=fs, fill=(150, 160, 190))
     r = draw.textlength("detectada (patogênica)", font=fs)
-    draw.text((x + w - r, y + h + int(h * 0.3)), "detectada (patogênica)", font=fs, fill=(240, 205, 110))
+    draw.text((x + w - r, y + h + int(h * 0.35)), "detectada (patogênica)", font=fs, fill=(240, 205, 110))
 
 
 def compose(name, title, subtitle, out_name):
@@ -69,13 +69,13 @@ def compose(name, title, subtitle, out_name):
     img = Image.alpha_composite(img.convert("RGBA"), band).convert("RGB")
     draw = ImageDraw.Draw(img)
 
-    # title + subtitle (large, bottom-left)
+    # title + subtitle (large, bottom-left) — full width, no legend to collide with
     draw.text((int(w * 0.045), int(h * 0.845)), title, font=font(int(w * 0.036)), fill=(248, 249, 252))
     draw.text((int(w * 0.045), int(h * 0.912)), subtitle, font=font(int(w * 0.019), bold=False),
               fill=(214, 182, 96))
-    # colour-ramp legend (bottom-right) — kept inside the frame
+    # colour-ramp legend (top-right, in the empty sky) — never overlaps the title band
     lw, lh = int(w * 0.30), int(h * 0.026)
-    legend(draw, w - lw - int(w * 0.045), int(h * 0.90), lw, lh,
+    legend(draw, w - lw - int(w * 0.045), int(h * 0.115), lw, lh,
            "Intensidade de detecção por resíduo")
     img.save(os.path.join(OUT, out_name), quality=95)
     print("saved", out_name, img.size)

@@ -46,7 +46,7 @@ def cinematic():
     cmd.set_color("cold", [0.10, 0.13, 0.38])
     cmd.set_color("mid", [0.74, 0.15, 0.42])
     cmd.set_color("hot", [1.00, 0.80, 0.22])
-    cmd.set_color("platinum", [0.82, 0.85, 0.90])   # metallic zinc
+    cmd.set_color("platinum", [0.68, 0.90, 1.00])   # bright icy metal for zinc
 
 
 def paint(sel):
@@ -70,7 +70,11 @@ cmd.show("cartoon", sel)
 cmd.set("cartoon_transparency", 0.10, sel)
 paint(sel)
 cmd.select("zn", f"m and elem Zn within 6 of ({sel})")
-cmd.show("spheres", "zn"); cmd.set("sphere_scale", 0.6, "zn"); cmd.color("platinum", "zn")
+cmd.show("spheres", "zn")
+cmd.set("sphere_scale", 0.95, "zn")
+cmd.color("platinum", "zn")
+cmd.set("sphere_mode", 9)                 # crisp, glossy spheres
+cmd.set("ray_interior_color", "grey10")
 RINGCYS = [24, 27, 39, 44, 47, 61, 64]
 cmd.select("cys", f"({sel}) and resi {'+'.join(map(str, RINGCYS))} and not (name N+C+O)")
 cmd.show("sticks", "cys"); cmd.set("stick_radius", 0.32, "cys")
