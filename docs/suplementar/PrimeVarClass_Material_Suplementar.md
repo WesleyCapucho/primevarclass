@@ -136,6 +136,17 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 **Onde estão as mutações detectadas.** Projetando a intensidade de detecção (fração das 19 substituições de cada resíduo classificadas PP3_Forte) sobre as estruturas experimentais de BRCA1, as detecções **concentram-se precisamente no núcleo funcional** — o sítio de coordenação de zinco no RING e o núcleo hidrofóbico/interface das repetições BRCT — e são baixas nas alças de superfície (figuras do artigo principal: mapa de detecção RING+BRCT e detalhe do sítio de zinco). Das 2.627 variantes de BRCA1 detectadas como PP3_Forte, **123 já constam como Patogênicas/Provavelmente patogênicas no ClinVar**, incluindo todas as substituições das cisteínas que coordenam o zinco (Cys24/27/39/47/61/64, probabilidade > 0,99) — validação independente de que o algoritmo detecta biologia real, não ruído. O script `scratch/detected_mutations_analysis.py` gera a tabela completa (`detected_top_variants.csv`).
 
+**Retratos de alta resolução (destaque visual).** As figuras a seguir renderizam o mesmo resultado com qualidade de capa (PyMOL open-source, oclusão de ambiente e ray-tracing), servindo como resumo gráfico do trabalho. A escala de cor (índigo → dourado) mede a intensidade de detecção por resíduo.
+
+![Figura S6c](figuras/fig_hero_ring.png)
+
+**Figura S6c.** Domínio RING de BRCA1 (PDB 1JM7): as mutações detectadas como patogênicas concentram-se no sítio de coordenação de zinco (esferas prateadas; cisteínas em dourado), enquanto as longas hélices de superfície permanecem tolerantes (índigo).
+
+![Figura S6d](figuras/fig_hero_brct.png)
+
+**Figura S6d.** Repetições BRCT de BRCA1 (PDB 1JNX): mapa de vulnerabilidade por resíduo — o núcleo estrutural das duas repetições (dourado) concentra a detecção, e as alças expostas (índigo) são toleradas.
+
+
 ![Figura S7](figuras/fig_detected_brct.png)
 
 **Figura S7.** Resíduos-alvo detectados no núcleo do domínio BRCT (PDB 1JNX), renderizados com PyMOL open-source. A coloração segue a intensidade de detecção (azul: baixa; vermelho: alta); os resíduos rotulados (Arg1699, ..., Met1775, ...) correspondem a posições em que praticamente todas as substituições recebem evidência PP3_Forte — situadas no interior estrutural do domínio, onde substituições desestabilizam o dobramento.
