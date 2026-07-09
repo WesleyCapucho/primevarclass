@@ -17,6 +17,11 @@ proteínas* (ESM-2) para dizer se uma mutação de sentido trocado (*missense*) 
 calibrada (ACMG/AMP)**, funcionando como **complemento** ao AlphaMissense
 justamente onde ele se abstém.
 
+> **E por que "Prime"?** O projeto nasceu de uma hipótese sobre números primos que
+> foi **testada com rigor e honestamente refutada** — e foi essa honestidade que o
+> levou ao método que funciona. A trajetória completa está em
+> [A história dos números primos](../A_HISTORIA_DOS_PRIMOS.md).
+
 ---
 
 ## Índice
@@ -40,6 +45,24 @@ cada uma sobre sua estrutura cristalográfica real, e o veredito do PrimeVarClas
 ter visto os rótulos. No topo (RING), as mutações destroem cisteínas que seguram o
 **zinco** (esfera azul); embaixo (BRCT), desestabilizam o núcleo que "lê" o dano ao
 DNA. É a demonstração direta de que o modelo **acerta o que importa**.
+
+### 1.0b O mesmo poder em BRCA2
+![Painel BRCA2](figuras/fig_detected_panel_brca2.png)
+
+A demonstração se repete no **BRCA2**, no seu domínio de ligação ao DNA (DBD).
+Seis variantes **confirmadas patogênicas no ClinVar** — incluindo mutações
+clássicas como **G2748D**, **R3052W** e **W2626C** — sobre a estrutura real (PDB
+1MJE), todas **detectadas pelo PrimeVarClass** (75–97% de confiança). Mostra que a
+abordagem não é um truque específico de um gene: ela **generaliza**.
+
+### 1.0c Paisagem de detecção na superfície das proteínas
+![Superfície de detecção](figuras/fig_surface_landscape.png)
+
+A **superfície molecular inteira** dos domínios de BRCA1 (BRCT) e BRCA2 (DBD),
+colorida pela intensidade de detecção do modelo. As **zonas douradas** — o núcleo
+funcional de cada domínio — concentram as detecções de patogenicidade, enquanto a
+periferia (azul) é tolerada. É a "impressão digital" estrutural do risco: o mesmo
+padrão emerge de forma independente nos dois genes.
 
 ### 1.1 Sítio de zinco do domínio RING (BRCA1)
 ![RING](figuras/fig_hero_ring.png)

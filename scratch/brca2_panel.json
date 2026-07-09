@@ -1,0 +1,56 @@
+[
+ {
+  "name": "L2653P",
+  "title": "BRCA2  p.Leu2653Pro",
+  "dom": "DBD — hélice",
+  "human": 2653,
+  "pdb_resi": 2574,
+  "prob": "96,7%",
+  "clin": "Patogênica / Provavelmente patogênica"
+ },
+ {
+  "name": "L2686P",
+  "title": "BRCA2  p.Leu2686Pro",
+  "dom": "DBD — OB1 (liga ssDNA)",
+  "human": 2686,
+  "pdb_resi": 2607,
+  "prob": "96,1%",
+  "clin": "Patogênica / Provavelmente patogênica"
+ },
+ {
+  "name": "Y2660D",
+  "title": "BRCA2  p.Tyr2660Asp",
+  "dom": "DBD — hélice",
+  "human": 2660,
+  "pdb_resi": 2581,
+  "prob": "95,9%",
+  "clin": "Patogênica / Provavelmente patogênica"
+ },
+ {
+  "name": "G2748D",
+  "title": "BRCA2  p.Gly2748Asp",
+  "dom": "DBD — OB1 (liga ssDNA)",
+  "human": 2748,
+  "pdb_resi": 2669,
+  "prob": "91,1%",
+  "clin": "Patogênica"
+ },
+ {
+  "name": "R3052W",
+  "title": "BRCA2  p.Arg3052Trp",
+  "dom": "DBD — OB3 (liga ssDNA)",
+  "human": 3052,
+  "pdb_resi": 2971,
+  "prob": "81,1%",
+  "clin": "Patogênica"
+ },
+ {
+  "name": "W2626C",
+  "title": "BRCA2  p.Trp2626Cys",
+  "dom": "DBD — hélice",
+  "human": 2626,
+  "pdb_resi": 2547,
+  "prob": "75,3%",
+  "clin": "Patogênica"
+ }
+]
