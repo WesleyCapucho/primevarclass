@@ -126,6 +126,33 @@ seja, joga no mesmo nível dos líderes — e é **significativamente superior**
 clássicos SIFT (p = 0,001) e PolyPhen-2 (p < 10⁻⁶). Na cobertura total do nosso
 modelo (n = 836), a AUC é **0,909 (IC95% 0,876–0,939)**.
 
+### 2.1b Vazamento a favor de terceiros — a comparação honesta
+![Vazamento a favor de terceiros](figuras/fig_benchmark_leakage_controlled.png)
+
+Há uma assimetria que **desfavorece o PrimeVarClass** e precisa ser dita com todas
+as letras. REVEL e CADD são **treinados** — e o AlphaMissense é **calibrado** — em
+rótulos do tipo ClinVar que **se sobrepõem ao nosso conjunto-teste**. Isso é uma
+**circularidade (vazamento de dados) a favor dessas ferramentas** (Grimm et al.,
+2015): elas podem ter, na prática, "visto as respostas". O PrimeVarClass, ao
+contrário, é avaliado **fora da distribuição** — em coortes externas que ele nunca
+tocou, sob validação bloqueada por posição.
+
+Ou seja: a corrida não é justa, e é o PrimeVarClass que corre com peso extra.
+Mesmo assim, a diferença para os líderes **não é estatisticamente significativa**
+(DeLong: *p* = 0,14 vs REVEL; 0,24 vs AlphaMissense; 0,37 vs CADD). Empatar sob uma
+avaliação mais rigorosa é, honestamente, um resultado **mais forte** do que o número
+cru sugere — e por isso o nosso diferencial real não é "vencer no AUC", e sim
+**complementar** essas ferramentas na zona cinzenta, com calibração ACMG e equidade
+(Seções 3.1–3.5).
+
+> Nota de honestidade: tentamos isolar o vazamento restringindo a variantes
+> recentes (ClinVar `last_evaluated` ≥ 2024). Esse recorte **não** separa
+> limpamente o vazamento — a data reflete a *reavaliação*, não a primeira
+> submissão, e **todas** as ferramentas melhoram nas variantes recentes (o
+> PrimeVarClass sobe para 0,932 e segue estatisticamente equivalente aos líderes,
+> *p* = 0,12–0,61). Por isso **não** alegamos "vazamento removido"; a afirmação
+> correta é a assimetria de avaliação acima. Dados: [`benchmark_leakage_controlled.json`](../../primevarclass_manuscript_analysis/benchmark_leakage_controlled.json).
+
 ### 2.2 O meta-classificador supera qualquer ferramenta isolada
 ![Meta forest](figuras/fig_meta_forest.png)
 

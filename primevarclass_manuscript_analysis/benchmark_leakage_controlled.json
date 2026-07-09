@@ -1,0 +1,109 @@
+{
+  "full": {
+    "n": 836,
+    "tools": {
+      "PrimeVarClass (domínio + ESM-2)": {
+        "n": 836,
+        "auc": 0.9093,
+        "delong_vs_prime_p": null
+      },
+      "AlphaMissense": {
+        "n": 621,
+        "auc": 0.9262,
+        "delong_vs_prime_p": 0.2441
+      },
+      "REVEL": {
+        "n": 621,
+        "auc": 0.9299,
+        "delong_vs_prime_p": 0.1445
+      },
+      "CADD": {
+        "n": 629,
+        "auc": 0.8909,
+        "delong_vs_prime_p": 0.3717
+      },
+      "PolyPhen-2": {
+        "n": 630,
+        "auc": 0.7733,
+        "delong_vs_prime_p": 0.0
+      },
+      "SIFT": {
+        "n": 630,
+        "auc": 0.8453,
+        "delong_vs_prime_p": 0.001
+      }
+    }
+  },
+  "recent_ge_2023": {
+    "n": 393,
+    "n_pathogenic": 90,
+    "tools": {
+      "PrimeVarClass (domínio + ESM-2)": {
+        "n": 393,
+        "auc": 0.9333,
+        "delong_vs_prime_p": null
+      },
+      "AlphaMissense": {
+        "n": 301,
+        "auc": 0.9412,
+        "delong_vs_prime_p": 0.6327
+      },
+      "REVEL": {
+        "n": 301,
+        "auc": 0.9501,
+        "delong_vs_prime_p": 0.2713
+      },
+      "CADD": {
+        "n": 305,
+        "auc": 0.9029,
+        "delong_vs_prime_p": 0.2407
+      },
+      "PolyPhen-2": {
+        "n": 306,
+        "auc": 0.8159,
+        "delong_vs_prime_p": 0.0006
+      },
+      "SIFT": {
+        "n": 306,
+        "auc": 0.8621,
+        "delong_vs_prime_p": 0.0033
+      }
+    }
+  },
+  "recent_ge_2024": {
+    "n": 331,
+    "n_pathogenic": 86,
+    "tools": {
+      "PrimeVarClass (domínio + ESM-2)": {
+        "n": 331,
+        "auc": 0.9323,
+        "delong_vs_prime_p": null
+      },
+      "AlphaMissense": {
+        "n": 263,
+        "auc": 0.9402,
+        "delong_vs_prime_p": 0.6128
+      },
+      "REVEL": {
+        "n": 263,
+        "auc": 0.9559,
+        "delong_vs_prime_p": 0.1195
+      },
+      "CADD": {
+        "n": 267,
+        "auc": 0.903,
+        "delong_vs_prime_p": 0.2748
+      },
+      "PolyPhen-2": {
+        "n": 266,
+        "auc": 0.8069,
+        "delong_vs_prime_p": 0.0004
+      },
+      "SIFT": {
+        "n": 266,
+        "auc": 0.8634,
+        "delong_vs_prime_p": 0.0066
+      }
+    }
+  }
+}
