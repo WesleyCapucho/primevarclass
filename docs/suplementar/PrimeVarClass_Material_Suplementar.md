@@ -179,6 +179,30 @@ Há **seis vezes mais** variantes apreciáveis predominantes em populações nã
 
 ---
 
+## S10. O mecanismo é validado contra função experimental
+
+A decomposição de mecanismo (S8) não é apenas uma hipótese estrutural — ela **prediz a função medida em laboratório**. Usando o ensaio de reparo por recombinação homóloga (HDR) de Starita et al. (2015) para BRCA1 (MaveDB `urn:mavedb:00000081`, numeração proteica correta, cobrindo RING e BRCT), atribuímos a cada variante ensaiada o mecanismo do seu resíduo e comparamos a função medida (script `scratch/mechanism_vs_function.py`).
+
+**Tabela S10. Função HDR mediana por mecanismo (1.262 variantes; menor = mais perda de função).**
+
+| Mecanismo | Função HDR mediana |
+| --- | ---: |
+| **Coordenação de zinco** | **−0,84** |
+| Núcleo (dobramento) | −0,16 |
+| Interface BARD1 | −0,14 |
+| Intermediário | −0,08 |
+| **Superfície** | **−0,01** |
+
+A ordenação é **monotônica e biologicamente esperada**: variantes que destroem a coordenação do zinco perdem a maior parte da função; as de superfície, quase nenhuma. A diferença entre mecanismos é altamente significativa (**Kruskal–Wallis p = 3,5 × 10⁻³³**), e o enterramento correlaciona-se com a perda de função (Spearman RSA×HDR = +0,26). Ou seja, o mecanismo que atribuímos a partir da estrutura **antecipa a consequência funcional real** — uma validação independente de rótulos clínicos.
+
+**Nota de honestidade.** O HDR é um ensaio específico e ruidoso; por isso reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local por éxon no MaveDB e exige um mapeamento de coordenadas segmento-a-segmento, deixado como trabalho futuro.
+
+![Figura S10](figuras/fig_mechanism_vs_function.png)
+
+**Figura S10.** Validação do mecanismo contra função experimental. Distribuição da função HDR medida (Starita et al., 2015) por mecanismo estrutural atribuído. Mecanismos deletérios (coordenação de zinco, núcleo do dobramento, interface) apresentam perda de função progressivamente maior que os resíduos de superfície (Kruskal–Wallis p = 3,5 × 10⁻³³).
+
+---
+
 ## Declaração de integridade
 
 Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo de dois genes — estão declaradas em seus respectivos pontos. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.

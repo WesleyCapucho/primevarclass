@@ -1,0 +1,12 @@
+{
+  "n": 1262,
+  "kruskal_p": 3.4836834636872233e-33,
+  "spearman_rsa_vs_hdr": 0.264,
+  "median_hdr_by_mechanism": {
+    "Coordenação de zinco": -0.844,
+    "Núcleo (dobramento)": -0.157,
+    "Interface BARD1": -0.136,
+    "Intermediário": -0.076,
+    "Superfície": -0.011
+  }
+}
