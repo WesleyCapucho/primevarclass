@@ -30,6 +30,17 @@ justamente onde ele se abstém.
 
 ## 1. O que encontramos — as mutações na estrutura 3D
 
+### 1.0 Prova visual — o algoritmo capturou mutações patogênicas reais
+![Painel de detecção](figuras/fig_detected_panel.png)
+
+**A imagem que resume o projeto.** Seis variantes de BRCA1 **confirmadas como
+patogênicas no ClinVar** (crachá verde = a verdade documentada por laboratórios),
+cada uma sobre sua estrutura cristalográfica real, e o veredito do PrimeVarClass
+(crachá dourado). O algoritmo **detectou todas** com 96–99,7% de confiança — sem
+ter visto os rótulos. No topo (RING), as mutações destroem cisteínas que seguram o
+**zinco** (esfera azul); embaixo (BRCT), desestabilizam o núcleo que "lê" o dano ao
+DNA. É a demonstração direta de que o modelo **acerta o que importa**.
+
 ### 1.1 Sítio de zinco do domínio RING (BRCA1)
 ![RING](figuras/fig_hero_ring.png)
 
