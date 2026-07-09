@@ -47,7 +47,7 @@ from primevarclass.esm_scores import attach_esm_scores
 
 RNG = 42
 OUT = "primevarclass_manuscript_analysis"
-FIG = "docs/manuscrito/figuras/fig_acmg_calibration.png"
+FIG = "docs/suplementar/figuras/fig_acmg_calibration.png"
 os.makedirs(OUT, exist_ok=True)
 esm_df = pd.read_csv("scratch/esm_input/esm2_scores.csv")
 

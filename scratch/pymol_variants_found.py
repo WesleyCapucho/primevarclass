@@ -19,6 +19,7 @@ Run (open-source PyMOL, watermark-free):
   ~/.conda/envs/pymolopen/python.exe -m pymol -cq scratch/pymol_variants_found.py
 """
 import os
+
 from pymol import cmd
 
 OUT = "scratch/pymol"

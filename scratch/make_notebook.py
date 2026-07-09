@@ -1,6 +1,7 @@
 """Generate a ready-to-run Colab notebook for ESM-2 (650M, GPU) variant scoring."""
 import json
 
+
 def code(src):
     return {"cell_type": "code", "metadata": {}, "execution_count": None,
             "outputs": [], "source": [l + "\n" for l in src.split("\n")]}

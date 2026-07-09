@@ -1,6 +1,7 @@
 """Central schematic: BRCA1/BRCA2 in homologous-recombination DNA repair and
 hereditary breast/ovarian cancer (HBOC). Conceptual diagram (no data)."""
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch

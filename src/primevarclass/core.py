@@ -4,7 +4,6 @@ from __future__ import annotations
 import math
 import os
 import re
-import warnings
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Tuple
 
@@ -19,14 +18,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
+    confusion_matrix,
     matthews_corrcoef,
     roc_auc_score,
-    confusion_matrix,
 )
-from sklearn.model_selection import StratifiedKFold, StratifiedGroupKFold, cross_val_predict, train_test_split
+from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold, cross_val_predict, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from .domain_annotation import annotate_domain, LINKER_LABEL
+
+from .domain_annotation import LINKER_LABEL, annotate_domain
 
 # Optional gradient boosting imports (graceful degradation)
 try:
@@ -365,11 +365,11 @@ def encode_variant_features(variant: MissenseVariant, mode: str = "hybrid", exte
     # Vetores Primos 3D (Hydro, Mass, Charge)
     v_ref = np.array([hydro_prime_ref, mass_prime_ref, charge_prime_ref], dtype=float)
     v_alt = np.array([hydro_prime_alt, mass_prime_alt, charge_prime_alt], dtype=float)
-    
+
     mag_ref = np.linalg.norm(v_ref)
     mag_alt = np.linalg.norm(v_alt)
     dot_product = np.dot(v_ref, v_alt)
-    
+
     # Cosine Similarity e Area
     prime_cosine_sim = float(dot_product / (mag_ref * mag_alt)) if (mag_ref * mag_alt) != 0 else 0.0
     cross_prod = np.cross(v_ref, v_alt)
@@ -804,7 +804,7 @@ def get_feature_subsets(df: pd.DataFrame) -> Dict[str, List[str]]:
     hybrid_conservation_structure = sorted(set(hybrid_conservation) | set(structure_features))
     external_only = sorted(set(external_predictor_features))
     hybrid_plus_external = sorted(set(hybrid_conservation_structure) | set(external_predictor_features))
-    
+
     # NEW ORTHOGONAL TENSOR FEATURE SET
     # Removes all data leakage (AlphaMissense, REVEL, CADD, BayesDel)
     # Includes all endogenous physical features (Prime Tensor, Conservation, Structure)
@@ -980,7 +980,7 @@ def train_baseline_model(df: pd.DataFrame, model_family: str = DEFAULT_MODEL_FAM
 
     cv_splits = _recommended_cv_splits(y)
     groups = df["gene"] if "gene" in df.columns else None
-    
+
     if groups is not None:
         n_groups = groups.nunique()
         if n_groups < 2:
@@ -994,7 +994,7 @@ def train_baseline_model(df: pd.DataFrame, model_family: str = DEFAULT_MODEL_FAM
     else:
         cv = StratifiedKFold(n_splits=cv_splits, shuffle=True, random_state=42)
         probas = cross_val_predict(pipeline, X, y, cv=cv, method="predict_proba")[:, 1]
-    
+
     preds = (probas >= 0.5).astype(int)
     tn, fp, fn, tp = confusion_matrix(y, preds).ravel()
 
@@ -1022,11 +1022,11 @@ def train_model_with_feature_subset(
     observed_columns = _observed_feature_columns(df, feature_columns)
     if not observed_columns:
         raise ValueError("Nenhuma feature foi selecionada para o experimento.")
-    
+
     cols_to_keep = observed_columns + ["label"]
     if "gene" in df.columns and "gene" not in cols_to_keep:
         cols_to_keep.append("gene")
-        
+
     work_df = df[cols_to_keep].copy()
     work_df["variant"] = [f"row_{i}" for i in range(len(work_df))]
     return train_baseline_model(work_df, model_family=model_family)

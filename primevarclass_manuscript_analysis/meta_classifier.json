@@ -1,0 +1,24 @@
+{
+  "n": 621,
+  "n_pathogenic": 99,
+  "individual_auc": {
+    "PrimeVarClass (domínio + ESM-2)": 0.9066,
+    "AlphaMissense": 0.9262,
+    "REVEL": 0.9299,
+    "CADD": 0.9199
+  },
+  "meta_auc": 0.9379,
+  "meta_ci95": [
+    0.9009,
+    0.9689
+  ],
+  "best_individual": "REVEL",
+  "best_individual_auc": 0.9299,
+  "delong_meta_vs_best_p": 0.43091,
+  "mean_logit_coefficients": {
+    "PrimeVarClass (domínio + ESM-2)": 0.6,
+    "AlphaMissense": 1.031,
+    "REVEL": 0.588,
+    "CADD": 0.493
+  }
+}

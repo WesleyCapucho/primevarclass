@@ -1,24 +1,23 @@
 # PrimeVarClass
 
-[![tests](https://github.com/WesleyCapucho/primevarclass/actions/workflows/tests.yml/badge.svg)](https://github.com/WesleyCapucho/primevarclass/actions/workflows/tests.yml)
+[![CI](https://github.com/WesleyCapucho/primevarclass/actions/workflows/ci.yml/badge.svg)](https://github.com/WesleyCapucho/primevarclass/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente.**
+**Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente — aberta, interpretável e calibrada em força de evidência clínica.**
 
 PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a honestidade científica**.
 
-> Este repositório acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Estudante do Ensino Superior; tema *Inteligência Artificial para o Bem Comum* — subtema IA & Saúde). O artigo completo (Português, 24 páginas) está em **[`docs/manuscrito/PrimeVarClass_Artigo_Premio_Jovem_Cientista.pdf`](docs/manuscrito/PrimeVarClass_Artigo_Premio_Jovem_Cientista.pdf)**.
+> Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Estudante do Ensino Superior; tema *IA para o Bem Comum* — subtema IA & Saúde).
+> 📄 Artigo principal: [`docs/manuscrito/`](docs/manuscrito/) · 📎 Material suplementar: [`docs/suplementar/`](docs/suplementar/PrimeVarClass_Material_Suplementar.md)
 
 ---
 
-## A ciência, com honestidade
+## O que diferencia este trabalho
 
-O projeto nasceu de uma hipótese original — **codificar aminoácidos como números primos** — que **testamos com rigor e refutamos de forma transparente**:
-
-- sob validação cruzada bloqueada por posição e generalização em coortes externas, características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácidos sem posição (AUC externa 0,681 vs. 0,718; DeLong *p* = 0,045);
-- adicioná-las a um modelo bioquímico **reduziu** o desempenho (AUC externa 0,791 → 0,765; DeLong *p* < 0,0001).
-
-No processo, diagnosticamos uma **armadilha de vazamento posicional** (a posição bruta do resíduo memoriza o treino e colapsa em dados externos) e construímos a contribuição real do trabalho: um **classificador consciente de domínio funcional**.
+1. **Protocolo anti-vazamento.** Diagnosticamos e neutralizamos uma **armadilha de vazamento posicional** (a posição bruta do resíduo memoriza o treino e colapsa em dados externos). A validação usa CV **bloqueada por posição** + coortes externas independentes de especialistas.
+2. **Competitivo com o estado da arte.** Nas mesmas coortes externas (n = 621), o modelo é **estatisticamente comparável** a AlphaMissense, REVEL e CADD (teste de DeLong, todos *p* > 0,14) — sendo **aberto e interpretável**. Um **meta-classificador** que integra todos os sinais atinge a melhor estimativa (AUC **0,938**), e o PrimeVarClass carrega **sinal não redundante** nessa integração (ver [Material Suplementar](docs/suplementar/PrimeVarClass_Material_Suplementar.md), S1–S2).
+3. **Calibração clínica ACMG/AMP.** O escore é calibrado à força de evidência **PP3/BP4** (Tavtigian 2018; Pejaver 2022): escore ≥ 0,675 → **PP3_Forte**, com **94% de patogênicas** na coorte externa (LR local 75,9). Torna o resultado **acionável** para triagem de VUS.
+4. **Explicabilidade** por SHAP e **ferramenta de linha de comando** de uso direto (abaixo).
 
 ### Resultado principal (dados reais, reexecutável)
 
@@ -28,58 +27,82 @@ No processo, diagnosticamos uma **armadilha de vazamento posicional** (a posiç�
 | Posição bruta (referência de vazamento) | 0,802 | 0,791 |
 | Consciente de domínio (proposto) | 0,818 | 0,847 |
 | **Domínio + ESM-2 (carro-chefe)** | **0,882** | **0,909** |
+| **Meta-classificador integrado** (S2) | — | **0,938** |
 
-O modelo consciente de domínio **generaliza** para coortes externas independentes (AUC **0,847**; DeLong *p* = 1,8 × 10⁻¹³ vs. posição bruta), evidência de **biologia transferível, não memorização**. Combinado a um modelo de linguagem de proteínas autêntico (**ESM-2**, *zero-shot*, sem rótulos), o modelo-carro-chefe atinge **AUC externa de 0,909** (DeLong *p* = 1,5 × 10⁻¹⁰), com explicabilidade demonstrada por SHAP. A robustez é confirmada por *bootstrap*, teste de permutação (*p* = 5 × 10⁻⁴), CV multi-semente e meta-análise entre coortes.
+---
+
+## Uso rápido (CLI)
+
+```bash
+pip install -e .
+primevarclass score BRCA1 p.Arg1699Trp
+```
+
+```
+PrimeVarClass — variante BRCA1 p.Arg1699Trp
+  Domínio funcional      : BRCT1  [REGIÃO CRÍTICA]
+  ESM-2 LLR (zero-shot)  : -11.50   (sinal patogênico)
+  Probabilidade (modelo) : 0.878
+  Classificação          : PATOGÊNICA (provável)  (confiança alta)
+```
+
+---
+
+## A origem honesta (a hipótese que refutamos)
+
+O projeto **nasceu** de uma hipótese original — **codificar aminoácidos como números primos** — que **testamos com rigor e refutamos de forma transparente**: sob o protocolo anti-vazamento, as características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácido e **pioraram** um modelo bioquímico ao serem adicionadas. Foi ao investigar esse resultado negativo que diagnosticamos o vazamento posicional e chegamos à contribuição real — a **consciência de domínio funcional**. Os primos permanecem no código apenas como o conjunto `prime_only`, **resultado negativo documentado**, não componente ativo.
 
 ---
 
 ## Integridade científica
 
-- Todos os dados são **públicos e auditáveis**: ClinVar, painéis de especialistas ENIGMA/ClinGen, gnomAD.
-- **Nenhum resultado, figura ou métrica foi fabricado ou simulado.** Todas as figuras e números do artigo são gerados por scripts reexecutáveis deste repositório.
-- Anotação de domínio derivada do **UniProt** (BRCA1 P38398; BRCA2 P51587); estruturas 3D a partir de coordenadas experimentais reais do **RCSB PDB**.
-- O uso de ferramentas de IA no desenvolvimento é declarado no artigo, sob responsabilidade humana integral.
+- Dados **públicos e auditáveis**: ClinVar (2★+), ENIGMA/ClinGen, gnomAD (r4), UniProt, RCSB PDB, Ensembl VEP, MaveDB.
+- **Nenhum resultado, figura ou métrica foi fabricado ou simulado.** Comparações desfavoráveis (ex.: REVEL/AlphaMissense levemente acima em AUC) são reportadas de forma transparente.
+- Uso de IA no desenvolvimento declarado no artigo, sob responsabilidade humana integral. Ver também [`SECURITY.md`](SECURITY.md).
 
 ---
 
-## Núcleo do sistema
+## Estrutura do repositório
 
-| Módulo | Papel |
-| --- | --- |
-| [`src/primevarclass/domain_annotation.py`](src/primevarclass/domain_annotation.py) | Mapa curado de domínios funcionais UniProt (BRCA1 RING/BRCT; BRCA2 DBD) |
-| [`src/primevarclass/core.py`](src/primevarclass/core.py) | Engenharia de características, treino e validação (Random Forest) |
-| [`src/primevarclass/esm_scores.py`](src/primevarclass/esm_scores.py) | Ingestão de escores ESM-2 (aprendizado profundo autêntico, *zero-shot*) |
-| [`src/primevarclass/data_sources.py`](src/primevarclass/data_sources.py) | Ingestão de fontes públicas (ClinVar, gnomAD, ENIGMA/ClinGen) |
-| [`tests/`](tests/) | Testes automatizados (anotação de domínio, ingestão ESM, núcleo) |
-
-Os conjuntos de características de `get_feature_subsets` incluem, entre outros: `biochemical_only`, `domain_aware` (modelo proposto), `domain_aware_plus_esm` e `prime_only` (a hipótese testada e refutada).
+```
+src/primevarclass/     Núcleo honesto (pacote instalável)
+  ├─ domain_annotation.py   Mapa curado de domínios UniProt (RING/BRCT/DBD)
+  ├─ core.py                Características, treino, validação, calibração ACMG
+  ├─ esm_scores.py          Ingestão de escores ESM-2 (zero-shot)
+  ├─ data_sources.py        Ingestão de fontes públicas (ClinVar/gnomAD/ENIGMA)
+  └─ cli.py                 Interface de linha de comando (primevarclass score)
+tests/                 Testes automatizados (núcleo, domínio, ESM)
+configs/               Configurações das fontes de dados (coortes BRCA reais)
+data/                  Instantâneos de dados públicos (rastreáveis)
+docs/manuscrito/       Artigo principal (PDF/DOCX/Markdown) + figuras
+docs/suplementar/      Material suplementar (benchmark, meta, ACMG, DMS) + figuras
+scratch/               Scripts de reprodução/análise + escores ESM-2 (esm_input/)
+primevarclass_manuscript_analysis/   Artefatos gerados (JSON/CSV/figuras)
+.github/workflows/     CI: lint (ruff), testes, auditoria de dependências (pip-audit)
+```
 
 ---
 
 ## Reprodutibilidade
 
 ```bash
-# instalar em modo editável
-pip install -e .
+pip install -e ".[explain,dev]"
+pytest tests/ -q                        # testes do núcleo (29)
 
-# testes rápidos do núcleo honesto
-pytest tests/test_domain_annotation.py tests/test_esm_scores.py -q
-
-# reproduzir o resultado principal nas coortes reais
-python scratch/validate_domain_integration.py
-
-# robustez (Monte Carlo) e meta-análise entre coortes
-python scratch/monte_carlo_robustness.py
-python scratch/meta_analysis.py
+python scratch/validate_domain_integration.py   # resultado principal
+python scratch/benchmark_sota.py                 # benchmark vs. estado da arte (S1)
+python scratch/meta_classifier.py                # meta-classificador integrado (S2)
+python scratch/acmg_calibration.py               # calibração ACMG/AMP (S3)
+python scratch/monte_carlo_robustness.py         # robustez (Monte Carlo)
 ```
 
-Sementes aleatórias são fixadas para reprodutibilidade determinística. Os artefatos numéricos e as figuras em alta resolução são gravados em `primevarclass_manuscript_analysis/`.
+Sementes aleatórias fixas garantem reprodutibilidade determinística; artefatos e figuras em alta resolução são gravados em `primevarclass_manuscript_analysis/` e `docs/*/figuras/`.
 
 ---
 
 ## Aviso
 
-Ferramenta de **apoio à pesquisa genética responsável**. **Não** é um dispositivo de diagnóstico clínico, **não** emite laudo e **não** substitui aconselhamento genético profissional nem validação experimental independente.
+Ferramenta de **apoio à pesquisa genética responsável**. **Não** é dispositivo de diagnóstico clínico, **não** emite laudo e **não** substitui aconselhamento genético profissional nem validação experimental independente.
 
 ## Licença
 

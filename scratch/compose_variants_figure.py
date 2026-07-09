@@ -5,13 +5,16 @@ for each variant, and a colour legend. Writes into the manuscript figure folder.
 Run: python scratch/compose_variants_figure.py
 """
 from __future__ import annotations
+
 import os
+
 import matplotlib
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from matplotlib.patches import Patch, Circle
+import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 
 SRC = "scratch/pymol"
 OUT = "docs/manuscrito/figuras/fig_variants_3d.png"

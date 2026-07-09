@@ -12,10 +12,13 @@ the LLR for every substitution at that position:
 Run: python scratch/esm2_score.py
 """
 from __future__ import annotations
-import os, time
-import numpy as np, pandas as pd
+
+import os
+import time
+
+import pandas as pd
 import torch
-from transformers import AutoTokenizer, AutoModelForMaskedLM
+from transformers import AutoModelForMaskedLM, AutoTokenizer
 
 torch.set_num_threads(max(1, os.cpu_count() or 1))
 MODEL = "facebook/esm2_t30_150M_UR50D"

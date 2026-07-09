@@ -10,16 +10,24 @@ Saves results.json and publication figures to primevarclass_manuscript_analysis/
 Run: python scratch/monte_carlo_robustness.py
 """
 from __future__ import annotations
-import os, sys, json
-import numpy as np, pandas as pd
+
+import json
+import os
+import sys
+
+import numpy as np
+import pandas as pd
+
 sys.path.insert(0, os.path.abspath("src"))
 os.environ.setdefault("PRIMEVARCLASS_N_JOBS", "1")
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from sklearn.metrics import brier_score_loss, roc_auc_score, roc_curve
 from sklearn.model_selection import StratifiedGroupKFold
-from sklearn.metrics import roc_auc_score, roc_curve, brier_score_loss
-from primevarclass.core import get_feature_subsets, _build_pipeline
+
+from primevarclass.core import _build_pipeline, get_feature_subsets
 from primevarclass.data_sources import build_dataset_from_source_config
 
 OUT = "primevarclass_manuscript_analysis"

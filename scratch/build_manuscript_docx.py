@@ -5,12 +5,15 @@ figures embedded, tables formatted.
 Run: python scratch/build_manuscript_docx.py
 """
 from __future__ import annotations
-import os, re
+
+import os
+import re
+
 from docx import Document
-from docx.shared import Pt, Cm, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
+from docx.shared import Cm, Pt, RGBColor
 
 SRC = "docs/manuscrito/PrimeVarClass_artigo_honesto.md"
 MDDIR = os.path.dirname(SRC)

@@ -1,0 +1,51 @@
+{
+  "prior": 0.1,
+  "lr_thresholds": {
+    "pathogenic": {
+      "supporting": 2.08,
+      "moderate": 4.33,
+      "strong": 18.7
+    },
+    "benign": {
+      "supporting": 0.48,
+      "moderate": 0.23,
+      "strong": 0.05
+    }
+  },
+  "score_thresholds": {
+    "pathogenic": {
+      "supporting": 0.13,
+      "moderate": 0.345,
+      "strong": 0.675
+    },
+    "benign": {
+      "supporting": 0.64,
+      "moderate": 0.255,
+      "strong": null
+    }
+  },
+  "external_validation": {
+    "PP3_strong": {
+      "n_external": 84,
+      "path_fraction": 0.94,
+      "external_local_lr": 75.93
+    },
+    "PP3_moderate": {
+      "n_external": 117,
+      "path_fraction": 0.316,
+      "external_local_lr": 2.22
+    },
+    "PP3_supporting": {
+      "n_external": 191,
+      "path_fraction": 0.073,
+      "external_local_lr": 0.38
+    },
+    "BP4_moderate": {
+      "n_external": 444,
+      "path_fraction": 0.032,
+      "external_local_lr": 0.16
+    }
+  },
+  "n_internal": 869,
+  "n_external": 836
+}

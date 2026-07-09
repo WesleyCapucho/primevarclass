@@ -12,16 +12,23 @@ where loss-of-function pathogenic missense variants, e.g. Cys61/Cys64, cluster).
 Run: python scratch/figures_structures.py
 """
 from __future__ import annotations
-import os, urllib.request, warnings
-import numpy as np
+
+import os
+import urllib.request
+import warnings
+
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D  # noqa
+
 warnings.filterwarnings("ignore")
 from Bio.PDB import PDBParser
+
 try:
-    from scipy.interpolate import splprep, splev
+    from scipy.interpolate import splev, splprep
     HAVE_SCIPY = True
 except Exception:
     HAVE_SCIPY = False

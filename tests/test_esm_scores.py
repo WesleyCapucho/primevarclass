@@ -10,13 +10,13 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
+from primevarclass.core import MissenseVariant, encode_variant_features, get_feature_subsets
 from primevarclass.esm_scores import (
     ESM_SCORE_COLUMN,
     attach_esm_scores,
     build_esm_lookup,
     load_esm_scores,
 )
-from primevarclass.core import MissenseVariant, encode_variant_features, get_feature_subsets
 
 
 def _variants():

@@ -9,8 +9,8 @@ import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from primevarclass.domain_annotation import annotate_domain, LINKER_LABEL
 from primevarclass.core import MissenseVariant, encode_variant_features, get_feature_subsets
+from primevarclass.domain_annotation import LINKER_LABEL, annotate_domain
 
 
 @pytest.mark.parametrize(

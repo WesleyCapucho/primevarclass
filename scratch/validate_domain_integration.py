@@ -5,15 +5,22 @@ reproduces the validated headline result on real ClinVar/expert cohorts.
 Run: python scratch/validate_domain_integration.py
 """
 from __future__ import annotations
-import os, sys
-import numpy as np, pandas as pd
+
+import os
+import sys
+
+import numpy as np
+import pandas as pd
+
 sys.path.insert(0, os.path.abspath("src"))
 os.environ.setdefault("PRIMEVARCLASS_N_JOBS", "1")
-from sklearn.model_selection import StratifiedGroupKFold
-from sklearn.metrics import roc_auc_score
 from scipy.stats import norm
-from primevarclass.core import get_feature_subsets, _build_pipeline
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import StratifiedGroupKFold
+
+from primevarclass.core import _build_pipeline, get_feature_subsets
 from primevarclass.data_sources import build_dataset_from_source_config
+
 RNG = 42
 
 

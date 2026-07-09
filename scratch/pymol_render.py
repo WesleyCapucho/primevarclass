@@ -3,6 +3,7 @@ using PyMOL (real experimental PDB coordinates). Run headless via:
   C:\\PyMOL\\python.exe -m pymol -cq scratch/pymol_render.py
 """
 import os
+
 from pymol import cmd, util
 
 os.makedirs("scratch/pymol", exist_ok=True)

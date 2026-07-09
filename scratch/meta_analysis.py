@@ -10,16 +10,24 @@ no numbers are taken from third-party abstracts.
 Run: python scratch/meta_analysis.py
 """
 from __future__ import annotations
-import os, sys, json
-import numpy as np, pandas as pd
+
+import json
+import os
+import sys
+
+import numpy as np
+import pandas as pd
+
 sys.path.insert(0, os.path.abspath("src"))
 os.environ.setdefault("PRIMEVARCLASS_N_JOBS", "1")
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy.stats import chi2
 from sklearn.metrics import roc_auc_score
-from primevarclass.core import get_feature_subsets, _build_pipeline
+
+from primevarclass.core import _build_pipeline, get_feature_subsets
 from primevarclass.data_sources import build_dataset_from_source_config
 
 OUT = "primevarclass_manuscript_analysis"

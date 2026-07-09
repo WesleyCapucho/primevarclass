@@ -6,16 +6,22 @@
 Run: python scratch/figures_domains.py
 """
 from __future__ import annotations
-import os, sys
-import numpy as np, pandas as pd
+
+import os
+import sys
+
+import pandas as pd
+
 sys.path.insert(0, os.path.abspath("src"))
 os.environ.setdefault("PRIMEVARCLASS_N_JOBS", "1")
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-from primevarclass.domain_annotation import BRCA1_DOMAINS, BRCA2_DOMAINS
+
 from primevarclass.data_sources import build_dataset_from_source_config
+from primevarclass.domain_annotation import BRCA1_DOMAINS, BRCA2_DOMAINS
 
 OUT = "primevarclass_manuscript_analysis"
 os.makedirs(OUT, exist_ok=True)

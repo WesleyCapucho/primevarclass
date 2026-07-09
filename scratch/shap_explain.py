@@ -8,17 +8,25 @@ most drive pathogenicity predictions.
 Run: python scratch/shap_explain.py
 """
 from __future__ import annotations
-import os, sys
-import numpy as np, pandas as pd
+
+import os
+import sys
+
+import numpy as np
+import pandas as pd
+
 sys.path.insert(0, os.path.abspath("src"))
 os.environ.setdefault("PRIMEVARCLASS_N_JOBS", "1")
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import shap
-from primevarclass.core import get_feature_subsets, _build_pipeline
+
+from primevarclass.core import _build_pipeline, get_feature_subsets
 from primevarclass.data_sources import build_dataset_from_source_config
 from primevarclass.esm_scores import attach_esm_scores
+
 RNG = 42
 OUT = "primevarclass_manuscript_analysis"
 os.makedirs(OUT, exist_ok=True)
