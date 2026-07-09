@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/WesleyCapucho/primevarclass/actions/workflows/ci.yml/badge.svg)](https://github.com/WesleyCapucho/primevarclass/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21275650.svg)](https://doi.org/10.5281/zenodo.21275650)
 
 **Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente — aberta, interpretável e calibrada em força de evidência clínica.**
 

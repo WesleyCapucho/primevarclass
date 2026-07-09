@@ -27,8 +27,11 @@ python scratch/build_provenance_manifest.py
 - O **histórico do git**, publicado no GitHub, associa cada commit ao autor e a
   um **carimbo de tempo do servidor** (não forjável), estabelecendo quando cada
   parte foi criada.
-- Um **DOI do Zenodo** (a ser emitido a partir de um *release*) arquiva um
-  snapshot imutável, datado e citável — a prova pública definitiva de autoria.
+- **DOI do Zenodo (emitido em 2026-07-09):** o *release* `v1.0.0` foi arquivado
+  automaticamente pelo Zenodo, gerando um snapshot imutável, datado e citável.
+  - DOI da versão v1.0.0: **[10.5281/zenodo.21275651](https://doi.org/10.5281/zenodo.21275651)**
+  - DOI conceitual (sempre aponta para a versão mais recente): **[10.5281/zenodo.21275650](https://doi.org/10.5281/zenodo.21275650)**
+
   Ver [`docs/PROTECAO_IP_E_SEGURANCA.md`](docs/PROTECAO_IP_E_SEGURANCA.md).
 
 ## Termos

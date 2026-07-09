@@ -11,9 +11,17 @@ authors:
       Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP)
     email: wesleycapucho@usp.br
 repository-code: "https://github.com/WesleyCapucho/primevarclass"
+doi: 10.5281/zenodo.21275650
 license: MIT
 version: "1.0.0"
-date-released: "2026-07-07"
+date-released: "2026-07-09"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21275650
+    description: "DOI conceitual (aponta sempre para a versão mais recente)"
+  - type: doi
+    value: 10.5281/zenodo.21275651
+    description: "DOI da versão 1.0.0 (snapshot arquivado no Zenodo)"
 keywords:
   - variant classification
   - BRCA1
