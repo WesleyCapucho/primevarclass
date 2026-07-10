@@ -222,6 +222,55 @@ A ordenação é **monotônica e biologicamente esperada**: variantes que destro
 
 ---
 
+## S11. Explicabilidade por SHAP
+
+![Figura S11](figuras/fig_shap.png)
+
+**Figura S11.** Valores de Shapley (SHAP; TreeExplainer) do modelo-carro-chefe (domínio + ESM-2) na coorte interna. O escore ESM-2 (`esm2_llr`) e a pertinência a domínio crítico (`in_critical_domain`) são os preditores dominantes, com direção de efeito biologicamente correta (LLR muito negativo → patogênico). Confirma que o modelo raciocina sobre biologia interpretável, e não como caixa-preta. Script: `scratch/shap_explain.py`.
+
+---
+
+## S12. Validação prospectiva e head-to-head livre de vazamento
+
+A partir de um snapshot histórico do ClinVar (variant_summary de junho/2023), identificamos as variantes missense de BRCA1/BRCA2 que eram **VUS ou conflitantes em 2023** e só foram **resolvidas a patogênicas/benignas até 2026** (n = 56). Um modelo treinado **apenas** no que era definitivo em 2023 (n = 462) é, por construção, cego a essas variantes. Script: `scratch/prospective_analysis.py`.
+
+- **Previsão prospectiva:** AUC = **0,941**; nas 33 chamadas de alta confiança (limiares ACMG), acurácia de **97%**.
+- **Head-to-head livre de vazamento:** como nenhuma ferramenta pôde treinar no rótulo definitivo (inexistente em 2023), essas 56 variantes formam um conjunto-teste imparcial. No mesmo subconjunto coberto, o PrimeVarClass (0,928–0,941) **supera AlphaMissense (0,908) e REVEL (0,849)** e empata com CADD — invertendo a vantagem aparente do benchmark completo, como prevê o argumento de circularidade. Amostra pequena (15 positivos, IC largos): corroboração direta, não prova.
+
+A Figura 11 do artigo principal apresenta ambos os painéis.
+
+---
+
+## S13. Generalização além de BRCA — TP53
+
+A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada ao **TP53**, cujas variantes patogênicas se concentram no domínio de ligação ao DNA. Domínios curados do UniProt (função, não rótulo); ESM-2 (150M) pontuado localmente. Script: `scratch/multigene_panel.py`.
+
+![Figura S13](figuras/fig_multigene.png)
+
+**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,849 (+ESM-2) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Fronteira honesta:** em genes cuja patogenicidade é dominada por variantes truncantes (PALB2, CHEK2 — poucas missense definitivas) ou espacialmente difusa (ATM), o sinal missense-domínio é, como esperado, fraco.
+
+---
+
+## S14. Incerteza por variante — predição conformal
+
+Predição conformal split (Mondrian, condicional por classe) sobre o modelo-carro-chefe: para um orçamento de erro ε, cada variante recebe um **conjunto de predição** — uma chamada confiante `{patogênica}`/`{benigna}` ou uma **abstenção** `{ambas}`. Script: `scratch/conformal_prediction.py`.
+
+![Figura S14](figuras/fig_conformal.png)
+
+**Figura S14.** (A) A garantia de cobertura se cumpre (cobertura empírica ≥ alvo). (B) Compromisso confiança×abstenção: a 90% de confiança, o modelo dá chamada confiante para **78%** das variantes externas (**90,5%** de acerto) e se **abstém com segurança** nos 22% incertos — um mecanismo de segurança embutido para uso clínico.
+
+---
+
+## S15. Worklist de VUS — aplicação prática
+
+Entre as **12.196** variantes missense de BRCA1/BRCA2 atualmente VUS ou conflitantes no ClinVar, o modelo fornece evidência ACMG calibrada que as transforma em um **worklist acionável** para laboratórios públicos. Script: `scratch/vus_worklist.py`; lista exportada em `primevarclass_manuscript_analysis/vus_worklist_pp3.csv`.
+
+![Figura S15](figuras/fig_vus_worklist.png)
+
+**Figura S15.** O backlog de 12.196 VUS é triado em **326 para revisão urgente** (PP3, provável patogênica), **9.566 despriorizadas** (BP4, provável benigna) e 2.304 não informativas — **81% recebem evidência acionável**. A confiabilidade não é apenas afirmada: as chamadas de alta confiança são **97% acuradas** na validação prospectiva (S12).
+
+---
+
 ## Declaração de integridade
 
-Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo de dois genes — estão declaradas em seus respectivos pontos. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
+Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo concentrado em BRCA (com generalização demonstrada no TP53) — estão declaradas em seus respectivos pontos. Os experimentos prospectivos (S12) usam um snapshot histórico real do ClinVar; a amostra é pequena e reportada com intervalos de confiança. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
