@@ -210,9 +210,9 @@ def build_frontmatter(doc):
                   "Engenharia de Lorena, Universidade de São Paulo (EEL-USP), Lorena – SP, "
                   "Brasil.")
     doc.add_paragraph()
-    keywords_line(doc, "Palavras-chave: ", "variantes de significado incerto; BRCA1/BRCA2; "
-                  "validação externa; domínios funcionais de proteínas; inteligência "
-                  "artificial em saúde.")
+    keywords_line(doc, "Palavras-chave: ", "classificação de variantes de significado "
+                  "incerto; BRCA1/BRCA2; validação externa; domínios funcionais de "
+                  "proteínas; inteligência artificial em saúde.")
     doc.add_page_break()
 
 
@@ -325,12 +325,9 @@ def build_apresentacao(doc):
     para(doc, "O nome PrimeVarClass guarda a origem do projeto: uma hipótese arrojada "
               "sobre números primos, tratada não como verdade a defender, mas como "
               "hipótese a testar sob o protocolo mais rigoroso disponível. O resultado "
-              "foi negativo, e é relatado com a mesma transparência dos positivos. "
-              "Sustenta-se que essa trajetória — hipótese ousada, teste rigoroso, "
-              "refutação transparente, redirecionamento para o que funciona — é, em si, "
-              "contribuição científica tão valiosa quanto qualquer resultado positivo "
-              "isolado, e o antídoto direto contra alegações infladas de inteligência "
-              "artificial em saúde.")
+              "foi negativo, e é relatado com a mesma transparência dos positivos — "
+              "trajetória que, em si, é contribuição científica e o antídoto direto "
+              "contra alegações infladas de inteligência artificial em saúde.")
 
     h2(doc, "Objetivos")
     para(doc, "1. Testar, sob validação cruzada bloqueada por posição e generalização "
@@ -539,23 +536,20 @@ def build_resultados(doc):
            "uma sobre sua estrutura real, com o veredito do ClinVar (selo verde) e a "
            "chamada do modelo (selo dourado) — todas detectadas com alta confiança.",
            width=4.6)
-    para(doc, "O mesmo exercício, repetido em BRCA2 (variantes clássicas do domínio de "
-              "ligação ao DNA como Gly2748Asp, Arg3052Trp e Trp2626Cys, detectadas com "
-              "75,3% a 96,7%; painel individual no Material Suplementar), confirmou que "
-              "a abordagem generaliza entre genes. A superfície molecular completa dos "
-              "dois domínios, colorida por intensidade de detecção (Figura 5), torna "
-              "essa generalização visível: as mesmas zonas de risco — o núcleo "
-              "funcional de cada domínio — emergem, de forma independente, em BRCA1 "
-              "(BRCT) e BRCA2 (DBD). Não se trata de um sinal ajustado a um único gene, "
-              "mas de uma assinatura estrutural comum ao papel dessas proteínas no "
-              "reparo do DNA.", space_after=4)
+    para(doc, "O mesmo exercício, repetido em BRCA2 (variantes clássicas do DBD como "
+              "Gly2748Asp, Arg3052Trp e Trp2626Cys, detectadas com 75,3% a 96,7%; "
+              "Material Suplementar), confirmou que a abordagem generaliza entre genes: "
+              "na superfície molecular completa dos dois domínios (Figura 5), as mesmas "
+              "zonas de risco — o núcleo funcional de cada domínio — emergem de forma "
+              "independente em BRCA1 (BRCT) e BRCA2 (DBD), assinatura estrutural comum "
+              "e não sinal ajustado a um único gene.", space_after=4)
     figure(doc, "fig_surface_landscape.png",
            "Figura 5. Paisagem de detecção na superfície molecular completa do domínio "
            "BRCT de BRCA1 e do domínio de ligação ao DNA (DBD) de BRCA2. As zonas "
            "douradas — o núcleo funcional de cada domínio — concentram as detecções de "
            "patogenicidade; a mesma assinatura estrutural emerge nos dois genes de "
            "forma independente, evidência visual de que o modelo capturou mecanismo "
-           "transferível, e não um artefato específico de BRCA1.", width=5.4)
+           "transferível, e não um artefato específico de BRCA1.", width=4.8)
 
     h3(doc, "Robustez, meta-análise e o modelo-carro-chefe")
     para(doc, "Por bootstrap (B = 2000), a AUC externa do domínio (0,847; IC95% "
@@ -565,10 +559,21 @@ def build_resultados(doc):
               "(0,501; p = 5 × 10⁻⁴). Em 12 sementes de CV bloqueada, a AUC média foi "
               "0,828 ± 0,005 (domínio), 0,818 ± 0,006 (posição) e 0,763 ± 0,005 "
               "(bioquímico); o escore de Brier do modelo de domínio é 0,108, com boa "
-              "calibração. Combinando domínio e ESM-2, o modelo-carro-chefe atinge AUC "
+              "calibração. Uma análise Monte Carlo do carro-chefe (500 divisões "
+              "aleatórias bloqueadas por posição, com reajuste completo a cada "
+              "iteração) confirma a estabilidade: AUC 0,894 ± 0,025 (IC95% 0,841–0,938), "
+              "acima de 0,80 em 100% das divisões (Material Suplementar). Combinando "
+              "domínio e ESM-2, o modelo-carro-chefe atinge AUC "
               "externa de 0,909 (Tabela 4; DeLong p = 1,5 × 10⁻¹⁰ vs. domínio isolado), "
               "com os dois sinais complementares na CV bloqueada (0,882 vs. 0,818 e "
-              "0,867 isolados). Como as coortes externas são desbalanceadas (17% "
+              "0,867 isolados). Uma objeção honesta: externamente, o ESM-2 isolado "
+              "(0,907) quase iguala o conjunto (0,909). Ainda assim o domínio é "
+              "essencial: agrega sinal na CV bloqueada (0,882 vs. 0,867); sozinho e sem "
+              "GPU atinge 0,847, acessível a serviços sem aprendizado profundo; e "
+              "fornece o mecanismo interpretável (zinco, núcleo do BRCT) exigido pela "
+              "evidência ACMG, que um escore de linguagem opaco não entrega — ancorando "
+              "o modelo em biologia auditável. Como as coortes externas são "
+              "desbalanceadas (17% "
               "patogênicas), a AUC-ROC foi complementada por métricas robustas ao "
               "desbalanceamento: o modelo-carro-chefe atinge AUPRC de 0,802 (contra "
               "linha de base trivial de 0,172), coeficiente de correlação de Matthews "
@@ -613,7 +618,15 @@ def build_resultados(doc):
               "ao conjunto de teste; o modelo proposto, ao contrário, é avaliado fora "
               "dessa distribuição. Mesmo em desvantagem, a diferença para os três "
               "líderes não é significativa (p = 0,14 a 0,37), e a superioridade sobre "
-              "SIFT e PolyPhen-2 é clara. Tentou-se isolar o vazamento por corte "
+              "SIFT e PolyPhen-2 é clara. Duas verificações reforçam esse empate. Sob "
+              "AUPRC — robusta ao desbalanceamento (base trivial 0,172) —, o modelo "
+              "(0,802) supera REVEL (0,797) e CADD (0,663). E, decisivo para o argumento "
+              "de circularidade: contra o EVE (FRAZER et al., 2021), o único preditor "
+              "não supervisionado e, "
+              "como o ESM-2, livre de vazamento, o modelo é estatisticamente equivalente "
+              "(EVE 0,925 vs. 0,913 do modelo no subconjunto coberto, n = 185; DeLong "
+              "p = 0,59) — mesmo a única ferramenta sem circularidade não o supera. "
+              "Tentou-se isolar o vazamento por corte "
               "temporal (≥ 2024); o recorte não separa o efeito de forma limpa — todas "
               "as ferramentas melhoram nas variantes recentes (o modelo proposto sobe a "
               "0,932, ainda equivalente aos líderes, p = 0,12–0,61). Por isso não se "
@@ -626,16 +639,21 @@ def build_resultados(doc):
            "Figura 6. Comparação honesta com o estado da arte: preditores "
            "supervisionados/calibrados em ClinVar (azul) têm circularidade a favor; "
            "o modelo-carro-chefe (vermelho) é avaliado fora da distribuição.",
-           width=5.6)
-    table(doc, ["Ferramenta", "AUC", "Regime", "DeLong vs. modelo"],
-          [["REVEL", "0,930", "supervisionado em ClinVar", "p=0,14 (n.s.)"],
-           ["AlphaMissense", "0,926", "calibrado em ClinVar", "p=0,24 (n.s.)"],
-           ["PrimeVarClass", "0,909", "cego ao externo", "—"],
-           ["CADD", "0,891", "supervisionado em ClinVar", "p=0,37 (n.s.)"],
-           ["SIFT", "0,845", "não supervisionado", "p=0,001"],
-           ["PolyPhen-2", "0,773", "não supervisionado", "p<0,0001"]],
-          widths_cm=[3.4, 1.9, 5.4, 3.2],
-          caption="Tabela 6. Comparação honesta com o estado da arte (n = 836).")
+           width=5.0)
+    table(doc, ["Ferramenta", "AUC", "AUPRC", "Regime", "DeLong"],
+          [["REVEL", "0,930", "0,797", "superv. ClinVar", "p=0,14"],
+           ["AlphaMissense", "0,926", "0,855", "calibr. ClinVar", "p=0,24"],
+           ["EVE", "0,925", "0,874", "não superv. (não circular)", "p=0,59"],
+           ["PrimeVarClass", "0,909", "0,802", "cego ao externo", "—"],
+           ["CADD", "0,891", "0,663", "superv. ClinVar", "p=0,37"],
+           ["SIFT", "0,845", "0,424", "não superv.", "p=0,001"],
+           ["PolyPhen-2", "0,773", "0,469", "não superv.", "p<0,0001"]],
+          widths_cm=[3.1, 1.5, 1.6, 4.3, 2.6], font_size=9.5,
+          caption="Tabela 6. Comparação honesta com o estado da arte. AUPRC robusta ao "
+                  "desbalanceamento (base trivial 0,172). Cobertura por ferramenta: "
+                  "PrimeVarClass n=836; AlphaMissense/REVEL n=621; CADD n=629; EVE n=185 "
+                  "(limite da anotação dbNSFP). O EVE é o único comparador não circular; "
+                  "p do teste de DeLong é sempre vs. o modelo proposto.")
     para(doc, "Integrando de forma calibrada os quatro sinais, o meta-classificador "
               "atingiu AUC de 0,938 (IC95% 0,901–0,969; n = 621) — a melhor marca do "
               "estudo, superando mesmo o REVEL isolado (DeLong p = 0,43). Como esse "
@@ -699,7 +717,7 @@ def build_resultados(doc):
            "2015). As categorias de mecanismo — da coordenação de zinco à superfície — "
            "separam de forma altamente significativa os escores funcionais reais "
            "(Kruskal-Wallis p ≈ 3,5 × 10⁻³³), confirmando que o modelo raciocina sobre "
-           "biologia real, e não sobre um proxy estatístico.", width=5.3)
+           "biologia real, e não sobre um proxy estatístico.", width=4.8)
     figure(doc, "fig_equity.png",
            "Figura 9. Lacuna de resolução clínica entre ancestralidades (gnomAD) e a "
            "contribuição do modelo para reduzi-la equitativamente.", width=4.6)
@@ -727,13 +745,15 @@ def build_resultados(doc):
 
     h3(doc, "Validação prospectiva, generalização e utilidade clínica")
     para(doc, "Cinco análises adicionais foram conduzidas para blindar as conclusões "
-              "(Tabela 9). A mais decisiva é uma validação genuinamente prospectiva "
+              "(detalhadas no Material Suplementar). A mais decisiva é uma validação "
+              "prospectiva por congelamento temporal 2023→2026 "
               "(Figura 11A): a partir de um snapshot histórico do ClinVar (junho/2023), "
               "foram identificadas 56 variantes de BRCA1/BRCA2 que eram VUS ou "
               "conflitantes em 2023 e só foram resolvidas a patogênicas/benignas até "
               "2026. Um modelo treinado apenas no que era definitivo em 2023 — portanto "
               "cego a essas variantes — previu a resolução da comunidade com AUC de "
-              "0,941, e 97% de acerto nas 33 chamadas de alta confiança. Essas mesmas "
+              "0,941 (IC95% 0,875–0,987), e 97% de acerto nas 33 chamadas de alta "
+              "confiança. Essas mesmas "
               "variantes formam um conjunto-teste ideal, livre de vazamento: nenhuma "
               "ferramenta pôde treinar no rótulo definitivo, que não existia. Nele "
               "(Figura 11B), o PrimeVarClass (0,941) supera, no mesmo subconjunto "
@@ -748,7 +768,7 @@ def build_resultados(doc):
            "chamadas de alta confiança). (B) Nessas variantes livres de vazamento — "
            "que nenhuma ferramenta pôde ter visto — o PrimeVarClass lidera "
            "AlphaMissense e REVEL, invertendo a vantagem do benchmark completo.",
-           width=5.2)
+           width=4.7)
     para(doc, "A generalização além de BRCA foi testada no TP53, cujas patogênicas se "
               "concentram no domínio de ligação ao DNA: sob validação bloqueada por "
               "posição, a AUC subiu de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 "
@@ -785,12 +805,10 @@ def build_resultados(doc):
               "nas coortes de teste; e as afirmações centrais (p entre 10⁻⁸ e 10⁻¹³) "
               "sobrevivem à correção de Bonferroni/FDR — só a comparação marginal "
               "primos-vs-identidade (p = 0,045) não, sendo por isso tratada como apoio, "
-              "não decisão. Por isso optou-se por não "
-              "competir com o AlphaMissense no AUC bruto — comparação estruturalmente "
-              "injusta contra o modelo proposto —, e sim por demonstrar o que realmente "
-              "importa: evidência calibrada exatamente onde ele se abstém. Um "
-              "laboratório clínico não precisa escolher entre as duas ferramentas; "
-              "precisa das duas.")
+              "não decisão. Por isso o diferencial buscado não foi vencer no AUC bruto "
+              "— comparação estruturalmente injusta contra o modelo —, mas fornecer "
+              "evidência calibrada onde o AlphaMissense se abstém: as duas ferramentas "
+              "somam.")
 
     h3(doc, "Limitações e trabalhos futuros")
     para(doc, "A validação concentrou-se em BRCA1/BRCA2; as fronteiras de domínio são "
@@ -806,11 +824,8 @@ def build_resultados(doc):
               "genético nem julgamento clínico. Como trabalhos futuros, pretende-se "
               "consolidar a generalização — já demonstrada no TP53 — a mais genes do "
               "painel HBOC com coortes maiores, ampliar as coortes externas para "
-              "caracterizar os limites de aplicabilidade, acompanhar em produção o "
-              "módulo de aprendizado contínuo "
-              "com laboratórios parceiros, e explorar modelos de linguagem de proteínas "
-              "com plataformas automatizadas de evolução dirigida (ZHANG et al., 2025) "
-              "como fonte futura de rótulos funcionais.")
+              "caracterizar os limites de aplicabilidade, e acompanhar em produção o "
+              "módulo de aprendizado contínuo com laboratórios parceiros.")
 
     h3(doc, "Impacto social, aplicação prática e ética no uso de IA")
     para(doc, "O acesso à interpretação genética é desigual no Brasil (ACHATZ et al., "
@@ -913,6 +928,9 @@ REFERENCIAS = [
     "FINDLAY, G. M. et al. Accurate classification of BRCA1 variants with "
     "saturation genome editing. Nature, v. 562, n. 7726, p. 217-222, 2018. DOI: "
     "10.1038/s41586-018-0461-z.",
+    "FRAZER, J. et al. Disease variant prediction with deep generative models of "
+    "evolutionary data. Nature, v. 599, n. 7883, p. 91-95, 2021. DOI: "
+    "10.1038/s41586-021-04043-8.",
     "GANAKAMMAL, S. R.; ALEXOV, E. Evaluation of performance of leading algorithms "
     "for variant pathogenicity predictions and designing a combinatory predictor "
     "method: application to Rett syndrome variants. PeerJ, v. 7, p. e8106, 2019. "
@@ -1026,9 +1044,6 @@ REFERENCIAS = [
     "ZHANG, X. et al. Genetic constraint at single amino acid resolution in "
     "protein domains improves missense variant prioritisation and gene discovery. "
     "Genome Med, v. 16, n. 1, p. 88, 2024. DOI: 10.1186/s13073-024-01358-9.",
-    "ZHANG, Q. et al. Integrating protein language models and automatic biofoundry "
-    "for enhanced protein evolution. Nat Commun, v. 16, n. 1, p. 1553, 2025. DOI: "
-    "10.1038/s41467-025-56751-8.",
 ]
 
 
@@ -1037,11 +1052,12 @@ def build_referencias(doc):
     for ref in REFERENCIAS:
         p = doc.add_paragraph()
         p.paragraph_format.first_line_indent = Cm(0)
-        p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
         p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         r = p.add_run(ref)
-        r.font.name = "Arial"; r.font.size = Pt(10)
+        r.font.name = "Arial"; r.font.size = Pt(9.5)
 
 
 # --------------------------------------------------------------------------- #

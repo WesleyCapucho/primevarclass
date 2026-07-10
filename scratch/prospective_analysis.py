@@ -89,10 +89,17 @@ pipe = _build_pipeline(tr[cols], random_state=42); pipe.fit(tr[cols], tr.label.t
 p = pipe.predict_proba(te[cols])[:, 1]
 
 auc = float(roc_auc_score(y, p))
+# bootstrap CI95 for the prospective AUC (small n -> report the interval honestly)
+_rng = np.random.default_rng(42); _boot = []
+for _ in range(5000):
+    _idx = _rng.integers(0, len(y), len(y))
+    if len(np.unique(y[_idx])) > 1:
+        _boot.append(roc_auc_score(y[_idx], p[_idx]))
+ci = [round(float(np.percentile(_boot, 2.5)), 3), round(float(np.percentile(_boot, 97.5)), 3)]
 hi = (p >= 0.675) | (p <= 0.255)
 acc_hi = float(accuracy_score(y[hi], (p[hi] >= 0.5).astype(int)))
 out = {"n_reclassified": int(len(y)), "n_pathogenic": int(y.sum()),
-       "n_train_2023_definitive": int(len(tr)), "auc": round(auc, 3),
+       "n_train_2023_definitive": int(len(tr)), "auc": round(auc, 3), "auc_ci95": ci,
        "n_high_confidence": int(hi.sum()), "accuracy_high_confidence": round(acc_hi, 3)}
 print(json.dumps(out, indent=2))
 json.dump(out, open(os.path.join(ANL, "reclassification_prospective.json"), "w", encoding="utf-8"),

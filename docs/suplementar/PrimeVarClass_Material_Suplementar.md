@@ -271,6 +271,16 @@ Entre as **12.196** variantes missense de BRCA1/BRCA2 atualmente VUS ou conflita
 
 ---
 
+## S16. Estabilidade Monte Carlo do modelo-carro-chefe
+
+Além do ponto único de CV bloqueada e das 12 sementes repetidas, o carro-chefe (domínio + ESM-2) foi submetido a **500 divisões aleatórias independentes bloqueadas por posição** (GroupShuffleSplit agrupado por gene:posição, 70/30), com **reajuste completo do modelo a cada iteração** — capturando tanto a variância de amostragem quanto a de ajuste, sob o protocolo anti-vazamento. Script: `scratch/monte_carlo_flagship.py`.
+
+![Figura S16](figuras/fig_montecarlo.png)
+
+**Figura S16.** Distribuição da AUC-ROC em 500 divisões Monte Carlo: **AUC 0,894 ± 0,025** (mediana 0,896; IC95% 0,841–0,938; mínimo 0,815), **acima de 0,80 em 100% das divisões**. A estabilidade confirma que o desempenho do carro-chefe não depende de uma partição afortunada — é consistente com a estimativa pontual de CV bloqueada (0,882).
+
+---
+
 ## Declaração de integridade
 
 Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo concentrado em BRCA (com generalização demonstrada no TP53) — estão declaradas em seus respectivos pontos. Os experimentos prospectivos (S12) usam um snapshot histórico real do ClinVar; a amostra é pequena e reportada com intervalos de confiança. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
