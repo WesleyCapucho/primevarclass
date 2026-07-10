@@ -552,7 +552,7 @@ def build_resultados(doc):
            "douradas — o núcleo funcional de cada domínio — concentram as detecções de "
            "patogenicidade; a mesma assinatura estrutural emerge nos dois genes de "
            "forma independente, evidência visual de que o modelo capturou mecanismo "
-           "transferível, e não um artefato específico de BRCA1.", width=6.0)
+           "transferível, e não um artefato específico de BRCA1.", width=5.4)
 
     h3(doc, "Robustez, meta-análise e o modelo-carro-chefe")
     para(doc, "Por bootstrap (B = 2000), a AUC externa do domínio (0,847; IC95% "
@@ -699,7 +699,7 @@ def build_resultados(doc):
            "2015). As categorias de mecanismo — da coordenação de zinco à superfície — "
            "separam de forma altamente significativa os escores funcionais reais "
            "(Kruskal-Wallis p ≈ 3,5 × 10⁻³³), confirmando que o modelo raciocina sobre "
-           "biologia real, e não sobre um proxy estatístico.", width=6.0)
+           "biologia real, e não sobre um proxy estatístico.", width=5.3)
     figure(doc, "fig_equity.png",
            "Figura 10. Lacuna de resolução clínica entre ancestralidades (gnomAD) e a "
            "contribuição do modelo para reduzi-la equitativamente.", width=5.0)
@@ -733,7 +733,15 @@ def build_resultados(doc):
               "posicional, e a exposição da assimetria de circularidade que desfavorece "
               "o modelo proposto na comparação com o estado da arte. Relatar essas três "
               "desvantagens, em vez de escondê-las, é reprodutível e auditável, e cada "
-              "uma é um alerta metodológico útil para a área. Por isso optou-se por não "
+              "uma é um alerta metodológico útil para a área. A própria refutação dos "
+              "primos funciona como controle negativo interno: o protocolo que atribui "
+              "p = 1,8 × 10⁻¹³ ao sinal de domínio rejeita o dos primos — prova de que "
+              "não valida qualquer característica indiscriminadamente. Somam-se dois "
+              "pontos de rigor: os hiperparâmetros foram fixados a priori, sem ajuste "
+              "nas coortes de teste; e as afirmações centrais (p entre 10⁻⁸ e 10⁻¹³) "
+              "sobrevivem à correção de Bonferroni/FDR — só a comparação marginal "
+              "primos-vs-identidade (p = 0,045) não, sendo por isso tratada como apoio, "
+              "não decisão. Por isso optou-se por não "
               "competir com o AlphaMissense no AUC bruto — comparação estruturalmente "
               "injusta contra o modelo proposto —, e sim por demonstrar o que realmente "
               "importa: evidência calibrada exatamente onde ele se abstém. Um "
@@ -772,7 +780,12 @@ def build_resultados(doc):
               "resultados finais — pacote auditável com testes automatizados, interface "
               "programática, protótipo de apoio à decisão e módulo de aprendizado "
               "contínuo usável por linha de comando —, com todos os números e figuras "
-              "gerados por scripts reexecutáveis. Em conformidade com o item 2.2.2 "
+              "gerados por scripts reexecutáveis. Como os bancos públicos (ClinVar, "
+              "gnomAD, Ensembl VEP) evoluem com o tempo, o estado exato dos dados e do "
+              "código foi arquivado em um snapshot imutável, datado e citável no Zenodo "
+              "(DOI 10.5281/zenodo.21275650), garantindo reprodutibilidade permanente "
+              "apesar da atualização contínua das fontes. Em conformidade com o item "
+              "2.2.2 "
               "(Nota 4) do Edital, declara-se o uso de um assistente de programação e "
               "redação baseado em modelo de linguagem de grande porte (Claude, da "
               "Anthropic) para apoio à escrita e depuração de código, execução de "
@@ -977,7 +990,7 @@ def build_referencias(doc):
     for ref in REFERENCIAS:
         p = doc.add_paragraph()
         p.paragraph_format.first_line_indent = Cm(0)
-        p.paragraph_format.space_after = Pt(4)
+        p.paragraph_format.space_after = Pt(2)
         p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
         p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         r = p.add_run(ref)
