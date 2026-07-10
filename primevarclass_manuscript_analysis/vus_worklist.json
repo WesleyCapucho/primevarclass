@@ -1,0 +1,8 @@
+{
+  "n_vus_backlog": 12196,
+  "flag_urgent_PP3": 326,
+  "deprioritize_BP4": 9566,
+  "uninformative": 2304,
+  "resolved_fraction": 0.811,
+  "note": "high-confidence calls are 96% accurate prospectively (Exp #2)"
+}
