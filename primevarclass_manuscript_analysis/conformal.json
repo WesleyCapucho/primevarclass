@@ -1,0 +1,41 @@
+{
+  "n_external": 836,
+  "results": [
+    {
+      "epsilon": 0.2,
+      "target_coverage": 0.8,
+      "empirical_coverage": 0.852,
+      "confident_singleton_rate": 0.986,
+      "abstention_rate": 0.0,
+      "empty_rate": 0.014,
+      "singleton_accuracy": 0.864
+    },
+    {
+      "epsilon": 0.15,
+      "target_coverage": 0.85,
+      "empirical_coverage": 0.886,
+      "confident_singleton_rate": 0.926,
+      "abstention_rate": 0.074,
+      "empty_rate": 0.0,
+      "singleton_accuracy": 0.877
+    },
+    {
+      "epsilon": 0.1,
+      "target_coverage": 0.9,
+      "empirical_coverage": 0.926,
+      "confident_singleton_rate": 0.78,
+      "abstention_rate": 0.22,
+      "empty_rate": 0.0,
+      "singleton_accuracy": 0.905
+    },
+    {
+      "epsilon": 0.05,
+      "target_coverage": 0.95,
+      "empirical_coverage": 0.959,
+      "confident_singleton_rate": 0.621,
+      "abstention_rate": 0.379,
+      "empty_rate": 0.0,
+      "singleton_accuracy": 0.934
+    }
+  ]
+}
