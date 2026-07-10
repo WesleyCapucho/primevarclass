@@ -114,12 +114,11 @@ for g in CRITICAL:
     sub = built[built.gene == g].reset_index(drop=True)
     r = {"n": int(len(sub)), "n_pathogenic": int(sub.label.sum()),
          "pct_pathogenic_in_critical": round(float(sub[sub.label == 1].in_critical_domain.mean()), 3) if sub.label.sum() else None,
-         "auc_biochem": cv_auc(sub, biochem), "auc_domain": cv_auc(sub, domain)}
-    if g == "TP53":
-        r["auc_domain_esm"] = cv_auc(sub, domain_esm)
+         "auc_biochem": cv_auc(sub, biochem), "auc_domain": cv_auc(sub, domain),
+         "auc_domain_esm": cv_auc(sub, domain_esm)}
     result[g] = r
     print(f"   {g:6s} n={r['n']:4d} pat={r['n_pathogenic']:4d}  bioq={r['auc_biochem']}  "
-          f"+dom={r['auc_domain']}" + (f"  +ESM={r.get('auc_domain_esm')}" if g == "TP53" else ""))
+          f"+dom={r['auc_domain']}  +ESM={r.get('auc_domain_esm')}")
 json.dump(result, open(os.path.join(ANL, "multigene_panel.json"), "w", encoding="utf-8"),
           indent=2, ensure_ascii=False)
 

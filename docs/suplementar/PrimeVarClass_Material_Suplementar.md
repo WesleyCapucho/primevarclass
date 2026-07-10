@@ -249,7 +249,7 @@ A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada a
 
 ![Figura S13](figuras/fig_multigene.png)
 
-**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Fronteira honesta:** em genes cuja patogenicidade é dominada por variantes truncantes (PALB2, CHEK2 — poucas missense definitivas) ou espacialmente difusa (ATM), o sinal missense-domínio é, como esperado, fraco.
+**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio não ajuda (0,481) mas o ESM-2 recupera o sinal (0,720; n = 75) — os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
 
 ---
 
