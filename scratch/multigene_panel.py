@@ -9,7 +9,9 @@ genes (PALB2, CHEK2, ATM) are reported honestly: PALB2/CHEK2 have too few defini
 missense (their pathogenicity is truncating-dominated) and ATM's missense
 pathogenicity is spatially diffuse — the method's honest boundary.
 
-ESM-2 for TP53 was scored locally (150M variant, CPU) in scratch/esm2_score_tp53.py.
+ESM-2 (650M, the flagship's primary model) was scored on GPU for the whole panel
+via scratch/colab_esm2_650M_panel.py -> scratch/esm_input/esm2_650M_panel_scores.csv,
+so the generalization uses exactly the same model as the BRCA flagship.
 
 Run: python scratch/multigene_panel.py
 """
@@ -80,9 +82,13 @@ built, _ = build_dataset_from_dataframe(
     d[["gene", "hgvs_p", "position", "aa_ref", "aa_alt", "label"]], mode="hybrid", keep_metadata=True)
 built["label"] = d["label"].to_numpy()
 built["in_critical_domain"] = d["in_critical_domain"].to_numpy()
-# attach TP53 ESM where available
-if os.path.exists("scratch/esm_input/esm2_scores_tp53.csv"):
-    built = attach_esm_scores(built, pd.read_csv("scratch/esm_input/esm2_scores_tp53.csv"))
+# attach panel ESM where available (650M — same model as the flagship; scored on
+# GPU via scratch/colab_esm2_650M_panel.py so the generalization uses ONE model)
+_esm_src = "scratch/esm_input/esm2_650M_panel_scores.csv"
+if not os.path.exists(_esm_src):  # fallback to the older 150M TP53-only scores
+    _esm_src = "scratch/esm_input/esm2_scores_tp53.csv"
+if os.path.exists(_esm_src):
+    built = attach_esm_scores(built, pd.read_csv(_esm_src))
 subs = get_feature_subsets(built)
 biochem = [c for c in subs["biochemical_only"] if c in built.columns and c not in ("position", "gene")]
 domain = biochem + ["in_critical_domain"]

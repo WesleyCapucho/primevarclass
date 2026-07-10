@@ -243,11 +243,11 @@ A Figura 11 do artigo principal apresenta ambos os painéis.
 
 ## S13. Generalização além de BRCA — TP53
 
-A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada ao **TP53**, cujas variantes patogênicas se concentram no domínio de ligação ao DNA. Domínios curados do UniProt (função, não rótulo); ESM-2 (150M) pontuado localmente. Script: `scratch/multigene_panel.py`.
+A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada ao **TP53**, cujas variantes patogênicas se concentram no domínio de ligação ao DNA. Domínios curados do UniProt (função, não rótulo); ESM-2 de 650M — **o mesmo modelo do carro-chefe** — pontuado em GPU (`scratch/colab_esm2_650M_panel.py`), de modo que a generalização usa exatamente um único modelo. Script: `scratch/multigene_panel.py`.
 
 ![Figura S13](figuras/fig_multigene.png)
 
-**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,849 (+ESM-2) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Fronteira honesta:** em genes cuja patogenicidade é dominada por variantes truncantes (PALB2, CHEK2 — poucas missense definitivas) ou espacialmente difusa (ATM), o sinal missense-domínio é, como esperado, fraco.
+**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Fronteira honesta:** em genes cuja patogenicidade é dominada por variantes truncantes (PALB2, CHEK2 — poucas missense definitivas) ou espacialmente difusa (ATM), o sinal missense-domínio é, como esperado, fraco.
 
 ---
 
