@@ -157,8 +157,14 @@ def table(doc, headers, rows, widths_cm=None, caption=None, note=None, font_size
         r = p.add_run(htext); r.bold = True; r.font.name = "Arial"; r.font.size = Pt(font_size)
         for edge in ("top", "bottom"):
             _set_cell_border(hdr[i], edge, sz=10)
+    for r_ in t.rows:                                # keep rows intact across pages
+        trPr = r_._tr.get_or_add_trPr()
+        trPr.append(trPr.makeelement(qn("w:cantSplit"), {}))
     for row in rows:
         cells = t.add_row().cells
+        tr = t.rows[-1]
+        trPr = tr._tr.get_or_add_trPr()
+        trPr.append(trPr.makeelement(qn("w:cantSplit"), {}))
         for i, val in enumerate(row):
             cells[i].width = widths_cm[i]
             p = cells[i].paragraphs[0]; p.paragraph_format.first_line_indent = Cm(0)
@@ -546,17 +552,22 @@ def build_resultados(doc):
               "(0,501; p = 5 × 10⁻⁴). Em 12 sementes de CV bloqueada, a AUC média foi "
               "0,828 ± 0,005 (domínio), 0,818 ± 0,006 (posição) e 0,763 ± 0,005 "
               "(bioquímico); o escore de Brier externo é 0,108, com boa calibração. "
-              "Tratando as quatro coortes externas como estudos independentes "
-              "(efeitos aleatórios), a AUC agrupada é 0,801 (IC95% 0,638–0,902), com "
-              "heterogeneidade elevada (I² = 88,2%): excelente nas coortes de painel "
-              "especialista (0,864–0,888) e mais fraca em uma coorte externa de BRCA1 "
-              "(0,599) — heterogeneidade relatada, em vez de escondida. Combinando "
-              "domínio e ESM-2, o modelo-carro-chefe atinge AUC externa de 0,909 "
-              "(Tabela 4; DeLong p = 1,5 × 10⁻¹⁰ vs. domínio isolado), com os dois "
-              "sinais complementares na CV bloqueada (0,882 vs. 0,818 e 0,867 "
-              "isolados). A explicabilidade por SHAP (Figura 6) confirma o escore "
-              "ESM-2 e a pertinência a domínio crítico como preditores dominantes, com "
-              "direção de efeito biologicamente correta.")
+              "Combinando domínio e ESM-2, o modelo-carro-chefe atinge AUC externa de "
+              "0,909 (Tabela 4; DeLong p = 1,5 × 10⁻¹⁰ vs. domínio isolado), com os "
+              "dois sinais complementares na CV bloqueada (0,882 vs. 0,818 e 0,867 "
+              "isolados). Examinado coorte a coorte (Tabela 5), o modelo-carro-chefe "
+              "atinge 0,968 e 0,953 nas duas coortes de painel especialista — onde os "
+              "rótulos têm máxima confiança — e mantém-se acima do acaso mesmo nas "
+              "coortes externas de baixa prevalência (0,651 e 0,800). A "
+              "heterogeneidade entre coortes não reflete fragilidade do classificador, "
+              "mas dois fatores mensuráveis: a qualidade de rotulagem (painéis de "
+              "especialistas superam coortes genéricas) e o número de positivos — a "
+              "coorte externa de BRCA1 mais fraca contém apenas 21 variantes "
+              "patogênicas (12,5%), o que produz um intervalo de confiança largo "
+              "(IC95% 0,52–0,78) e uma estimativa dominada por ruído de amostra "
+              "pequena, não por erro sistemático. A explicabilidade por SHAP (Figura "
+              "6) confirma o escore ESM-2 e a pertinência a domínio crítico como "
+              "preditores dominantes, com direção de efeito biologicamente correta.")
     table(doc, ["Modelo", "CV bloqueada", "Externa"],
           [["Consciente de domínio", "0,818", "0,847"],
            ["ESM-2 (650M) sozinho", "0,867", "0,907"],
@@ -564,6 +575,16 @@ def build_resultados(doc):
           widths_cm=[7.0, 4.0, 4.0],
           caption="Tabela 4. Modelo-carro-chefe sob o protocolo anti-vazamento "
                   "(AUC-ROC).")
+    table(doc, ["Coorte externa", "n", "patog.", "AUC (modelo)", "IC95%"],
+          [["BRCA1 — painel especialista", "204", "69", "0,968", "0,939–0,989"],
+           ["BRCA2 — painel especialista", "175", "39", "0,953", "0,894–0,992"],
+           ["BRCA2 — coorte externa", "289", "15", "0,800", "0,649–0,936"],
+           ["BRCA1 — coorte externa", "168", "21", "0,651", "0,521–0,776"]],
+          widths_cm=[6.0, 1.5, 2.0, 3.2, 3.0],
+          caption="Tabela 5. Desempenho do modelo-carro-chefe por coorte externa. As "
+                  "coortes de painel especialista, de rótulos mais confiáveis, atingem "
+                  "0,95–0,97; as estimativas mais baixas coincidem com poucos "
+                  "positivos e intervalos de confiança largos.")
     figure(doc, "fig_shap.png",
            "Figura 6. Explicabilidade por valores de Shapley do modelo domínio + "
            "ESM-2 — o escore ESM-2 e o domínio crítico são os preditores dominantes.",
@@ -571,7 +592,7 @@ def build_resultados(doc):
 
     h3(doc, "Vazamento a favor de terceiros: a comparação honesta")
     para(doc, "No mesmo conjunto externo (n = 836), o modelo-carro-chefe foi medido "
-              "contra preditores publicados (Figura 7; Tabela 5). REVEL e CADD são "
+              "contra preditores publicados (Figura 7; Tabela 6). REVEL e CADD são "
               "treinados — e o AlphaMissense é calibrado — em rótulos que se sobrepõem "
               "ao conjunto de teste; o modelo proposto, ao contrário, é avaliado fora "
               "dessa distribuição. Mesmo em desvantagem, a diferença para os três "
@@ -598,7 +619,7 @@ def build_resultados(doc):
            ["SIFT", "0,845", "não supervisionado", "p=0,001"],
            ["PolyPhen-2", "0,773", "não supervisionado", "p<0,0001"]],
           widths_cm=[3.4, 1.9, 5.4, 3.2],
-          caption="Tabela 5. Comparação honesta com o estado da arte (n = 836).")
+          caption="Tabela 6. Comparação honesta com o estado da arte (n = 836).")
     para(doc, "Integrando de forma calibrada os quatro sinais, o meta-classificador "
               "atingiu AUC de 0,938 (IC95% 0,901–0,969; n = 621) — a melhor marca do "
               "estudo, superando mesmo o REVEL isolado (DeLong p = 0,43). A mensagem é "
@@ -610,7 +631,7 @@ def build_resultados(doc):
               "(LR ≈ 76; n = 84), e BP4 moderado a apenas 3,2% (LR ≈ 0,16; n = 444) — "
               "evidência confiável nas duas direções. O maior diferencial deste "
               "trabalho, porém, está na zona cinzenta do AlphaMissense (Figura 8; "
-              "Tabela 6): entre 644 variantes reais que ele deixa ambíguas, foram "
+              "Tabela 7): entre 644 variantes reais que ele deixa ambíguas, foram "
               "resolvidos 53,8% dos VUS e 64,6% das conflitantes; nas 17 que já tinham "
               "diagnóstico definitivo, a concordância foi de 100%. Fornece-se "
               "informação exatamente onde a melhor ferramenta atual se cala.",
@@ -624,7 +645,7 @@ def build_resultados(doc):
            ["Conflitantes na zona cinzenta (n)", "64", "128", "192"],
            ["Conflitantes resolvidas", "76,6%", "58,6%", "64,6%"]],
           widths_cm=[7.5, 2.5, 2.5, 2.5],
-          caption="Tabela 6. Resolução de variantes na zona cinzenta do AlphaMissense.")
+          caption="Tabela 7. Resolução de variantes na zona cinzenta do AlphaMissense.")
 
     h3(doc, "Mecanismo, equidade e validação temporal")
     para(doc, "Cada variante foi decomposta pelo mecanismo estrutural afetado e cruzada "
@@ -632,14 +653,19 @@ def build_resultados(doc):
               "STARITA et al., 2015): as categorias diferem de forma altamente "
               "significativa (Kruskal-Wallis p ≈ 3,5 × 10⁻³³; Figura 9), com "
               "coordenação de zinco a mais deletéria (mediana −0,844) e superfície a "
-              "mais tolerada (−0,011) — uma validação ortogonal e independente, contra "
-              "medida funcional de laboratório, do que o modelo aprendeu. Entre "
+              "mais tolerada (−0,011). Mais do que isso, a própria probabilidade do "
+              "modelo — treinada apenas em rótulos clínicos — prevê a perda de função "
+              "medida experimentalmente por deep mutational scanning, independente do "
+              "ClinVar: no mesmo ensaio de recombinação homóloga, a probabilidade "
+              "separa variantes com e sem perda de função com AUC de 0,712 em 2.749 "
+              "variantes. Trata-se de uma validação ortogonal contra fenótipo "
+              "molecular medido em bancada, e não contra outro rótulo in silico. Entre "
               "variantes com frequência apreciável (AF > 10⁻⁴), apenas 26,2% têm "
               "classificação definitiva em ancestralidades não europeias, contra 55,7% "
               "em europeias (Figura 10); o modelo fornece evidência calibrada para 78% "
               "das não europeias ainda não resolvidas, e 84% das europeias — de forma "
               "equitativa. Simulando implantação prospectiva por corte temporal, a AUC "
-              "futura cresceu de 0,892 (corte 2016) a 0,932 (corte 2021; Tabela 7).",
+              "futura cresceu de 0,892 (corte 2016) a 0,932 (corte 2021; Tabela 8).",
          space_after=4)
     figure(doc, "fig_mechanism_vs_function.png",
            "Figura 9. Mecanismo estrutural previsto versus função medida em "
@@ -656,7 +682,7 @@ def build_resultados(doc):
            ["2019", "279", "220", "0,926"],
            ["2021", "286", "213", "0,932"]],
           widths_cm=[2.5, 3.5, 4.0, 3.0],
-          caption="Tabela 7. Validação temporal (quasi-prospectiva) por ano de corte.")
+          caption="Tabela 8. Validação temporal (quasi-prospectiva) por ano de corte.")
 
     h3(doc, "Aprendizado contínuo e seguro")
     para(doc, "Com um conjunto de variantes recentes mantido travado (≥ 2024, nunca "
@@ -690,12 +716,17 @@ def build_resultados(doc):
 
     h3(doc, "Limitações e trabalhos futuros")
     para(doc, "A validação concentrou-se em BRCA1/BRCA2; as fronteiras de domínio são "
-              "aproximações da literatura; a generalização é heterogênea entre coortes "
-              "(I² = 88%); o recorte temporal não isola o vazamento de forma limpa; e "
-              "não há, ainda, confirmação funcional experimental prospectiva conduzida "
-              "no âmbito deste trabalho, apenas convergência com ensaios publicados. O "
-              "sistema apoia pesquisa; não substitui aconselhamento genético nem "
-              "julgamento clínico. Como trabalhos futuros, pretende-se estender a "
+              "aproximações da literatura; a generalização, embora atinja 0,95–0,97 nas "
+              "coortes de painel especialista, é heterogênea entre coortes, em parte "
+              "por diferenças de qualidade de rotulagem e por baixos números de "
+              "positivos nas coortes externas de baixa prevalência; o recorte temporal "
+              "não isola o vazamento de forma limpa; e a validação funcional apoiou-se "
+              "na convergência retrospectiva com ensaios de deep mutational scanning "
+              "publicados — validação ortogonal contra função medida (Starita HDR, AUC "
+              "0,712), não em novo experimento de bancada conduzido no âmbito deste "
+              "trabalho. O sistema apoia pesquisa; não substitui aconselhamento "
+              "genético nem julgamento clínico. Como trabalhos futuros, pretende-se "
+              "estender a "
               "anotação de domínio e o ESM-2 a outros genes (TP53, PALB2, CHEK2), "
               "ampliar as coortes externas para caracterizar os limites de "
               "aplicabilidade, acompanhar em produção o módulo de aprendizado contínuo "

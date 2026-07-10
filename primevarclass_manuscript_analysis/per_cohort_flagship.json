@@ -1,0 +1,38 @@
+{
+  "BRCA1 — painel especialista": {
+    "n": 204,
+    "n_pat": 69,
+    "auc_flagship": 0.968,
+    "ci95": [
+      0.939,
+      0.989
+    ]
+  },
+  "BRCA2 — painel especialista": {
+    "n": 175,
+    "n_pat": 39,
+    "auc_flagship": 0.953,
+    "ci95": [
+      0.894,
+      0.992
+    ]
+  },
+  "BRCA1 — coorte externa": {
+    "n": 168,
+    "n_pat": 21,
+    "auc_flagship": 0.651,
+    "ci95": [
+      0.521,
+      0.776
+    ]
+  },
+  "BRCA2 — coorte externa": {
+    "n": 289,
+    "n_pat": 15,
+    "auc_flagship": 0.8,
+    "ci95": [
+      0.649,
+      0.936
+    ]
+  }
+}
