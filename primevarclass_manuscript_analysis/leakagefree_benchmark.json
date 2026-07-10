@@ -1,0 +1,53 @@
+{
+  "full": {
+    "PrimeVarClass": {
+      "n": 56,
+      "auc": 0.941,
+      "ci95": [
+        0.875,
+        0.988
+      ]
+    },
+    "AlphaMissense": {
+      "n": 41,
+      "auc": 0.908,
+      "ci95": [
+        0.797,
+        0.992
+      ]
+    },
+    "REVEL": {
+      "n": 41,
+      "auc": 0.849,
+      "ci95": [
+        0.72,
+        0.961
+      ]
+    },
+    "CADD": {
+      "n": 42,
+      "auc": 0.963,
+      "ci95": [
+        0.898,
+        1.0
+      ]
+    }
+  },
+  "pairwise_common": {
+    "AlphaMissense": {
+      "n": 41,
+      "auc_them": 0.908,
+      "auc_primevarclass": 0.928
+    },
+    "REVEL": {
+      "n": 41,
+      "auc_them": 0.849,
+      "auc_primevarclass": 0.928
+    },
+    "CADD": {
+      "n": 42,
+      "auc_them": 0.963,
+      "auc_primevarclass": 0.931
+    }
+  }
+}
