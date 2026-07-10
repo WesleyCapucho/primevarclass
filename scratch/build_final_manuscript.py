@@ -216,40 +216,42 @@ def build_frontmatter(doc):
 def build_apresentacao(doc):
     h1(doc, "APRESENTAÇÃO")
     h2(doc, "Resumo")
-    para(doc, "Parti de uma hipótese pouco convencional: codificar aminoácidos pela "
-              "estrutura dos números primos revelaria padrões de patogenicidade em "
-              "variantes missense? Nomeei o projeto PrimeVarClass a partir dessa aposta "
-              "e a testei com rigor — validação cruzada bloqueada por posição e "
-              "generalização em coortes externas nunca vistas no treino. Refutei a "
-              "hipótese com transparência: a codificação por primos teve desempenho "
-              "inferior ao de uma identidade trivial de aminoácidos (AUC externa 0,681 "
-              "vs. 0,718; p = 0,045) e piorou um modelo bioquímico ao ser adicionada "
-              "(0,791 → 0,765; p = 3,8 × 10⁻⁸). No processo, diagnostiquei uma armadilha "
-              "de vazamento posicional que infla benchmarks internos. A partir daí, "
-              "construí um classificador consciente de domínio funcional (RING/BRCT de "
-              "BRCA1; domínio de ligação ao DNA de BRCA2), que generalizou para coortes "
-              "externas com AUC de 0,847 — superando o modelo com posição bruta (0,791; "
-              "p = 1,8 × 10⁻¹³). Combinado a um modelo de linguagem de proteínas "
-              "(ESM-2), o modelo-carro-chefe atingiu AUC externa de 0,909, "
-              "estatisticamente equivalente aos melhores preditores publicados — "
-              "AlphaMissense (0,926; p = 0,24), REVEL (0,930; p = 0,14) e CADD (0,891; "
-              "p = 0,37) —, avaliado sob desvantagem: esses preditores carregam "
-              "circularidade com os próprios rótulos de teste, e o meu modelo, não. Um "
-              "meta-classificador integrando todos os sinais atingiu 0,938. Calibrei os "
-              "escores em força de evidência ACMG/AMP e, entre variantes que o "
-              "AlphaMissense deixa ambíguas (644 no total), resolvi 53,8% dos VUS e "
-              "64,6% das conflitantes — a prova de que complemento o AlphaMissense, não "
-              "compito com ele. Validei o mecanismo estrutural contra dados funcionais "
-              "reais de reparo por recombinação homóloga (Kruskal-Wallis p ≈ 3,5 × "
-              "10⁻³³), mitiguei uma lacuna de equidade entre ancestralidades, e simulei "
-              "validação prospectiva por corte temporal (AUC de 0,892 em 2016 a 0,932 "
-              "em 2021). Por fim, implementei aprendizado contínuo real e seguro: o "
+    para(doc, "Este trabalho partiu de uma hipótese pouco convencional: codificar "
+              "aminoácidos pela estrutura dos números primos revelaria padrões de "
+              "patogenicidade em variantes missense? O projeto foi nomeado PrimeVarClass "
+              "a partir dessa aposta, e a hipótese foi testada com rigor — validação "
+              "cruzada bloqueada por posição e generalização em coortes externas nunca "
+              "vistas no treino. A hipótese foi refutada com transparência: a "
+              "codificação por primos teve desempenho inferior ao de uma identidade "
+              "trivial de aminoácidos (AUC externa 0,681 vs. 0,718; p = 0,045) e piorou "
+              "um modelo bioquímico ao ser adicionada (0,791 → 0,765; p = 3,8 × 10⁻⁸). "
+              "No processo, foi diagnosticada uma armadilha de vazamento posicional que "
+              "infla benchmarks internos. A partir daí, construiu-se um classificador "
+              "consciente de domínio funcional (RING/BRCT de BRCA1; domínio de ligação "
+              "ao DNA de BRCA2), que generalizou para coortes externas com AUC de 0,847 "
+              "— superando o modelo com posição bruta (0,791; p = 1,8 × 10⁻¹³). "
+              "Combinado a um modelo de linguagem de proteínas (ESM-2), o modelo-carro-"
+              "chefe atingiu AUC externa de 0,909, estatisticamente equivalente aos "
+              "melhores preditores publicados — AlphaMissense (0,926; p = 0,24), REVEL "
+              "(0,930; p = 0,14) e CADD (0,891; p = 0,37) —, ainda que avaliado sob "
+              "desvantagem: esses preditores carregam circularidade com os próprios "
+              "rótulos de teste, e o modelo proposto, não. Um meta-classificador "
+              "integrando todos os sinais atingiu 0,938. Os escores foram calibrados em "
+              "força de evidência ACMG/AMP e, entre variantes que o AlphaMissense deixa "
+              "ambíguas (644 no total), foram resolvidos 53,8% dos VUS e 64,6% das "
+              "conflitantes — evidência de que o método complementa o AlphaMissense, em "
+              "vez de competir com ele. O mecanismo estrutural foi validado contra dados "
+              "funcionais reais de reparo por recombinação homóloga (Kruskal-Wallis "
+              "p ≈ 3,5 × 10⁻³³); uma lacuna de equidade entre ancestralidades foi "
+              "quantificada e parcialmente mitigada; e a validação prospectiva por corte "
+              "temporal foi simulada (AUC de 0,892 em 2016 a 0,932 em 2021). Por fim, "
+              "foi implementado um mecanismo real e seguro de aprendizado contínuo: o "
               "modelo melhora com rótulos confirmados pelo uso (AUC no conjunto travado "
               "subindo de 0,895 para 0,922) sob uma trava que rejeita atualizações que "
-              "piorem o desempenho. Entrego o sistema como plataforma aberta, auditável "
-              "e reprodutível. A contribuição central não é um número inflado, mas um "
-              "método honesto, generalizável e continuamente aprimorável para apoiar a "
-              "interpretação responsável de variantes genéticas no Brasil.",
+              "piorem o desempenho. O sistema é entregue como plataforma aberta, "
+              "auditável e reprodutível. A contribuição central não é um número inflado, "
+              "mas um método honesto, generalizável e continuamente aprimorável para "
+              "apoiar a interpretação responsável de variantes genéticas no Brasil.",
          space_after=8)
     keywords_line(doc, "Palavras-chave: ", "classificação de variantes de significado "
                   "incerto; BRCA1/BRCA2; validação externa; domínios funcionais de "
@@ -279,7 +281,7 @@ def build_apresentacao(doc):
               "carecem de ferramentas abertas e auditáveis (ACHATZ et al., 2020; "
               "PALMERO et al., 2007; FERNANDES et al., 2019; LASTA; GROTO; BRANDALIZE, "
               "2023; RIBEIRO et al., 2025; NORONHA et al., 2026). Foi para atacar esse "
-              "gargalo que desenvolvi o PrimeVarClass.")
+              "gargalo que o PrimeVarClass foi desenvolvido.")
 
     h3(doc, "A lacuna metodológica e o estado da arte")
     para(doc, "Preditores como REVEL (IOANNIDIS et al., 2016), CADD (RENTZSCH et al., "
@@ -297,27 +299,27 @@ def build_apresentacao(doc):
               "do ClinGen (PEJAVER et al., 2022; RICHARDS et al., 2015; NYKAMP et al., "
               "2017; OZA et al., 2018; MCCORMICK et al., 2020) — inclusive com escores "
               "informados por estrutura em BRCA1 (RAMADANE-MORCHADI et al., 2025), o "
-              "que corrobora a abordagem consciente de domínio deste trabalho. Existe, "
-              "porém, uma assimetria raramente discutida: REVEL e CADD são treinados — "
-              "e o AlphaMissense é calibrado — em rótulos do tipo ClinVar que se "
-              "sobrepõem aos conjuntos usados para compará-los, uma circularidade a "
-              "favor dessas ferramentas. Chamo essa assimetria de vazamento a favor de "
-              "terceiros e a corrijo explicitamente nos Resultados, somando-se a "
-              "\"coldspots\" mal classificados (DINES et al., 2020) e evidências de que "
-              "restrição evolutiva por domínio melhora a priorização (ZHANG et al., "
-              "2024; CHEN et al., 2023; CHAO et al., 2024; LAKE et al., 2024; TORRETTO "
-              "et al., 2026).")
+              "que corrobora a abordagem consciente de domínio aqui desenvolvida. "
+              "Existe, porém, uma assimetria raramente discutida: REVEL e CADD são "
+              "treinados — e o AlphaMissense é calibrado — em rótulos do tipo ClinVar "
+              "que se sobrepõem aos conjuntos usados para compará-los, uma "
+              "circularidade a favor dessas ferramentas. Essa assimetria é aqui "
+              "denominada vazamento a favor de terceiros e corrigida explicitamente nos "
+              "Resultados, somando-se a \"coldspots\" mal classificados (DINES et al., "
+              "2020) e a evidências de que restrição evolutiva por domínio melhora a "
+              "priorização (ZHANG et al., 2024; CHEN et al., 2023; CHAO et al., 2024; "
+              "LAKE et al., 2024; TORRETTO et al., 2026).")
 
     h3(doc, "A jornada científica: por que \"Prime\"")
     para(doc, "O nome PrimeVarClass guarda a origem do projeto: uma hipótese arrojada "
               "sobre números primos, tratada não como verdade a defender, mas como "
-              "hipótese a testar sob o protocolo mais rigoroso de que dispunha. O "
-              "resultado foi negativo, e relato-o com a mesma transparência dos "
-              "positivos. Sustento que essa trajetória — hipótese ousada, teste "
-              "rigoroso, refutação transparente, redirecionamento para o que funciona — "
-              "é, em si, contribuição científica tão valiosa quanto qualquer resultado "
-              "positivo isolado, e o antídoto direto contra alegações infladas de IA em "
-              "saúde.")
+              "hipótese a testar sob o protocolo mais rigoroso disponível. O resultado "
+              "foi negativo, e é relatado com a mesma transparência dos positivos. "
+              "Sustenta-se que essa trajetória — hipótese ousada, teste rigoroso, "
+              "refutação transparente, redirecionamento para o que funciona — é, em si, "
+              "contribuição científica tão valiosa quanto qualquer resultado positivo "
+              "isolado, e o antídoto direto contra alegações infladas de inteligência "
+              "artificial em saúde.")
 
     h2(doc, "Objetivos")
     para(doc, "1. Testar, sob validação cruzada bloqueada por posição e generalização "
@@ -347,91 +349,92 @@ def build_metodos(doc):
     h2(doc, "Materiais e Métodos")
 
     h3(doc, "Fontes de dados")
-    para(doc, "Utilizei dados públicos e auditáveis de BRCA1 (UniProt P38398) e BRCA2 "
-              "(P51587) (UNIPROT CONSORTIUM, 2023): classificações do ClinVar, com "
-              "subconjunto de alta confiança por painel de especialistas (ENIGMA/"
+    para(doc, "Foram utilizados dados públicos e auditáveis de BRCA1 (UniProt P38398) e "
+              "BRCA2 (P51587) (UNIPROT CONSORTIUM, 2023): classificações do ClinVar, "
+              "com subconjunto de alta confiança por painel de especialistas (ENIGMA/"
               "ClinGen; PARSONS et al., 2019); frequências alélicas do gnomAD por "
-              "ancestralidade (KARCZEWSKI et al., 2020); estruturas do PDB e "
-              "AlphaFold DB; e ensaios funcionais do MaveDB (FINDLAY et al., 2018; "
-              "STARITA et al., 2015). Rótulos: patogênico (1) vs. benigno (0); "
-              "conflitantes/baixa confiança excluídos. Treino interno: n = 869 (211 "
-              "patogênicas); externo, estritamente separado: n = 836 (144 "
-              "patogênicas).")
+              "ancestralidade (KARCZEWSKI et al., 2020); estruturas do PDB e AlphaFold "
+              "DB; e ensaios funcionais do MaveDB (FINDLAY et al., 2018; STARITA et "
+              "al., 2015). Os rótulos foram normalizados em patogênico (1) vs. benigno "
+              "(0); conflitantes ou de baixa confiança foram excluídos. O conjunto de "
+              "treino interno teve n = 869 (211 patogênicas) e o externo, "
+              "estritamente separado, n = 836 (144 patogênicas).")
 
     h3(doc, "Representação, teste dos primos e domínio funcional")
-    para(doc, "Representei cada variante por características bioquímicas (massa, "
+    para(doc, "Cada variante foi representada por características bioquímicas (massa, "
               "hidrofobicidade, carga, aromaticidade, severidade), derivadas de primos "
               "(razões, diferenças, lacunas), identidade categórica e domínio "
-              "funcional. Para testar a hipótese dos primos, comparei cinco conjuntos "
-              "— identidade com posição (4), identidade sem posição (3), bioquímico com "
-              "posição (28), híbrido bioquímico+primos (76) e apenas primos (50) — sob "
-              "o mesmo classificador e protocolo. Mapeei domínios funcionais curados do "
-              "UniProt: RING (1–109) e BRCT (1642–1736, 1756–1855) em BRCA1; domínio de "
-              "ligação ao DNA (2481–3186) em BRCA2, como regiões críticas, definindo "
-              "functional_domain e in_critical_domain — características de região, não "
-              "do índice do resíduo, portanto transferíveis.")
+              "funcional. Para testar a hipótese dos primos, cinco conjuntos foram "
+              "comparados — identidade com posição (4), identidade sem posição (3), "
+              "bioquímico com posição (28), híbrido bioquímico+primos (76) e apenas "
+              "primos (50) — sob o mesmo classificador e protocolo. Foram mapeados "
+              "domínios funcionais curados do UniProt: RING (1–109) e BRCT (1642–1736, "
+              "1756–1855) em BRCA1; domínio de ligação ao DNA (2481–3186) em BRCA2, "
+              "como regiões críticas, definindo-se functional_domain e "
+              "in_critical_domain — características de região, não do índice do resíduo, "
+              "portanto transferíveis.")
 
     h3(doc, "Protocolo anti-vazamento e modelo")
-    para(doc, "Adotei dois níveis de avaliação, sem exceção: (A) validação cruzada "
-              "bloqueada por posição (StratifiedGroupKFold, 5 folds, agrupada por "
-              "gene:posição), impedindo que a mesma posição apareça em treino e teste; "
-              "e (B) generalização externa nas quatro coortes nunca tocadas. "
-              "Comparações de AUC usaram o teste pareado de DeLong (DELONG; DELONG; "
-              "CLARKE-PEARSON, 1988). Implementei um Random Forest balanceado em "
+    para(doc, "Foram adotados dois níveis de avaliação, sem exceção: (A) validação "
+              "cruzada bloqueada por posição (StratifiedGroupKFold, 5 folds, agrupada "
+              "por gene:posição), impedindo que a mesma posição apareça em treino e "
+              "teste; e (B) generalização externa nas quatro coortes nunca tocadas. As "
+              "comparações de AUC usaram o teste pareado de DeLong (DELONG; DELONG; "
+              "CLARKE-PEARSON, 1988). Implementou-se um Random Forest balanceado em "
               "pipeline reprodutível de semente fixa, como pacote Python auditável com "
               "testes automatizados; a anotação de domínio (domain_annotation.py) e a "
               "ingestão de escores profundos (esm_scores.py) são módulos "
               "independentes, sem dependência de GPU.")
 
     h3(doc, "Robustez, meta-análise, ESM-2 e SHAP")
-    para(doc, "Quantifiquei robustez por bootstrap (B = 2000), teste de permutação "
-              "(N = 2000), validação cruzada bloqueada repetida (12 sementes) e "
-              "calibração (Brier, confiabilidade). Agrupei as quatro coortes externas "
-              "por efeitos aleatórios (DerSimonian-Laird, escala logit), reportando "
-              "IC95%, Q de Cochran e I². Pontuei cada variante com ESM-2 "
-              "(facebook/esm2_t33_650M_UR50D; LIN et al., 2023) por razão de "
-              "verossimilhança logarítmica masked-marginal (MEIER et al., 2021), em "
-              "janelas de ±511 resíduos. Como o ESM-2 não usa rótulos de "
-              "patogenicidade, não introduz circularidade; reexecutei a pontuação com "
-              "um ESM-2 de 3B parâmetros (correlação Pearson 0,83 com o de 650M, sem "
-              "ganho de AUC — 0,905 vs. 0,909 —, resultado honesto de saturação que me "
+    para(doc, "A robustez foi quantificada por bootstrap (B = 2000), teste de "
+              "permutação (N = 2000), validação cruzada bloqueada repetida (12 "
+              "sementes) e calibração (Brier, confiabilidade). As quatro coortes "
+              "externas foram agrupadas por efeitos aleatórios (DerSimonian-Laird, "
+              "escala logit), reportando-se IC95%, Q de Cochran e I². Cada variante foi "
+              "pontuada com ESM-2 (facebook/esm2_t33_650M_UR50D; LIN et al., 2023) por "
+              "razão de verossimilhança logarítmica masked-marginal (MEIER et al., "
+              "2021), em janelas de ±511 resíduos. Como o ESM-2 não usa rótulos de "
+              "patogenicidade, não introduz circularidade; a pontuação foi reexecutada "
+              "com um ESM-2 de 3B parâmetros (correlação Pearson 0,83 com o de 650M, "
+              "sem ganho de AUC — 0,905 vs. 0,909 —, resultado honesto de saturação que "
               "levou a manter o 650M como principal). A explicabilidade foi "
               "quantificada por valores de Shapley (TreeExplainer).")
 
     h3(doc, "Comparação honesta, meta-classificador e calibração ACMG/AMP")
-    para(doc, "Comparei o modelo-carro-chefe com AlphaMissense, REVEL, CADD, PolyPhen-2 "
-              "e SIFT nas mesmas 836 variantes externas (escores via API REST do "
-              "Ensembl VEP, transcrito MANE Select). Tornei explícita a assimetria de "
-              "circularidade (Seção 1.3) e tentei isolá-la recortando variantes "
-              "recentes (ClinVar ≥ 2024); constatei que o recorte não separa o "
-              "vazamento de forma limpa, pois last_evaluated reflete reavaliação, não "
-              "submissão original. Testei um meta-modelo logístico combinando os "
-              "quatro sinais, validado fora da amostra (5 folds, n = 621). Calibrei o "
-              "escore aos limiares de razão de verossimilhança de Tavtigian/Pejaver "
-              "(PEJAVER et al., 2022; RICHARDS et al., 2015): LR ≥ 18,7/4,33/2,08 para "
-              "PP3 forte/moderado/leve; LR ≤ 0,05/0,23/0,48 para BP4, prevalência "
-              "prévia de 10%.")
+    para(doc, "O modelo-carro-chefe foi comparado com AlphaMissense, REVEL, CADD, "
+              "PolyPhen-2 e SIFT nas mesmas 836 variantes externas (escores via API "
+              "REST do Ensembl VEP, transcrito MANE Select). A assimetria de "
+              "circularidade (Seção 1.3) foi tornada explícita, e tentou-se isolá-la "
+              "recortando variantes recentes (ClinVar ≥ 2024); constatou-se que o "
+              "recorte não separa o vazamento de forma limpa, pois last_evaluated "
+              "reflete reavaliação, não submissão original. Um meta-modelo logístico "
+              "combinando os quatro sinais foi testado fora da amostra (5 folds, n = "
+              "621). O escore foi calibrado aos limiares de razão de verossimilhança de "
+              "Tavtigian/Pejaver (PEJAVER et al., 2022; RICHARDS et al., 2015): "
+              "LR ≥ 18,7/4,33/2,08 para PP3 forte/moderado/leve; LR ≤ 0,05/0,23/0,48 "
+              "para BP4, prevalência prévia de 10%.")
 
     h3(doc, "Zona cinzenta, equidade, mecanismo e aprendizado contínuo")
-    para(doc, "Identifiquei, entre variantes reais do ClinVar, as que o AlphaMissense "
-              "classifica como ambíguas (644) e verifiquei quantas recebem do meu "
-              "modelo uma chamada PP3/BP4 informativa. Usei frequências do gnomAD "
-              "(europeias vs. não europeias) para medir equidade de resolução em "
-              "variantes com AF > 10⁻⁴ (POPEJOY; FULLERTON, 2016; MANRAI et al., 2016; "
-              "SOEWITO et al., 2022). Decompus cada variante por mecanismo estrutural "
-              "(coordenação de zinco, núcleo, interface, superfície) a partir de "
-              "estruturas reais (PDB 1JM7, 1T29, 1MJE, com BRCA2 realinhado de mouse "
-              "para humano) e cruzei com função real de reparo por recombinação "
-              "homóloga (TOLAND; ANDREASSEN, 2017; HU et al., 2022; STARITA et al., "
-              "2015; n = 1.262) por Kruskal-Wallis. Simulei "
-              "validação prospectiva por corte temporal (last_evaluated). Por fim, "
-              "implementei aprendizado contínuo real: um FeedbackStore registra "
+    para(doc, "Entre variantes reais do ClinVar, foram identificadas as que o "
+              "AlphaMissense classifica como ambíguas (644) e verificou-se quantas "
+              "recebem do modelo uma chamada PP3/BP4 informativa. Foram usadas "
+              "frequências do gnomAD (europeias vs. não europeias) para medir equidade "
+              "de resolução em variantes com AF > 10⁻⁴ (POPEJOY; FULLERTON, 2016; "
+              "MANRAI et al., 2016; SOEWITO et al., 2022). Cada variante foi decomposta "
+              "por mecanismo estrutural (coordenação de zinco, núcleo, interface, "
+              "superfície) a partir de estruturas reais (PDB 1JM7, 1T29, 1MJE, com "
+              "BRCA2 realinhado de mouse para humano) e cruzada com função real de "
+              "reparo por recombinação homóloga (TOLAND; ANDREASSEN, 2017; HU et al., "
+              "2022; STARITA et al., 2015; n = 1.262) por Kruskal-Wallis. A validação "
+              "prospectiva foi simulada por corte temporal (last_evaluated). Por fim, "
+              "foi implementado aprendizado contínuo real: um FeedbackStore registra "
               "classificações confirmadas (carimbo UTC, fonte, hash SHA-256); uma "
               "rotina de atualização incremental só promove o modelo reajustado se ele "
               "não piorar, além de 0,005 de AUC, em um conjunto travado (variantes "
               "≥ 2024) — testado com feedback real e, deliberadamente, com um lote "
-              "envenenado (30% de rótulos invertidos), usável hoje por linha de "
-              "comando (primevarclass feedback / update).")
+              "envenenado (30% de rótulos invertidos), usável hoje por linha de comando "
+              "(primevarclass feedback / update).")
     doc.add_page_break()
 
 
@@ -442,9 +445,9 @@ def build_resultados(doc):
     h2(doc, "Resultados e Discussão")
 
     h3(doc, "A hipótese dos números primos foi refutada")
-    para(doc, "Testei a hipótese sob o protocolo anti-vazamento (Tabela 1). Os primos "
-              "tiveram desempenho inferior à identidade trivial e pioraram um modelo "
-              "bioquímico ao serem adicionados (Tabela 2).")
+    para(doc, "A hipótese foi testada sob o protocolo anti-vazamento (Tabela 1). Os "
+              "primos tiveram desempenho inferior à identidade trivial e pioraram um "
+              "modelo bioquímico ao serem adicionados (Tabela 2).")
     table(doc, ["Conjunto de características", "nº feat.", "CV bloqueada", "Externa"],
           [["Identidade (com posição)ᵃ", "4", "0,871", "0,882"],
            ["Bioquímico (com posição)ᵃ", "28", "0,802", "0,791"],
@@ -466,7 +469,7 @@ def build_resultados(doc):
     para(doc, "A diferença é uma tendência não significativa na CV interna (p = 0,081), "
               "mas significativa na generalização externa (p = 0,045) — e adicionar "
               "primos a um modelo bioquímico piora o desempenho externo (p < 0,0001). "
-              "Conclusão honesta: os primos não agregam sinal útil.")
+              "A conclusão é honesta: os primos não agregam sinal útil.")
 
     h3(doc, "Diagnóstico: a armadilha do vazamento posicional")
     para(doc, "Sob validação ingênua (sem bloqueio por grupo), a identidade combinada à "
@@ -474,12 +477,12 @@ def build_resultados(doc):
               "variantes da mesma posição compartilham rótulo e aparecem em treino e "
               "teste simultaneamente. Esse é o alerta metodológico central: benchmarks "
               "que não bloqueiam a posição superestimam o desempenho — a mesma lição "
-              "que apliquei para corrigir o vazamento a favor de terceiros (Seção "
+              "aplicada, adiante, para corrigir o vazamento a favor de terceiros (Seção "
               "3.7).")
 
     h3(doc, "A solução: modelo consciente de domínio")
-    para(doc, "Substituindo a posição bruta por região funcional, obtive um modelo que "
-              "generaliza melhor externamente (Tabela 3; Figura 2).")
+    para(doc, "Com a substituição da posição bruta por região funcional, obteve-se um "
+              "modelo que generaliza melhor externamente (Tabela 3; Figura 2).")
     table(doc, ["Modelo", "CV bloqueada", "Externa"],
           [["Bioquímico (sem posição)", "0,743", "0,717"],
            ["Bioquímico + domínio (proposto)", "0,818", "0,847"],
@@ -492,25 +495,20 @@ def build_resultados(doc):
                "coortes externas: o sinal de região transfere-se; a posição memoriza.")
     figure(doc, "fig_domain_architecture.png",
            "Figura 2. Domínios funcionais de BRCA1/BRCA2 com variantes reais "
-           "sobrepostas. Patogênicas (vermelho, abaixo) concentram-se nas regiões "
+           "sobrepostas. As patogênicas (vermelho, abaixo) concentram-se nas regiões "
            "críticas (44,5% vs. 6,8–10,0% fora delas) — base biológica do sinal de "
            "domínio.", width=5.0)
 
     h3(doc, "Prova visual: mutações patogênicas reais capturadas")
-    para(doc, "Selecionei variantes já confirmadas como patogênicas no ClinVar e "
-              "verifiquei a resposta do modelo-carro-chefe. A Figura 3 mostra o RING "
-              "de BRCA1 (PDB 1JM7) colorido por intensidade de detecção: as zonas mais "
-              "sensíveis coincidem exatamente com as cisteínas que coordenam os dois "
-              "íons de zinco estruturais, sem que eu tivesse informado essa "
-              "coordenação. A Figura 4 detalha seis variantes confirmadas — três no "
-              "sítio de zinco (Cys39Gly, Cys64Gly, Cys61Tyr) e três no núcleo do BRCT "
-              "(Met1689Arg, Leu1705Pro, Trp1837Cys) —, todas detectadas com 96,3% a "
-              "99,7% de confiança. Repeti o exercício em BRCA2 (variantes clássicas do "
-              "domínio de ligação ao DNA, como Gly2748Asp, Arg3052Trp e Trp2626Cys, "
-              "detectadas com 75,3% a 96,7%) e mapeei a superfície completa dos dois "
-              "domínios por intensidade de detecção — evidência de que a abordagem "
-              "generaliza entre genes; ambas as figuras estão no Material Suplementar.",
-         space_after=4)
+    para(doc, "Foram selecionadas variantes já confirmadas como patogênicas no ClinVar "
+              "e verificou-se a resposta do modelo-carro-chefe. A Figura 3 mostra o "
+              "RING de BRCA1 (PDB 1JM7) colorido por intensidade de detecção: as zonas "
+              "mais sensíveis coincidem exatamente com as cisteínas que coordenam os "
+              "dois íons de zinco estruturais, sem que essa coordenação tivesse sido "
+              "informada ao modelo. A Figura 4 detalha seis variantes confirmadas — "
+              "três no sítio de zinco (Cys39Gly, Cys64Gly, Cys61Tyr) e três no núcleo "
+              "do BRCT (Met1689Arg, Leu1705Pro, Trp1837Cys) —, todas detectadas com "
+              "96,3% a 99,7% de confiança.", space_after=4)
     figure(doc, "fig_hero_ring.png",
            "Figura 3. RING de BRCA1 (PDB 1JM7), colorido por intensidade de detecção "
            "(azul = tolerante; dourado = detectada). Os dois íons de zinco (esferas) "
@@ -520,8 +518,25 @@ def build_resultados(doc):
     figure(doc, "fig_detected_panel.png",
            "Figura 4. Seis variantes de BRCA1 confirmadas patogênicas no ClinVar, cada "
            "uma sobre sua estrutura real, com o veredito do ClinVar (selo verde) e a "
-           "chamada do meu modelo (selo dourado) — todas detectadas com alta "
-           "confiança.", width=4.6)
+           "chamada do modelo (selo dourado) — todas detectadas com alta confiança.",
+           width=4.6)
+    para(doc, "O mesmo exercício, repetido em BRCA2 (variantes clássicas do domínio de "
+              "ligação ao DNA como Gly2748Asp, Arg3052Trp e Trp2626Cys, detectadas com "
+              "75,3% a 96,7%; painel individual no Material Suplementar), confirmou que "
+              "a abordagem generaliza entre genes. A superfície molecular completa dos "
+              "dois domínios, colorida por intensidade de detecção (Figura 5), torna "
+              "essa generalização visível: as mesmas zonas de risco — o núcleo "
+              "funcional de cada domínio — emergem, de forma independente, em BRCA1 "
+              "(BRCT) e BRCA2 (DBD). Não se trata de um sinal ajustado a um único gene, "
+              "mas de uma assinatura estrutural comum ao papel dessas proteínas no "
+              "reparo do DNA.", space_after=4)
+    figure(doc, "fig_surface_landscape.png",
+           "Figura 5. Paisagem de detecção na superfície molecular completa do domínio "
+           "BRCT de BRCA1 e do domínio de ligação ao DNA (DBD) de BRCA2. As zonas "
+           "douradas — o núcleo funcional de cada domínio — concentram as detecções de "
+           "patogenicidade; a mesma assinatura estrutural emerge nos dois genes de "
+           "forma independente, evidência visual de que o modelo capturou mecanismo "
+           "transferível, e não um artefato específico de BRCA1.", width=6.0)
 
     h3(doc, "Robustez, meta-análise e o modelo-carro-chefe")
     para(doc, "Por bootstrap (B = 2000), a AUC externa do domínio (0,847; IC95% "
@@ -535,11 +550,11 @@ def build_resultados(doc):
               "(efeitos aleatórios), a AUC agrupada é 0,801 (IC95% 0,638–0,902), com "
               "heterogeneidade elevada (I² = 88,2%): excelente nas coortes de painel "
               "especialista (0,864–0,888) e mais fraca em uma coorte externa de BRCA1 "
-              "(0,599) — relato essa heterogeneidade em vez de escondê-la. Combinando "
+              "(0,599) — heterogeneidade relatada, em vez de escondida. Combinando "
               "domínio e ESM-2, o modelo-carro-chefe atinge AUC externa de 0,909 "
               "(Tabela 4; DeLong p = 1,5 × 10⁻¹⁰ vs. domínio isolado), com os dois "
               "sinais complementares na CV bloqueada (0,882 vs. 0,818 e 0,867 "
-              "isolados). A explicabilidade por SHAP (Figura 5) confirma o escore "
+              "isolados). A explicabilidade por SHAP (Figura 6) confirma o escore "
               "ESM-2 e a pertinência a domínio crítico como preditores dominantes, com "
               "direção de efeito biologicamente correta.")
     table(doc, ["Modelo", "CV bloqueada", "Externa"],
@@ -550,31 +565,32 @@ def build_resultados(doc):
           caption="Tabela 4. Modelo-carro-chefe sob o protocolo anti-vazamento "
                   "(AUC-ROC).")
     figure(doc, "fig_shap.png",
-           "Figura 5. Explicabilidade por valores de Shapley do modelo domínio + "
-           "ESM-2 — escore ESM-2 e domínio crítico são os preditores dominantes.",
+           "Figura 6. Explicabilidade por valores de Shapley do modelo domínio + "
+           "ESM-2 — o escore ESM-2 e o domínio crítico são os preditores dominantes.",
            width=4.6)
 
     h3(doc, "Vazamento a favor de terceiros: a comparação honesta")
-    para(doc, "No mesmo conjunto externo (n = 836), medi o modelo-carro-chefe contra "
-              "preditores publicados (Figura 6; Tabela 5). REVEL e CADD são "
+    para(doc, "No mesmo conjunto externo (n = 836), o modelo-carro-chefe foi medido "
+              "contra preditores publicados (Figura 7; Tabela 5). REVEL e CADD são "
               "treinados — e o AlphaMissense é calibrado — em rótulos que se sobrepõem "
-              "ao meu teste; o meu modelo é avaliado fora dessa distribuição. Mesmo em "
-              "desvantagem, a diferença para os três líderes não é significativa "
-              "(p = 0,14 a 0,37), e supero SIFT e PolyPhen-2 com clareza. Tentei "
-              "isolar o vazamento por corte temporal (≥ 2024); o recorte não separa o "
-              "efeito de forma limpa — todas as ferramentas melhoram nas variantes "
-              "recentes (meu modelo sobe a 0,932, ainda equivalente aos líderes, "
-              "p = 0,12–0,61). Por isso não alego \"vazamento removido\": a afirmação "
-              "correta é a assimetria relatada. Empatar sob avaliação mais rigorosa é "
-              "um resultado mais forte do que o número cru sugere — e é por isso que "
-              "meu diferencial real não é vencer no AUC bruto, mas complementar essas "
-              "ferramentas onde se abstêm.", space_after=4)
+              "ao conjunto de teste; o modelo proposto, ao contrário, é avaliado fora "
+              "dessa distribuição. Mesmo em desvantagem, a diferença para os três "
+              "líderes não é significativa (p = 0,14 a 0,37), e a superioridade sobre "
+              "SIFT e PolyPhen-2 é clara. Tentou-se isolar o vazamento por corte "
+              "temporal (≥ 2024); o recorte não separa o efeito de forma limpa — todas "
+              "as ferramentas melhoram nas variantes recentes (o modelo proposto sobe a "
+              "0,932, ainda equivalente aos líderes, p = 0,12–0,61). Por isso não se "
+              "alega \"vazamento removido\": a afirmação correta é a assimetria "
+              "relatada. Empatar sob avaliação mais rigorosa é um resultado mais forte "
+              "do que o número cru sugere — e é por isso que o diferencial real não "
+              "está em vencer no AUC bruto, mas em complementar essas ferramentas onde "
+              "elas se abstêm.", space_after=4)
     figure(doc, "fig_benchmark_leakage_controlled.png",
-           "Figura 6. Comparação honesta com o estado da arte: preditores "
+           "Figura 7. Comparação honesta com o estado da arte: preditores "
            "supervisionados/calibrados em ClinVar (azul) têm circularidade a favor; "
            "o modelo-carro-chefe (vermelho) é avaliado fora da distribuição.",
            width=5.6)
-    table(doc, ["Ferramenta", "AUC", "Regime", "DeLong vs. mim"],
+    table(doc, ["Ferramenta", "AUC", "Regime", "DeLong vs. modelo"],
           [["REVEL", "0,930", "supervisionado em ClinVar", "p=0,14 (n.s.)"],
            ["AlphaMissense", "0,926", "calibrado em ClinVar", "p=0,24 (n.s.)"],
            ["PrimeVarClass", "0,909", "cego ao externo", "—"],
@@ -585,47 +601,56 @@ def build_resultados(doc):
           caption="Tabela 5. Comparação honesta com o estado da arte (n = 836).")
     para(doc, "Integrando de forma calibrada os quatro sinais, o meta-classificador "
               "atingiu AUC de 0,938 (IC95% 0,901–0,969; n = 621) — a melhor marca do "
-              "estudo, superando mesmo o REVEL isolado (DeLong p = 0,43). A mensagem: "
-              "não competir, mas somar.")
+              "estudo, superando mesmo o REVEL isolado (DeLong p = 0,43). A mensagem é "
+              "clara: não competir, mas somar.")
 
     h3(doc, "Calibração ACMG/AMP e o complemento na zona cinzenta")
-    para(doc, "Calibrei os escores aos limiares de Tavtigian/Pejaver: nas coortes "
-              "externas, PP3 forte corresponde a 94% de patogênicos reais (LR ≈ 76; "
-              "n = 84), e BP4 moderado a apenas 3,2% (LR ≈ 0,16; n = 444) — evidência "
-              "confiável nas duas direções. O maior diferencial deste trabalho, porém, "
-              "está na zona cinzenta do AlphaMissense (Figura 7; Tabela 6): entre 644 "
-              "variantes reais que ele deixa ambíguas, resolvi 53,8% dos VUS e 64,6% "
-              "das conflitantes; nas 17 que já tinham diagnóstico definitivo, minha "
-              "concordância foi de 100%. Forneço informação exatamente onde a melhor "
-              "ferramenta atual se cala.", space_after=4)
+    para(doc, "Os escores foram calibrados aos limiares de Tavtigian/Pejaver: nas "
+              "coortes externas, PP3 forte corresponde a 94% de patogênicos reais "
+              "(LR ≈ 76; n = 84), e BP4 moderado a apenas 3,2% (LR ≈ 0,16; n = 444) — "
+              "evidência confiável nas duas direções. O maior diferencial deste "
+              "trabalho, porém, está na zona cinzenta do AlphaMissense (Figura 8; "
+              "Tabela 6): entre 644 variantes reais que ele deixa ambíguas, foram "
+              "resolvidos 53,8% dos VUS e 64,6% das conflitantes; nas 17 que já tinham "
+              "diagnóstico definitivo, a concordância foi de 100%. Fornece-se "
+              "informação exatamente onde a melhor ferramenta atual se cala.",
+         space_after=4)
     figure(doc, "fig_grey_zone.png",
-           "Figura 7. Complemento ao AlphaMissense — evidência calibrada onde ele se "
+           "Figura 8. Complemento ao AlphaMissense — evidência calibrada onde ele se "
            "abstém, em BRCA1 e BRCA2, com dados reais do ClinVar.", width=5.6)
     table(doc, ["Categoria", "BRCA1", "BRCA2", "Combinado"],
           [["VUS na zona cinzenta (n)", "98", "166", "264"],
-           ["VUS resolvidas por mim", "56,1%", "52,4%", "53,8%"],
+           ["VUS resolvidas", "56,1%", "52,4%", "53,8%"],
            ["Conflitantes na zona cinzenta (n)", "64", "128", "192"],
-           ["Conflitantes resolvidas por mim", "76,6%", "58,6%", "64,6%"]],
+           ["Conflitantes resolvidas", "76,6%", "58,6%", "64,6%"]],
           widths_cm=[7.5, 2.5, 2.5, 2.5],
           caption="Tabela 6. Resolução de variantes na zona cinzenta do AlphaMissense.")
 
     h3(doc, "Mecanismo, equidade e validação temporal")
-    para(doc, "Decompus cada variante pelo mecanismo estrutural afetado e cruzei com "
-              "função real de reparo por recombinação homóloga (1.262 variantes; "
+    para(doc, "Cada variante foi decomposta pelo mecanismo estrutural afetado e cruzada "
+              "com função real de reparo por recombinação homóloga (1.262 variantes; "
               "STARITA et al., 2015): as categorias diferem de forma altamente "
-              "significativa (Kruskal-Wallis p ≈ 3,5 × 10⁻³³), com coordenação de "
-              "zinco a mais deletéria (mediana −0,844) e superfície a mais tolerada "
-              "(−0,011) — validação ortogonal e independente. Entre variantes com "
-              "frequência apreciável (AF > 10⁻⁴), apenas 26,2% têm classificação "
-              "definitiva em ancestralidades não europeias, contra 55,7% em europeias "
-              "(Figura 8); forneço evidência calibrada para 78% das não europeias "
-              "ainda não resolvidas, e 84% das europeias — de forma equitativa. "
-              "Simulando implantação prospectiva por corte temporal, a AUC futura "
-              "cresceu de 0,892 (corte 2016) a 0,932 (corte 2021; Tabela 7).",
+              "significativa (Kruskal-Wallis p ≈ 3,5 × 10⁻³³; Figura 9), com "
+              "coordenação de zinco a mais deletéria (mediana −0,844) e superfície a "
+              "mais tolerada (−0,011) — uma validação ortogonal e independente, contra "
+              "medida funcional de laboratório, do que o modelo aprendeu. Entre "
+              "variantes com frequência apreciável (AF > 10⁻⁴), apenas 26,2% têm "
+              "classificação definitiva em ancestralidades não europeias, contra 55,7% "
+              "em europeias (Figura 10); o modelo fornece evidência calibrada para 78% "
+              "das não europeias ainda não resolvidas, e 84% das europeias — de forma "
+              "equitativa. Simulando implantação prospectiva por corte temporal, a AUC "
+              "futura cresceu de 0,892 (corte 2016) a 0,932 (corte 2021; Tabela 7).",
          space_after=4)
+    figure(doc, "fig_mechanism_vs_function.png",
+           "Figura 9. Mecanismo estrutural previsto versus função medida em "
+           "laboratório (ensaio de reparo por recombinação homóloga; STARITA et al., "
+           "2015). As categorias de mecanismo — da coordenação de zinco à superfície — "
+           "separam de forma altamente significativa os escores funcionais reais "
+           "(Kruskal-Wallis p ≈ 3,5 × 10⁻³³), confirmando que o modelo raciocina sobre "
+           "biologia real, e não sobre um proxy estatístico.", width=6.0)
     figure(doc, "fig_equity.png",
-           "Figura 8. Lacuna de resolução clínica entre ancestralidades (gnomAD) e a "
-           "contribuição do meu modelo para reduzi-la equitativamente.", width=5.0)
+           "Figura 10. Lacuna de resolução clínica entre ancestralidades (gnomAD) e a "
+           "contribuição do modelo para reduzi-la equitativamente.", width=5.0)
     table(doc, ["Corte", "Treino (n)", "Teste futuro (n)", "AUC futura"],
           [["2016", "176", "323", "0,892"],
            ["2019", "279", "220", "0,926"],
@@ -634,17 +659,17 @@ def build_resultados(doc):
           caption="Tabela 7. Validação temporal (quasi-prospectiva) por ano de corte.")
 
     h3(doc, "Aprendizado contínuo e seguro")
-    para(doc, "Mantendo travado um conjunto de variantes recentes (≥ 2024, nunca "
-              "vistas no treino), revelei rótulos confirmados acumulados ao longo do "
-              "tempo: a AUC no conjunto travado sobe de 0,895 para 0,922 — ganho puro "
-              "por mais dados reais (Figura 9). Testei a trava de segurança "
-              "deliberadamente com um lote de feedback envenenado (30% de rótulos "
-              "invertidos): o candidato resultante (AUC 0,727) foi corretamente "
-              "rejeitado pela regra de promoção. Não é promessa: é o mesmo efeito da "
-              "validação temporal, operacionalizado como recurso usável hoje.",
-         space_after=4)
+    para(doc, "Com um conjunto de variantes recentes mantido travado (≥ 2024, nunca "
+              "vistas no treino), rótulos confirmados foram revelados de forma "
+              "acumulada ao longo do tempo: a AUC no conjunto travado sobe de 0,895 "
+              "para 0,922 — ganho puro por mais dados reais (Figura 11). A trava de "
+              "segurança foi testada deliberadamente com um lote de feedback envenenado "
+              "(30% de rótulos invertidos): o candidato resultante (AUC 0,727) foi "
+              "corretamente rejeitado pela regra de promoção. Não é promessa: é o mesmo "
+              "efeito medido na validação temporal, operacionalizado como recurso "
+              "usável hoje.", space_after=4)
     figure(doc, "fig_continual_learning.png",
-           "Figura 9. Aprendizado contínuo e seguro. À esquerda, a AUC no conjunto "
+           "Figura 11. Aprendizado contínuo e seguro. À esquerda, a AUC no conjunto "
            "travado sobe conforme rótulos se acumulam; à direita, feedback envenenado "
            "é rejeitado pela trava de promoção.", width=5.6)
 
@@ -652,55 +677,56 @@ def build_resultados(doc):
             "em vez de concorrência")
     para(doc, "O achado central é que domínio funcional generaliza, enquanto posição "
               "bruta memoriza — inversão diagnóstica confirmada em três momentos "
-              "distintos deste trabalho: a refutação dos primos, o diagnóstico do "
-              "vazamento posicional, e a exposição da assimetria de circularidade "
-              "contra mim na comparação com o estado da arte. Relatar essas três "
+              "distintos: a refutação dos primos, o diagnóstico do vazamento "
+              "posicional, e a exposição da assimetria de circularidade que desfavorece "
+              "o modelo proposto na comparação com o estado da arte. Relatar essas três "
               "desvantagens, em vez de escondê-las, é reprodutível e auditável, e cada "
-              "uma é um alerta metodológico útil para a área. Por isso escolhi não "
+              "uma é um alerta metodológico útil para a área. Por isso optou-se por não "
               "competir com o AlphaMissense no AUC bruto — comparação estruturalmente "
-              "injusta a meu desfavor —, e sim demonstrar o que realmente importa: "
-              "evidência calibrada exatamente onde ele se abstém. Um laboratório "
-              "clínico não precisa escolher entre as duas ferramentas; precisa das "
-              "duas.")
+              "injusta contra o modelo proposto —, e sim por demonstrar o que realmente "
+              "importa: evidência calibrada exatamente onde ele se abstém. Um "
+              "laboratório clínico não precisa escolher entre as duas ferramentas; "
+              "precisa das duas.")
 
     h3(doc, "Limitações e trabalhos futuros")
     para(doc, "A validação concentrou-se em BRCA1/BRCA2; as fronteiras de domínio são "
               "aproximações da literatura; a generalização é heterogênea entre coortes "
               "(I² = 88%); o recorte temporal não isola o vazamento de forma limpa; e "
               "não há, ainda, confirmação funcional experimental prospectiva conduzida "
-              "por mim, apenas convergência com ensaios publicados. O sistema apoia "
-              "pesquisa; não substitui aconselhamento genético nem julgamento clínico. "
-              "Como trabalhos futuros, pretendo estender a anotação de domínio e o "
-              "ESM-2 a outros genes (TP53, PALB2, CHEK2), ampliar as coortes externas "
-              "para caracterizar os limites de aplicabilidade, acompanhar em produção "
-              "o módulo de aprendizado contínuo com laboratórios parceiros, e explorar "
-              "modelos de linguagem de proteínas com plataformas automatizadas de "
-              "evolução dirigida (ZHANG et al., 2025) como fonte futura de rótulos "
-              "funcionais.")
+              "no âmbito deste trabalho, apenas convergência com ensaios publicados. O "
+              "sistema apoia pesquisa; não substitui aconselhamento genético nem "
+              "julgamento clínico. Como trabalhos futuros, pretende-se estender a "
+              "anotação de domínio e o ESM-2 a outros genes (TP53, PALB2, CHEK2), "
+              "ampliar as coortes externas para caracterizar os limites de "
+              "aplicabilidade, acompanhar em produção o módulo de aprendizado contínuo "
+              "com laboratórios parceiros, e explorar modelos de linguagem de proteínas "
+              "com plataformas automatizadas de evolução dirigida (ZHANG et al., 2025) "
+              "como fonte futura de rótulos funcionais.")
 
     h3(doc, "Impacto social, aplicação prática e ética no uso de IA")
     para(doc, "O acesso à interpretação genética é desigual no Brasil (ACHATZ et al., "
               "2020; PALMERO et al., 2007; FERNANDES et al., 2019; LASTA; GROTO; "
-              "BRANDALIZE, 2023; RIBEIRO et al., 2025; NORONHA et al., 2026). Posiciono "
-              "o PrimeVarClass não como diagnóstico automático, mas como ferramenta de "
-              "pesquisa responsável: apoio a laboratórios públicos, formação de "
-              "pesquisadores em boas práticas de validação, suporte translacional e "
-              "equidade por ser software aberto e de baixo custo computacional, sem "
-              "exigir GPU. Entrego um sistema funcional com resultados finais — pacote "
-              "auditável com testes automatizados, interface programática, protótipo "
-              "de apoio à decisão e módulo de aprendizado contínuo usável por linha de "
-              "comando —, com todos os números e figuras gerados por scripts "
-              "reexecutáveis. Em conformidade com o item 2.2.2 (Nota 4) do Edital, "
-              "declaro o uso de um assistente de programação e redação baseado em "
-              "modelo de linguagem de grande porte (Claude, da Anthropic) para apoio à "
-              "escrita e depuração de código, execução de análises estatísticas sobre "
-              "dados reais, revisão de literatura e redação assistida em português; a "
-              "concepção científica, a verificação dos resultados e a responsabilidade "
-              "final são minhas. Todos os dados são públicos e auditáveis; nenhum "
-              "resultado ou figura foi fabricado ou simulado; reconheço vieses "
-              "potenciais de representatividade populacional e a necessidade de "
-              "validação experimental independente antes de qualquer uso clínico. "
-              "Nenhuma prática de uso antiético de IA foi empregada.")
+              "BRANDALIZE, 2023; RIBEIRO et al., 2025; NORONHA et al., 2026). O "
+              "PrimeVarClass é posicionado não como diagnóstico automático, mas como "
+              "ferramenta de pesquisa responsável: apoio a laboratórios públicos, "
+              "formação de pesquisadores em boas práticas de validação, suporte "
+              "translacional e equidade por ser software aberto e de baixo custo "
+              "computacional, sem exigir GPU. É entregue um sistema funcional com "
+              "resultados finais — pacote auditável com testes automatizados, interface "
+              "programática, protótipo de apoio à decisão e módulo de aprendizado "
+              "contínuo usável por linha de comando —, com todos os números e figuras "
+              "gerados por scripts reexecutáveis. Em conformidade com o item 2.2.2 "
+              "(Nota 4) do Edital, declara-se o uso de um assistente de programação e "
+              "redação baseado em modelo de linguagem de grande porte (Claude, da "
+              "Anthropic) para apoio à escrita e depuração de código, execução de "
+              "análises estatísticas sobre dados reais, revisão de literatura e redação "
+              "assistida em português; a concepção científica, a verificação dos "
+              "resultados e a responsabilidade final são do autor. Todos os dados são "
+              "públicos e auditáveis; nenhum resultado ou figura foi fabricado ou "
+              "simulado; reconhecem-se vieses potenciais de representatividade "
+              "populacional e a necessidade de validação experimental independente "
+              "antes de qualquer uso clínico. Nenhuma prática de uso antiético de IA "
+              "foi empregada.")
     doc.add_page_break()
 
 
@@ -714,22 +740,21 @@ def build_conclusao(doc):
               "que memorizam. Combinado a um modelo de linguagem de proteínas "
               "autêntico, o modelo-carro-chefe alcançou AUC externa de 0,909 — "
               "estatisticamente equivalente aos melhores preditores publicados, mesmo "
-              "avaliado sob a desvantagem que eu mesmo tornei explícita. Um "
-              "meta-classificador atingiu 0,938; calibrei a evidência em critérios "
-              "ACMG/AMP; e demonstrei, com dados reais, que complemento o "
+              "avaliado sob a desvantagem que foi tornada explícita. Um "
+              "meta-classificador atingiu 0,938; a evidência foi calibrada em critérios "
+              "ACMG/AMP; e demonstrou-se, com dados reais, que o método complementa o "
               "AlphaMissense onde ele se abstém, resolvendo mais da metade dos VUS e "
-              "quase dois terços das variantes conflitantes na sua zona cinzenta. "
-              "Validei o mecanismo do modelo contra função medida em laboratório, "
-              "mitiguei uma lacuna de equidade entre ancestralidades, simulei "
-              "validação prospectiva com resultados crescentes, e entreguei um "
-              "mecanismo real e seguro de aprendizado contínuo. Entrego esse método de "
+              "quase dois terços das variantes conflitantes na sua zona cinzenta. O "
+              "mecanismo do modelo foi validado contra função medida em laboratório, "
+              "uma lacuna de equidade entre ancestralidades foi mitigada, a validação "
+              "prospectiva foi simulada com resultados crescentes, e um mecanismo real "
+              "e seguro de aprendizado contínuo foi entregue. Esse método é entregue de "
               "forma aberta, explicável, auditável e eticamente contida, com aplicação "
               "direta ao contexto brasileiro de saúde de precisão. A maior força do "
               "PrimeVarClass não é um número, mas um compromisso demonstrado com a "
-              "ciência honesta — do teste de uma hipótese própria até a correção de "
-              "uma assimetria que me desfavorecia.")
+              "ciência honesta — do teste de uma hipótese própria até a correção de uma "
+              "assimetria que o desfavorecia.")
     doc.add_page_break()
-
 
 # MARKER_REFS_START
 
@@ -895,7 +920,8 @@ def build_referencias(doc):
     for ref in REFERENCIAS:
         p = doc.add_paragraph()
         p.paragraph_format.first_line_indent = Cm(0)
-        p.paragraph_format.space_after = Pt(8)
+        p.paragraph_format.space_after = Pt(4)
+        p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
         p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         r = p.add_run(ref)
         r.font.name = "Arial"; r.font.size = Pt(10.5)
