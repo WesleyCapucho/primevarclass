@@ -1,0 +1,31 @@
+{
+  "TP53": {
+    "n": 204,
+    "n_pathogenic": 181,
+    "pct_pathogenic_in_critical": 1.0,
+    "auc_biochem": 0.627,
+    "auc_domain": 0.78,
+    "auc_domain_esm": 0.849
+  },
+  "PALB2": {
+    "n": 19,
+    "n_pathogenic": 6,
+    "pct_pathogenic_in_critical": 0.167,
+    "auc_biochem": null,
+    "auc_domain": null
+  },
+  "CHEK2": {
+    "n": 6,
+    "n_pathogenic": 4,
+    "pct_pathogenic_in_critical": 0.75,
+    "auc_biochem": null,
+    "auc_domain": null
+  },
+  "ATM": {
+    "n": 75,
+    "n_pathogenic": 42,
+    "pct_pathogenic_in_critical": 0.405,
+    "auc_biochem": 0.486,
+    "auc_domain": 0.481
+  }
+}
