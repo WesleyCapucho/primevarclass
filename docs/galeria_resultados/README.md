@@ -154,6 +154,13 @@ cru sugere — e por isso o nosso diferencial real não é "vencer no AUC", e si
 > *p* = 0,12–0,61). Por isso **não** alegamos "vazamento removido"; a afirmação
 > correta é a assimetria de avaliação acima. Dados: [`benchmark_leakage_controlled.json`](../../primevarclass_manuscript_analysis/benchmark_leakage_controlled.json).
 
+**Duas provas fecham o argumento de circularidade:**
+
+1. **O único comparador sem circularidade — o EVE** (Frazer et al., 2021; modelo generativo *não supervisionado*, como o ESM-2, e portanto **nunca treinado em rótulos ClinVar**) — **não supera** o PrimeVarClass: no subconjunto que o dbNSFP cobre (n = 185), EVE AUC 0,925 vs. 0,913 do modelo, **DeLong p = 0,59** (equivalente). A única ferramenta que corre na mesma pista justa empata conosco.
+2. **Sob AUPRC** — a métrica robusta ao forte desbalanceamento (17% patogênicas; base trivial 0,172) — o PrimeVarClass (**0,802**) **supera REVEL (0,797) e CADD (0,663)**, aproximando-se do AlphaMissense (0,855). Dados: [`eve_metrics_benchmark.json`](../../primevarclass_manuscript_analysis/eve_metrics_benchmark.json).
+
+E a estabilidade não depende de sorte na partição: em **500 divisões Monte Carlo** bloqueadas por posição (reajuste a cada iteração), a AUC do carro-chefe é **0,894 ± 0,025** (IC95% 0,841–0,938), acima de 0,80 em **100%** das divisões.
+
 ### 2.2 O meta-classificador supera qualquer ferramenta isolada
 ![Meta forest](figuras/fig_meta_forest.png)
 
