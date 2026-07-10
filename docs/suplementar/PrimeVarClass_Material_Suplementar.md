@@ -72,15 +72,17 @@ Para tornar o escore **clinicamente acionável**, calibramos o modelo-carro-chef
 
 ---
 
-## S4. Validação funcional ortogonal (*deep mutational scanning*) — preliminar
+## S4. Validação funcional ortogonal (*deep mutational scanning*)
 
-Um teste independente de rótulos clínicos: o escore acompanha a **função molecular medida em laboratório**? Correlacionamos as predições com ensaios de *saturation genome editing* (Findlay et al., 2018) e de reparo por recombinação homóloga — HDR (Starita et al., 2015) para BRCA1, obtidos do MaveDB (script `scratch/functional_validation.py`).
+Um teste independente de rótulos clínicos: o escore acompanha a **função molecular medida em laboratório**? Correlacionamos a probabilidade do modelo com ensaios de *saturation genome editing* — SGE (Findlay et al., 2018) e de reparo por recombinação homóloga — HDR (Starita et al., 2015) para BRCA1, obtidos do MaveDB (script `scratch/functional_validation.py`). A fronteira de perda de função (LOF) é definida objetivamente por uma mistura gaussiana de 2 componentes sobre os escores funcionais (bimodais).
 
-**Estado atual (honesto).** Com a expansão da cobertura ESM-2 (saturação completa de BRCA1/BRCA2 e mais oito genes HBOC, execução em GPU; `scratch/colab_esm2_panel.py`), o ensaio HDR de Starita (2.749 variantes) passou a ter cobertura integral, e o sinal ESM-2 correlaciona-se com a função medida na direção esperada, porém de forma **modesta** (Spearman ≈ 0,20) — coerente com o fato de HDR ser um ensaio específico e ruidoso. O padrão-ouro (Findlay et al., 2018, *saturation genome editing*) exige uma **etapa de mapeamento de coordenadas**: a entrada do MaveDB (`urn:mavedb:00001222`) usa numeração **local** por éxon, não a numeração da proteína completa, de modo que as posições precisam ser convertidas antes da correlação. Reportamos essa limitação com transparência; a validação funcional consolidada acompanhará o mapeamento de coordenadas e não é usada, no estado atual, para sustentar afirmações de desempenho.
+**Mapeamento de coordenadas resolvido.** A entrada do MaveDB do SGE de Findlay (`urn:mavedb:00001222`) usa numeração **local** da região ensaiada (posição 1 = primeiro resíduo do alvo), não a da proteína completa. O alinhamento é feito automaticamente: para cada ensaio, busca-se o deslocamento inteiro que maximiza a concordância do aminoácido de referência com a sequência canônica do BRCA1 (P38398), mantendo-se apenas as variantes cujo resíduo confere. O SGE de função alinha com deslocamento **+1576** (região C-terminal/BRCT, 99,5% de concordância); o HDR de Starita já usa numeração canônica (deslocamento 0).
+
+**Resultado.** A probabilidade de patogenicidade — treinada apenas em rótulos clínicos — separa perda de função de função preservada com **AUC 0,795 no SGE de Findlay (n = 2.140)** e 0,712 no HDR de Starita (n = 2.749), ambos com cobertura ESM-2 integral. É validação ortogonal contra fenótipo molecular medido em bancada, não contra outro rótulo *in silico* — e sustenta a competência do modelo em BRCA1 de forma independente da coorte clínica externa (ver artigo principal).
 
 ![Figura S3](figuras/fig_functional_validation.png)
 
-**Figura S3.** Predições do modelo *versus* escore funcional experimental (BRCA1), por ensaio de DMS. A validação é limitada pela cobertura atual de ESM-2 nas regiões ensaiadas; a versão completa acompanhará a expansão da cobertura.
+**Figura S3.** Probabilidade do modelo *versus* escore funcional experimental (BRCA1), por ensaio de DMS, após o alinhamento de coordenadas. A patogenicidade prevista é negativamente associada à função medida (SGE de Findlay: ρ = −0,35, AUC 0,795; HDR de Starita: ρ = −0,19, AUC 0,712).
 
 ---
 
@@ -214,7 +216,7 @@ A decomposição de mecanismo (S8) não é apenas uma hipótese estrutural — e
 
 A ordenação é **monotônica e biologicamente esperada**: variantes que destroem a coordenação do zinco perdem a maior parte da função; as de superfície, quase nenhuma. A diferença entre mecanismos é altamente significativa (**Kruskal–Wallis p = 3,5 × 10⁻³³**), e o enterramento correlaciona-se com a perda de função (Spearman RSA×HDR = +0,26). Ou seja, o mecanismo que atribuímos a partir da estrutura **antecipa a consequência funcional real** — uma validação independente de rótulos clínicos.
 
-**Nota de honestidade.** O HDR é um ensaio específico e ruidoso; por isso reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local por éxon no MaveDB e exige um mapeamento de coordenadas segmento-a-segmento, deixado como trabalho futuro.
+**Nota de honestidade.** O HDR é um ensaio específico e ruidoso; por isso, para a decomposição de mecanismo, reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local no MaveDB; o alinhamento de coordenadas foi resolvido (S4), e nele a probabilidade do modelo separa perda de função com AUC 0,795 (n = 2.140).
 
 ![Figura S10](figuras/fig_mechanism_vs_function.png)
 

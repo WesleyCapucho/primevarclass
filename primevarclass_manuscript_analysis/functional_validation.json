@@ -1,22 +1,22 @@
 {
-  "Findlay 2018 (SGE, função)": {
+  "Findlay 2018 (SGE, funÃ§Ã£o)": {
     "urn": "urn:mavedb:00001222-b-2",
-    "n": 2150,
-    "n_esm_covered": 159,
-    "spearman_prob_vs_function": -0.018,
-    "spearman_esm_vs_function": 0.042,
-    "auc_prob_vs_LOF": 0.437,
-    "auc_esm_vs_LOF": 0.431,
-    "n_LOF": 427
+    "n": 2140,
+    "n_esm_covered": 2140,
+    "spearman_prob_vs_function": -0.35,
+    "spearman_esm_vs_function": 0.447,
+    "auc_prob_vs_LOF": 0.795,
+    "auc_esm_vs_LOF": 0.846,
+    "n_LOF": 431
   },
   "Findlay 2018 (SGE, crescimento)": {
     "urn": "urn:mavedb:00001222-a-1",
     "n": 1359,
-    "n_esm_covered": 72,
-    "spearman_prob_vs_function": -0.236,
-    "spearman_esm_vs_function": 0.174,
-    "auc_prob_vs_LOF": 0.635,
-    "auc_esm_vs_LOF": 0.625,
+    "n_esm_covered": 1359,
+    "spearman_prob_vs_function": -0.419,
+    "spearman_esm_vs_function": 0.513,
+    "auc_prob_vs_LOF": 0.756,
+    "auc_esm_vs_LOF": 0.834,
     "n_LOF": 356
   },
   "Starita 2015 (HDR)": {

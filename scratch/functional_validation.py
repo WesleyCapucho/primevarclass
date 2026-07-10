@@ -55,6 +55,7 @@ ASSAYS = {
 
 import re
 MISS = re.compile(r"^p\.([A-Za-z]{3})(\d+)([A-Za-z]{3})$")
+BRCA1_SEQ = open("scratch/esm_input/BRCA1_P38398.txt").read().strip()
 
 
 def parse_hgvs(h):
@@ -62,6 +63,28 @@ def parse_hgvs(h):
     if not m or m.group(1) not in AA3TO1 or m.group(3) not in AA3TO1:
         return None
     return AA3TO1[m.group(1)], int(m.group(2)), AA3TO1[m.group(3)]
+
+
+def best_offset(aa_refs, positions, seq):
+    """Find the integer offset that aligns MaveDB target-local numbering to the
+    canonical BRCA1 protein (Findlay's SGE records are numbered within the assayed
+    region; Starita uses canonical numbering -> offset 0). Returns the offset with
+    the highest reference-AA agreement."""
+    ref_at = {}
+    for r, p in zip(aa_refs, positions):
+        ref_at.setdefault(int(p), r)
+    items = list(ref_at.items())
+    best_k, best_frac = 0, 0.0
+    for k in range(-3, len(seq)):
+        tot = match = 0
+        for p, r in items:
+            j = p + k - 1
+            if 0 <= j < len(seq):
+                tot += 1
+                match += (seq[j] == r)
+        if tot >= 50 and match / tot > best_frac:
+            best_frac, best_k = match / tot, k
+    return best_k if best_frac > 0.9 else 0
 
 
 # ---- train the flagship model on the internal cohort -----------------------
@@ -101,6 +124,15 @@ for ax, (name, urn) in zip(axes, ASSAYS.items()):
     a = a[parsed.notna()].copy()
     a[["aa_ref", "position", "aa_alt"]] = pd.DataFrame(parsed[parsed.notna()].tolist(), index=a.index)
     a = a.dropna(subset=["score"]).drop_duplicates(["position", "aa_ref", "aa_alt"])
+    # align target-local numbering to canonical BRCA1, then keep only variants
+    # whose reference AA actually matches the protein (drops any residual noise)
+    off = best_offset(a["aa_ref"].tolist(), a["position"].tolist(), BRCA1_SEQ)
+    a["position"] = a["position"] + off
+    keep_pos = [0 <= p - 1 < len(BRCA1_SEQ) and BRCA1_SEQ[p - 1] == r
+                for p, r in zip(a["position"], a["aa_ref"])]
+    a = a[keep_pos].copy()
+    a["hgvs_p"] = ["p." + r + str(p) + al for r, p, al in zip(a.aa_ref, a.position, a.aa_alt)]
+    print(f"   [{name}] offset={off:+d}  aligned n={len(a)}")
     prob, esm = score_variants(a)
     a["prob"], a["esm"] = prob, esm
 
@@ -134,7 +166,7 @@ fig.suptitle("Validação funcional ortogonal — predições vs. função medid
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 os.makedirs(os.path.dirname(FIG), exist_ok=True)
 fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-json.dump(results, open(os.path.join(OUT, "functional_validation.json"), "w"), indent=2, ensure_ascii=False)
+json.dump(results, open(os.path.join(OUT, "functional_validation.json"), "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
 print(">> Orthogonal functional validation (BRCA1 DMS):")
 for k, v in results.items():
