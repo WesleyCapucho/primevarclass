@@ -508,7 +508,10 @@ def build_resultados(doc):
                   "(AUC-ROC).",
           note="DeLong domínio vs. bioquímico: p = 3,2 × 10⁻⁹ (interno), p = 1,8 × "
                "10⁻¹³ (externo). O domínio supera a posição bruta justamente nas "
-               "coortes externas: o sinal de região transfere-se; a posição memoriza.")
+               "coortes externas: o sinal de região transfere-se; a posição memoriza. "
+               "A coluna 'CV bloqueada' (aqui e na Tabela 4) reporta uma execução de "
+               "referência (5 folds, semente fixa); a média de 12 sementes consta no "
+               "texto (seção Robustez).")
     figure(doc, "fig_domain_architecture.png",
            "Figura 2. Domínios funcionais de BRCA1/BRCA2 com variantes reais "
            "sobrepostas. As patogênicas (vermelho, abaixo) concentram-se nas regiões "
