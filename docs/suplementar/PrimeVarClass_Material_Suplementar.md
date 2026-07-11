@@ -66,9 +66,9 @@ Para tornar o escore **clinicamente acionável**, calibramos o modelo-carro-chef
 
 **Leitura honesta.** A evidência **transfere-se robustamente nos extremos**: variantes com escore ≥ 0,675 recebem **PP3_Forte**, e na coorte externa esse grupo é 94% patogênico, com LR local de 75,9 — acima até do patamar "forte" (≥ 18,7). Simetricamente, escore ≤ 0,255 dá **BP4_Moderado** (3% patogênicas). A faixa intermediária é deixada **não informativa** — o comportamento clinicamente responsável: uma VUS só é movida quando a evidência é real. É exatamente esse par (evidência forte nos extremos + abstenção no meio) que sustenta o uso do escore para **priorizar VUS** para reclassificação.
 
-![Figura S2](figuras/fig_acmg_calibration.png)
+![Figura S3](figuras/fig_acmg_calibration.png)
 
-**Figura S2.** Calibração ACMG/AMP: razão de verossimilhança local (LR⁺) da evidência "escore ≥ t" em função do limiar *t* (escala logarítmica). As linhas tracejadas horizontais marcam os patamares de força PP3 (supporting/moderate/strong); as linhas pontilhadas verticais, os limiares de escore correspondentes. A curva é monotônica: quanto maior o escore, mais forte a evidência patogênica.
+**Figura S3.** Calibração ACMG/AMP: razão de verossimilhança local (LR⁺) da evidência "escore ≥ t" em função do limiar *t* (escala logarítmica). As linhas tracejadas horizontais marcam os patamares de força PP3 (supporting/moderate/strong); as linhas pontilhadas verticais, os limiares de escore correspondentes. A curva é monotônica: quanto maior o escore, mais forte a evidência patogênica.
 
 ---
 
@@ -80,9 +80,9 @@ Um teste independente de rótulos clínicos: o escore acompanha a **função mol
 
 **Resultado.** A probabilidade de patogenicidade — treinada apenas em rótulos clínicos — separa perda de função de função preservada com **AUC 0,795 no SGE de BRCA1 (Findlay, n = 2.140)**, 0,712 no HDR de Starita (BRCA1, n = 2.749) e **0,874 no HDR de BRCA2 (Hu, n = 462; Spearman −0,61)**, todos com cobertura ESM-2 integral. Valida a competência do modelo **nos dois genes** de forma independente das coortes clínicas externas — rebatendo justamente as duas coortes externas mais fracas (BRCA1 0,651; BRCA2 0,800; ver artigo principal).
 
-![Figura S3](figuras/fig_functional_validation.png)
+![Figura S4](figuras/fig_functional_validation.png)
 
-**Figura S3.** Probabilidade do modelo *versus* escore funcional experimental, por ensaio de DMS, após o alinhamento de coordenadas. A patogenicidade prevista é negativamente associada à função medida nos dois genes (BRCA1 — SGE de Findlay: ρ = −0,35, AUC 0,795; HDR de Starita: ρ = −0,19, AUC 0,712 — e BRCA2 — HDR em VC-8/Hu: ρ = −0,61, AUC 0,874).
+**Figura S4.** Probabilidade do modelo *versus* escore funcional experimental, por ensaio de DMS, após o alinhamento de coordenadas. A patogenicidade prevista é negativamente associada à função medida nos dois genes (BRCA1 — SGE de Findlay: ρ = −0,35, AUC 0,795; HDR de Starita: ρ = −0,19, AUC 0,712 — e BRCA2 — HDR em VC-8/Hu: ρ = −0,61, AUC 0,874).
 
 ---
 
@@ -104,7 +104,7 @@ pip install -e ".[explain,dev]"
 python scratch/benchmark_sota.py        # S1 — escores de terceiros + AUC/DeLong
 python scratch/meta_classifier.py       # S2 — meta-classificador integrado
 python scratch/benchmark_figure.py      # Figura S1
-python scratch/acmg_calibration.py      # S3 — calibração ACMG + Figura S2
+python scratch/acmg_calibration.py      # S3 — calibração ACMG + Figura S3
 python scratch/functional_validation.py # S4 — validação funcional (DMS)
 ```
 
@@ -130,9 +130,9 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 **A zona cinzenta do AlphaMissense, resolvida (dados reais do ClinVar).** O complemento não é hipotético. Puxando ao vivo do ClinVar todas as variantes *missense* de BRCA1/BRCA2 (E-utilities) e do AlphaMissense sua classe de três categorias, medimos onde ele **se abstém** (classe "ambígua") e o que fornecemos ali. O AlphaMissense deixa **644 variantes reais ambíguas** nos dois genes; entre essas, o PrimeVarClass fornece evidência ACMG calibrada para **54% das VUS** (264 variantes) e **65% das variantes conflitantes** — aquelas em que os próprios laboratórios discordam entre si (192 variantes). É a demonstração direta de que ocupamos exatamente a lacuna que o preditor de escala deixa em aberto.
 
-![Figura S6b](figuras/fig_grey_zone.png)
+![Figura S6a](figuras/fig_grey_zone.png)
 
-**Figura S6b.** Complemento ao AlphaMissense na zona cinzenta (ClinVar real, BRCA1 e BRCA2). Entre as variantes que o AlphaMissense classifica como *ambíguas*, quantas VUS **(A)** e variantes conflitantes **(B)** recebem evidência calibrada do PrimeVarClass — PP3_Forte (patogênico), BP4_Moderado (benigno) ou permanecem não informativas. A acurácia dessas chamadas é validada de forma independente pela calibração (S3) e pela validação temporal (S-temporal).
+**Figura S6a.** Complemento ao AlphaMissense na zona cinzenta (ClinVar real, BRCA1 e BRCA2). Entre as variantes que o AlphaMissense classifica como *ambíguas*, quantas VUS **(A)** e variantes conflitantes **(B)** recebem evidência calibrada do PrimeVarClass — PP3_Forte (patogênico), BP4_Moderado (benigno) ou permanecem não informativas. A acurácia dessas chamadas é validada de forma independente pela calibração (S3) e pela validação temporal (no artigo principal).
 
 **Robustez do sinal (ESM-2 3B).** Para verificar que o resultado não depende do tamanho do modelo de linguagem, reexecutamos toda a pontuação com o **ESM-2 3B** (3 bilhões de parâmetros, ~4× maior; 12 genes HBOC, execução em GPU). O modelo maior **corrobora** o de 650M (correlação de Pearson 0,83 entre os LLRs) sem melhorar o desempenho externo (AUC do carro-chefe 0,905 vs. 0,909) — resultado honesto e coerente com a literatura, que mostra que, para efeito de variante, o ganho de escala do PLM satura. Mantemos o 650M como modelo primário e reportamos o 3B como confirmação independente.
 
@@ -140,26 +140,26 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 **Retratos de alta resolução (destaque visual).** As figuras a seguir renderizam o mesmo resultado com qualidade de capa (PyMOL open-source, oclusão de ambiente e ray-tracing), servindo como resumo gráfico do trabalho. A escala de cor (índigo → dourado) mede a intensidade de detecção por resíduo.
 
-![Figura S6c](figuras/fig_hero_ring.png)
+![Figura S6b](figuras/fig_hero_ring.png)
 
-**Figura S6c.** Domínio RING de BRCA1 (PDB 1JM7): as mutações detectadas como patogênicas concentram-se no sítio de coordenação de zinco (esferas prateadas; cisteínas em dourado), enquanto as longas hélices de superfície permanecem tolerantes (índigo).
+**Figura S6b.** Domínio RING de BRCA1 (PDB 1JM7): as mutações detectadas como patogênicas concentram-se no sítio de coordenação de zinco (esferas prateadas; cisteínas em dourado), enquanto as longas hélices de superfície permanecem tolerantes (índigo).
 
-![Figura S6d](figuras/fig_hero_brct.png)
+![Figura S6c](figuras/fig_hero_brct.png)
 
-**Figura S6d.** Repetições BRCT de BRCA1 (PDB 1JNX): mapa de vulnerabilidade por resíduo — o núcleo estrutural das duas repetições (dourado) concentra a detecção, e as alças expostas (índigo) são toleradas.
+**Figura S6c.** Repetições BRCT de BRCA1 (PDB 1JNX): mapa de vulnerabilidade por resíduo — o núcleo estrutural das duas repetições (dourado) concentra a detecção, e as alças expostas (índigo) são toleradas.
 
 
-![Figura S7](figuras/fig_detected_brct.png)
+![Figura S6d](figuras/fig_detected_brct.png)
 
-**Figura S7.** Resíduos-alvo detectados no núcleo do domínio BRCT (PDB 1JNX), renderizados com PyMOL open-source. A coloração segue a intensidade de detecção (azul: baixa; vermelho: alta); os resíduos rotulados (Arg1699, ..., Met1775, ...) correspondem a posições em que praticamente todas as substituições recebem evidência PP3_Forte — situadas no interior estrutural do domínio, onde substituições desestabilizam o dobramento.
+**Figura S6d.** Resíduos-alvo detectados no núcleo do domínio BRCT (PDB 1JNX), renderizados com PyMOL open-source. A coloração segue a intensidade de detecção (azul: baixa; vermelho: alta); os resíduos rotulados (Arg1699, ..., Met1775, ...) correspondem a posições em que praticamente todas as substituições recebem evidência PP3_Forte — situadas no interior estrutural do domínio, onde substituições desestabilizam o dobramento.
 
 ---
 
-## S8. Decomposição de mecanismo — o *porquê* de cada variante (contribuição original)
+## S7. Decomposição de mecanismo — o *porquê* de cada variante (contribuição original)
 
 Os preditores existentes entregam um número de patogenicidade; **nenhum diz o mecanismo**. Aqui está a contribuição mais original do trabalho: para cada variante detectada, atribuímos um **mecanismo estrutural**, cruzando dois eixos ortogonais — o sinal de **sequência** (ESM-2, conservação evolutiva) e o sinal de **estrutura**, calculado a partir das coordenadas experimentais reais (grau de enterramento por Shrake–Rupley + distância ao ligante funcional de cada domínio). Nenhum modelo novo é necessário — apenas geometria de estruturas reais (script `scratch/mechanism_domains.py`).
 
-**Tabela S8. Mecanismo das variantes detectadas (PP3_Forte) nos três domínios críticos.**
+**Tabela S7. Mecanismo das variantes detectadas (PP3_Forte) nos três domínios críticos.**
 
 | Domínio (estrutura) | Núcleo/dobramento | Sítio funcional | Interface | Superfície |
 | --- | ---: | ---: | ---: | ---: |
@@ -171,13 +171,13 @@ Os padrões são biologicamente coerentes: o RING distribui-se entre coordenaç�
 
 **Nota de rigor (BRCA2 DBD).** A única estrutura experimental do DBD (1MJE) é de *camundongo*; para atribuir posições humanas corretamente, alinhamos a sequência da estrutura à humana (UniProt P51587) por alinhamento par-a-par e transferimos a numeração — em vez de mapear ingenuamente variantes humanas sobre a numeração de camundongo.
 
-![Figura S8](figuras/fig_mechanism_domains.png)
+![Figura S7](figuras/fig_mechanism_domains.png)
 
-**Figura S8.** Decomposição de mecanismo das variantes detectadas nos domínios críticos de BRCA1 (RING, BRCT) e BRCA2 (DBD). Cada ponto é uma variante patogênica detectada, posicionada pelo eixo de **sequência** (ESM-2 LLR, horizontal) e de **estrutura** (exposição ao solvente RSA, vertical) e colorida pelo mecanismo inferido. Variantes enterradas (RSA baixo) tendem à desestabilização do dobramento; variantes expostas mas próximas ao ligante funcional atingem a função (ligação a fosfopeptídeo, a DNA, ou a interface com parceiros) — o "porquê" clínico que um escore isolado não fornece.
+**Figura S7.** Decomposição de mecanismo das variantes detectadas nos domínios críticos de BRCA1 (RING, BRCT) e BRCA2 (DBD). Cada ponto é uma variante patogênica detectada, posicionada pelo eixo de **sequência** (ESM-2 LLR, horizontal) e de **estrutura** (exposição ao solvente RSA, vertical) e colorida pelo mecanismo inferido. Variantes enterradas (RSA baixo) tendem à desestabilização do dobramento; variantes expostas mas próximas ao ligante funcional atingem a função (ligação a fosfopeptídeo, a DNA, ou a interface com parceiros) — o "porquê" clínico que um escore isolado não fornece.
 
 ---
 
-## S9. Equidade em genômica — evidência que não depende de ancestralidade (impacto social)
+## S8. Equidade em genômica — evidência que não depende de ancestralidade (impacto social)
 
 As bases de dados clínicas são dominadas por indivíduos de **ancestralidade europeia**; variantes frequentes em outras populações são, por isso, menos estudadas e mais frequentemente deixadas como VUS (Manrai et al., *N Engl J Med*, 2016; Popejoy & Fullerton, *Nature*, 2016). Usando as frequências alélicas **por população do gnomAD v4** (script `scratch/fetch_gnomad_populations.py`), quantificamos essa lacuna em BRCA1/BRCA2 e mostramos que nosso sinal — **cego à ancestralidade** — a atenua.
 
@@ -194,17 +194,17 @@ Há **seis vezes mais** variantes apreciáveis predominantes em populações nã
 
 **Nota de honestidade.** A lacuna aparece nas variantes *apreciáveis* (não nas ultra-raras, onde ambas as ancestralidades são igualmente pouco resolvidas). E, embora nossos componentes *zero-shot* (ESM-2/estrutura) sejam cegos a ancestralidade, o classificador Random Forest é treinado em rótulos ClinVar — também eurocêntricos; por isso a contribuição de equidade apoia-se, sobretudo, nesses componentes independentes de população, o que declaramos abertamente.
 
-![Figura S9](figuras/fig_equity.png)
+![Figura S8](figuras/fig_equity.png)
 
-**Figura S9.** Equidade na resolução de variantes de BRCA1/BRCA2. **(A)** Entre variantes clinicamente apreciáveis (gnomAD, AF > 10⁻⁴), as predominantes em populações não-europeias são resolvidas no ClinVar a menos da metade da taxa das europeias (26% vs 56%), apesar de serem seis vezes mais numerosas. **(B)** Entre as não resolvidas, o PrimeVarClass fornece evidência ACMG calibrada em taxa semelhante para ambos os grupos (78% vs 84%) — evidência que não depende de quão estudada é a população.
+**Figura S8.** Equidade na resolução de variantes de BRCA1/BRCA2. **(A)** Entre variantes clinicamente apreciáveis (gnomAD, AF > 10⁻⁴), as predominantes em populações não-europeias são resolvidas no ClinVar a menos da metade da taxa das europeias (26% vs 56%), apesar de serem seis vezes mais numerosas. **(B)** Entre as não resolvidas, o PrimeVarClass fornece evidência ACMG calibrada em taxa semelhante para ambos os grupos (78% vs 84%) — evidência que não depende de quão estudada é a população.
 
 ---
 
-## S10. O mecanismo é validado contra função experimental
+## S9. O mecanismo é validado contra função experimental
 
-A decomposição de mecanismo (S8) não é apenas uma hipótese estrutural — ela **prediz a função medida em laboratório**. Usando o ensaio de reparo por recombinação homóloga (HDR) de Starita et al. (2015) para BRCA1 (MaveDB `urn:mavedb:00000081`, numeração proteica correta, cobrindo RING e BRCT), atribuímos a cada variante ensaiada o mecanismo do seu resíduo e comparamos a função medida (script `scratch/mechanism_vs_function.py`).
+A decomposição de mecanismo (S7) não é apenas uma hipótese estrutural — ela **prediz a função medida em laboratório**. Usando o ensaio de reparo por recombinação homóloga (HDR) de Starita et al. (2015) para BRCA1 (MaveDB `urn:mavedb:00000081`, numeração proteica correta, cobrindo RING e BRCT), atribuímos a cada variante ensaiada o mecanismo do seu resíduo e comparamos a função medida (script `scratch/mechanism_vs_function.py`).
 
-**Tabela S10. Função HDR mediana por mecanismo (1.262 variantes; menor = mais perda de função).**
+**Tabela S9. Função HDR mediana por mecanismo (1.262 variantes; menor = mais perda de função).**
 
 | Mecanismo | Função HDR mediana |
 | --- | ---: |
@@ -218,21 +218,21 @@ A ordenação é **monotônica e biologicamente esperada**: variantes que destro
 
 **Nota de honestidade.** O HDR é um ensaio específico e ruidoso; por isso, para a decomposição de mecanismo, reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local no MaveDB; o alinhamento de coordenadas foi resolvido (S4), e nele a probabilidade do modelo separa perda de função com AUC 0,795 (n = 2.140).
 
-![Figura S10](figuras/fig_mechanism_vs_function.png)
+![Figura S9](figuras/fig_mechanism_vs_function.png)
 
-**Figura S10.** Validação do mecanismo contra função experimental. Distribuição da função HDR medida (Starita et al., 2015) por mecanismo estrutural atribuído. Mecanismos deletérios (coordenação de zinco, núcleo do dobramento, interface) apresentam perda de função progressivamente maior que os resíduos de superfície (Kruskal–Wallis p = 3,5 × 10⁻³³).
-
----
-
-## S11. Explicabilidade por SHAP
-
-![Figura S11](figuras/fig_shap.png)
-
-**Figura S11.** Valores de Shapley (SHAP; TreeExplainer) do modelo-carro-chefe (domínio + ESM-2) na coorte interna. O escore ESM-2 (`esm2_llr`) e a pertinência a domínio crítico (`in_critical_domain`) são os preditores dominantes, com direção de efeito biologicamente correta (LLR muito negativo → patogênico). Confirma que o modelo raciocina sobre biologia interpretável, e não como caixa-preta. Script: `scratch/shap_explain.py`.
+**Figura S9.** Validação do mecanismo contra função experimental. Distribuição da função HDR medida (Starita et al., 2015) por mecanismo estrutural atribuído. Mecanismos deletérios (coordenação de zinco, núcleo do dobramento, interface) apresentam perda de função progressivamente maior que os resíduos de superfície (Kruskal–Wallis p = 3,5 × 10⁻³³).
 
 ---
 
-## S12. Validação prospectiva e head-to-head livre de vazamento
+## S10. Explicabilidade por SHAP
+
+![Figura S10](figuras/fig_shap.png)
+
+**Figura S10.** Valores de Shapley (SHAP; TreeExplainer) do modelo-carro-chefe (domínio + ESM-2) na coorte interna. O escore ESM-2 (`esm2_llr`) e a pertinência a domínio crítico (`in_critical_domain`) são os preditores dominantes, com direção de efeito biologicamente correta (LLR muito negativo → patogênico). Confirma que o modelo raciocina sobre biologia interpretável, e não como caixa-preta. Script: `scratch/shap_explain.py`.
+
+---
+
+## S11. Validação prospectiva e head-to-head livre de vazamento
 
 A partir de um snapshot histórico do ClinVar (variant_summary de junho/2023), identificamos as variantes missense de BRCA1/BRCA2 que eram **VUS ou conflitantes em 2023** e só foram **resolvidas a patogênicas/benignas até 2026** (n = 56). Um modelo treinado **apenas** no que era definitivo em 2023 (n = 462) é, por construção, cego a essas variantes. Script: `scratch/prospective_analysis.py`.
 
@@ -243,46 +243,46 @@ A Figura 11 do artigo principal apresenta ambos os painéis.
 
 ---
 
-## S13. Generalização além de BRCA — TP53
+## S12. Generalização além de BRCA — TP53
 
 A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada ao **TP53**, cujas variantes patogênicas se concentram no domínio de ligação ao DNA. Domínios curados do UniProt (função, não rótulo); ESM-2 de 650M — **o mesmo modelo do carro-chefe** — pontuado em GPU (`scratch/colab_esm2_650M_panel.py`), de modo que a generalização usa exatamente um único modelo. Script: `scratch/multigene_panel.py`.
 
-![Figura S13](figuras/fig_multigene.png)
+![Figura S12](figuras/fig_multigene.png)
 
-**Figura S13.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio não ajuda (0,481) mas o ESM-2 recupera o sinal (0,720; n = 75) — os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
+**Figura S12.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio não ajuda (0,481) mas o ESM-2 recupera o sinal (0,720; n = 75) — os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
 
 ---
 
-## S14. Incerteza por variante — predição conformal
+## S13. Incerteza por variante — predição conformal
 
 Predição conformal split (Mondrian, condicional por classe) sobre o modelo-carro-chefe: para um orçamento de erro ε, cada variante recebe um **conjunto de predição** — uma chamada confiante `{patogênica}`/`{benigna}` ou uma **abstenção** `{ambas}`. Script: `scratch/conformal_prediction.py`.
 
-![Figura S14](figuras/fig_conformal.png)
+![Figura S13](figuras/fig_conformal.png)
 
-**Figura S14.** (A) A garantia de cobertura se cumpre (cobertura empírica ≥ alvo). (B) Compromisso confiança×abstenção: a 90% de confiança, o modelo dá chamada confiante para **78%** das variantes externas (**90,5%** de acerto) e se **abstém com segurança** nos 22% incertos — um mecanismo de segurança embutido para uso clínico.
+**Figura S13.** (A) A garantia de cobertura se cumpre (cobertura empírica ≥ alvo). (B) Compromisso confiança×abstenção: a 90% de confiança, o modelo dá chamada confiante para **78%** das variantes externas (**90,5%** de acerto) e se **abstém com segurança** nos 22% incertos — um mecanismo de segurança embutido para uso clínico.
 
 ---
 
-## S15. Worklist de VUS — aplicação prática
+## S14. Worklist de VUS — aplicação prática
 
 Entre as **12.196** variantes missense de BRCA1/BRCA2 atualmente VUS ou conflitantes no ClinVar, o modelo fornece evidência ACMG calibrada que as transforma em um **worklist acionável** para laboratórios públicos. Script: `scratch/vus_worklist.py`; lista exportada em `primevarclass_manuscript_analysis/vus_worklist_pp3.csv`.
 
-![Figura S15](figuras/fig_vus_worklist.png)
+![Figura S14](figuras/fig_vus_worklist.png)
 
-**Figura S15.** O backlog de 12.196 VUS é triado em **326 para revisão urgente** (PP3, provável patogênica), **9.566 despriorizadas** (BP4, provável benigna) e 2.304 não informativas — **81% recebem evidência acionável**. A confiabilidade não é apenas afirmada: as chamadas de alta confiança são **97% acuradas** na validação prospectiva (S12).
+**Figura S14.** O backlog de 12.196 VUS é triado em **326 para revisão urgente** (PP3, provável patogênica), **9.566 despriorizadas** (BP4, provável benigna) e 2.304 não informativas — **81% recebem evidência acionável**. A confiabilidade não é apenas afirmada: as chamadas de alta confiança são **97% acuradas** na validação prospectiva (S11).
 
 ---
 
-## S16. Estabilidade Monte Carlo do modelo-carro-chefe
+## S15. Estabilidade Monte Carlo do modelo-carro-chefe
 
 Além do ponto único de CV bloqueada e das 12 sementes repetidas, o carro-chefe (domínio + ESM-2) foi submetido a **500 divisões aleatórias independentes bloqueadas por posição** (GroupShuffleSplit agrupado por gene:posição, 70/30), com **reajuste completo do modelo a cada iteração** — capturando tanto a variância de amostragem quanto a de ajuste, sob o protocolo anti-vazamento. Script: `scratch/monte_carlo_flagship.py`.
 
-![Figura S16](figuras/fig_montecarlo.png)
+![Figura S15](figuras/fig_montecarlo.png)
 
-**Figura S16.** Distribuição da AUC-ROC em 500 divisões Monte Carlo: **AUC 0,894 ± 0,025** (mediana 0,896; IC95% 0,841–0,938; mínimo 0,815), **acima de 0,80 em 100% das divisões**. A estabilidade confirma que o desempenho do carro-chefe não depende de uma partição afortunada — é consistente com a estimativa pontual de CV bloqueada (0,882).
+**Figura S15.** Distribuição da AUC-ROC em 500 divisões Monte Carlo: **AUC 0,894 ± 0,025** (mediana 0,896; IC95% 0,841–0,938; mínimo 0,815), **acima de 0,80 em 100% das divisões**. A estabilidade confirma que o desempenho do carro-chefe não depende de uma partição afortunada — é consistente com a estimativa pontual de CV bloqueada (0,882).
 
 ---
 
 ## Declaração de integridade
 
-Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo concentrado em BRCA (com generalização demonstrada no TP53) — estão declaradas em seus respectivos pontos. Os experimentos prospectivos (S12) usam um snapshot histórico real do ClinVar; a amostra é pequena e reportada com intervalos de confiança. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
+Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo concentrado em BRCA (com generalização demonstrada no TP53) — estão declaradas em seus respectivos pontos. Os experimentos prospectivos (S11) usam um snapshot histórico real do ClinVar; a amostra é pequena e reportada com intervalos de confiança. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
