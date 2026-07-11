@@ -1,5 +1,5 @@
 {
-  "Findlay 2018 (SGE, função)": {
+  "Findlay 2018 — SGE BRCA1 (função)": {
     "urn": "urn:mavedb:00001222-b-2",
     "n": 2140,
     "n_esm_covered": 2140,
@@ -9,17 +9,7 @@
     "auc_esm_vs_LOF": 0.846,
     "n_LOF": 431
   },
-  "Findlay 2018 (SGE, crescimento)": {
-    "urn": "urn:mavedb:00001222-a-1",
-    "n": 1359,
-    "n_esm_covered": 1359,
-    "spearman_prob_vs_function": -0.419,
-    "spearman_esm_vs_function": 0.513,
-    "auc_prob_vs_LOF": 0.756,
-    "auc_esm_vs_LOF": 0.834,
-    "n_LOF": 356
-  },
-  "Starita 2015 (HDR)": {
+  "Starita 2015 — HDR BRCA1": {
     "urn": "urn:mavedb:00000081-a-2",
     "n": 2749,
     "n_esm_covered": 2749,
@@ -28,5 +18,15 @@
     "auc_prob_vs_LOF": 0.712,
     "auc_esm_vs_LOF": 0.726,
     "n_LOF": 573
+  },
+  "HDR BRCA2 (VC-8)": {
+    "urn": "urn:mavedb:00001224-a-1",
+    "n": 462,
+    "n_esm_covered": 462,
+    "spearman_prob_vs_function": -0.609,
+    "spearman_esm_vs_function": 0.713,
+    "auc_prob_vs_LOF": 0.874,
+    "auc_esm_vs_LOF": 0.892,
+    "n_LOF": 137
   }
 }

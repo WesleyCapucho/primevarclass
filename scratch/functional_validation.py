@@ -47,15 +47,17 @@ _panel = "scratch/esm_input/esm2_scores_panel.csv"
 esm_df = pd.read_csv(_panel if os.path.exists(_panel) else "scratch/esm_input/esm2_scores.csv")
 
 ASSAYS = {
-    "Findlay 2018 (SGE, função)": "urn:mavedb:00001222-b-2",
-    "Findlay 2018 (SGE, crescimento)": "urn:mavedb:00001222-a-1",
-    "Starita 2015 (HDR)": "urn:mavedb:00000081-a-2",
+    "Findlay 2018 — SGE BRCA1 (função)": ("urn:mavedb:00001222-b-2", "BRCA1"),
+    "Starita 2015 — HDR BRCA1": ("urn:mavedb:00000081-a-2", "BRCA1"),
+    "HDR BRCA2 (VC-8)": ("urn:mavedb:00001224-a-1", "BRCA2"),
 }
 # in every assay a LOWER score = loss of function (deleterious)
 
 import re
 MISS = re.compile(r"^p\.([A-Za-z]{3})(\d+)([A-Za-z]{3})$")
 BRCA1_SEQ = open("scratch/esm_input/BRCA1_P38398.txt").read().strip()
+BRCA2_SEQ = open("scratch/esm_input/BRCA2_P51587.txt").read().strip()
+SEQS = {"BRCA1": BRCA1_SEQ, "BRCA2": BRCA2_SEQ}
 
 
 def parse_hgvs(h):
@@ -99,9 +101,9 @@ pipe = _build_pipeline(tr[cols], random_state=42)
 pipe.fit(tr[cols], ytr)
 
 
-def score_variants(df):
+def score_variants(df, gene):
     q = df.copy()
-    q["gene"] = "BRCA1"
+    q["gene"] = gene
     q["label"] = 0
     qb, _ = build_dataset_from_dataframe(q[["gene", "hgvs_p", "label", "position", "aa_ref", "aa_alt"]],
                                          mode="hybrid", keep_metadata=True)
@@ -114,26 +116,26 @@ def score_variants(df):
 
 
 dms = pd.read_csv("data/raw/mavedb/brca_function_scores.csv")
-dms = dms[dms.gene == "BRCA1"]
 
 results = {}
 fig, axes = plt.subplots(1, len(ASSAYS), figsize=(4.6 * len(ASSAYS), 4.4), dpi=200)
-for ax, (name, urn) in zip(axes, ASSAYS.items()):
+for ax, (name, (urn, gene)) in zip(axes, ASSAYS.items()):
+    seq = SEQS[gene]
     a = dms[dms.score_set_urn == urn].copy()
     parsed = a["hgvs_p"].map(parse_hgvs)
     a = a[parsed.notna()].copy()
     a[["aa_ref", "position", "aa_alt"]] = pd.DataFrame(parsed[parsed.notna()].tolist(), index=a.index)
     a = a.dropna(subset=["score"]).drop_duplicates(["position", "aa_ref", "aa_alt"])
-    # align target-local numbering to canonical BRCA1, then keep only variants
-    # whose reference AA actually matches the protein (drops any residual noise)
-    off = best_offset(a["aa_ref"].tolist(), a["position"].tolist(), BRCA1_SEQ)
+    # align target-local numbering to the canonical protein, then keep only
+    # variants whose reference AA matches the sequence (drops residual noise)
+    off = best_offset(a["aa_ref"].tolist(), a["position"].tolist(), seq)
     a["position"] = a["position"] + off
-    keep_pos = [0 <= p - 1 < len(BRCA1_SEQ) and BRCA1_SEQ[p - 1] == r
+    keep_pos = [0 <= p - 1 < len(seq) and seq[p - 1] == r
                 for p, r in zip(a["position"], a["aa_ref"])]
     a = a[keep_pos].copy()
     a["hgvs_p"] = ["p." + r + str(p) + al for r, p, al in zip(a.aa_ref, a.position, a.aa_alt)]
-    print(f"   [{name}] offset={off:+d}  aligned n={len(a)}")
-    prob, esm = score_variants(a)
+    print(f"   [{name}] gene={gene} offset={off:+d}  aligned n={len(a)}")
+    prob, esm = score_variants(a, gene)
     a["prob"], a["esm"] = prob, esm
 
     fscore = a["score"].to_numpy()
