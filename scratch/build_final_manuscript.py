@@ -818,21 +818,27 @@ def build_resultados(doc):
               "somam.")
 
     h3(doc, "Limitações e trabalhos futuros")
-    para(doc, "A validação concentrou-se em BRCA1/BRCA2; as fronteiras de domínio são "
-              "aproximações da literatura; a generalização, embora atinja 0,95–0,97 nas "
-              "coortes de painel especialista, é heterogênea entre coortes, em parte "
-              "por diferenças de qualidade de rotulagem e por baixos números de "
-              "positivos nas coortes externas de baixa prevalência; o recorte temporal "
-              "não isola o vazamento de forma limpa; e a validação funcional apoiou-se "
-              "na convergência retrospectiva com ensaios de deep mutational scanning "
-              "publicados — validação ortogonal contra função medida (BRCA1: SGE de "
-              "Findlay 0,795 e HDR de Starita 0,712; BRCA2: HDR em VC-8 0,874), não em "
-              "novo experimento de bancada conduzido no âmbito deste trabalho. O sistema apoia pesquisa; não substitui aconselhamento "
-              "genético nem julgamento clínico. Como trabalhos futuros, pretende-se "
-              "consolidar a generalização — já demonstrada no TP53 — a mais genes do "
-              "painel HBOC com coortes maiores, ampliar as coortes externas para "
-              "caracterizar os limites de aplicabilidade, e acompanhar em produção o "
-              "módulo de aprendizado contínuo com laboratórios parceiros.")
+    para(doc, "O escopo permanece centrado em variantes missense de BRCA1/BRCA2, com a "
+              "receita completa (domínio + ESM-2) estendida ao TP53 e ao ATM; ainda "
+              "assim é estreita — PALB2 e CHEK2 têm missense definitivas em número "
+              "insuficiente para conclusão. As fronteiras de domínio são cortes da "
+              "literatura; verificou-se, porém, que uma característica contínua de "
+              "distância ao domínio supera essa limitação, elevando a AUC externa a "
+              "0,918 e o modelo acessível sem GPU a 0,874 — sua integração completa ao "
+              "pipeline é o próximo passo imediato. A generalização é heterogênea entre "
+              "coortes (qualidade de rotulagem e poucos positivos nas coortes de baixa "
+              "prevalência), mas as duas coortes externas mais fracas são rebatidas por "
+              "mapas funcionais de bancada dos dois genes (AUC 0,795 a 0,874). O "
+              "comparador sem circularidade (EVE) cobre apenas o subconjunto anotado "
+              "pelo dbNSFP (n = 185); a validação prospectiva, embora decisiva, repousa "
+              "em amostra pequena (56 variantes); e a validação funcional é convergência "
+              "retrospectiva, não novo experimento de bancada conduzido neste trabalho. "
+              "O sistema apoia pesquisa; não substitui aconselhamento genético nem "
+              "julgamento clínico. Como trabalhos futuros: consolidar a generalização a "
+              "mais genes do painel HBOC — usando os próprios mapas funcionais como "
+              "rótulos —, testar prospectivamente em bancada os alvos PP3 do worklist "
+              "com laboratórios parceiros, e ampliar tanto o comparador não circular "
+              "quanto as coortes por ancestralidade para reduzir a lacuna de equidade.")
 
     h3(doc, "Impacto social, aplicação prática e ética no uso de IA")
     para(doc, "O acesso à interpretação genética é desigual no Brasil (ACHATZ et al., "
