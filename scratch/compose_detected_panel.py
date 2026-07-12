@@ -88,14 +88,14 @@ def make_tile(t, tw, strip):
     x = int(tw * 0.05)
 
     # variant name (top-left of the render, on the dark sky)
-    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.062)),
+    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.072)),
            fill=(248, 249, 252))
-    d.text((x + 2, int(tw * 0.045) + int(tw * 0.072)), t["dom"],
-           font=font(int(tw * 0.036), bold=False), fill=(150, 200, 255))
+    d.text((x + 2, int(tw * 0.045) + int(tw * 0.082)), t["dom"],
+           font=font(int(tw * 0.042), bold=False), fill=(150, 200, 255))
 
     # label strip (two stacked badges) — explicit pixel budget
-    fb = font(int(tw * 0.039), bold=True)          # ~46px: longest verdict still fits
-    fs = font(int(tw * 0.030), bold=False)
+    fb = font(int(tw * 0.043), bold=True)          # verdict still fits
+    fs = font(int(tw * 0.035), bold=False)
     y = tw + int(strip * 0.05)
     d.text((x, y), "Verdade (ClinVar)", font=fs, fill=(150, 158, 176))
     _, h1 = pill(d, x, y + int(fs.size * 1.15), t["clin"], fb,

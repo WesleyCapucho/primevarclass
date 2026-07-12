@@ -161,23 +161,24 @@ x = np.arange(len(order))
 fig, ax = plt.subplots(figsize=(12.4, 6.4), dpi=200)
 bars = ax.bar(x, aucs, 0.62, color=colors, edgecolor="white", linewidth=0.6)
 for i, (t, a, p) in enumerate(zip(order, aucs, ps)):
-    ax.text(i, a + 0.004, f"{a:.3f}", ha="center", va="bottom", fontsize=10, fontweight="bold")
+    ax.text(i, a + 0.004, f"{a:.3f}", ha="center", va="bottom", fontsize=12, fontweight="bold")
     tag = "avaliação rigorosa" if REGIME[t][2] else \
-          (f"DeLong vs PrimeVarClass: p = {p:.2f}\n(diferença não significativa)"
+          (f"DeLong: p = {p:.2f} (n.s.)"
            if p is not None and p >= 0.05 else
-           (f"DeLong vs PrimeVarClass: p = {p:.3f}" if p is not None else ""))
-    ax.text(i, 0.515, REGIME[t][1], ha="center", va="bottom", fontsize=7.8,
+           (f"DeLong: p = {p:.3f}" if p is not None else ""))
+    ax.text(i, 0.515, REGIME[t][1], ha="center", va="bottom", fontsize=9.5,
             color="#333", linespacing=1.15)
     if tag and not REGIME[t][2]:
-        ax.text(i, a + 0.028, tag, ha="center", va="bottom", fontsize=7.0,
+        ax.text(i, a + 0.03, tag, ha="center", va="bottom", fontsize=9,
                 color="#555", linespacing=1.1)
-ax.set_xticks(x); ax.set_xticklabels([REGIME[t][0] for t in order], fontsize=10.5, fontweight="bold")
-ax.set_ylabel("AUC-ROC (conjunto externo, n = 836)"); ax.set_ylim(0.5, 1.0)
+ax.set_xticks(x); ax.set_xticklabels([REGIME[t][0] for t in order], fontsize=12, fontweight="bold")
+ax.set_ylabel("AUC-ROC (conjunto externo, n = 836)", fontsize=12); ax.set_ylim(0.5, 1.0)
+ax.tick_params(axis="y", labelsize=10.5)
 ax.set_title("Vazamento a favor de terceiros: uma comparação honesta\n"
              "Preditores supervisionados/calibrados em rótulos do ClinVar têm vantagem de "
              "circularidade sobre o mesmo conjunto-teste;\no PrimeVarClass é avaliado fora da "
              "distribuição — e ainda assim é estatisticamente equivalente aos líderes",
-             fontsize=10.8)
+             fontsize=12)
 ax.grid(axis="y", alpha=0.22)
 fig.tight_layout()
 os.makedirs(os.path.dirname(FIG), exist_ok=True)

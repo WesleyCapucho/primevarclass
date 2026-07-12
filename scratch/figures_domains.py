@@ -37,28 +37,36 @@ def load(cfg):
 
 
 df = load("configs/public_brca_real.toml")
-plt.rcParams.update({"figure.dpi": 150, "font.size": 10})
+plt.rcParams.update({"figure.dpi": 150, "font.size": 11})
 
 # ---------- Fig 1: domain architecture ----------
 fig, axes = plt.subplots(2, 1, figsize=(9, 5.2))
 for ax, gene in zip(axes, ["BRCA1", "BRCA2"]):
     L = LEN[gene]
-    ax.add_patch(Rectangle((0, 0.35), L, 0.30, facecolor="#e8e8e8", edgecolor="#999", lw=0.8))
-    for sp in DOMS[gene]:
-        col = "#d55e00" if sp.critical else "#4c72b0"
-        ax.add_patch(Rectangle((sp.start, 0.30), sp.end - sp.start, 0.40, facecolor=col,
-                               edgecolor="black", lw=0.6, alpha=0.9))
-        ax.text((sp.start + sp.end) / 2, 0.83, sp.name, ha="center", va="bottom", fontsize=6.5, rotation=0)
+    # variant risk marks first (thin, behind), so bold labels sit on top
     g = df[df["gene"] == gene]
     for _, r in g.iterrows():
         x = int(r["position"]); patho = int(r["label"]) == 1
-        ax.plot([x, x], (0.05, 0.22) if patho else (0.78, 0.95),
-                color=("#c1121f" if patho else "#2a9d8f"), lw=0.35, alpha=0.5)
-    ax.set_xlim(-20, L + 20); ax.set_ylim(0, 1.05)
+        ax.plot([x, x], (0.04, 0.20) if patho else (0.80, 0.96),
+                color=("#c1121f" if patho else "#2a9d8f"), lw=0.35, alpha=0.45)
+    ax.add_patch(Rectangle((0, 0.38), L, 0.24, facecolor="#e8e8e8", edgecolor="#999", lw=0.8))
+    for i, sp in enumerate(DOMS[gene]):
+        col = "#d55e00" if sp.critical else "#4c72b0"
+        ax.add_patch(Rectangle((sp.start, 0.34), sp.end - sp.start, 0.32, facecolor=col,
+                               edgecolor="black", lw=0.6, alpha=0.9))
+        # staggered heights + white halo so adjacent domain names never overlap
+        ylab = 0.72 if i % 2 == 0 else 0.90
+        ax.annotate(sp.name, xy=((sp.start + sp.end) / 2, 0.66),
+                    xytext=((sp.start + sp.end) / 2, ylab), ha="center", va="center",
+                    fontsize=9.5, fontweight="bold", color="#111",
+                    arrowprops=dict(arrowstyle="-", lw=0.5, color="#777"),
+                    bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.9, edgecolor="#ccc", lw=0.4))
+    ax.set_xlim(-20, L + 20); ax.set_ylim(0, 1.08)
     ax.set_yticks([]); ax.set_title(f"{gene} ({'P38398' if gene=='BRCA1' else 'P51587'}, {L} aa) — "
-                                    f"vermelho=região crítica, azul=demais domínios; "
-                                    f"riscos: patogênicas (baixo) vs benignas (topo)", fontsize=8)
-    ax.set_xlabel("Posição do resíduo (aa)")
+                                    f"vermelho = região crítica, azul = demais domínios; "
+                                    f"riscos: patogênicas (baixo) vs. benignas (topo)", fontsize=10)
+    ax.set_xlabel("Posição do resíduo (aa)", fontsize=11)
+    ax.tick_params(axis="x", labelsize=10)
     for s in ["top", "right", "left"]:
         ax.spines[s].set_visible(False)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_domain_architecture.png")); plt.close()

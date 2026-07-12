@@ -110,13 +110,14 @@ for ax, part, titulo, unidade in [(a1, "part2_vus", "VUS reais", "VUS"),
     for i, g in enumerate(genes):
         tot = result[g][part]["n"]
         frac = result[g][part]["resolved_frac"] * 100
-        ax.text(i, tot + top * 0.03, f"{frac:.0f}% resolvidas", ha="center", fontsize=9.5, fontweight="bold")
-    ax.set_xticks(x); ax.set_xticklabels(genes)
-    ax.set_ylabel(f"nº de {unidade} na zona cinzenta do AlphaMissense")
-    ax.set_title(f"{titulo}", fontsize=10.5)
-    ax.legend(fontsize=8, loc="upper left", framealpha=0.95)
+        ax.text(i, tot + top * 0.03, f"{frac:.0f}% resolvidas", ha="center", fontsize=11.5, fontweight="bold")
+    ax.set_xticks(x); ax.set_xticklabels(genes, fontsize=12, fontweight="bold")
+    ax.set_ylabel(f"nº de {unidade} na zona cinzenta do AlphaMissense", fontsize=11)
+    ax.tick_params(axis="y", labelsize=10)
+    ax.set_title(f"{titulo}", fontsize=12)
+    ax.legend(fontsize=10, loc="upper left", framealpha=0.95)
 fig.suptitle("Complemento ao AlphaMissense — evidência calibrada onde ele se abstém (BRCA1 e BRCA2, ClinVar real)",
-             fontweight="bold", fontsize=12)
+             fontweight="bold", fontsize=13)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
 print(f">> wrote {ANL}/grey_zone_analysis.json and {FIG}")
