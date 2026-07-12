@@ -237,7 +237,7 @@ A ordenação é **monotônica e biologicamente esperada**: variantes que destro
 A partir de um snapshot histórico do ClinVar (variant_summary de junho/2023), identificamos as variantes missense de BRCA1/BRCA2 que eram **VUS ou conflitantes em 2023** e só foram **resolvidas a patogênicas/benignas até 2026** (n = 56). Um modelo treinado **apenas** no que era definitivo em 2023 (n = 462) é, por construção, cego a essas variantes. Script: `scratch/prospective_analysis.py`.
 
 - **Previsão prospectiva:** AUC = **0,941**; nas 33 chamadas de alta confiança (limiares ACMG), acurácia de **97%**.
-- **Head-to-head livre de vazamento:** como nenhuma ferramenta pôde treinar no rótulo definitivo (inexistente em 2023), essas 56 variantes formam um conjunto-teste imparcial. No mesmo subconjunto coberto, o PrimeVarClass (0,928–0,941) **supera AlphaMissense (0,908) e REVEL (0,849)** e empata com CADD — invertendo a vantagem aparente do benchmark completo, como prevê o argumento de circularidade. Amostra pequena (15 positivos, IC largos): corroboração direta, não prova.
+- **Head-to-head livre de vazamento:** como nenhuma ferramenta pôde treinar no rótulo definitivo (inexistente em 2023), essas 56 variantes formam um conjunto-teste imparcial. No mesmo subconjunto coberto, o PrimeVarClass (0,928–0,941) **supera AlphaMissense (0,908) e REVEL (0,849)** — invertendo a vantagem aparente que eles tinham no benchmark completo, como prevê o argumento de circularidade. O **CADD (0,963) permanece à frente** nesse conjunto (contra a previsão de circularidade), mas sobre amostra pequena (n = 42; 15 positivos; IC95% [0,898–1,0], sobreposto ao do modelo), sem diferença significativa. Corroboração direta, não prova.
 
 A Figura 11 do artigo principal apresenta ambos os painéis.
 
