@@ -263,6 +263,14 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 **Figura S12c.** Mapa estrutural de detecção do **VHL** (o gene de maior AUC, 0,966), renderizado em PyMOL sobre a **estrutura cristalográfica real** (PDB 1LM8, cadeia V; domínios β+α). O sinal ESM-2 por resíduo colore a cadeia de **azul** (tolerante) a **dourado** (detectado): as zonas douradas concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (mostrados como *sticks*) caem justamente nelas — sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; scripts `scratch/pymol_vhl_detection.py` + `scratch/compose_vhl_figure.py`.
 
+![Figura S12d](figuras/fig_msh2_detection.png)
+
+**Figura S12d.** MSH2 (Lynch, AUC 0,926) sobre a estrutura real do complexo MutSα (PDB 2O8B, cadeia A). O sinal ESM-2 por resíduo colore a cadeia de azul (tolerante) a dourado (detectado), e as variantes patogênicas reais (*sticks*) acompanham o núcleo funcional do reparo de emparelhamento. Por ser uma proteína grande e multidomínio, a detecção é mais distribuída que no VHL — honestamente esperado. PyMOL: `scratch/pymol_panel_detection.py`.
+
+![Figura S12e](figuras/fig_ret_detection.png)
+
+**Figura S12e.** RET (MEN2, AUC 0,813), domínio quinase real (PDB 2IVT). A detecção concentra-se no núcleo catalítico da quinase — onde se localizam as mutações ativadoras clássicas do MEN2 (p. ex. Met918) —, com as variantes patogênicas reais (*sticks*) nessas regiões. PyMOL: `scratch/pymol_panel_detection.py`.
+
 ---
 
 ## S13. Incerteza por variante — predição conformal
