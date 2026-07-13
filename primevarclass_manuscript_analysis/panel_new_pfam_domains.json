@@ -1,0 +1,171 @@
+{
+ "VHL": {
+  "acc": "P40337",
+  "pfam": [
+   [
+    63,
+    144,
+    "VHL beta domain",
+    "PF01847"
+   ],
+   [
+    156,
+    204,
+    "VHL box domain",
+    "PF17211"
+   ]
+  ]
+ },
+ "MLH1": {
+  "acc": "P40692",
+  "pfam": [
+   [
+    29,
+    131,
+    "Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase",
+    "PF13589"
+   ],
+   [
+    216,
+    334,
+    "DNA mismatch repair protein, C-terminal domain",
+    "PF01119"
+   ],
+   [
+    502,
+    756,
+    "DNA mismatch repair protein Mlh1 C-terminus",
+    "PF16413"
+   ]
+  ]
+ },
+ "MSH2": {
+  "acc": "P43246",
+  "pfam": [
+   [
+    18,
+    131,
+    "MutS domain I",
+    "PF01624"
+   ],
+   [
+    156,
+    288,
+    "MutS domain II",
+    "PF05188"
+   ],
+   [
+    305,
+    473,
+    "MutS domain III",
+    "PF05192"
+   ],
+   [
+    474,
+    568,
+    "MutS family domain IV",
+    "PF05190"
+   ],
+   [
+    569,
+    609,
+    "MutS domain III",
+    "PF05192"
+   ],
+   [
+    666,
+    852,
+    "MutS domain V",
+    "PF00488"
+   ]
+  ]
+ },
+ "MSH6": {
+  "acc": "P52701",
+  "pfam": [
+   [
+    93,
+    183,
+    "PWWP domain",
+    "PF00855"
+   ],
+   [
+    407,
+    524,
+    "MutS domain I",
+    "PF01624"
+   ],
+   [
+    538,
+    694,
+    "MutS domain II",
+    "PF05188"
+   ],
+   [
+    739,
+    931,
+    "MutS domain III",
+    "PF05192"
+   ],
+   [
+    932,
+    1024,
+    "MutS family domain IV",
+    "PF05190"
+   ],
+   [
+    1025,
+    1064,
+    "MutS domain III",
+    "PF05192"
+   ],
+   [
+    1130,
+    1323,
+    "MutS domain V",
+    "PF00488"
+   ]
+  ]
+ },
+ "RET": {
+  "acc": "P07949",
+  "pfam": [
+   [
+    29,
+    153,
+    "RET Cadherin like domain 1",
+    "PF17756"
+   ],
+   [
+    173,
+    260,
+    "Cadherin domain",
+    "PF00028"
+   ],
+   [
+    265,
+    379,
+    "RET Cadherin like domain 3",
+    "PF17812"
+   ],
+   [
+    405,
+    506,
+    "RET Cadherin like domain 4",
+    "PF17813"
+   ],
+   [
+    518,
+    620,
+    "RET, Cysteine Rich Domain",
+    "PF22540"
+   ],
+   [
+    725,
+    1005,
+    "Protein tyrosine and serine/threonine kinase",
+    "PF07714"
+   ]
+  ]
+ }
+}
