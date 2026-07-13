@@ -1,0 +1,77 @@
+{
+  "n": 836,
+  "n_pathogenic": 144,
+  "prevalence": 0.1722,
+  "tools": {
+    "PrimeVarClass": {
+      "coverage": 836,
+      "positives": 144,
+      "reviewed_for_0.90sens": 0.4079,
+      "reviewed_for_0.95sens": 0.6639,
+      "reviewed_for_0.99sens": 0.878,
+      "work_saved_at_0.95sens": 0.3361
+    },
+    "AlphaMissense": {
+      "coverage": 621,
+      "positives": 99,
+      "reviewed_for_0.90sens": 0.3527,
+      "reviewed_for_0.95sens": 0.7585,
+      "reviewed_for_0.99sens": 0.9308,
+      "work_saved_at_0.95sens": 0.2415
+    },
+    "REVEL": {
+      "coverage": 621,
+      "positives": 99,
+      "reviewed_for_0.90sens": 0.3462,
+      "reviewed_for_0.95sens": 0.5684,
+      "reviewed_for_0.99sens": 0.8712,
+      "work_saved_at_0.95sens": 0.4316
+    },
+    "CADD": {
+      "coverage": 629,
+      "positives": 104,
+      "reviewed_for_0.90sens": 0.5342,
+      "reviewed_for_0.95sens": 0.6804,
+      "reviewed_for_0.99sens": 0.8394,
+      "work_saved_at_0.95sens": 0.3196
+    }
+  },
+  "bp4_rule_out": {
+    "P<0.1": {
+      "deprioritised": 380,
+      "deprioritised_frac": 0.4545,
+      "pathogenic_missed": 9,
+      "sensitivity_retained": 0.9375
+    },
+    "P<0.15": {
+      "deprioritised": 472,
+      "deprioritised_frac": 0.5646,
+      "pathogenic_missed": 14,
+      "sensitivity_retained": 0.9028
+    },
+    "P<0.2": {
+      "deprioritised": 524,
+      "deprioritised_frac": 0.6268,
+      "pathogenic_missed": 17,
+      "sensitivity_retained": 0.8819
+    }
+  },
+  "decision_curve": {
+    "pt=0.05": {
+      "nb_model": 0.1364,
+      "nb_review_all": 0.1287
+    },
+    "pt=0.10": {
+      "nb_model": 0.1188,
+      "nb_review_all": 0.0803
+    },
+    "pt=0.20": {
+      "nb_model": 0.0966,
+      "nb_review_all": -0.0347
+    },
+    "pt=0.30": {
+      "nb_model": 0.0909,
+      "nb_review_all": -0.1825
+    }
+  }
+}

@@ -283,6 +283,16 @@ Além do ponto único de CV bloqueada e das 12 sementes repetidas, o carro-chefe
 
 ---
 
+## S16. Utilidade clínica — eficiência de triagem em dados reais
+
+Para além da AUC, mede-se aqui o valor operacional direto: **quanto trabalho de revisão o modelo remove com segurança** de um laboratório. Sobre as **836 variantes externas com rótulo real do ClinVar** (17,2% patogênicas), duas análises padronizadas e honestas — eficiência de triagem (baseada em ranqueamento, justa a todos os preditores) e análise de curva de decisão (*net benefit*; Vickers & Elkin, 2006). Script: `scratch/clinical_utility.py`; números em `primevarclass_manuscript_analysis/clinical_utility.json`.
+
+![Figura S16](figuras/fig_clinical_utility.png)
+
+**Figura S16.** **(A) Eficiência de triagem.** Ordenando as variantes pelo escore (mais suspeitas primeiro), o modelo-carro-chefe atinge 95% de sensibilidade revisando 66,4% das variantes (**poupa 33,6% do trabalho**) e cobre **todas as 836** — enquanto AlphaMissense/REVEL se abstêm em 215 delas (n = 621). No limiar **BP4 calibrado** (P < 0,10), o laboratório **desprioriza com segurança 380 variantes (45,5%)** mantendo **93,8%** de sensibilidade (perde 9 de 144 patogênicas). **(B) Curva de decisão.** Usando a probabilidade **calibrada** do modelo, o benefício líquido supera as duas estratégias-padrão — "revisar todas as VUS" e "revisar nenhuma" — em toda a faixa clínica de limiares (por exemplo, em *p*ₜ = 0,10: **+0,119** vs. +0,080 de "revisar todas"). É a probabilidade calibrada que habilita esse uso decisório — escores brutos de CADD/REVEL não são probabilidades. Esta é a tradução direta do desempenho em **impacto operacional** para um serviço público sobrecarregado.
+
+---
+
 ## Declaração de integridade
 
 Nenhum dado, figura ou métrica foi fabricado. Todas as comparações desfavoráveis ao PrimeVarClass (por exemplo, o desempenho ligeiramente superior de REVEL/AlphaMissense na Tabela S1) são reportadas de forma transparente. As limitações — comparação sujeita a possível vazamento a favor de terceiros, cobertura funcional ainda parcial, escopo concentrado em BRCA (com generalização demonstrada no TP53) — estão declaradas em seus respectivos pontos. Os experimentos prospectivos (S11) usam um snapshot histórico real do ClinVar; a amostra é pequena e reportada com intervalos de confiança. O uso de ferramentas de inteligência artificial no desenvolvimento é declarado no artigo principal, sob responsabilidade humana integral.
