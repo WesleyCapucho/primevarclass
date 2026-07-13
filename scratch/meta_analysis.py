@@ -1,5 +1,7 @@
-"""Random-effects meta-analysis of the domain-aware model across the four
-independent external subcohorts (BRCA1/BRCA2 x expert-panel/external).
+"""Random-effects meta-analysis of the FLAGSHIP model (domain + ESM-2) across the
+four independent external subcohorts (BRCA1/BRCA2 x expert-panel/external). This is
+the same model reported per-cohort in Tabela 5 (scratch/per_cohort_flagship.py), so
+the pooled forest plot and the table tell a single, consistent story.
 
 For each subcohort we compute AUC and a bootstrap 95% CI, then pool on the
 logit-AUC scale with the DerSimonian-Laird random-effects estimator, reporting
@@ -29,12 +31,17 @@ from sklearn.metrics import roc_auc_score
 
 from primevarclass.core import _build_pipeline, get_feature_subsets
 from primevarclass.data_sources import build_dataset_from_source_config
+from primevarclass.esm_scores import attach_esm_scores
 
 OUT = "primevarclass_manuscript_analysis"
 os.makedirs(OUT, exist_ok=True)
 RNG = 42
 rng = np.random.default_rng(RNG)
 B = 2000
+# Meta-analysis pools the FLAGSHIP model (domain + ESM-2) — the same model whose
+# per-cohort AUCs appear in Tabela 5 (per_cohort_flagship.py). Both must tell the
+# same story, so the forest plot pools exactly those per-cohort estimates.
+esm_df = pd.read_csv("scratch/esm_input/esm2_scores.csv")
 
 COHORTS = {
     "BRCA1 — painel especialista": "configs/public_brca_external_real_clinvar_expert_brca1.toml",
@@ -48,12 +55,13 @@ def load(cfg):
     df, _, _ = build_dataset_from_source_config(cfg, mode="hybrid", keep_metadata=True)
     y = pd.to_numeric(df["label"], errors="coerce")
     keep = y.notna()
-    return df.loc[keep].reset_index(drop=True), y.loc[keep].astype(int).to_numpy()
+    df = attach_esm_scores(df.loc[keep].reset_index(drop=True), esm_df)
+    return df, y.loc[keep].astype(int).to_numpy()
 
 
-print(">> training domain-aware model on internal cohort...")
+print(">> training flagship model (domain + ESM-2) on internal cohort...")
 tr_df, ytr = load("configs/public_brca_real.toml")
-cols = [c for c in get_feature_subsets(tr_df)["domain_aware"] if c in tr_df.columns and not tr_df[c].isna().all()]
+cols = [c for c in get_feature_subsets(tr_df)["domain_aware_plus_esm"] if c in tr_df.columns and not tr_df[c].isna().all()]
 pipe = _build_pipeline(tr_df[cols], random_state=RNG); pipe.fit(tr_df[cols], ytr)
 
 
@@ -124,7 +132,7 @@ ax.axvline(pooled, color="#d55e00", ls=":", lw=1, alpha=0.6)
 ax.axvline(0.5, color="gray", ls="--", lw=1, alpha=0.5)
 ax.set_yticks(list(ys) + [yd]); ax.set_yticklabels([r["cohort"] for r in rows] + ["Agrupado (efeitos aleatórios)"], fontsize=8)
 ax.set_xlim(0.45, 1.35); ax.set_xlabel("AUC-ROC (IC 95%)")
-ax.set_title(f"Meta-análise de generalização externa — modelo domínio-consciente\nAUC agrupada {pooled:.3f} (IC95% {pooled_lo:.3f}–{pooled_hi:.3f}); I²={I2:.0f}%")
+ax.set_title(f"Meta-análise de generalização externa — modelo-carro-chefe (domínio + ESM-2)\nAUC agrupada {pooled:.3f} (IC95% {pooled_lo:.3f}–{pooled_hi:.3f}); I²={I2:.0f}%")
 ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_meta_forest.png")); plt.close()
 print(">> wrote meta_analysis.json and fig_meta_forest.png")
