@@ -259,6 +259,10 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 **Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **VHL 0,966** [0,92–1,00], **MSH2 0,926** [0,86–0,98], **RET 0,813** [0,69–0,91], **MSH6 0,806** [0,64–0,95] e **MLH1 0,753** [0,64–0,86]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, VHL 0,879 → 0,966; MSH6 0,581 → 0,806). Já a consciência de domínio — curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53 — contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite honesto que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (MSH6 n = 43; RET n = 57) têm IC largos, reportados sem maquiagem.
 
+![Figura S12c](figuras/fig_vhl_detection.png)
+
+**Figura S12c.** Mapa estrutural de detecção do **VHL** (o gene de maior AUC, 0,966). O sinal ESM-2 por resíduo é projetado sobre a estrutura (AlphaFold P40337, núcleo dobrado β+α): as zonas **douradas** (alta restrição, detectadas) concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (esferas com contorno preto) caem justamente nelas — sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; script `scratch/render_vhl_detection.py`.
+
 ---
 
 ## S13. Incerteza por variante — predição conformal
