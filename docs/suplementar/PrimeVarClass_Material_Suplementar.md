@@ -243,13 +243,21 @@ A Figura 11 do artigo principal apresenta ambos os painéis.
 
 ---
 
-## S12. Generalização além de BRCA — TP53
+## S12. Generalização além de BRCA — TP53 e painel expandido (VHL, Lynch, MEN2)
 
 A mesma receita (bioquímica → + domínio crítico → + ESM-2) foi aplicada ao **TP53**, cujas variantes patogênicas se concentram no domínio de ligação ao DNA. Domínios curados do UniProt (função, não rótulo); ESM-2 de 650M — **o mesmo modelo do carro-chefe** — pontuado em GPU (`scratch/colab_esm2_650M_panel.py`), de modo que a generalização usa exatamente um único modelo. Script: `scratch/multigene_panel.py`.
 
 ![Figura S12](figuras/fig_multigene.png)
 
 **Figura S12.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M) — o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio não ajuda (0,481) mas o ESM-2 recupera o sinal (0,720; n = 75) — os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
+
+### Painel expandido — cinco genes, três síndromes
+
+Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **mesmo protocolo** a cinco genes que passam o limiar de rótulos reais do ClinVar (**≥ 40 missense definitivas, as duas classes, minoria ≥ 8**): **VHL** (von Hippel-Lindau), **MLH1/MSH2/MSH6** (Lynch, reparo de emparelhamento) e **RET** (MEN2). Domínios funcionais do **Pfam/InterPro** (independentes de rótulo); ESM-2 650M pontuado em GPU (`scratch/colab_esm2_650M_expanded.py`). Rótulos reais em `panel_new_clinvar_labels.csv` (459 variantes). Script: `scratch/multigene_panel_expanded.py`.
+
+![Figura S12b](figuras/fig_multigene_expanded.png)
+
+**Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **VHL 0,966** [0,92–1,00], **MSH2 0,926** [0,86–0,98], **RET 0,813** [0,69–0,91], **MSH6 0,806** [0,64–0,95] e **MLH1 0,753** [0,64–0,86]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, VHL 0,879 → 0,966; MSH6 0,581 → 0,806). Já a consciência de domínio — curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53 — contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite honesto que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (MSH6 n = 43; RET n = 57) têm IC largos, reportados sem maquiagem.
 
 ---
 
