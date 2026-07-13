@@ -261,7 +261,7 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 ![Figura S12c](figuras/fig_vhl_detection.png)
 
-**Figura S12c.** Mapa estrutural de detecção do **VHL** (o gene de maior AUC, 0,966). O sinal ESM-2 por resíduo é projetado sobre a estrutura (AlphaFold P40337, núcleo dobrado β+α): as zonas **douradas** (alta restrição, detectadas) concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (esferas com contorno preto) caem justamente nelas — sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; script `scratch/render_vhl_detection.py`.
+**Figura S12c.** Mapa estrutural de detecção do **VHL** (o gene de maior AUC, 0,966), renderizado em PyMOL sobre a **estrutura cristalográfica real** (PDB 1LM8, cadeia V; domínios β+α). O sinal ESM-2 por resíduo colore a cadeia de **azul** (tolerante) a **dourado** (detectado): as zonas douradas concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (mostrados como *sticks*) caem justamente nelas — sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; scripts `scratch/pymol_vhl_detection.py` + `scratch/compose_vhl_figure.py`.
 
 ---
 

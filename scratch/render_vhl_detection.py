@@ -1,15 +1,12 @@
-"""VHL structural detection map — the standout of the expanded panel (AUC 0,966).
-
-Projects the per-residue ESM-2 signal (the transferable component that drives VHL)
-onto the VHL fold and shows that the real ClinVar-pathogenic residues fall in the
-"detected" (high-constraint) zones — without the structure ever being shown to the
-model. Rendered with matplotlib 3D (PyMOL is not required/installed here); the same
-per-residue scores can be piped into PyMOL if the exact house style is wanted.
+"""VHL per-residue detection — computes the ESM-2 detection track that drives VHL
+(AUC 0,966) and a quick matplotlib 3D preview. The CANONICAL supplement figure is
+the ray-traced PyMOL render (scratch/pymol_vhl_detection.py -> scratch/compose_vhl_figure.py);
+this script's job is to produce detected_per_residue_vhl.csv, which PyMOL then reads.
 
 Inputs : scratch/esm_input/esm2_650M_expanded_scores.csv (VHL saturation LLR),
          primevarclass_manuscript_analysis/panel_new_clinvar_labels.csv (real labels)
-Outputs: docs/suplementar/figuras/fig_vhl_detection.png
-         primevarclass_manuscript_analysis/detected_per_residue_vhl.csv
+Outputs: primevarclass_manuscript_analysis/detected_per_residue_vhl.csv  (used by PyMOL)
+         primevarclass_manuscript_analysis/fig_vhl_detection_mpl.png     (preview only)
 
 Run: python scratch/render_vhl_detection.py
 """
@@ -30,7 +27,7 @@ from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from scipy.interpolate import splev, splprep
 
 ANL = "primevarclass_manuscript_analysis"
-FIG = "docs/suplementar/figuras/fig_vhl_detection.png"
+FIG = "primevarclass_manuscript_analysis/fig_vhl_detection_mpl.png"  # preview; canonical fig is PyMOL
 CORE_START = 54   # folded β+α core; the disordered N-terminus (1-53) is dropped for clarity
 RAMP = [(0.09, 0.12, 0.36), (0.74, 0.15, 0.42), (1.00, 0.80, 0.22)]
 
