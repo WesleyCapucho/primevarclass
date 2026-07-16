@@ -1,6 +1,6 @@
-# Proveniência e autoria — PrimeVarClass
+# Proveniência e autoria: PrimeVarClass
 
-**Autor:** Wesley Felipe Capucho — Escola de Engenharia de Lorena, Universidade
+**Autor:** Wesley Felipe Capucho, Escola de Engenharia de Lorena, Universidade
 de São Paulo (EEL-USP).
 **Data deste registro:** 2026-07-09.
 
@@ -8,7 +8,7 @@ de São Paulo (EEL-USP).
 
 Este repositório inclui um manifesto (`provenance_manifest.sha256`) com o hash
 **SHA-256** de cada arquivo versionado. A raiz abaixo é o SHA-256 do manifesto
-completo — uma impressão digital única de todo o conteúdo nesta data:
+completo: uma impressão digital única de todo o conteúdo nesta data:
 
 ```
 ROOT SHA-256: 05e41c499b6e36cdd2904253f3c40fd664163205e218f6566b73238eba086d0e

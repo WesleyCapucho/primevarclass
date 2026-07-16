@@ -200,10 +200,10 @@ def build_frontmatter(doc):
     para(doc, "Tema: Inteligência Artificial para o Bem Comum — Subtema: Inteligência "
               "Artificial & Saúde (item 1.4.1.b do Edital)",
          indent=False, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=18)
-    keywords_line(doc, "Autor: ", "Wesley Felipe Capucho — graduando em Engenharia Bioquímica")
+    keywords_line(doc, "Autor: ", "Wesley Felipe Capucho, graduando em Engenharia Bioquímica")
     keywords_line(doc, "Orientador(a): ", "⟨a definir⟩")
     keywords_line(doc, "Instituição de vínculo: ", "Escola de Engenharia de Lorena, "
-                  "Universidade de São Paulo (EEL-USP) — Estrada Municipal do Campinho, s/nº, "
+                  "Universidade de São Paulo (EEL-USP), Estrada Municipal do Campinho, s/nº, "
                   "Ponte Nova, Lorena – SP, CEP 12602-810. E-mail: wesleycapucho@usp.br. "
                   "Telefone: ⟨a definir⟩.")
     keywords_line(doc, "Instituição onde a pesquisa foi desenvolvida: ", "Escola de "
@@ -230,7 +230,7 @@ def build_apresentacao(doc):
               "vistas no treino. A hipótese foi refutada com transparência: a "
               "codificação por primos teve desempenho inferior ao de uma identidade "
               "trivial de aminoácidos (AUC externa 0,681 vs. 0,718; p = 0,045) e piorou "
-              "um modelo bioquímico ao ser adicionada (0,791 → 0,765; p = 3,8 × 10⁻⁸). "
+              "um modelo bioquímico ao ser adicionada (de 0,791 para 0,765; p = 3,8 × 10⁻⁸). "
               "No processo, foi diagnosticada uma armadilha de vazamento posicional que "
               "infla benchmarks internos. A partir daí, construiu-se um classificador "
               "consciente de domínio funcional (RING/BRCT de BRCA1; domínio de ligação "
@@ -246,7 +246,7 @@ def build_apresentacao(doc):
               "força de evidência ACMG/AMP e, entre variantes que o AlphaMissense deixa "
               "ambíguas (644 no total), o modelo forneceu chamada de evidência "
               "calibrada para 53,8% dos VUS e 64,6% das conflitantes (concordância de "
-              "100% no subconjunto verificável) — evidência de que o método complementa "
+              "100% no subconjunto verificável); evidência de que o método complementa "
               "o AlphaMissense, em vez de competir com ele. O mecanismo estrutural foi "
               "validado contra dados "
               "funcionais reais de reparo por recombinação homóloga (Kruskal-Wallis "
@@ -276,17 +276,17 @@ def build_apresentacao(doc):
               "recombinase RAD51 sobre o DNA de fita simples, enquanto BRCA1, com "
               "BARD1, sinaliza e processa o dano (YANG et al., 2002). Quando uma "
               "variante compromete essa função, a célula recorre a reparo propenso a "
-              "erro, acumulando instabilidade genômica — penetrância cumulativa que "
+              "erro, acumulando instabilidade genômica, penetrância cumulativa que "
               "pode ultrapassar 70% (Figura 1).", space_after=4)
     figure(doc, "fig_disease_mechanism.png",
            "Figura 1. Mecanismo BRCA1/BRCA2 no câncer hereditário de mama e ovário. Com "
            "as proteínas funcionais (esquerda), a quebra de dupla fita é reparada com "
            "fidelidade; uma variante patogênica em domínio crítico (direita, por "
            "exemplo Cys61Gly no RING) torna o reparo propenso a erro, acumulando "
-           "mutações até a tumorigênese — deficiência explorada terapeuticamente por "
+           "mutações até a tumorigênese, deficiência explorada terapeuticamente por "
            "inibidores de PARP.", width=5.0)
     para(doc, "Ainda assim, muitas variantes permanecem classificadas como de "
-              "significado incerto (VUS) — nem patogênicas, nem benignas. No Brasil, "
+              "significado incerto (VUS), nem patogênicas, nem benignas. No Brasil, "
               "isso se agrava por desigualdade de acesso: a expertise de interpretação "
               "concentra-se em poucos centros, e laboratórios públicos frequentemente "
               "carecem de ferramentas abertas e auditáveis (ACHATZ et al., 2020; "
@@ -413,7 +413,7 @@ def build_metodos(doc):
               "2021), em janelas de ±511 resíduos. Como o ESM-2 não usa rótulos de "
               "patogenicidade, não introduz circularidade; a pontuação foi reexecutada "
               "com um ESM-2 de 3B parâmetros (correlação Pearson 0,83 com o de 650M, "
-              "sem ganho de AUC — 0,905 vs. 0,909 —, resultado de saturação que "
+              "sem ganho de AUC (0,905 vs. 0,909), resultado de saturação que "
               "levou a manter o 650M como principal). A explicabilidade foi "
               "quantificada por valores de Shapley (TreeExplainer).")
 
@@ -537,7 +537,7 @@ def build_resultados(doc):
     figure(doc, "fig_detected_panel.png",
            "Figura 4. Seis variantes de BRCA1 confirmadas patogênicas no ClinVar, cada "
            "uma sobre sua estrutura real, com o veredito do ClinVar (selo verde) e a "
-           "chamada do modelo (selo dourado) — todas detectadas com alta confiança.",
+           "chamada do modelo (selo dourado), todas detectadas com alta confiança.",
            width=4.6)
     para(doc, "O mesmo exercício, repetido em BRCA2 (variantes clássicas do DBD como "
               "Gly2748Asp, Arg3052Trp e Trp2626Cys, detectadas com 75,3% a 96,7%; "
@@ -635,7 +635,7 @@ def build_resultados(doc):
               "0,932, ainda equivalente aos líderes, p = 0,12–0,61). Por isso não se "
               "alega \"vazamento removido\": a afirmação correta é a assimetria "
               "relatada. Empatar sob avaliação mais rigorosa é um resultado mais forte "
-              "do que o número cru sugere — e é por isso que o diferencial real não "
+              "do que o número cru sugere; e é por isso que o diferencial real não "
               "está em vencer no AUC bruto, mas em complementar essas ferramentas onde "
               "elas se abstêm.", space_after=4)
     figure(doc, "fig_benchmark_leakage_controlled.png",

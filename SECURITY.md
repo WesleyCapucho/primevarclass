@@ -1,4 +1,4 @@
-# Política de segurança — PrimeVarClass
+# Política de segurança: PrimeVarClass
 
 ## Escopo e postura
 
@@ -6,11 +6,11 @@ PrimeVarClass é uma **ferramenta de apoio à pesquisa** que classifica variante
 *missense* de BRCA1/BRCA2 a partir de **dados públicos e agregados** (ClinVar,
 gnomAD, painéis de especialistas ENIGMA/ClinGen, UniProt, RCSB PDB). O projeto:
 
-- **não coleta, armazena ou processa dados pessoais de pacientes** — apenas
+- **não coleta, armazena ou processa dados pessoais de pacientes**: apenas
   identificadores de variantes e rótulos de significância clínica de bases
   públicas. Não há informação identificável (em conformidade com a LGPD, a
   ferramenta opera fora do regime de dados pessoais sensíveis);
-- **não é dispositivo médico** e não emite laudo — as saídas exigem confirmação
+- **não é dispositivo médico** e não emite laudo; as saídas exigem confirmação
   por aconselhamento genético e validação experimental independente;
 - não expõe serviço de rede na configuração de referência: a execução é local,
   sobre dados versionados neste repositório.

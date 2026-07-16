@@ -1,6 +1,6 @@
-# Referências (fontes primárias curadas — PubMed)
+# Referências (fontes primárias curadas, PubMed)
 
-*61 referências primárias relevantes, formatação ABNT, DOIs incluídos. Fonte: PubMed/NLM (busca ao vivo, verificada em 2026-07-09, incluindo as referências de base metodológica antes citadas separadamente — ESM-2, DeLong, Yang — agora integradas ao corpo único, mais 4 referências novas que reforçam as seções de equidade, mecanismo estrutural e validação funcional do material suplementar). Meier et al. (2021), o método de razão de verossimilhança mascarada do ESM-2, é *proceedings* do NeurIPS e não é indexado no PubMed — citado no artigo sem PMID.*
+*61 referências primárias relevantes, formatação ABNT, DOIs incluídos. Fonte: PubMed/NLM (busca ao vivo, verificada em 2026-07-09, incluindo as referências de base metodológica antes citadas separadamente (ESM-2, DeLong, Yang), agora integradas ao corpo único, mais 4 referências novas que reforçam as seções de equidade, mecanismo estrutural e validação funcional do material suplementar). Meier et al. (2021), o método de razão de verossimilhança mascarada do ESM-2, é *proceedings* do NeurIPS e não é indexado no PubMed; citado no artigo sem PMID.*
 
 1. ACCETTURO, M. et al. Improvement of MEFV gene variants classification to aid treatment decision making in familial Mediterranean fever. **Rheumatology (Oxford)**, v. 59, n. 4, p. 754-761, 2020. DOI: 10.1093/rheumatology/kez332. PMID: 31411330.
 2. ACHATZ, M. I. et al. Recommendations for Advancing the Diagnosis and Management of Hereditary Breast and Ovarian Cancer in Brazil. **JCO Glob Oncol**, v. 6, p. 439-452, 2020. DOI: 10.1200/JGO.19.00170. PMID: 32155091.
