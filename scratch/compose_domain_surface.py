@@ -18,9 +18,9 @@ RAMP = [(0.10, 0.13, 0.38), (0.74, 0.15, 0.42), (1.00, 0.80, 0.22)]
 
 PANELS = [
     dict(img="surf_brct.png", tag="BRCA1 · domínio BRCT (1JNX)",
-         sub="Superfície que 'lê' o dano ao DNA — zonas douradas concentram as detecções"),
+         sub="Superfície que 'lê' o dano ao DNA —\nzonas douradas concentram as detecções"),
     dict(img="surf_dbd.png", tag="BRCA2 · domínio DBD (1MJE)",
-         sub="Superfície que liga DNA de fita simples — mesmas zonas de detecção mapeadas"),
+         sub="Superfície que liga DNA de fita simples —\nmesmas zonas de detecção mapeadas"),
 ]
 
 
@@ -48,17 +48,17 @@ def ramp_rgb(x):
     return tuple(int(255 * (a[i] * (1 - f) + b[i] * f)) for i in range(3))
 
 
-def legend(draw, x, y, w, h):
+def legend(draw, x, y, w, h, big):
     for i in range(w):
         draw.line([(x + i, y), (x + i, y + h)], fill=ramp_rgb(i / w))
-    draw.rectangle([x, y, x + w, y + h], outline=(230, 232, 238), width=2)
-    fs = font(int(h * 0.82), bold=False)
-    draw.text((x, y - int(h * 1.5)), "Intensidade de detecção por resíduo",
-              font=font(int(h * 0.82)), fill=(235, 237, 242))
-    draw.text((x, y + h + int(h * 0.3)), "tolerante", font=fs, fill=(150, 160, 190))
-    r = draw.textlength("detectada (patogênica)", font=fs)
-    draw.text((x + w - r, y + h + int(h * 0.3)), "detectada (patogênica)",
-              font=fs, fill=(240, 205, 110))
+    draw.rectangle([x, y, x + w, y + h], outline=(230, 232, 238), width=3)
+    ft = font(int(big * 1.05)); fl = font(int(big), bold=False)
+    draw.text((x, y - int(big * 1.75)), "Intensidade de detecção por resíduo",
+              font=ft, fill=(236, 238, 244))
+    draw.text((x, y + h + int(big * 0.35)), "tolerante", font=fl, fill=(178, 188, 212))
+    r = draw.textlength("detectada (patogênica)", font=fl)
+    draw.text((x + w - r, y + h + int(big * 0.35)), "detectada (patogênica)",
+              font=fl, fill=(242, 208, 120))
 
 
 def make_panel(p, w):
@@ -66,17 +66,18 @@ def make_panel(p, w):
     tile = radial_bg(w, w)
     tile.alpha_composite(fg)
     d = ImageDraw.Draw(tile)
-    d.text((int(w * 0.04), int(w * 0.045)), p["tag"], font=font(int(w * 0.048)),
+    d.text((int(w * 0.04), int(w * 0.045)), p["tag"], font=font(int(w * 0.052)),
            fill=(248, 249, 252))
-    d.text((int(w * 0.041), int(w * 0.045) + int(w * 0.058)), p["sub"],
-           font=font(int(w * 0.026), bold=False), fill=(150, 200, 255))
+    d.multiline_text((int(w * 0.041), int(w * 0.045) + int(w * 0.066)), p["sub"],
+                     font=font(int(w * 0.031), bold=False), fill=(165, 205, 255),
+                     spacing=int(w * 0.010))
     return tile.convert("RGB")
 
 
 def build():
     pw, gap, band = 1500, 30, 340
     W = 2 * pw + 3 * gap
-    H = band + pw + 2 * gap + int(band * 0.7)
+    H = band + pw + 2 * gap + int(band * 0.98)
     canvas = radial_bg(W, H, cy=0.32).convert("RGB")
     d = ImageDraw.Draw(canvas)
     d.text((gap + int(W * 0.006), int(band * 0.20)),
@@ -91,8 +92,8 @@ def build():
         x = gap + i * (pw + gap)
         canvas.paste(make_panel(p, pw), (x, band))
 
-    lw, lh = int(W * 0.34), int(band * 0.05)
-    legend(d, (W - lw) // 2, band + pw + gap + int(band * 0.24), lw, lh)
+    lw, lh = int(W * 0.42), int(band * 0.085)
+    legend(d, (W - lw) // 2, band + pw + gap + int(band * 0.38), lw, lh, int(W * 0.0155))
     for out in OUTS:
         os.makedirs(out, exist_ok=True)
         canvas.save(os.path.join(out, "fig_surface_landscape.png"), quality=95)

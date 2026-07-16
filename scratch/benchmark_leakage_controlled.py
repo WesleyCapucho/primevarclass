@@ -157,30 +157,48 @@ aucs = [result["full"]["tools"][t]["auc"] for t in order]
 ps = [result["full"]["tools"][t]["delong_vs_prime_p"] for t in order]
 colors = ["#c0392b" if REGIME[t][2] else ("#5a7fb0" if "circular" in REGIME[t][1] else "#9aa4b2")
           for t in order]
+from matplotlib.patches import Patch
+
 x = np.arange(len(order))
-fig, ax = plt.subplots(figsize=(12.4, 6.4), dpi=200)
-bars = ax.bar(x, aucs, 0.62, color=colors, edgecolor="white", linewidth=0.6)
+fig, ax = plt.subplots(figsize=(13.4, 7.6), dpi=200)
+bars = ax.bar(x, aucs, 0.64, color=colors, edgecolor="white", linewidth=0.8)
+
+
+def _pfmt(p):
+    if p is None:
+        return ""
+    if p >= 0.05:
+        return "p = " + f"{p:.2f}".replace(".", ",") + " (n.s.)"
+    if p >= 0.001:
+        return "p = " + f"{p:.3f}".replace(".", ",")
+    return "p < 0,001"
+
+
 for i, (t, a, p) in enumerate(zip(order, aucs, ps)):
-    ax.text(i, a + 0.004, f"{a:.3f}", ha="center", va="bottom", fontsize=12, fontweight="bold")
-    tag = "avaliação rigorosa" if REGIME[t][2] else \
-          (f"DeLong: p = {p:.2f} (n.s.)"
-           if p is not None and p >= 0.05 else
-           (f"DeLong: p = {p:.3f}" if p is not None else ""))
-    ax.text(i, 0.515, REGIME[t][1], ha="center", va="bottom", fontsize=9.5,
-            color="#333", linespacing=1.15)
-    if tag and not REGIME[t][2]:
-        ax.text(i, a + 0.03, tag, ha="center", va="bottom", fontsize=9,
-                color="#555", linespacing=1.1)
-ax.set_xticks(x); ax.set_xticklabels([REGIME[t][0] for t in order], fontsize=12, fontweight="bold")
-ax.set_ylabel("AUC-ROC (conjunto externo, n = 836)", fontsize=12); ax.set_ylim(0.5, 1.0)
-ax.tick_params(axis="y", labelsize=10.5)
+    ax.text(i, a + 0.008, f"{a:.3f}".replace(".", ","), ha="center", va="bottom",
+            fontsize=18, fontweight="bold", color="black")               # AUC (black)
+    top = "avaliação rigorosa" if REGIME[t][2] else _pfmt(p)             # DeLong (black)
+    ax.text(i, a + 0.064, top, ha="center", va="bottom", fontsize=12.5, color="black",
+            fontweight="bold" if REGIME[t][2] else "normal")
+ax.set_xticks(x)
+ax.set_xticklabels([REGIME[t][0] for t in order], fontsize=16.5, fontweight="bold", color="black")
+ax.tick_params(axis="x", length=0, pad=8)
+ax.set_ylabel("AUC-ROC (conjunto externo, n = 836)", fontsize=14.5)
+ax.set_ylim(0.5, 1.03); ax.set_yticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+ax.tick_params(axis="y", labelsize=13)
+# color legend (replaces the cramped per-bar regime tags)
+leg = [Patch(facecolor="#c0392b", edgecolor="white", label="PrimeVarClass — avaliado fora da distribuição (sem circularidade)"),
+       Patch(facecolor="#5a7fb0", edgecolor="white", label="supervisionado / calibrado no ClinVar (circularidade a favor)"),
+       Patch(facecolor="#9aa4b2", edgecolor="white", label="não supervisionado no ClinVar")]
+ax.legend(handles=leg, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=1,
+          fontsize=12.5, frameon=False, handlelength=1.4, handleheight=1.2)
 ax.set_title("Vazamento a favor de terceiros: uma comparação honesta\n"
-             "Preditores supervisionados/calibrados em rótulos do ClinVar têm vantagem de "
-             "circularidade sobre o mesmo conjunto-teste;\no PrimeVarClass é avaliado fora da "
-             "distribuição — e ainda assim é estatisticamente equivalente aos líderes",
-             fontsize=12)
-ax.grid(axis="y", alpha=0.22)
-fig.tight_layout()
-os.makedirs(os.path.dirname(FIG), exist_ok=True)
-fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-print(f"\n>> wrote {OUT}/benchmark_leakage_controlled.json and {FIG}")
+             "Preditores supervisionados/calibrados no ClinVar têm vantagem de circularidade sobre o "
+             "mesmo conjunto-teste;\no PrimeVarClass é avaliado fora da distribuição — e ainda assim é "
+             "estatisticamente equivalente aos líderes", fontsize=13.5)
+ax.grid(axis="y", alpha=0.25); ax.set_axisbelow(True)
+fig.subplots_adjust(left=0.075, right=0.985, top=0.86, bottom=0.22)
+for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    fig.savefig(_fp, dpi=200, facecolor="white")
+print(f"\n>> wrote {OUT}/benchmark_leakage_controlled.json and the figure (suplementar + manuscrito)")
