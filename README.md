@@ -5,24 +5,25 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21275650.svg)](https://doi.org/10.5281/zenodo.21275650)
 
 <p align="center">
-  <img src="docs/graphical_abstract.png" alt="PrimeVarClass — resumo gráfico: do problema (VUS) às características (domínio + ESM-2), ao classificador (Random Forest calibrado em ACMG) e ao impacto clínico (triagem de VUS no SUS; generalização multigênica)" width="960">
+  <img src="docs/graphical_abstract.png" alt="Resumo gráfico do PrimeVarClass: do problema (VUS) às características (domínio + ESM-2), ao classificador (Random Forest calibrado em ACMG) e ao impacto clínico (triagem de VUS no SUS e generalização multigênica)" width="960">
 </p>
 
-**Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente — aberta, interpretável e calibrada em força de evidência clínica.**
+**Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2. Aberta, validada externamente e calibrada em força de evidência clínica.**
 
 PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a reprodutibilidade**.
 
-> Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Estudante do Ensino Superior; tema *IA para o Bem Comum* — subtema IA & Saúde).
-> 📄 Artigo principal: [`docs/manuscrito/`](docs/manuscrito/) · 📎 Material suplementar: [`docs/suplementar/`](docs/suplementar/PrimeVarClass_Material_Suplementar.md)
+> Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Estudante do Ensino Superior; tema *IA para o Bem Comum*, subtema IA & Saúde).
+> 📄 Artigo principal: [`docs/manuscrito/`](docs/manuscrito/).
+> 📎 Material suplementar: [`docs/suplementar/`](docs/suplementar/PrimeVarClass_Material_Suplementar.md)
 
 ---
 
 ## O que diferencia este trabalho
 
 1. **Protocolo anti-vazamento.** Diagnosticamos e neutralizamos uma **armadilha de vazamento posicional** (a posição bruta do resíduo memoriza o treino e colapsa em dados externos). A validação usa CV **bloqueada por posição** + coortes externas independentes de especialistas.
-2. **Competitivo com o estado da arte.** Nas mesmas coortes externas (n = 621), o modelo é **estatisticamente comparável** a AlphaMissense, REVEL e CADD (teste de DeLong, todos *p* > 0,14) — sendo **aberto e interpretável**. Um **meta-classificador** que integra todos os sinais atinge a melhor estimativa (AUC **0,938**), e o PrimeVarClass carrega **sinal não redundante** nessa integração (ver [Material Suplementar](docs/suplementar/PrimeVarClass_Material_Suplementar.md), S1–S2).
-3. **Calibração clínica ACMG/AMP.** O escore é calibrado à força de evidência **PP3/BP4** (Tavtigian 2018; Pejaver 2022): escore ≥ 0,675 → **PP3_Forte**, com **94% de patogênicas** na coorte externa (LR local 75,9). Torna o resultado **acionável** para triagem de VUS.
-4. **Validação em profundidade (dados reais).** Validação funcional ortogonal de bancada nos **dois genes** (*saturation genome editing* de BRCA1, AUC **0,795**; ensaio HDR de BRCA2, **0,874**; MaveDB); teste **genuinamente prospectivo** — prevê como a comunidade reclassificou 56 VUS de 2023 até 2026 (AUC **0,941**); o único comparador **sem circularidade** (EVE) fica estatisticamente empatado (DeLong *p* = 0,59); e generalização, com dados reais do ClinVar, a genes de **outras síndromes hereditárias** — TP53 (**0,912**), von Hippel-Lindau (**0,966**), Lynch (MSH2 **0,926**) e MEN2 (RET **0,813**) — mostrando que a receita ultrapassa o câncer de mama/ovário (Material Suplementar, S12).
+2. **Competitivo com o estado da arte.** Nas mesmas coortes externas (n = 621), o modelo é **estatisticamente comparável** a AlphaMissense, REVEL e CADD (teste de DeLong, todos *p* > 0,14), sendo **aberto e interpretável**. Um **meta-classificador** que integra todos os sinais atinge a melhor estimativa (AUC **0,938**), e o PrimeVarClass carrega **sinal não redundante** nessa integração (ver [Material Suplementar](docs/suplementar/PrimeVarClass_Material_Suplementar.md), S1–S2).
+3. **Calibração clínica ACMG/AMP.** O escore é calibrado à força de evidência **PP3/BP4** (Tavtigian 2018; Pejaver 2022): escore ≥ 0,675 recebe **PP3_Forte**, com **94% de patogênicas** na coorte externa (LR local 75,9). Torna o resultado **acionável** para triagem de VUS.
+4. **Validação em profundidade (dados reais).** Validação funcional ortogonal de bancada nos **dois genes** (*saturation genome editing* de BRCA1, AUC **0,795**; ensaio HDR de BRCA2, **0,874**; MaveDB); teste **genuinamente prospectivo** que prevê como a comunidade reclassificou 56 VUS de 2023 até 2026 (AUC **0,941**); o único comparador **sem circularidade** (EVE) fica estatisticamente empatado (DeLong *p* = 0,59); e generalização, com dados reais do ClinVar, a genes de **outras síndromes hereditárias** (TP53 0,912, von Hippel-Lindau 0,966, Lynch/MSH2 0,926 e MEN2/RET 0,813), mostrando que a receita ultrapassa o câncer de mama/ovário (Material Suplementar, S12).
 5. **Explicabilidade** por SHAP e **ferramenta de linha de comando** de uso direto (abaixo).
 
 ### Resultado principal (dados reais, reexecutável)
@@ -33,7 +34,7 @@ PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial p
 | Posição bruta (referência de vazamento) | 0,802 | 0,791 |
 | Consciente de domínio (proposto) | 0,818 | 0,847 |
 | **Domínio + ESM-2 (carro-chefe)** | **0,882** | **0,909** |
-| **Meta-classificador integrado** (S2) | — | **0,938** |
+| **Meta-classificador integrado** (S2) | n/a | **0,938** |
 
 ---
 
@@ -45,7 +46,7 @@ primevarclass score BRCA1 p.Arg1699Trp
 ```
 
 ```
-PrimeVarClass — variante BRCA1 p.Arg1699Trp
+PrimeVarClass: variante BRCA1 p.Arg1699Trp
   Domínio funcional      : BRCT1  [REGIÃO CRÍTICA]
   ESM-2 LLR (zero-shot)  : -11.50   (sinal patogênico)
   Probabilidade (modelo) : 0.878
@@ -56,7 +57,7 @@ PrimeVarClass — variante BRCA1 p.Arg1699Trp
 
 ## A origem do projeto (a hipótese que refutamos)
 
-O projeto **nasceu** de uma hipótese original — **codificar aminoácidos como números primos** — que **testamos com rigor e refutamos de forma transparente**: sob o protocolo anti-vazamento, as características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácido e **pioraram** um modelo bioquímico ao serem adicionadas. Foi ao investigar esse resultado negativo que diagnosticamos o vazamento posicional e chegamos à contribuição real — a **consciência de domínio funcional**. Os primos permanecem no código apenas como o conjunto `prime_only`, **resultado negativo documentado**, não componente ativo.
+O projeto **nasceu** de uma hipótese original (codificar aminoácidos como números primos) que **testamos com rigor e refutamos de forma transparente**: sob o protocolo anti-vazamento, as características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácido e **pioraram** um modelo bioquímico ao serem adicionadas. Foi ao investigar esse resultado negativo que diagnosticamos o vazamento posicional e chegamos à contribuição real: a **consciência de domínio funcional**. Os primos permanecem no código apenas como o conjunto `prime_only`, **resultado negativo documentado**, não componente ativo.
 
 ---
 
@@ -112,8 +113,8 @@ Ferramenta de **apoio à pesquisa genética responsável**. **Não** é disposit
 
 ## Licença
 
-Distribuído sob a licença **MIT** — ver [`LICENSE`](LICENSE).
+Distribuído sob a licença **MIT** (ver [`LICENSE`](LICENSE)).
 
 ## Autor
 
-**Wesley Felipe Capucho** — graduando em Engenharia Bioquímica, Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP).
+**Wesley Felipe Capucho**, graduando em Engenharia Bioquímica, Escola de Engenharia de Lorena, Universidade de São Paulo (EEL-USP).

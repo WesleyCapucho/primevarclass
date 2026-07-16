@@ -1,24 +1,24 @@
-"""Continual learning — PrimeVarClass improves as it is used.
+"""Continual learning: PrimeVarClass improves as it is used.
 
 Real, *guarded* online learning (no hand-waving):
 
-1. ``FeedbackStore`` — every confirmed variant classification a user or lab
+1. ``FeedbackStore``: every confirmed variant classification a user or lab
    contributes is appended with provenance: UTC timestamp, source, submitter and a
    SHA-256 content hash. The log is append-only and de-duplicated (JSONL).
 
-2. ``incremental_update`` — folds the accumulated feedback into the training set,
+2. ``incremental_update``: folds the accumulated feedback into the training set,
    refits the flagship domain-aware + ESM-2 pipeline, and **promotes** the new
    model only if it does **not** underperform the current one on a *locked* hold-out
    cohort. This guards against distribution drift and label poisoning: bad feedback
    simply fails the gate and is not promoted.
 
-3. ``ModelRegistry`` — an append-only, versioned record of every accepted update
+3. ``ModelRegistry``: an append-only, versioned record of every accepted update
    (metrics + model hash), so each deployed model is traceable and auditable.
 
 Why this is legitimate, not a buzzword: the paper's temporal validation shows that
 as ClinVar accumulates confirmed labels over the years, a model trained only on the
-past classifies *future* variants increasingly well (external AUC 0.892 in 2016 →
-0.932 in 2021). This module operationalises exactly that effect — every confirmed
+past classifies *future* variants increasingly well (external AUC 0.892 in 2016 to
+0.932 in 2021). This module operationalises exactly that effect; every confirmed
 variant a user contributes is one more label that makes the next model better,
 under a safety gate that never lets it get worse.
 """

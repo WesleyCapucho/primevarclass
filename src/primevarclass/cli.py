@@ -3,7 +3,7 @@
 Score a single BRCA1/BRCA2 missense variant with the flagship domain-aware +
 ESM-2 model, and report its functional-domain context, zero-shot ESM-2 score and
 the model's pathogenicity probability. Everything runs on the core and the
-public data shipped in this repository — nothing is hard-coded.
+public data shipped in this repository; nothing is hard-coded.
 
 Examples
 --------
@@ -139,7 +139,7 @@ def _cmd_score(args: argparse.Namespace) -> int:
     call = "PATOGÊNICA (provável)" if prob >= 0.5 else "BENIGNA (provável)"
     conf = "alta" if abs(prob - 0.5) > 0.35 else ("moderada" if abs(prob - 0.5) > 0.15 else "baixa")
 
-    print(f"\nPrimeVarClass — variante {gene} {hgvs_p}")
+    print(f"\nPrimeVarClass: variante {gene} {hgvs_p}")
     print("-" * 52)
     print(f"  Domínio funcional      : {domain}"
           f"{'  [REGIÃO CRÍTICA]' if critical else ''}")
@@ -166,10 +166,10 @@ def _cmd_feedback(args: argparse.Namespace) -> int:
     rec = store.add(gene, pos, ref1, alt1, args.label, source=args.source,
                     submitter=args.submitter)
     if rec is None:
-        print("Já registrado anteriormente — nada a fazer (armazenamento idempotente).")
+        print("Já registrado anteriormente; nada a fazer (armazenamento idempotente).")
         return 0
     lab = "PATOGÊNICA" if rec.label == 1 else "BENIGNA"
-    print(f"\nFeedback registrado — {gene} p.{ref1}{pos}{alt1}  ->  {lab}")
+    print(f"\nFeedback registrado: {gene} p.{ref1}{pos}{alt1}  ->  {lab}")
     print(f"  fonte      : {rec.source}")
     print(f"  carimbo UTC: {rec.timestamp}")
     print(f"  SHA-256    : {rec.sha256[:16]}…")
@@ -199,7 +199,7 @@ def _cmd_update(args: argparse.Namespace) -> int:
     print("Reajustando com o feedback acumulado (trava de segurança ativa)…")
     entry = incremental_update(root, holdout_ids=holdout,
                                directory=root / "registro_prospectivo")
-    print(f"\nAtualização contínua — versão candidata v{entry['version']}")
+    print(f"\nAtualização contínua: versão candidata v{entry['version']}")
     print("-" * 52)
     print(f"  Rótulos de feedback     : {entry['n_feedback']}")
     print(f"  AUC (modelo atual)      : {entry['baseline_auc']:.3f}")
