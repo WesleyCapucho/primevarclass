@@ -4,6 +4,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21275650.svg)](https://doi.org/10.5281/zenodo.21275650)
 
+<p align="center">
+  <img src="docs/graphical_abstract.png" alt="PrimeVarClass — resumo gráfico: do problema (VUS) às características (domínio + ESM-2), ao classificador (Random Forest calibrado em ACMG) e ao impacto clínico (triagem de VUS no SUS; generalização multigênica)" width="960">
+</p>
+
 **Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente — aberta, interpretável e calibrada em força de evidência clínica.**
 
 PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a reprodutibilidade**.

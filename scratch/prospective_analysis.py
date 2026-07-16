@@ -109,22 +109,23 @@ json.dump(out, open(os.path.join(ANL, "reclassification_prospective.json"), "w",
 lf = json.load(open(os.path.join(ANL, "leakagefree_benchmark.json"), encoding="utf-8"))
 
 # ---- figure -----------------------------------------------------------------
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.6, 5.2), dpi=200,
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(13.8, 6.0), dpi=200,
                              gridspec_kw={"width_ratios": [1.15, 1]})
 rng = np.random.default_rng(0)
 for lab, color, xc, name in [(0, "#2e6fb0", 0, "benignas"), (1, "#c0392b", 1, "patogênicas")]:
     yy = p[y == lab]; xx = xc + rng.uniform(-0.18, 0.18, len(yy))
-    a1.scatter(xx, yy, c=color, s=42, alpha=0.75, edgecolor="white", linewidth=0.5,
+    a1.scatter(xx, yy, c=color, s=54, alpha=0.78, edgecolor="white", linewidth=0.6,
                label=f"{name} (2026)")
-a1.axhline(0.675, ls="--", color="#c0392b", lw=1, alpha=0.6)
-a1.axhline(0.255, ls="--", color="#2e6fb0", lw=1, alpha=0.6)
+a1.axhline(0.675, ls="--", color="#c0392b", lw=1.3, alpha=0.6)
+a1.axhline(0.255, ls="--", color="#2e6fb0", lw=1.3, alpha=0.6)
 a1.set_xticks([0, 1]); a1.set_xticklabels(["eventualmente\nbenignas", "eventualmente\npatogênicas"])
-a1.set_ylabel("probabilidade do modelo (cego ao rótulo de 2026)")
+a1.set_ylabel("probabilidade do modelo (cego ao rótulo de 2026)", fontsize=13)
 a1.set_ylim(0, 1)
-a1.set_title(f"A · Previsão prospectiva das VUS de 2023 (n={len(y)})\n"
-             f"AUC = {auc:.3f} · alta confiança: {acc_hi:.0%} de acerto",
-             fontsize=10.5, fontweight="bold")
-a1.legend(fontsize=8.5, loc="center left")
+a1.set_title((f"A · Previsão prospectiva das VUS de 2023 (n={len(y)})\n"
+              f"AUC = {auc:.3f} · alta confiança: {acc_hi:.0%} de acerto").replace(".", ","),
+             fontsize=14.5, fontweight="bold")
+a1.legend(fontsize=12.5, loc="center left")
+a1.tick_params(axis="x", labelsize=13); a1.tick_params(axis="y", labelsize=12)
 a1.grid(axis="y", alpha=0.2)
 
 tools = ["PrimeVarClass", "AlphaMissense", "REVEL", "CADD"]
@@ -132,18 +133,21 @@ full = lf["full"]
 aucs = [full[t]["auc"] for t in tools]
 cols_b = ["#c0392b", "#5a7fb0", "#5a7fb0", "#5a7fb0"]
 x = np.arange(len(tools))
-b = a2.bar(x, aucs, 0.6, color=cols_b, edgecolor="white")
+b = a2.bar(x, aucs, 0.62, color=cols_b, edgecolor="white")
 for bi, t in zip(b, tools):
-    a2.text(bi.get_x()+bi.get_width()/2, bi.get_height()+0.006, f"{full[t]['auc']:.3f}",
-            ha="center", va="bottom", fontsize=9.5, fontweight="bold")
-a2.set_xticks(x); a2.set_xticklabels(tools, fontsize=9, rotation=12)
-a2.set_ylim(0.5, 1.0); a2.set_ylabel("AUC-ROC (conjunto livre de vazamento)")
+    a2.text(bi.get_x()+bi.get_width()/2, bi.get_height()+0.008,
+            f"{full[t]['auc']:.3f}".replace(".", ","),
+            ha="center", va="bottom", fontsize=16, fontweight="bold")
+a2.set_xticks(x); a2.set_xticklabels(tools, fontsize=13.5, rotation=15, ha="right")
+a2.set_ylim(0.5, 1.0); a2.set_ylabel("AUC-ROC (conjunto livre de vazamento)", fontsize=13)
+a2.tick_params(axis="y", labelsize=12)
 a2.set_title("B · Head-to-head livre de vazamento\n(nenhuma ferramenta viu os rótulos)",
-             fontsize=10.5, fontweight="bold")
+             fontsize=14.5, fontweight="bold")
 a2.grid(axis="y", alpha=0.25)
 fig.suptitle("Validação prospectiva: o modelo prevê como a comunidade reclassifica VUS — "
-             "e lidera onde ninguém teve as respostas", fontweight="bold", fontsize=12)
-fig.tight_layout(rect=[0, 0, 1, 0.95])
-os.makedirs(os.path.dirname(FIG), exist_ok=True)
-fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-print(f">> wrote {ANL}/reclassification_prospective.json and {FIG}")
+             "e lidera onde ninguém teve as respostas", fontweight="bold", fontsize=15)
+fig.tight_layout(rect=[0, 0, 1, 0.94])
+for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    fig.savefig(_fp, dpi=200, bbox_inches="tight", facecolor="white")
+print(f">> wrote {ANL}/reclassification_prospective.json and the figure (suplementar + manuscrito)")
