@@ -4,7 +4,7 @@ For every BRCA1/2 variant that is currently a VUS or has conflicting
 classifications in ClinVar, we record — dated and hashed — PrimeVarClass's
 calibrated ACMG prediction. As ClinVar resolves these variants over the coming
 years, anyone can check our hit rate against this immutable record. This is the
-honest, falsifiable version of "prospective validation".
+falsifiable version of "prospective validation".
 
 Writes registro_prospectivo/brca_vus_predictions_<date>.csv and MANIFEST.md
 (with a SHA-256 of the predictions so the record cannot be altered afterwards).
@@ -74,7 +74,7 @@ variantes nos próximos anos, qualquer pessoa poderá conferir nossa taxa de ace
 contra este registro — que não pode ser alterado retroativamente (verifique o
 SHA-256 acima).
 
-Esta é a versão **honesta e falsificável** de "validação prospectiva": não
+Esta é a versão **falsificável** de "validação prospectiva": não
 afirmamos ter validação prospectiva hoje; nós a *tornamos possível* para o futuro.
 
 ## Conteúdo ({len(reg)} variantes não resolvidas)

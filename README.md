@@ -6,7 +6,7 @@
 
 **Classificação consciente de domínio de variantes *missense* em BRCA1/BRCA2, validada externamente — aberta, interpretável e calibrada em força de evidência clínica.**
 
-PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a honestidade científica**.
+PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a reprodutibilidade**.
 
 > Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Estudante do Ensino Superior; tema *IA para o Bem Comum* — subtema IA & Saúde).
 > 📄 Artigo principal: [`docs/manuscrito/`](docs/manuscrito/) · 📎 Material suplementar: [`docs/suplementar/`](docs/suplementar/PrimeVarClass_Material_Suplementar.md)
@@ -50,7 +50,7 @@ PrimeVarClass — variante BRCA1 p.Arg1699Trp
 
 ---
 
-## A origem honesta (a hipótese que refutamos)
+## A origem do projeto (a hipótese que refutamos)
 
 O projeto **nasceu** de uma hipótese original — **codificar aminoácidos como números primos** — que **testamos com rigor e refutamos de forma transparente**: sob o protocolo anti-vazamento, as características derivadas de primos tiveram desempenho **inferior** ao de uma identidade trivial de aminoácido e **pioraram** um modelo bioquímico ao serem adicionadas. Foi ao investigar esse resultado negativo que diagnosticamos o vazamento posicional e chegamos à contribuição real — a **consciência de domínio funcional**. Os primos permanecem no código apenas como o conjunto `prime_only`, **resultado negativo documentado**, não componente ativo.
 
@@ -67,7 +67,7 @@ O projeto **nasceu** de uma hipótese original — **codificar aminoácidos como
 ## Estrutura do repositório
 
 ```
-src/primevarclass/     Núcleo honesto (pacote instalável)
+src/primevarclass/     Núcleo do método (pacote instalável)
   ├─ domain_annotation.py   Mapa curado de domínios UniProt (RING/BRCT/DBD)
   ├─ core.py                Características, treino, validação, calibração ACMG
   ├─ esm_scores.py          Ingestão de escores ESM-2 (zero-shot)

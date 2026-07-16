@@ -1,6 +1,6 @@
 """Leakage-controlled benchmark — corrects the 'vazamento a favor de terceiros'.
 
-The head-to-head in benchmark_sota.py is honest but conservative *against us*:
+The head-to-head in benchmark_sota.py is conservative *against us*:
 supervised third-party predictors (REVEL, CADD; and, via calibration,
 AlphaMissense) were built using ClinVar-type labels that OVERLAP our external
 test set. That is circularity/data leakage **in favour of the third-party tools**
@@ -139,10 +139,10 @@ for cut in CUTOFFS:
 json.dump(result, open(os.path.join(OUT, "benchmark_leakage_controlled.json"),
                        "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
-# ---- figure: honest annotation of the evaluation asymmetry -------------------
+# ---- figure: annotation of the evaluation asymmetry -------------------
 # We do NOT claim the temporal cut removes the leakage (it does not: `last_evaluated`
 # reflects re-evaluation, not first submission, and every tool improves on recent
-# variants). The honest correction is to flag WHO was evaluated under circularity.
+# variants). The correction is to flag WHO was evaluated under circularity.
 REGIME = {  # (short label, evaluation-fairness tag, is_ours)
     "PrimeVarClass (domínio + ESM-2)": ("PrimeVarClass", "cego ao conjunto externo\n(fora da distribuição)", True),
     "AlphaMissense": ("AlphaMissense", "calibrado em ClinVar\n(circularidade parcial)", False),
@@ -192,7 +192,7 @@ leg = [Patch(facecolor="#c0392b", edgecolor="white", label="PrimeVarClass — av
        Patch(facecolor="#9aa4b2", edgecolor="white", label="não supervisionado no ClinVar")]
 ax.legend(handles=leg, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=1,
           fontsize=12.5, frameon=False, handlelength=1.4, handleheight=1.2)
-ax.set_title("Vazamento a favor de terceiros: uma comparação honesta\n"
+ax.set_title("Vazamento a favor de terceiros: uma comparação criteriosa\n"
              "Preditores supervisionados/calibrados no ClinVar têm vantagem de circularidade sobre o "
              "mesmo conjunto-teste;\no PrimeVarClass é avaliado fora da distribuição — e ainda assim é "
              "estatisticamente equivalente aos líderes", fontsize=13.5)

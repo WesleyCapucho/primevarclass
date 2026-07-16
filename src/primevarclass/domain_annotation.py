@@ -18,7 +18,7 @@ Controlled experiments on real ClinVar/expert-panel data (see
 
 Unlike a unique residue index, a domain label is a function of a *region*, so
 it encodes transferable biology instead of memorising which exact positions
-were pathogenic in the training set. This is the honest, defensible core of the
+were pathogenic in the training set. This is the defensible core of the
 classifier.
 
 Domain boundaries

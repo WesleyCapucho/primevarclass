@@ -3,7 +3,7 @@ established missense predictors — AlphaMissense, REVEL, CADD, PolyPhen-2, SIFT
 on the SAME external cohorts and labels used throughout the paper.
 
 Third-party scores are pulled from the Ensembl VEP REST API (MANE Select
-transcript), cached locally. Honesty notes:
+transcript), cached locally. Notes:
   * PrimeVarClass is trained on the internal cohort and evaluated on the external
     cohorts under the paper's anti-leakage protocol.
   * The third-party tools are used as published (their own training data is

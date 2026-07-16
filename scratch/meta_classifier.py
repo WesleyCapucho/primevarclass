@@ -1,6 +1,6 @@
 """Integrated meta-classifier: combine PrimeVarClass (domain + ESM-2) with the
 public predictors AlphaMissense, REVEL and CADD into a single calibrated,
-interpretable score, evaluated honestly by cross-validation on the SAME external
+interpretable score, evaluated by cross-validation on the SAME external
 variants used in the head-to-head benchmark.
 
 Rationale: no single computational tool is best everywhere; clinical labs

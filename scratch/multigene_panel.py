@@ -5,9 +5,9 @@ concentrate in the DNA-binding domain). We apply the SAME recipe used for BRCA �
 biochemistry, then + critical-domain awareness, then + a protein-language-model
 score (ESM-2) — under position-blocked CV, and show the AUC climb. Critical-domain
 spans come from UniProt (function-defined, label-independent). The other panel
-genes (PALB2, CHEK2, ATM) are reported honestly: PALB2/CHEK2 have too few definitive
+genes (PALB2, CHEK2, ATM) are reported as-is: PALB2/CHEK2 have too few definitive
 missense (their pathogenicity is truncating-dominated) and ATM's missense
-pathogenicity is spatially diffuse — the method's honest boundary.
+pathogenicity is spatially diffuse — the method's boundary.
 
 ESM-2 (650M, the flagship's primary model) was scored on GPU for the whole panel
 via scratch/colab_esm2_650M_panel.py -> scratch/esm_input/esm2_650M_panel_scores.csv,

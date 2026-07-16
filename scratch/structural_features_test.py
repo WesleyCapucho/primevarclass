@@ -3,7 +3,7 @@ limitation. We add: (1) dist_to_critical = residue distance to the nearest criti
 functional domain (0 inside, gradient outside) — a soft version of the binary
 in_critical_domain; (2) plddt = AlphaFold per-residue confidence (structural order)
 where available. We refit the domain-only and flagship models WITH and WITHOUT the
-new features and compare external AUC. Honest: integrate only if it helps.
+new features and compare external AUC. Integrate only if it helps.
 
 Run: python scratch/structural_features_test.py
 """
@@ -94,7 +94,7 @@ def cv_auc(cols):
 DIST = ["dist_to_critical"]  # clean, both genes; no gene-confound
 print(f">> train n={len(tr)} pat={int(ytr.sum())} | external n={len(ext_df)} pat={int(yext.sum())}")
 print(f">> plddt coverage (BRCA1 only): {int(tr['plddt'].notna().sum())}/{len(tr)} train")
-print("\n=== external AUC (the honest metric): base | +dist | +dist+plddt ===")
+print("\n=== external AUC (the decisive metric): base | +dist | +dist+plddt ===")
 print(f"  domain-only            {ext_auc(domain)} | {ext_auc(domain + DIST)} | {ext_auc(domain + STRUCT)}")
 print(f"  flagship (domain+ESM)  {ext_auc(flagship)} | {ext_auc(flagship + DIST)} | {ext_auc(flagship + STRUCT)}")
 print("\n=== position-blocked CV AUC (internal): base | +dist | +dist+plddt ===")

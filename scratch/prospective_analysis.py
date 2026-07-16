@@ -89,7 +89,7 @@ pipe = _build_pipeline(tr[cols], random_state=42); pipe.fit(tr[cols], tr.label.t
 p = pipe.predict_proba(te[cols])[:, 1]
 
 auc = float(roc_auc_score(y, p))
-# bootstrap CI95 for the prospective AUC (small n -> report the interval honestly)
+# bootstrap CI95 for the prospective AUC (small n -> report the interval)
 _rng = np.random.default_rng(42); _boot = []
 for _ in range(5000):
     _idx = _rng.integers(0, len(y), len(y))

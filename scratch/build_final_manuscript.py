@@ -261,7 +261,7 @@ def build_apresentacao(doc):
               "nesse conjunto livre de vazamento superou AlphaMissense e REVEL; o "
               "método também generalizou para o TP53 (AUC até 0,912 em um gene novo). "
               "O sistema é entregue como plataforma aberta, auditável e reprodutível. "
-              "A contribuição central não é um número inflado, mas um método honesto, "
+              "A contribuição central não é um número inflado, mas um método rigoroso, "
               "generalizável e continuamente aprimorável para apoiar a interpretação "
               "responsável de variantes genéticas no Brasil.", space_after=8)
     keywords_line(doc, "Palavras-chave: ", "classificação de variantes de significado "
@@ -337,7 +337,7 @@ def build_apresentacao(doc):
               "internos.")
     para(doc, "3. Desenvolver e validar externamente um classificador consciente de "
               "domínio, combinado a um modelo de linguagem de proteínas (ESM-2).")
-    para(doc, "4. Comparar esse modelo, de forma honesta, com AlphaMissense/REVEL/CADD, "
+    para(doc, "4. Comparar esse modelo, de forma rigorosa, com AlphaMissense/REVEL/CADD, "
               "corrigindo a assimetria de circularidade que os favorece.")
     para(doc, "5. Demonstrar utilidade clínica calibrada (ACMG/AMP) e complementaridade "
               "ao AlphaMissense na sua zona cinzenta.")
@@ -413,11 +413,11 @@ def build_metodos(doc):
               "2021), em janelas de ±511 resíduos. Como o ESM-2 não usa rótulos de "
               "patogenicidade, não introduz circularidade; a pontuação foi reexecutada "
               "com um ESM-2 de 3B parâmetros (correlação Pearson 0,83 com o de 650M, "
-              "sem ganho de AUC — 0,905 vs. 0,909 —, resultado honesto de saturação que "
+              "sem ganho de AUC — 0,905 vs. 0,909 —, resultado de saturação que "
               "levou a manter o 650M como principal). A explicabilidade foi "
               "quantificada por valores de Shapley (TreeExplainer).")
 
-    h3(doc, "Comparação honesta, meta-classificador e calibração ACMG/AMP")
+    h3(doc, "Comparação com o estado da arte, meta-classificador e calibração ACMG/AMP")
     para(doc, "O modelo-carro-chefe foi comparado com AlphaMissense, REVEL, CADD, "
               "PolyPhen-2 e SIFT nas mesmas 836 variantes externas (escores via API "
               "REST do Ensembl VEP, transcrito MANE Select). A assimetria de "
@@ -485,7 +485,7 @@ def build_resultados(doc):
     para(doc, "A diferença é uma tendência não significativa na CV interna (p = 0,081), "
               "mas significativa na generalização externa (p = 0,045) — e adicionar "
               "primos a um modelo bioquímico piora o desempenho externo (p < 0,0001). "
-              "A conclusão é honesta: os primos não agregam sinal útil.")
+              "A conclusão é direta: os primos não agregam sinal útil.")
 
     h3(doc, "Diagnóstico: a armadilha do vazamento posicional")
     para(doc, "Sob validação ingênua (sem bloqueio por grupo), a identidade combinada à "
@@ -569,7 +569,7 @@ def build_resultados(doc):
               "domínio e ESM-2, o modelo-carro-chefe atinge AUC "
               "externa de 0,909 (Tabela 4; DeLong p = 1,5 × 10⁻¹⁰ vs. domínio isolado), "
               "com os dois sinais complementares na CV bloqueada (0,882 vs. 0,818 e "
-              "0,867 isolados). Uma objeção honesta: externamente, o ESM-2 isolado "
+              "0,867 isolados). Uma ressalva importante: externamente, o ESM-2 isolado "
               "(0,907) quase iguala o conjunto (0,909). Ainda assim o domínio é "
               "essencial: agrega sinal na CV bloqueada (0,882 vs. 0,867); sozinho e sem "
               "GPU atinge 0,847, acessível a serviços sem aprendizado profundo; e "
@@ -614,7 +614,7 @@ def build_resultados(doc):
                   "0,95–0,97; as estimativas mais baixas coincidem com poucos "
                   "positivos e intervalos de confiança largos.")
 
-    h3(doc, "Vazamento a favor de terceiros: a comparação honesta")
+    h3(doc, "Vazamento a favor de terceiros: a comparação criteriosa")
     para(doc, "No mesmo conjunto externo (n = 836), o modelo-carro-chefe foi medido "
               "contra preditores publicados (Figura 6; Tabela 6). REVEL e CADD são "
               "treinados — e o AlphaMissense é calibrado — em rótulos que se sobrepõem "
@@ -639,7 +639,7 @@ def build_resultados(doc):
               "está em vencer no AUC bruto, mas em complementar essas ferramentas onde "
               "elas se abstêm.", space_after=4)
     figure(doc, "fig_benchmark_leakage_controlled.png",
-           "Figura 6. Comparação honesta com o estado da arte: preditores "
+           "Figura 6. Comparação criteriosa com o estado da arte: preditores "
            "supervisionados/calibrados em ClinVar (azul) têm circularidade a favor; "
            "o modelo-carro-chefe (vermelho) é avaliado fora da distribuição.",
            width=5.0)
@@ -652,7 +652,7 @@ def build_resultados(doc):
            ["SIFT", "0,845", "0,424", "não superv.", "p=0,001"],
            ["PolyPhen-2", "0,773", "0,469", "não superv.", "p<0,0001"]],
           widths_cm=[3.1, 1.5, 1.6, 4.3, 2.6], font_size=9.5,
-          caption="Tabela 6. Comparação honesta com o estado da arte. AUPRC robusta ao "
+          caption="Tabela 6. Comparação criteriosa com o estado da arte. AUPRC robusta ao "
                   "desbalanceamento (base trivial 0,172). Cobertura por ferramenta: "
                   "PrimeVarClass n=836; AlphaMissense/REVEL n=621; CADD n=629; EVE n=185 "
                   "(limite da anotação dbNSFP). O EVE é o único comparador não circular; "
@@ -799,7 +799,7 @@ def build_resultados(doc):
               "(RIBEIRO et al., 2025). As figuras destas análises estão no "
               "Material Suplementar.", space_after=6)
 
-    h3(doc, "Discussão: honestidade metodológica como contribuição, e complemento "
+    h3(doc, "Discussão: rigor metodológico como contribuição, e complemento "
             "em vez de concorrência")
     para(doc, "O achado central é que domínio funcional generaliza, enquanto posição "
               "bruta memoriza — inversão diagnóstica confirmada em três momentos "
@@ -900,7 +900,7 @@ def build_conclusao(doc):
               "forma aberta, explicável, auditável e eticamente contida, com aplicação "
               "direta ao contexto brasileiro de saúde de precisão. A maior força do "
               "PrimeVarClass não é um número, mas um compromisso demonstrado com a "
-              "ciência honesta — do teste de uma hipótese própria até a correção de uma "
+              "rigor científico — do teste de uma hipótese própria até a correção de uma "
               "assimetria que o desfavorecia.")
     doc.add_page_break()
 

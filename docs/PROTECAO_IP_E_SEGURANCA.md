@@ -1,11 +1,11 @@
 # Proteção intelectual e cibersegurança
 
 Estratégia adotada: **repositório aberto + proveniência forte**. O trabalho
-permanece público e auditável (o que reforça a honestidade científica perante a
+permanece público e auditável (o que reforça a credibilidade científica perante a
 banca), enquanto a autoria fica cravada de forma imutável e datada — de modo que
 qualquer plágio se torna **detectável, atribuível e legalmente acionável**.
 
-> Nota honesta: para um repositório público não existe "impedir a leitura/cópia";
+> Nota: para um repositório público não existe "impedir a leitura/cópia";
 > existe tornar a cópia sem crédito uma violação comprovável. As medidas abaixo
 > garantem exatamente isso.
 

@@ -18,7 +18,7 @@ calibrada (ACMG/AMP)**, funcionando como **complemento** ao AlphaMissense
 justamente onde ele se abstém.
 
 > **E por que "Prime"?** O projeto nasceu de uma hipótese sobre números primos que
-> foi **testada com rigor e honestamente refutada** — e foi essa honestidade que o
+> foi **testada com rigor e refutada** — e foi esse compromisso metodológico que o
 > levou ao método que funciona. A trajetória completa está em
 > [A história dos números primos](../A_HISTORIA_DOS_PRIMOS.md).
 
@@ -127,7 +127,7 @@ seja, joga no mesmo nível dos líderes — e é **significativamente superior**
 clássicos SIFT (p = 0,001) e PolyPhen-2 (p < 10⁻⁶). Na cobertura total do nosso
 modelo (n = 836), a AUC é **0,909 (IC95% 0,876–0,939)**.
 
-### 2.1b Vazamento a favor de terceiros — a comparação honesta
+### 2.1b Vazamento a favor de terceiros — a comparação criteriosa
 ![Vazamento a favor de terceiros](figuras/fig_benchmark_leakage_controlled.png)
 
 Há uma assimetria que **desfavorece o PrimeVarClass** e precisa ser dita com todas
@@ -141,12 +141,12 @@ tocou, sob validação bloqueada por posição.
 Ou seja: a corrida não é justa, e é o PrimeVarClass que corre com peso extra.
 Mesmo assim, a diferença para os líderes **não é estatisticamente significativa**
 (DeLong: *p* = 0,14 vs REVEL; 0,24 vs AlphaMissense; 0,37 vs CADD). Empatar sob uma
-avaliação mais rigorosa é, honestamente, um resultado **mais forte** do que o número
+avaliação mais rigorosa é, na prática, um resultado **mais forte** do que o número
 cru sugere — e por isso o nosso diferencial real não é "vencer no AUC", e sim
 **complementar** essas ferramentas na zona cinzenta, com calibração ACMG e equidade
 (Seções 3.1–3.5).
 
-> Nota de honestidade: tentamos isolar o vazamento restringindo a variantes
+> Ressalva: tentamos isolar o vazamento restringindo a variantes
 > recentes (ClinVar `last_evaluated` ≥ 2024). Esse recorte **não** separa
 > limpamente o vazamento — a data reflete a *reavaliação*, não a primeira
 > submissão, e **todas** as ferramentas melhoram nas variantes recentes (o
@@ -232,7 +232,7 @@ evidência confiável nas duas direções.
 
 Quando o modelo diz "70% de chance de ser patogênico", isso se confirma na
 prática? A curva de calibração acompanhando a diagonal mostra que **as
-probabilidades são honestas** — nem otimistas demais, nem tímidas demais.
+probabilidades são bem calibradas** — nem otimistas demais, nem tímidas demais.
 
 ### 3.4 Validação temporal (prospectiva, sem olhar o futuro)
 ![Validação temporal](figuras/fig_temporal_validation.png)

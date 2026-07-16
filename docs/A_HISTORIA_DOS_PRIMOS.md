@@ -5,7 +5,7 @@
 O nome **PrimeVarClass** guarda a origem do projeto — e essa origem é, ela
 própria, um dos seus maiores méritos. Este documento conta, com transparência
 total e números reproduzíveis, o papel que os números primos tiveram: **não como
-o motor do método, mas como a fagulha que, testada com honestidade, levou o
+o motor do método, mas como a fagulha que, testada com rigor, levou o
 projeto ao que de fato funciona.**
 
 ---
@@ -61,7 +61,7 @@ Duas conclusões, ambas estatisticamente significativas (DeLong):
 2. **Adicionar primos a um modelo bioquímico *piora* o desempenho** nas coortes
    externas (0,791 → 0,765; *p* = 3,8 × 10⁻⁸).
 
-> Nota de honestidade: uma verificação preliminar mais simples — validação
+> Ressalva: uma verificação preliminar mais simples — validação
 > cruzada **sem** bloqueio por posição
 > ([`scratch/decisive_prime_test.py`](../scratch/decisive_prime_test.py)) — chegou
 > a números diferentes e mais otimistas para a identidade com posição (AUC ≈ 0,90).
@@ -74,7 +74,7 @@ alicerce de credibilidade do projeto.**
 
 ## 4. O pivô: deixar os dados apontarem o caminho
 
-Com a hipótese original honestamente descartada, seguimos a evidência. Ela apontou
+Com a hipótese original descartada, seguimos a evidência. Ela apontou
 para dois ingredientes com significado biológico real:
 
 - **Consciência de domínio funcional** — informar ao modelo *onde*, na arquitetura
@@ -97,7 +97,7 @@ ter tido a disciplina de abandonar a ideia bonita que não se sustentava.
 
 Vivemos um momento em que a área de IA é inundada por alegações infladas e
 resultados que não se reproduzem. Contra esse pano de fundo, uma trajetória de
-**"hipótese ousada → teste rigoroso → refutação honesta → redirecionamento guiado
+**"hipótese ousada → teste rigoroso → refutação documentada → redirecionamento guiado
 por evidência"** não é uma fraqueza: é exatamente o que distingue ciência de
 marketing tecnológico.
 
@@ -112,12 +112,12 @@ marketing tecnológico.
 ## 6. Por que manter o nome
 
 **PrimeVarClass** carrega os primos como assinatura de origem — a memória de ter
-perseguido o caminho difícil e honesto. Os primos foram a pergunta; o rigor foi o
+perseguido o caminho difícil e rigoroso. Os primos foram a pergunta; o rigor foi o
 método; a consciência de domínio e o ESM-2 são a resposta. O nome celebra a
 **jornada científica completa**, não um atalho.
 
-> Em uma frase: *começamos com números primos, testamos com honestidade,
-> descobrimos que não funcionavam — e foi justamente essa honestidade que nos levou
+> Em uma frase: *começamos com números primos, testamos com rigor,
+> descobrimos que não funcionavam — e foi justamente esse rigor que nos levou
 > a construir algo que funciona.*
 
 ---

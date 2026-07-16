@@ -2,7 +2,7 @@
 
 Score a single BRCA1/BRCA2 missense variant with the flagship domain-aware +
 ESM-2 model, and report its functional-domain context, zero-shot ESM-2 score and
-the model's pathogenicity probability. Everything runs on the honest core and the
+the model's pathogenicity probability. Everything runs on the core and the
 public data shipped in this repository — nothing is hard-coded.
 
 Examples

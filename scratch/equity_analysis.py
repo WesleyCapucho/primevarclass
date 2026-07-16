@@ -1,4 +1,4 @@
-"""Health-equity analysis (honest, data-driven).
+"""Health-equity analysis (data-driven).
 
 Restricting to CLINICALLY APPRECIABLE variants (allele frequency > 1e-4 in the
 variant's predominant population — i.e. not ultra-rare, so genuinely relevant to

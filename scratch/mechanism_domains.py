@@ -8,7 +8,7 @@ ligand and assign every detected variant a structural mechanism:
   BRCT (1T29)  phosphopeptide pocket (BACH1 peptide) / fold core / surface
   DBD  (1MJE)  DNA binding (ssDNA) / DSS1 interface / fold core / surface
                (1MJE is mouse; residues are mapped to human numbering by a
-                pairwise alignment to UniProt P51587 — honest & rigorous)
+                pairwise alignment to UniProt P51587 — rigorous)
 
 Run: python scratch/mechanism_domains.py
 """

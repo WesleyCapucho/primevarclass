@@ -1,7 +1,7 @@
 """PrimeVarClass — domain-aware, externally validated classification of
 BRCA1/BRCA2 missense variants of uncertain significance.
 
-This package exposes the honest, reproducible core used in the manuscript
+This package exposes the reproducible core used in the manuscript
 (``docs/manuscrito/``):
 
 * :mod:`primevarclass.domain_annotation` — curated UniProt functional-domain map

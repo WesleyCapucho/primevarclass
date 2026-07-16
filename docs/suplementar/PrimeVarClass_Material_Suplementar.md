@@ -21,7 +21,7 @@ Comparamos o PrimeVarClass (modelo-carro-chefe: consciência de domínio + ESM-2
 | CADD | 0,920 | 0,886–0,951 | p = 0,434 |
 | **PrimeVarClass (domínio + ESM-2)** | **0,907** | 0,864–0,943 | — |
 
-**Leitura honesta.** No ponto estimado, o PrimeVarClass fica ligeiramente abaixo de REVEL, AlphaMissense e CADD; entretanto, **nenhuma dessas diferenças é estatisticamente significativa** (teste pareado de DeLong, todos os *p* > 0,14). Ou seja, um classificador **aberto, interpretável e calibrado**, treinado sob um protocolo anti-vazamento rigoroso, é **estatisticamente comparável ao estado da arte** — inclusive a modelos de escala muito maior e treinados sob supervisão massiva. Ressalva de justiça metodológica: AlphaMissense, REVEL e CADD podem ter sido expostos, em seus treinos, a rótulos das variantes de teste (vazamento **a favor deles**); reportamos a comparação mesmo assim, por transparência.
+**Leitura direta.** No ponto estimado, o PrimeVarClass fica ligeiramente abaixo de REVEL, AlphaMissense e CADD; entretanto, **nenhuma dessas diferenças é estatisticamente significativa** (teste pareado de DeLong, todos os *p* > 0,14). Ou seja, um classificador **aberto, interpretável e calibrado**, treinado sob um protocolo anti-vazamento rigoroso, é **estatisticamente comparável ao estado da arte** — inclusive a modelos de escala muito maior e treinados sob supervisão massiva. Ressalva de justiça metodológica: AlphaMissense, REVEL e CADD podem ter sido expostos, em seus treinos, a rótulos das variantes de teste (vazamento **a favor deles**); reportamos a comparação mesmo assim, por transparência.
 
 Ver **Figura S1** (curvas ROC sobrepostas e barras de AUC com IC95%).
 
@@ -64,7 +64,7 @@ Para tornar o escore **clinicamente acionável**, calibramos o modelo-carro-chef
 | PP3_Moderado | 0,345 ≤ escore < 0,675 | 117 | 0,32 | 2,2 |
 | **BP4_Moderado** (benigno) | escore ≤ 0,255 | 444 | 0,03 | 0,16 |
 
-**Leitura honesta.** A evidência **transfere-se robustamente nos extremos**: variantes com escore ≥ 0,675 recebem **PP3_Forte**, e na coorte externa esse grupo é 94% patogênico, com LR local de 75,9 — acima até do patamar "forte" (≥ 18,7). Simetricamente, escore ≤ 0,255 dá **BP4_Moderado** (3% patogênicas). A faixa intermediária é deixada **não informativa** — o comportamento clinicamente responsável: uma VUS só é movida quando a evidência é real. É exatamente esse par (evidência forte nos extremos + abstenção no meio) que sustenta o uso do escore para **priorizar VUS** para reclassificação.
+**Leitura direta.** A evidência **transfere-se robustamente nos extremos**: variantes com escore ≥ 0,675 recebem **PP3_Forte**, e na coorte externa esse grupo é 94% patogênico, com LR local de 75,9 — acima até do patamar "forte" (≥ 18,7). Simetricamente, escore ≤ 0,255 dá **BP4_Moderado** (3% patogênicas). A faixa intermediária é deixada **não informativa** — o comportamento clinicamente responsável: uma VUS só é movida quando a evidência é real. É exatamente esse par (evidência forte nos extremos + abstenção no meio) que sustenta o uso do escore para **priorizar VUS** para reclassificação.
 
 ![Figura S3](figuras/fig_acmg_calibration.png)
 
@@ -134,7 +134,7 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 **Figura S6a.** Complemento ao AlphaMissense na zona cinzenta (ClinVar real, BRCA1 e BRCA2). Entre as variantes que o AlphaMissense classifica como *ambíguas*, quantas VUS **(A)** e variantes conflitantes **(B)** recebem evidência calibrada do PrimeVarClass — PP3_Forte (patogênico), BP4_Moderado (benigno) ou permanecem não informativas. A acurácia dessas chamadas é validada de forma independente pela calibração (S3) e pela validação temporal (no artigo principal).
 
-**Robustez do sinal (ESM-2 3B).** Para verificar que o resultado não depende do tamanho do modelo de linguagem, reexecutamos toda a pontuação com o **ESM-2 3B** (3 bilhões de parâmetros, ~4× maior; 12 genes HBOC, execução em GPU). O modelo maior **corrobora** o de 650M (correlação de Pearson 0,83 entre os LLRs) sem melhorar o desempenho externo (AUC do carro-chefe 0,905 vs. 0,909) — resultado honesto e coerente com a literatura, que mostra que, para efeito de variante, o ganho de escala do PLM satura. Mantemos o 650M como modelo primário e reportamos o 3B como confirmação independente.
+**Robustez do sinal (ESM-2 3B).** Para verificar que o resultado não depende do tamanho do modelo de linguagem, reexecutamos toda a pontuação com o **ESM-2 3B** (3 bilhões de parâmetros, ~4× maior; 12 genes HBOC, execução em GPU). O modelo maior **corrobora** o de 650M (correlação de Pearson 0,83 entre os LLRs) sem melhorar o desempenho externo (AUC do carro-chefe 0,905 vs. 0,909) — resultado coerente com a literatura, que mostra que, para efeito de variante, o ganho de escala do PLM satura. Mantemos o 650M como modelo primário e reportamos o 3B como confirmação independente.
 
 **Onde estão as mutações detectadas.** Projetando a intensidade de detecção (fração das 19 substituições de cada resíduo classificadas PP3_Forte) sobre as estruturas experimentais de BRCA1, as detecções **concentram-se precisamente no núcleo funcional** — o sítio de coordenação de zinco no RING e o núcleo hidrofóbico/interface das repetições BRCT — e são baixas nas alças de superfície (figuras do artigo principal: mapa de detecção RING+BRCT e detalhe do sítio de zinco). Das 2.627 variantes de BRCA1 detectadas como PP3_Forte, **123 já constam como Patogênicas/Provavelmente patogênicas no ClinVar**, incluindo todas as substituições das cisteínas que coordenam o zinco (Cys24/27/39/47/61/64, probabilidade > 0,99) — validação independente de que o algoritmo detecta biologia real, não ruído. O script `scratch/detected_mutations_analysis.py` gera a tabela completa (`detected_top_variants.csv`).
 
@@ -192,7 +192,7 @@ Há **seis vezes mais** variantes apreciáveis predominantes em populações nã
 
 **A resposta (nossa contribuição).** O sinal de sequência (ESM-2, *zero-shot*) e de estrutura **não depende de quão estudada é uma população**. Entre as variantes apreciáveis **não resolvidas**, o PrimeVarClass fornece evidência ACMG calibrada de forma **equitativa**: **78,0%** das não-europeias (490 variantes) e 84,0% das europeias (50 variantes). Ou seja, atendemos a maior população sub-representada praticamente na mesma taxa — sem herdar o viés eurocêntrico das bases clínicas.
 
-**Nota de honestidade.** A lacuna aparece nas variantes *apreciáveis* (não nas ultra-raras, onde ambas as ancestralidades são igualmente pouco resolvidas). E, embora nossos componentes *zero-shot* (ESM-2/estrutura) sejam cegos a ancestralidade, o classificador Random Forest é treinado em rótulos ClinVar — também eurocêntricos; por isso a contribuição de equidade apoia-se, sobretudo, nesses componentes independentes de população, o que declaramos abertamente.
+**Ressalva.** A lacuna aparece nas variantes *apreciáveis* (não nas ultra-raras, onde ambas as ancestralidades são igualmente pouco resolvidas). E, embora nossos componentes *zero-shot* (ESM-2/estrutura) sejam cegos a ancestralidade, o classificador Random Forest é treinado em rótulos ClinVar — também eurocêntricos; por isso a contribuição de equidade apoia-se, sobretudo, nesses componentes independentes de população, o que declaramos abertamente.
 
 ![Figura S8](figuras/fig_equity.png)
 
@@ -216,7 +216,7 @@ A decomposição de mecanismo (S7) não é apenas uma hipótese estrutural — e
 
 A ordenação é **monotônica e biologicamente esperada**: variantes que destroem a coordenação do zinco perdem a maior parte da função; as de superfície, quase nenhuma. A diferença entre mecanismos é altamente significativa (**Kruskal–Wallis p = 3,5 × 10⁻³³**), e o enterramento correlaciona-se com a perda de função (Spearman RSA×HDR = +0,26). Ou seja, o mecanismo que atribuímos a partir da estrutura **antecipa a consequência funcional real** — uma validação independente de rótulos clínicos.
 
-**Nota de honestidade.** O HDR é um ensaio específico e ruidoso; por isso, para a decomposição de mecanismo, reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local no MaveDB; o alinhamento de coordenadas foi resolvido (S4), e nele a probabilidade do modelo separa perda de função com AUC 0,795 (n = 2.140).
+**Ressalva.** O HDR é um ensaio específico e ruidoso; por isso, para a decomposição de mecanismo, reportamos a **separação entre grupos** (fortemente significativa), e não uma regressão por variante. O padrão-ouro (Findlay 2018, *saturation genome editing*) usa numeração local no MaveDB; o alinhamento de coordenadas foi resolvido (S4), e nele a probabilidade do modelo separa perda de função com AUC 0,795 (n = 2.140).
 
 ![Figura S9](figuras/fig_mechanism_vs_function.png)
 
@@ -257,7 +257,7 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 ![Figura S12b](figuras/fig_multigene_expanded.png)
 
-**Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **VHL 0,966** [0,92–1,00], **MSH2 0,926** [0,86–0,98], **RET 0,813** [0,69–0,91], **MSH6 0,806** [0,64–0,95] e **MLH1 0,753** [0,64–0,86]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, VHL 0,879 → 0,966; MSH6 0,581 → 0,806). Já a consciência de domínio — curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53 — contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite honesto que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (MSH6 n = 43; RET n = 57) têm IC largos, reportados sem maquiagem.
+**Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **VHL 0,966** [0,92–1,00], **MSH2 0,926** [0,86–0,98], **RET 0,813** [0,69–0,91], **MSH6 0,806** [0,64–0,95] e **MLH1 0,753** [0,64–0,86]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, VHL 0,879 → 0,966; MSH6 0,581 → 0,806). Já a consciência de domínio — curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53 — contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite claro que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (MSH6 n = 43; RET n = 57) têm IC largos, reportados sem maquiagem.
 
 ![Figura S12c](figuras/fig_vhl_detection.png)
 
@@ -265,7 +265,7 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 ![Figura S12d](figuras/fig_msh2_detection.png)
 
-**Figura S12d.** MSH2 (Lynch, AUC 0,926) sobre a estrutura real do complexo MutSα (PDB 2O8B, cadeia A). O sinal ESM-2 por resíduo colore a cadeia de azul (tolerante) a dourado (detectado), e as variantes patogênicas reais (*sticks*) acompanham o núcleo funcional do reparo de emparelhamento. Por ser uma proteína grande e multidomínio, a detecção é mais distribuída que no VHL — honestamente esperado. PyMOL: `scratch/pymol_panel_detection.py`.
+**Figura S12d.** MSH2 (Lynch, AUC 0,926) sobre a estrutura real do complexo MutSα (PDB 2O8B, cadeia A). O sinal ESM-2 por resíduo colore a cadeia de azul (tolerante) a dourado (detectado), e as variantes patogênicas reais (*sticks*) acompanham o núcleo funcional do reparo de emparelhamento. Por ser uma proteína grande e multidomínio, a detecção é mais distribuída que no VHL — como esperado. PyMOL: `scratch/pymol_panel_detection.py`.
 
 ![Figura S12e](figuras/fig_ret_detection.png)
 
@@ -305,7 +305,7 @@ Além do ponto único de CV bloqueada e das 12 sementes repetidas, o carro-chefe
 
 ## S16. Utilidade clínica — eficiência de triagem em dados reais
 
-Para além da AUC, mede-se aqui o valor operacional direto: **quanto trabalho de revisão o modelo remove com segurança** de um laboratório. Sobre as **836 variantes externas com rótulo real do ClinVar** (17,2% patogênicas), duas análises padronizadas e honestas — eficiência de triagem (baseada em ranqueamento, justa a todos os preditores) e análise de curva de decisão (*net benefit*; Vickers & Elkin, 2006). Script: `scratch/clinical_utility.py`; números em `primevarclass_manuscript_analysis/clinical_utility.json`.
+Para além da AUC, mede-se aqui o valor operacional direto: **quanto trabalho de revisão o modelo remove com segurança** de um laboratório. Sobre as **836 variantes externas com rótulo real do ClinVar** (17,2% patogênicas), duas análises padronizadas — eficiência de triagem (baseada em ranqueamento, justa a todos os preditores) e análise de curva de decisão (*net benefit*; Vickers & Elkin, 2006). Script: `scratch/clinical_utility.py`; números em `primevarclass_manuscript_analysis/clinical_utility.json`.
 
 ![Figura S16](figuras/fig_clinical_utility.png)
 

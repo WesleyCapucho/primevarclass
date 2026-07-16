@@ -3,7 +3,7 @@
 (2018) and Pejaver et al. (2022), which the ClinGen SVI recommends for
 computational predictors.
 
-Method (honest, out-of-sample):
+Method (out-of-sample):
   1. Score every internal-cohort variant with position-blocked cross-validation
      (StratifiedGroupKFold) so the calibration never sees a variant's own fold.
   2. For a grid of score cut-offs, compute the *local* likelihood ratio of the

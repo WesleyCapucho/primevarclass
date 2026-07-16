@@ -2,7 +2,7 @@
 
 Turns the AUC into a concrete operational claim a public lab can act on: how much
 variant-review burden PrimeVarClass safely removes, and whether using it beats the
-default strategies ("review every VUS" / "review none"). Two standard, honest tools:
+default strategies ("review every VUS" / "review none"). Two standard tools:
 
   (A) Triage efficiency — rank variants by score (most suspicious first) and measure
       the sensitivity achieved per fraction reviewed. Rank-based, so it is fair to

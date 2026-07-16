@@ -14,7 +14,7 @@ variantes nos próximos anos, qualquer pessoa poderá conferir nossa taxa de ace
 contra este registro — que não pode ser alterado retroativamente (verifique o
 SHA-256 acima).
 
-Esta é a versão **honesta e falsificável** de "validação prospectiva": não
+Esta é a versão **falsificável** de "validação prospectiva": não
 afirmamos ter validação prospectiva hoje; nós a *tornamos possível* para o futuro.
 
 ## Conteúdo (12196 variantes não resolvidas)

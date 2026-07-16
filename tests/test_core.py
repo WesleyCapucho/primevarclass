@@ -1,4 +1,4 @@
-"""Tests for the honest PrimeVarClass core: variant parsing, feature engineering,
+"""Tests for the PrimeVarClass core: variant parsing, feature engineering,
 domain-aware feature subsets, ESM-2 ingestion and ACMG evidence mapping.
 
 These exercise the public API used by the manuscript's reproduction scripts and

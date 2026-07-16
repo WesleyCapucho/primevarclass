@@ -138,7 +138,7 @@ class ModelRegistry:
 
 
 # --------------------------------------------------------------------------- #
-#  Training / evaluation helpers (reuse the honest flagship pipeline)          #
+#  Training / evaluation helpers (reuse the flagship pipeline)          #
 # --------------------------------------------------------------------------- #
 _AA1TO3 = {"A": "Ala", "R": "Arg", "N": "Asn", "D": "Asp", "C": "Cys", "Q": "Gln",
            "E": "Glu", "G": "Gly", "H": "His", "I": "Ile", "L": "Leu", "K": "Lys",

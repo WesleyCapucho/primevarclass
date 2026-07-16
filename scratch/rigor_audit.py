@@ -5,7 +5,7 @@ tough jury would probe, on the real data:
    training cohort and an external test cohort? That would be direct leakage.
 2. Position overlap: how many external test positions also appear in training?
    (For the domain-aware+ESM model this is NOT leakage — no raw-position feature —
-   but the number should be reported honestly.)
+   but the number should be reported as-is.)
 3. AUPRC and MCC of the flagship on the external cohort (imbalanced data: AUC-ROC
    alone is not enough).
 4. Meta-classifier coefficients: does PrimeVarClass carry a non-trivial weight
