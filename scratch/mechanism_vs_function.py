@@ -109,16 +109,16 @@ import matplotlib.pyplot as plt
 COL = {"Coordenação de zinco": "#8e44ad", "Bolso de fosfopeptídeo": "#16a085",
        "Núcleo (dobramento)": "#c0392b", "Interface BARD1": "#e67e22",
        "Intermediário": "#7f8c8d", "Superfície": "#2e86c1"}
-fig, ax = plt.subplots(figsize=(10.6, 6.2), dpi=200)
+fig, ax = plt.subplots(figsize=(11.2, 6.6), dpi=200)
 bp = ax.boxplot(groups, labels=[m.replace(" ", "\n") for m in present], patch_artist=True, showfliers=False)
 for patch, m in zip(bp["boxes"], present):
     patch.set_facecolor(COL.get(m, "#999")); patch.set_alpha(0.75)
 ax.set_ylabel("Função HDR medida (Starita 2015); menor = perda de função", fontsize=13.5)
 ax.set_title("Validação do mecanismo contra função experimental (BRCA1, ensaio HDR)\n"
              f"mecanismos deletérios perdem mais função (Kruskal-Wallis p = {kw.pvalue:.1e})",
-             fontsize=15, fontweight="bold")
-ax.tick_params(axis="x", labelsize=13)
-ax.tick_params(axis="y", labelsize=12.5)
+             fontsize=15.5, fontweight="bold")
+ax.tick_params(axis="x", labelsize=14.5)
+ax.tick_params(axis="y", labelsize=14)
 ax.grid(axis="y", alpha=0.25)
 fig.tight_layout()
 for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):

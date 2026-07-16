@@ -95,9 +95,9 @@ json.dump(result, open(os.path.join(ANL, "grey_zone_analysis.json"), "w"), inden
 
 # ---- figure: VUS (A) and conflicting (B), stacked by resolution, per gene ----
 genes = ["BRCA1", "BRCA2"]
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.6, 5.2), dpi=200)
-for ax, part, titulo, unidade in [(a1, "part2_vus", "VUS reais", "VUS"),
-                                  (a2, "part3_conflicting", "variantes CONFLITANTES (laboratórios discordam)", "variantes")]:
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(13.8, 6.2), dpi=200)
+for ax, letra, part, titulo, unidade in [(a1, "A", "part2_vus", "VUS reais", "VUS"),
+                                         (a2, "B", "part3_conflicting", "Variantes conflitantes (laboratórios discordam)", "variantes")]:
     pp3 = [result[g][part]["PP3_Strong"] for g in genes]
     bp4 = [result[g][part]["BP4_Moderate"] for g in genes]
     uni = [result[g][part]["uninformative"] for g in genes]
@@ -106,18 +106,20 @@ for ax, part, titulo, unidade in [(a1, "part2_vus", "VUS reais", "VUS"),
     ax.bar(x, bp4, 0.6, bottom=pp3, label="BP4_Moderado (benigno)", color="#2e6fb0")
     ax.bar(x, uni, 0.6, bottom=np.array(pp3) + np.array(bp4), label="não informativo", color="#c8ccd0")
     top = max((result[g][part]["n"] for g in genes), default=1)
-    ax.set_ylim(0, top * 1.28)
+    ax.set_ylim(0, top * 1.30)
     for i, g in enumerate(genes):
         tot = result[g][part]["n"]
         frac = result[g][part]["resolved_frac"] * 100
-        ax.text(i, tot + top * 0.03, f"{frac:.0f}% resolvidas", ha="center", fontsize=11.5, fontweight="bold")
-    ax.set_xticks(x); ax.set_xticklabels(genes, fontsize=12, fontweight="bold")
-    ax.set_ylabel(f"nº de {unidade} na zona cinzenta do AlphaMissense", fontsize=11)
-    ax.tick_params(axis="y", labelsize=10)
-    ax.set_title(f"{titulo}", fontsize=12)
-    ax.legend(fontsize=10, loc="upper left", framealpha=0.95)
-fig.suptitle("Complemento ao AlphaMissense — evidência calibrada onde ele se abstém (BRCA1 e BRCA2, ClinVar real)",
-             fontweight="bold", fontsize=13)
+        ax.text(i, tot + top * 0.03, f"{frac:.0f}% resolvidas", ha="center", fontsize=15, fontweight="bold")
+    ax.set_xticks(x); ax.set_xticklabels(genes, fontsize=14.5, fontweight="bold")
+    ax.set_ylabel(f"nº de {unidade} na zona cinzenta do AlphaMissense", fontsize=13)
+    ax.tick_params(axis="y", labelsize=12)
+    ax.set_title(f"{letra}. {titulo}", fontsize=14.5, fontweight="bold")
+    ax.legend(fontsize=12, loc="upper left", framealpha=0.95)
+fig.suptitle("Complemento ao AlphaMissense: evidência calibrada onde ele se abstém (BRCA1 e BRCA2, ClinVar real)",
+             fontweight="bold", fontsize=15.5)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
-fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-print(f">> wrote {ANL}/grey_zone_analysis.json and {FIG}")
+for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    fig.savefig(_fp, dpi=200, bbox_inches="tight", facecolor="white")
+print(f">> wrote {ANL}/grey_zone_analysis.json and the figure (suplementar + manuscrito)")

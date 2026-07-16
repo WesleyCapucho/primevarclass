@@ -76,26 +76,26 @@ json.dump(result, open(os.path.join(ANL, "equity_analysis.json"), "w"), indent=2
 grps = ["europeu", "não-europeu"]
 labels = ["Europeu", "Não-europeu"]
 x = np.arange(2)
-fig, (a1, a2) = plt.subplots(1, 2, figsize=(13.6, 6.2), dpi=200)
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(14.0, 6.6), dpi=200)
 res_pct = [gap[g]["pct_resolved_of_clinvar"] for g in grps]
 bars = a1.bar(x, res_pct, 0.55, color=["#2e6fb0", "#e67e22"])
 for i, g in enumerate(grps):
-    a1.text(i, res_pct[i] + 1.8, f"{res_pct[i]:.0f}%", ha="center", fontsize=16, fontweight="bold")
-    a1.text(i, 3, f"{gap[g]['n_appreciable']} variantes\napreciáveis", ha="center", fontsize=11.5, color="white")
-a1.set_xticks(x); a1.set_xticklabels(labels, fontsize=13.5); a1.set_ylim(0, 70)
-a1.set_ylabel("% resolvidas (classificadas) no ClinVar", fontsize=13)
-a1.tick_params(axis="y", labelsize=12)
-a1.set_title("A. A lacuna: variantes apreciáveis não europeias\nsão resolvidas na metade da taxa", fontsize=14.5, fontweight="bold")
+    a1.text(i, res_pct[i] + 1.8, f"{res_pct[i]:.0f}%", ha="center", fontsize=18, fontweight="bold")
+    a1.text(i, 3, f"{gap[g]['n_appreciable']} variantes\napreciáveis", ha="center", fontsize=13, color="white")
+a1.set_xticks(x); a1.set_xticklabels(labels, fontsize=15); a1.set_ylim(0, 70)
+a1.set_ylabel("% resolvidas (classificadas) no ClinVar", fontsize=14.5)
+a1.tick_params(axis="y", labelsize=13)
+a1.set_title("A. A lacuna: variantes apreciáveis não europeias\nsão resolvidas na metade da taxa", fontsize=15.5, fontweight="bold")
 prov = [contrib[g]["evidence_provided_pct"] for g in grps]
 a2.bar(x, prov, 0.55, color=["#2e6fb0", "#e67e22"])
 for i in range(2):
-    a2.text(i, prov[i] + 1.8, f"{prov[i]:.0f}%", ha="center", fontsize=16, fontweight="bold")
-a2.set_xticks(x); a2.set_xticklabels(labels, fontsize=13.5); a2.set_ylim(0, 100)
-a2.set_ylabel("% das não resolvidas com evidência PrimeVarClass", fontsize=13)
-a2.tick_params(axis="y", labelsize=12)
-a2.set_title("B. A resposta: fornecemos evidência calibrada\nigualmente entre ancestralidades", fontsize=14.5, fontweight="bold")
+    a2.text(i, prov[i] + 1.8, f"{prov[i]:.0f}%", ha="center", fontsize=18, fontweight="bold")
+a2.set_xticks(x); a2.set_xticklabels(labels, fontsize=15); a2.set_ylim(0, 100)
+a2.set_ylabel("% das não resolvidas com evidência PrimeVarClass", fontsize=14.5)
+a2.tick_params(axis="y", labelsize=13)
+a2.set_title("B. A resposta: fornecemos evidência calibrada\nigualmente entre ancestralidades", fontsize=15.5, fontweight="bold")
 fig.suptitle("Equidade em genômica: evidência cega à ancestralidade fecha a lacuna de VUS (BRCA1/2, gnomAD real)",
-             fontweight="bold", fontsize=15.5)
+             fontweight="bold", fontsize=16.5)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):
     os.makedirs(os.path.dirname(_fp), exist_ok=True)
