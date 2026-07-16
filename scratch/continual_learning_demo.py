@@ -113,32 +113,42 @@ json.dump(result, open(os.path.join(ANL, "continual_learning.json"), "w", encodi
           indent=2, ensure_ascii=False)
 
 # ---- figure ------------------------------------------------------------------
-fig, (a, b) = plt.subplots(1, 2, figsize=(13.2, 5.4), dpi=200,
+fig, (a, b) = plt.subplots(1, 2, figsize=(13.8, 6.0), dpi=200,
                            gridspec_kw={"width_ratios": [1.6, 1]})
 xs = [c["n_feedback"] for c in curve]; ys = [c["holdout_auc"] for c in curve]
-a.plot(xs, ys, "-o", color="#c0392b", lw=2.4, ms=6)
-for c in (curve[0], curve[-1]):
-    a.annotate(f"{c['holdout_auc']:.3f}\n(até {c['through_year']})",
-               (c["n_feedback"], c["holdout_auc"]),
-               textcoords="offset points", xytext=(0, 10), ha="center", fontsize=9)
-a.set_xlabel("rótulos confirmados acumulados (contribuídos ao longo do tempo)")
-a.set_ylabel(f"AUC no conjunto travado (variantes ≥{HOLDOUT_YEAR}, nunca vistas)")
-a.set_title("A · O modelo aprende conforme é usado", fontsize=11, fontweight="bold")
+a.margins(x=0.11, y=0.16)                      # room so endpoint labels never touch the axes
+a.plot(xs, ys, "-o", color="#c0392b", lw=2.6, ms=7.5)
+# first point (bottom-left): label up-and-right, away from the axes
+a.annotate(f"{curve[0]['holdout_auc']:.3f}  (até {curve[0]['through_year']})",
+           (curve[0]["n_feedback"], curve[0]["holdout_auc"]),
+           textcoords="offset points", xytext=(16, 4), ha="left", va="bottom",
+           fontsize=13, fontweight="bold")
+# last point (right): label above, slightly left of the point
+a.annotate(f"{curve[-1]['holdout_auc']:.3f}  (até {curve[-1]['through_year']})",
+           (curve[-1]["n_feedback"], curve[-1]["holdout_auc"]),
+           textcoords="offset points", xytext=(-6, 14), ha="right", va="bottom",
+           fontsize=13, fontweight="bold")
+a.set_xlabel("rótulos confirmados acumulados (contribuídos ao longo do tempo)", fontsize=13.5)
+a.set_ylabel(f"AUC no conjunto travado (variantes ≥{HOLDOUT_YEAR}, nunca vistas)", fontsize=12.5)
+a.set_title("A · O modelo aprende conforme é usado", fontsize=15, fontweight="bold")
+a.tick_params(labelsize=12.5)
 a.grid(alpha=0.25)
 
 b.bar(["modelo\natual", "candidato\nenvenenado"], [clean_auc, pois_auc],
       color=["#2e7d46", "#8a8f98"], edgecolor="white")
-b.axhline(clean_auc - EPS, ls="--", color="#c0392b", lw=1.3)
-b.text(1, pois_auc + 0.01, "REJEITADO\npela trava de\nsegurança", ha="center",
-       va="bottom", fontsize=9, fontweight="bold", color="#c0392b")
+b.axhline(clean_auc - EPS, ls="--", color="#c0392b", lw=1.6)
+b.text(1, pois_auc + 0.015, "REJEITADO\npela trava de\nsegurança", ha="center",
+       va="bottom", fontsize=13, fontweight="bold", color="#c0392b")
 for i, v in enumerate([clean_auc, pois_auc]):
-    b.text(i, v - 0.05, f"{v:.3f}", ha="center", color="white", fontweight="bold")
-b.set_ylim(0.5, 1.0); b.set_ylabel("AUC no conjunto travado")
-b.set_title("B · Feedback ruim não é promovido", fontsize=11, fontweight="bold")
+    b.text(i, v - 0.06, f"{v:.3f}", ha="center", color="white", fontweight="bold", fontsize=16)
+b.set_ylim(0.5, 1.0); b.set_ylabel("AUC no conjunto travado", fontsize=12.5)
+b.tick_params(axis="x", labelsize=13.5); b.tick_params(axis="y", labelsize=12)
+b.set_title("B · Feedback ruim não é promovido", fontsize=15, fontweight="bold")
 
 fig.suptitle("Aprendizado contínuo e seguro — o PrimeVarClass melhora com o uso, "
-             "sem nunca piorar", fontweight="bold", fontsize=12.5)
-fig.tight_layout(rect=[0, 0, 1, 0.95])
-os.makedirs(os.path.dirname(FIG), exist_ok=True)
-fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")
-print(f">> wrote {ANL}/continual_learning.json and {FIG}")
+             "sem nunca piorar", fontweight="bold", fontsize=15.5)
+fig.tight_layout(rect=[0, 0, 1, 0.94])
+for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    fig.savefig(_fp, dpi=200, facecolor="white")
+print(f">> wrote {ANL}/continual_learning.json and the figure (suplementar + manuscrito)")
