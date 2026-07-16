@@ -19,17 +19,17 @@ RAMP = [(0.10, 0.13, 0.38), (0.74, 0.15, 0.42), (1.00, 0.80, 0.22)]
 
 TILES = [
     dict(name="C39G", title="BRCA1  p.Cys39Gly", dom="RING — sítio de zinco",
-         clin="Patogênica / Provavelmente patogênica", prob="99,7%"),
+         clin="Patogênica / Prov. patogênica", prob="99,7%"),
     dict(name="C64G", title="BRCA1  p.Cys64Gly", dom="RING — sítio de zinco",
          clin="Patogênica", prob="99,7%"),
     dict(name="C61Y", title="BRCA1  p.Cys61Tyr", dom="RING — sítio de zinco",
          clin="Patogênica", prob="99,7%"),
     dict(name="M1689R", title="BRCA1  p.Met1689Arg", dom="BRCT — leitura de dano ao DNA",
-         clin="Patogênica / Provavelmente patogênica", prob="97,9%"),
+         clin="Patogênica / Prov. patogênica", prob="97,9%"),
     dict(name="L1705P", title="BRCA1  p.Leu1705Pro", dom="BRCT — leitura de dano ao DNA",
-         clin="Patogênica / Provavelmente patogênica", prob="96,7%"),
+         clin="Patogênica / Prov. patogênica", prob="96,7%"),
     dict(name="W1837C", title="BRCA1  p.Trp1837Cys", dom="BRCT — leitura de dano ao DNA",
-         clin="Patogênica / Provavelmente patogênica", prob="96,3%"),
+         clin="Patogênica / Prov. patogênica", prob="96,3%"),
 ]
 
 
@@ -88,14 +88,14 @@ def make_tile(t, tw, strip):
     x = int(tw * 0.05)
 
     # variant name (top-left of the render, on the dark sky)
-    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.072)),
+    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.084)),
            fill=(248, 249, 252))
-    d.text((x + 2, int(tw * 0.045) + int(tw * 0.082)), t["dom"],
-           font=font(int(tw * 0.042), bold=False), fill=(150, 200, 255))
+    d.text((x + 2, int(tw * 0.045) + int(tw * 0.100)), t["dom"],
+           font=font(int(tw * 0.054), bold=False), fill=(160, 205, 255))
 
     # label strip (two stacked badges) — explicit pixel budget
-    fb = font(int(tw * 0.043), bold=True)          # verdict still fits
-    fs = font(int(tw * 0.035), bold=False)
+    fb = font(int(tw * 0.049), bold=True)          # verdict still fits (abbreviated)
+    fs = font(int(tw * 0.047), bold=False)
     y = tw + int(strip * 0.05)
     d.text((x, y), "Verdade (ClinVar)", font=fs, fill=(150, 158, 176))
     _, h1 = pill(d, x, y + int(fs.size * 1.15), t["clin"], fb,
@@ -107,42 +107,46 @@ def make_tile(t, tw, strip):
     return tile.convert("RGB")
 
 
-def legend(draw, x, y, w, h):
+def legend(draw, x, y, w, h, big):
     for i in range(w):
         draw.line([(x + i, y), (x + i, y + h)], fill=ramp_rgb(i / w))
-    draw.rectangle([x, y, x + w, y + h], outline=(230, 232, 238), width=2)
-    fs = font(int(h * 0.78), bold=False)
-    draw.text((x, y - int(h * 1.5)), "Intensidade de detecção por resíduo",
-              font=font(int(h * 0.78)), fill=(235, 237, 242))
-    draw.text((x, y + h + int(h * 0.3)), "tolerante", font=fs, fill=(150, 160, 190))
-    r = draw.textlength("patogênica", font=fs)
-    draw.text((x + w - r, y + h + int(h * 0.3)), "patogênica", font=fs, fill=(240, 205, 110))
+    draw.rectangle([x, y, x + w, y + h], outline=(230, 232, 238), width=3)
+    ft = font(int(big * 1.05)); fl = font(int(big), bold=False)
+    t_ = "Intensidade de detecção por resíduo"
+    twid = draw.textlength(t_, font=ft)
+    draw.text((x + (w - twid) // 2, y - int(big * 1.75)), t_, font=ft, fill=(236, 238, 244))
+    draw.text((x, y + h + int(big * 0.35)), "tolerante", font=fl, fill=(178, 188, 212))
+    r = draw.textlength("detectada (patogênica)", font=fl)
+    draw.text((x + w - r, y + h + int(big * 0.35)), "detectada (patogênica)", font=fl, fill=(242, 208, 120))
 
 
 def build():
-    tw, strip, gap = 1180, 400, 28
+    tw, strip, gap = 1180, 440, 28
     cols, rows = 3, 2
-    band = 380                                   # top title band
+    band = 360                                   # top title band
+    botband = 260                                # bottom legend band
     W = cols * tw + (cols + 1) * gap
-    H = band + rows * (tw + strip) + (rows + 1) * gap
+    H = band + rows * (tw + strip) + (rows + 1) * gap + botband
 
     canvas = radial_bg(W, H, cy=0.30).convert("RGB")
     d = ImageDraw.Draw(canvas)
-    d.text((gap + int(W * 0.008), int(band * 0.17)),
+    d.text((gap + int(W * 0.008), int(band * 0.22)),
            "O algoritmo capturou mutações patogênicas reais",
-           font=font(int(W * 0.030)), fill=(248, 249, 252))
-    d.text((gap + int(W * 0.009), int(band * 0.17) + int(W * 0.036)),
+           font=font(int(W * 0.033)), fill=(248, 249, 252))
+    d.text((gap + int(W * 0.009), int(band * 0.22) + int(W * 0.040)),
            "Seis variantes de BRCA1 confirmadas no ClinVar — todas detectadas pelo "
            "PrimeVarClass com alta confiança",
-           font=font(int(W * 0.0175), bold=False), fill=(214, 182, 96))
-    lw, lh = int(W * 0.24), int(band * 0.052)
-    legend(d, W - lw - gap - int(W * 0.012), int(band * 0.52), lw, lh)
+           font=font(int(W * 0.019), bold=False), fill=(214, 182, 96))
 
     for i, t in enumerate(TILES):
         r, c = divmod(i, cols)
         x = gap + c * (tw + gap)
         y = band + gap + r * (tw + strip + gap)
         canvas.paste(make_tile(t, tw, strip), (x, y))
+
+    # large centred colour legend at the bottom (was tiny in the title band)
+    lw, lh = int(W * 0.30), int(botband * 0.15)
+    legend(d, (W - lw) // 2, H - botband + int(botband * 0.45), lw, lh, int(W * 0.0135))
 
     for out in OUTS:
         os.makedirs(out, exist_ok=True)
