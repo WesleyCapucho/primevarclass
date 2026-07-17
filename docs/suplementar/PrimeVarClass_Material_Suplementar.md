@@ -153,6 +153,10 @@ Esse recurso é a materialização do "bem comum": qualquer laboratório ou pesq
 
 **Figura S6d.** Resíduos-alvo detectados no núcleo do domínio BRCT (PDB 1JNX), renderizados com PyMOL open-source. A coloração segue a intensidade de detecção (azul: baixa; vermelho: alta); os resíduos rotulados (Arg1699, ..., Met1775, ...) correspondem a posições em que praticamente todas as substituições recebem evidência PP3_Forte, situadas no interior estrutural do domínio, onde substituições desestabilizam o dobramento.
 
+![Figura S6e](figuras/fig_surface_landscape.png)
+
+**Figura S6e.** Paisagem de detecção na superfície molecular completa do domínio BRCT de BRCA1 e do domínio de ligação ao DNA (DBD) de BRCA2. As zonas douradas (o núcleo funcional de cada domínio) concentram as detecções de patogenicidade; a mesma assinatura estrutural emerge nos dois genes de forma independente, evidência de que o modelo capturou mecanismo transferível, e não um artefato específico de BRCA1.
+
 ---
 
 ## S7. Decomposição de mecanismo: o *porquê* de cada variante (contribuição original)
