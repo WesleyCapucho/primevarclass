@@ -20,6 +20,9 @@ import pandas as pd
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import os, sys
+sys.path.insert(0, os.path.abspath("src"))
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 FIG = "docs/suplementar/figuras/fig_vus_worklist.png"
@@ -31,14 +34,15 @@ m = res.merge(clin[key + ["clinsig"]], on=key, how="left")
 
 
 def status(s):
-    s = str(s)
-    if "Pathogenic" in s and "Conflicting" not in s:
+    lab = clinvar_binary_label(s)
+    if lab == 1:
         return "P"
-    if "Benign" in s and "Conflicting" not in s:
+    if lab == 0:
         return "B"
-    if "Uncertain" in s:
+    t = str(s).lower()
+    if "uncertain" in t:
         return "VUS"
-    if "Conflicting" in s:
+    if "conflicting" in t:
         return "CONF"
     return "NOVEL"
 
@@ -53,7 +57,7 @@ resolved = pp3 + bp4
 
 out = {"n_vus_backlog": n, "flag_urgent_PP3": pp3, "deprioritize_BP4": bp4,
        "uninformative": uninf, "resolved_fraction": round(resolved / n, 3),
-       "note": "high-confidence calls are 96% accurate prospectively (Exp #2)"}
+       "note": "high-confidence calls are 93% accurate prospectively (Exp #2)"}
 print(json.dumps(out, indent=2, ensure_ascii=False))
 # export the actual worklist (top pathogenic-leaning VUS) for lab use
 work = vus[vus.acmg_evidence == "PP3_Strong"].sort_values("pathogenicity_prob", ascending=False)

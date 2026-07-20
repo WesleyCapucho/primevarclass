@@ -1,62 +1,62 @@
 {
   "VHL": {
     "syndrome": "von Hippel-Lindau",
-    "n": 128,
-    "n_pathogenic": 119,
-    "auc_biochem": 0.879,
-    "auc_domain": 0.839,
-    "auc_domain_esm": 0.966,
+    "n": 86,
+    "n_pathogenic": 71,
+    "auc_biochem": 0.585,
+    "auc_domain": 0.629,
+    "auc_domain_esm": 0.722,
     "ci95_domain_esm": [
-      0.922,
-      1.0
+      0.56,
+      0.862
     ]
   },
   "MLH1": {
     "syndrome": "Lynch",
-    "n": 116,
-    "n_pathogenic": 95,
-    "auc_biochem": 0.604,
-    "auc_domain": 0.63,
-    "auc_domain_esm": 0.753,
+    "n": 222,
+    "n_pathogenic": 186,
+    "auc_biochem": 0.631,
+    "auc_domain": 0.652,
+    "auc_domain_esm": 0.794,
     "ci95_domain_esm": [
-      0.636,
-      0.86
+      0.702,
+      0.878
     ]
   },
   "MSH2": {
     "syndrome": "Lynch",
-    "n": 115,
-    "n_pathogenic": 76,
-    "auc_biochem": 0.924,
-    "auc_domain": 0.922,
-    "auc_domain_esm": 0.926,
+    "n": 427,
+    "n_pathogenic": 142,
+    "auc_biochem": 0.829,
+    "auc_domain": 0.83,
+    "auc_domain_esm": 0.885,
     "ci95_domain_esm": [
-      0.864,
-      0.975
+      0.845,
+      0.92
     ]
   },
   "MSH6": {
     "syndrome": "Lynch",
-    "n": 43,
-    "n_pathogenic": 31,
-    "auc_biochem": 0.581,
-    "auc_domain": 0.548,
-    "auc_domain_esm": 0.806,
+    "n": 144,
+    "n_pathogenic": 70,
+    "auc_biochem": 0.674,
+    "auc_domain": 0.719,
+    "auc_domain_esm": 0.908,
     "ci95_domain_esm": [
-      0.635,
-      0.945
+      0.853,
+      0.953
     ]
   },
   "RET": {
     "syndrome": "MEN2",
-    "n": 57,
-    "n_pathogenic": 47,
-    "auc_biochem": 0.798,
-    "auc_domain": 0.804,
-    "auc_domain_esm": 0.813,
+    "n": 110,
+    "n_pathogenic": 65,
+    "auc_biochem": 0.786,
+    "auc_domain": 0.784,
+    "auc_domain_esm": 0.843,
     "ci95_domain_esm": [
-      0.694,
-      0.913
+      0.764,
+      0.915
     ]
   }
 }

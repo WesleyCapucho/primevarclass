@@ -1,13 +1,15 @@
 import os, re, time, pandas as pd, torch
 from transformers import AutoModelForMaskedLM, AutoTokenizer
+import os, sys
+sys.path.insert(0, os.path.abspath("src"))
+from primevarclass.core import clinvar_binary_label
 torch.set_num_threads(max(1, os.cpu_count() or 1))
 AAS=list("ACDEFGHIKLMNPQRSTVWY")
 AA3TO1={"Ala":"A","Arg":"R","Asn":"N","Asp":"D","Cys":"C","Gln":"Q","Glu":"E","Gly":"G","His":"H","Ile":"I","Leu":"L","Lys":"K","Met":"M","Phe":"F","Pro":"P","Ser":"S","Thr":"T","Trp":"W","Tyr":"Y","Val":"V"}
 PMIS=re.compile(r"p\.([A-Z][a-z]{2})(\d+)([A-Z][a-z]{2})\)")
 seq=open("scratch/esm_input/TP53_P04637.txt").read().strip()
 def defin(s):
-    s=str(s)
-    return None if "Conflicting" in s else (1 if "Pathogenic" in s else (0 if "Benign" in s else None))
+    return clinvar_binary_label(s)
 rows=[]
 with open("data/raw/clinvar/variant_summary_current_HBOC.tsv",encoding="utf-8") as fh:
     h=fh.readline().rstrip("\n").split("\t"); ix={n:i for i,n in enumerate(h)}

@@ -1,11 +1,11 @@
 {
   "full": {
     "PrimeVarClass": {
-      "n": 56,
-      "auc": 0.941,
+      "n": 227,
+      "auc": 0.929,
       "ci95": [
-        0.875,
-        0.988
+        0.892,
+        0.962
       ]
     },
     "AlphaMissense": {
@@ -37,17 +37,17 @@
     "AlphaMissense": {
       "n": 41,
       "auc_them": 0.908,
-      "auc_primevarclass": 0.928
+      "auc_primevarclass": 0.9
     },
     "REVEL": {
       "n": 41,
       "auc_them": 0.849,
-      "auc_primevarclass": 0.928
+      "auc_primevarclass": 0.9
     },
     "CADD": {
       "n": 42,
       "auc_them": 0.963,
-      "auc_primevarclass": 0.931
+      "auc_primevarclass": 0.904
     }
   }
 }

@@ -26,6 +26,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 
 from primevarclass.core import _build_pipeline, build_dataset_from_dataframe, get_feature_subsets
 from primevarclass.esm_scores import attach_esm_scores
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 AA3TO1 = {"Ala": "A", "Arg": "R", "Asn": "N", "Asp": "D", "Cys": "C", "Gln": "Q",
@@ -36,14 +37,8 @@ PMIS = re.compile(r"p\.([A-Z][a-z]{2})(\d+)([A-Z][a-z]{2})\)")
 
 
 def definitive(s):
-    s = str(s)
-    if "Conflicting" in s:
-        return np.nan
-    if "Pathogenic" in s:
-        return 1
-    if "Benign" in s:
-        return 0
-    return np.nan
+    lab = clinvar_binary_label(s)
+    return np.nan if lab is None else lab
 
 
 def is_uncertain_2023(s):

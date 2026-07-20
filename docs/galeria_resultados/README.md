@@ -211,8 +211,8 @@ delas:
   **resolvemos 53,8%** (17 puxando para patogênico + 125 para benigno).
 - **Variantes conflitantes** (laboratórios discordam): das 192, **resolvemos
   64,6%** (23 + 101).
-- Nas 17 dessas variantes que já tinham diagnóstico definitivo, nossa
-  concordância foi **100% (10/10 chamadas corretas)**, com AUC 0,909.
+- Nas 53 dessas variantes que já tinham diagnóstico definitivo, nossa
+  concordância foi **96,7% (29/30 chamadas corretas)**, com AUC 0,938.
 
 Ou seja: **fornecemos informação exatamente onde a melhor ferramenta atual se cala.**
 
@@ -238,7 +238,7 @@ probabilidades são bem calibradas**, nem otimistas demais, nem tímidas demais.
 
 Simulamos o uso **real** da ferramenta: treinamos só com o que se sabia até um ano
 X e testamos em variantes classificadas **depois** desse ano. Mesmo assim a AUC se
-mantém alta (**de 0,892 em 2016 para 0,932 em 2021**), provando que o modelo teria
+mantém alta (**de 0,908 em 2016 para 0,931 em 2021**), provando que o modelo teria
 acertado variantes **antes** de a comunidade científica as classificar.
 
 ### 3.5 Equidade entre ancestralidades
@@ -314,12 +314,12 @@ realimenta o modelo, de forma **segura**:
 - **Painel A: ele melhora com os dados.** Mantendo travado um conjunto de
   variantes recentes (classificadas em 2024+, que o modelo nunca viu), revelamos
   rótulos confirmados de forma acumulada ao longo do tempo. A AUC no conjunto
-  travado **sobe de 0,895 para 0,92** conforme os rótulos se acumulam: puro ganho
+  travado **sobe de 0,916 para 0,928** conforme os rótulos se acumulam: puro ganho
   por ser alimentado com mais dados reais.
 - **Painel B: feedback ruim nunca entra.** Uma **trava de segurança** só promove
   um modelo atualizado se ele **não piorar** no conjunto travado. Ao submeter um
   lote de feedback envenenado (rótulos invertidos), o candidato despenca para 0,73
-  e é **rejeitado**: protegendo contra ruído e envenenamento de dados.
+  e é **rejeitado** (AUC 0,755): protegendo contra ruído e envenenamento de dados.
 
 Isso não é promessa de marketing: é o mesmo efeito medido na validação temporal
 (um modelo treinado só com o passado acerta o futuro cada vez melhor). Na prática,

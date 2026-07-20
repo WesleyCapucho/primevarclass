@@ -519,6 +519,36 @@ def normalize_label(value) -> int | None:
     return LABEL_MAP.get(value)
 
 
+def clinvar_binary_label(value) -> int | None:
+    """Binary label from a raw ClinVar ClinicalSignificance string.
+
+    Returns 1 (pathogenic), 0 (benign) or None when the record carries no
+    definitive classification (VUS, conflicting, not provided, missing).
+
+    Unlike :func:`normalize_label`, which expects an already-normalised label,
+    this parser handles the free-form compound strings ClinVar actually ships
+    ("Pathogenic/Likely pathogenic", "Conflicting classifications of
+    pathogenicity", ...). Matching is case-insensitive on purpose: a
+    case-sensitive substring test silently drops every "Likely pathogenic" and
+    "Likely benign" record, which biases any downstream analysis.
+    """
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return None
+    text = str(value).strip().lower()
+    if not text or text in {"nan", "none", "na"}:
+        return None
+    # order matters: exclusions before the pathogenic/benign substring tests
+    if "conflicting" in text or "uncertain" in text:
+        return None
+    if "not provided" in text or "no interpretation" in text:
+        return None
+    if "pathogenic" in text:
+        return 1
+    if "benign" in text:
+        return 0
+    return None
+
+
 def normalize_gene(value: str) -> str | None:
     if pd.isna(value):
         return None

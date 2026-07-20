@@ -12,6 +12,7 @@ from primevarclass import (
     attach_esm_scores,
     build_dataset_from_dataframe,
     classify_acmg_strength_from_lr,
+    clinvar_binary_label,
     get_feature_subsets,
     parse_variant,
 )
@@ -81,3 +82,30 @@ def test_acmg_strength_monotonic_in_lr():
     assert classify_acmg_strength_from_lr(np.nan) == "uninformative"
     assert "strong" in strong
     assert strong != weak
+
+
+def test_clinvar_binary_label_covers_every_real_significance_string():
+    """Every ClinicalSignificance string that occurs in the BRCA1/BRCA2 data,
+    including the 'Likely ...' forms a case-sensitive test silently drops."""
+    pathogenic = ["Pathogenic", "Likely pathogenic", "Pathogenic/Likely pathogenic"]
+    benign = ["Benign", "Likely benign", "Benign/Likely benign"]
+    undefined = [
+        "Uncertain significance",
+        "Conflicting classifications of pathogenicity",
+        "Conflicting interpretations of pathogenicity",
+        "not provided",
+        "no interpretation for the single variant",
+        "",
+        None,
+        np.nan,
+    ]
+    for s in pathogenic:
+        assert clinvar_binary_label(s) == 1, s
+        assert clinvar_binary_label(s.upper()) == 1, s      # case must not matter
+        assert clinvar_binary_label(s.lower()) == 1, s
+    for s in benign:
+        assert clinvar_binary_label(s) == 0, s
+        assert clinvar_binary_label(s.upper()) == 0, s
+        assert clinvar_binary_label(s.lower()) == 0, s
+    for s in undefined:
+        assert clinvar_binary_label(s) is None, s

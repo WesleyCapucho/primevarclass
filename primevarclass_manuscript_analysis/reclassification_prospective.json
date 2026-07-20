@@ -1,12 +1,12 @@
 {
-  "n_reclassified": 56,
-  "n_pathogenic": 15,
-  "n_train_2023_definitive": 462,
-  "auc": 0.941,
+  "n_reclassified": 227,
+  "n_pathogenic": 72,
+  "n_train_2023_definitive": 858,
+  "auc": 0.929,
   "auc_ci95": [
-    0.875,
-    0.987
+    0.892,
+    0.961
   ],
-  "n_high_confidence": 33,
-  "accuracy_high_confidence": 0.97
+  "n_high_confidence": 148,
+  "accuracy_high_confidence": 0.932
 }

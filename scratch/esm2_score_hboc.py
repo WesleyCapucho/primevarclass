@@ -13,6 +13,9 @@ import time
 import pandas as pd
 import torch
 from transformers import AutoModelForMaskedLM, AutoTokenizer
+import os, sys
+sys.path.insert(0, os.path.abspath("src"))
+from primevarclass.core import clinvar_binary_label
 
 torch.set_num_threads(max(1, os.cpu_count() or 1))
 MODEL = "facebook/esm2_t33_650M_UR50D"
@@ -32,14 +35,7 @@ SEQ = {g: open(p, encoding="utf-8").read().strip() for g, p in SEQFILE.items()}
 
 
 def definitive(s):
-    s = str(s)
-    if "Conflicting" in s:
-        return None
-    if "Pathogenic" in s:
-        return 1
-    if "Benign" in s:
-        return 0
-    return None
+    return clinvar_binary_label(s)
 
 
 rows = []

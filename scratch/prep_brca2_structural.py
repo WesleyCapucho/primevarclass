@@ -20,6 +20,9 @@ import pandas as pd
 from Bio import Align
 from Bio.PDB import PDBParser
 from Bio.Data.IUPACData import protein_letters_3to1_extended as _3to1
+import os, sys
+sys.path.insert(0, os.path.abspath("src"))
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 T2O = {k.upper(): v for k, v in _3to1.items()}
@@ -67,7 +70,7 @@ clin = pd.read_csv("data/raw/clinvar/clinvar_brca_missense_live.csv")
 key = ["gene", "position", "aa_ref", "aa_alt"]
 m = clin.merge(res, on=key, how="inner", suffixes=("", "_r"))
 m = m[m.gene == "BRCA2"].copy()
-m["isP"] = m.clinsig.astype(str).map(lambda s: "Pathogenic" in s and "Conflicting" not in s)
+m["isP"] = m.clinsig.map(lambda s: clinvar_binary_label(s) == 1)
 cand = m[m.isP & (m.pathogenicity_prob > 0.5) & m.position.isin(h2m)].copy()
 cand = cand.sort_values("pathogenicity_prob", ascending=False).drop_duplicates("position")
 

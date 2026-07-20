@@ -76,3 +76,6 @@ scratch/benchmark_cache.json
 # continual-learning runtime state (user-generated feedback + version log)
 registro_prospectivo/feedback.jsonl
 registro_prospectivo/model_versions.jsonl
+
+# Arquivos de lock do Word/Office (nunca versionar)
+~$*

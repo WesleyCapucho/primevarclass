@@ -23,7 +23,7 @@ PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial p
 1. **Protocolo anti-vazamento.** Diagnosticamos e neutralizamos uma **armadilha de vazamento posicional** (a posição bruta do resíduo memoriza o treino e colapsa em dados externos). A validação usa CV **bloqueada por posição** + coortes externas independentes de especialistas.
 2. **Competitivo com o estado da arte.** Nas mesmas coortes externas (n = 621), o modelo é **estatisticamente comparável** a AlphaMissense, REVEL e CADD (teste de DeLong, todos *p* > 0,14), sendo **aberto e interpretável**. Um **meta-classificador** que integra todos os sinais atinge a melhor estimativa (AUC **0,938**), e o PrimeVarClass carrega **sinal não redundante** nessa integração (ver [Material Suplementar](docs/suplementar/PrimeVarClass_Material_Suplementar.md), S1–S2).
 3. **Calibração clínica ACMG/AMP.** O escore é calibrado à força de evidência **PP3/BP4** (Tavtigian 2018; Pejaver 2022): escore ≥ 0,675 recebe **PP3_Forte**, com **94% de patogênicas** na coorte externa (LR local 75,9). Torna o resultado **acionável** para triagem de VUS.
-4. **Validação em profundidade (dados reais).** Validação funcional ortogonal de bancada nos **dois genes** (*saturation genome editing* de BRCA1, AUC **0,795**; ensaio HDR de BRCA2, **0,874**; MaveDB); teste **genuinamente prospectivo** que prevê como a comunidade reclassificou 56 VUS de 2023 até 2026 (AUC **0,941**); o único comparador **sem circularidade** (EVE) fica estatisticamente empatado (DeLong *p* = 0,59); e generalização, com dados reais do ClinVar, a genes de **outras síndromes hereditárias** (TP53 0,912, von Hippel-Lindau 0,966, Lynch/MSH2 0,926 e MEN2/RET 0,813), mostrando que a receita ultrapassa o câncer de mama/ovário (Material Suplementar, S12).
+4. **Validação em profundidade (dados reais).** Validação funcional ortogonal de bancada nos **dois genes** (*saturation genome editing* de BRCA1, AUC **0,795**; ensaio HDR de BRCA2, **0,874**; MaveDB); teste **genuinamente prospectivo** que prevê como a comunidade reclassificou 227 VUS de 2023 até 2026 (AUC **0,929**); o único comparador **sem circularidade** (EVE) fica estatisticamente empatado (DeLong *p* = 0,59); e generalização, com dados reais do ClinVar, a genes de **outras síndromes hereditárias** (TP53 0,888, Lynch/MSH6 0,908, Lynch/MSH2 0,885, MEN2/RET 0,843 e von Hippel-Lindau 0,722), mostrando que a receita ultrapassa o câncer de mama/ovário (Material Suplementar, S12).
 5. **Explicabilidade** por SHAP e **ferramenta de linha de comando** de uso direto (abaixo).
 
 ### Resultado principal (dados reais, reexecutável)
@@ -94,7 +94,7 @@ primevarclass_manuscript_analysis/   Artefatos gerados (JSON/CSV/figuras)
 
 ```bash
 pip install -e ".[explain,dev]"
-pytest tests/ -q                        # suíte de testes (34)
+pytest tests/ -q                        # suíte de testes (35)
 
 python scratch/validate_domain_integration.py   # resultado principal
 python scratch/benchmark_sota.py                 # benchmark vs. estado da arte (S1)

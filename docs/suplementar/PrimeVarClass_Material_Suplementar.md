@@ -238,10 +238,10 @@ A ordenação é **monotônica e biologicamente esperada**: variantes que destro
 
 ## S11. Validação prospectiva e head-to-head livre de vazamento
 
-A partir de um snapshot histórico do ClinVar (variant_summary de junho/2023), identificamos as variantes missense de BRCA1/BRCA2 que eram **VUS ou conflitantes em 2023** e só foram **resolvidas a patogênicas/benignas até 2026** (n = 56). Um modelo treinado **apenas** no que era definitivo em 2023 (n = 462) é, por construção, cego a essas variantes. Script: `scratch/prospective_analysis.py`.
+A partir de um snapshot histórico do ClinVar (variant_summary de junho/2023), identificamos as variantes missense de BRCA1/BRCA2 que eram **VUS ou conflitantes em 2023** e só foram **resolvidas a patogênicas/benignas até 2026** (n = 227). Um modelo treinado **apenas** no que era definitivo em 2023 (n = 858) é, por construção, cego a essas variantes. Script: `scratch/prospective_analysis.py`.
 
-- **Previsão prospectiva:** AUC = **0,941**; nas 33 chamadas de alta confiança (limiares ACMG), acurácia de **97%**.
-- **Head-to-head livre de vazamento:** como nenhuma ferramenta pôde treinar no rótulo definitivo (inexistente em 2023), essas 56 variantes formam um conjunto-teste imparcial. No mesmo subconjunto coberto, o PrimeVarClass (0,928–0,941) **supera AlphaMissense (0,908) e REVEL (0,849)**, invertendo a vantagem aparente que eles tinham no benchmark completo, como prevê o argumento de circularidade. O **CADD (0,963) permanece à frente** nesse conjunto (contra a previsão de circularidade), mas sobre amostra pequena (n = 42; 15 positivos; IC95% [0,898–1,0], sobreposto ao do modelo), sem diferença significativa. Corroboração direta, não prova.
+- **Previsão prospectiva:** AUC = **0,929** (IC95% 0,892–0,961); nas 148 chamadas de alta confiança (limiares ACMG), acurácia de **93,2%**.
+- **Head-to-head livre de vazamento:** como nenhuma ferramenta pôde treinar no rótulo definitivo (inexistente em 2023), essas 227 variantes formam um conjunto-teste imparcial. Medido no mesmo subconjunto que cada ferramenta cobre, o PrimeVarClass (0,900) **supera o REVEL (0,849)** e **empata com o AlphaMissense (0,908)**, enquanto o **CADD (0,963) permanece à frente**. A cobertura de terceiros é pequena (n = 41 a 42), com IC amplamente sobrepostos e sem diferença significativa. O resultado atenua a vantagem que REVEL e CADD exibem no benchmark completo, mas é corroboração parcial do argumento de circularidade, não prova.
 
 A Figura 11 do artigo principal apresenta ambos os painéis.
 
@@ -253,7 +253,7 @@ A mesma receita (bioquímica, depois domínio crítico, depois ESM-2) foi aplica
 
 ![Figura S12](figuras/fig_multigene.png)
 
-**Figura S12.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,627 (bioquímico) para 0,780 (+domínio) e 0,912 (+ESM-2, 650M): o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio não ajuda (0,481) mas o ESM-2 recupera o sinal (0,720; n = 75); os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
+**Figura S12.** Sob validação bloqueada por posição, a AUC no TP53 sobe de 0,649 (bioquímico) para 0,754 (+domínio) e 0,888 (+ESM-2, 650M): o mesmo padrão de ganho observado em BRCA, reproduzido em um gene fora do escopo original. **Complementaridade dependente do gene:** no ATM (patogenicidade espacialmente difusa), a consciência de domínio praticamente não altera o sinal (0,687 para 0,690) mas o ESM-2 o eleva a 0,835 (n = 147); os dois componentes cobrem regimes distintos. Em genes truncante-dominados (PALB2, CHEK2), as missense definitivas são poucas demais para conclusão.
 
 ### Painel expandido: cinco genes, três síndromes
 
@@ -261,19 +261,19 @@ Para testar se a receita ultrapassa o câncer de mama/ovário, aplicou-se o **me
 
 ![Figura S12b](figuras/fig_multigene_expanded.png)
 
-**Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **VHL 0,966** [0,92–1,00], **MSH2 0,926** [0,86–0,98], **RET 0,813** [0,69–0,91], **MSH6 0,806** [0,64–0,95] e **MLH1 0,753** [0,64–0,86]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, VHL de 0,879 para 0,966; MSH6 de 0,581 para 0,806). Já a consciência de domínio (curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53) contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite claro que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (MSH6 n = 43; RET n = 57) têm IC largos, reportados sem maquiagem.
+**Figura S12b.** AUC-ROC do carro-chefe (domínio + ESM-2) sob CV bloqueada por posição, IC95% por *bootstrap*: **MSH6 0,908** [0,853–0,953], **MSH2 0,885** [0,845–0,920], **RET 0,843** [0,764–0,915], **MLH1 0,794** [0,702–0,878] e **VHL 0,722** [0,560–0,862]. O componente **ESM-2 é o sinal transferível** que eleva todos os cinco genes (por exemplo, MSH6 de 0,719 para 0,908; MLH1 de 0,652 para 0,794). Já a consciência de domínio (curada para a arquitetura modular RING/BRCT/DBD de BRCA/TP53) contribui de forma **desigual** em dobras multidomínio (MutS de Lynch, VHL), ali neutra a ligeiramente negativa: um limite claro que separa o sinal profundo, que generaliza, do prior estrutural manual, específico de arquitetura. As amostras menores (VHL n = 86; RET n = 110) têm IC largos, reportados sem maquiagem. Os rótulos vêm de uma consulta versionada ao ClinVar (`scratch/fetch_clinvar_expanded_panel.py`, 989 variantes definitivas).
 
 ![Figura S12c](figuras/fig_vhl_detection.png)
 
-**Figura S12c.** Mapa estrutural de detecção do **VHL** (o gene de maior AUC, 0,966), renderizado em PyMOL sobre a **estrutura cristalográfica real** (PDB 1LM8, cadeia V; domínios β+α). O sinal ESM-2 por resíduo colore a cadeia de **azul** (tolerante) a **dourado** (detectado): as zonas douradas concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (mostrados como *sticks*) caem justamente nelas, sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; scripts `scratch/pymol_vhl_detection.py` + `scratch/compose_vhl_figure.py`.
+**Figura S12c.** Mapa estrutural de detecção do **VHL** (AUC 0,722), renderizado em PyMOL sobre a **estrutura cristalográfica real** (PDB 1LM8, cadeia V; domínios β+α). O sinal ESM-2 por resíduo colore a cadeia de **azul** (tolerante) a **dourado** (detectado): as zonas douradas concentram-se no núcleo funcional, e os resíduos com **variante patogênica real** do ClinVar (mostrados como *sticks*) caem justamente nelas, sem que a estrutura tenha sido informada ao modelo. É a mesma assinatura vista em BRCA1 (RING/BRCT), reproduzida em um gene de outra síndrome hereditária. Escores por resíduo em `detected_per_residue_vhl.csv`; scripts `scratch/pymol_vhl_detection.py` + `scratch/compose_vhl_figure.py`.
 
 ![Figura S12d](figuras/fig_msh2_detection.png)
 
-**Figura S12d.** MSH2 (Lynch, AUC 0,926) sobre a estrutura real do complexo MutSα (PDB 2O8B, cadeia A). O sinal ESM-2 por resíduo colore a cadeia de azul (tolerante) a dourado (detectado), e as variantes patogênicas reais (*sticks*) acompanham o núcleo funcional do reparo de emparelhamento. Por ser uma proteína grande e multidomínio, a detecção é mais distribuída que no VHL, como esperado. PyMOL: `scratch/pymol_panel_detection.py`.
+**Figura S12d.** MSH2 (Lynch, AUC 0,885) sobre a estrutura real do complexo MutSα (PDB 2O8B, cadeia A). O sinal ESM-2 por resíduo colore a cadeia de azul (tolerante) a dourado (detectado), e as variantes patogênicas reais (*sticks*) acompanham o núcleo funcional do reparo de emparelhamento. Por ser uma proteína grande e multidomínio, a detecção é mais distribuída que no VHL, como esperado. PyMOL: `scratch/pymol_panel_detection.py`.
 
 ![Figura S12e](figuras/fig_ret_detection.png)
 
-**Figura S12e.** RET (MEN2, AUC 0,813), domínio quinase real (PDB 2IVT). A detecção concentra-se no núcleo catalítico da quinase (onde se localizam as mutações ativadoras clássicas do MEN2, p. ex. Met918), com as variantes patogênicas reais (*sticks*) nessas regiões. PyMOL: `scratch/pymol_panel_detection.py`.
+**Figura S12e.** RET (MEN2, AUC 0,843), domínio quinase real (PDB 2IVT). A detecção concentra-se no núcleo catalítico da quinase (onde se localizam as mutações ativadoras clássicas do MEN2, p. ex. Met918), com as variantes patogênicas reais (*sticks*) nessas regiões. PyMOL: `scratch/pymol_panel_detection.py`.
 
 ---
 
@@ -293,7 +293,7 @@ Entre as **12.196** variantes missense de BRCA1/BRCA2 atualmente VUS ou conflita
 
 ![Figura S14](figuras/fig_vus_worklist.png)
 
-**Figura S14.** O backlog de 12.196 VUS é triado em **326 para revisão urgente** (PP3, provável patogênica), **9.566 despriorizadas** (BP4, provável benigna) e 2.304 não informativas; **81% recebem evidência acionável**. A confiabilidade não é apenas afirmada: as chamadas de alta confiança são **97% acuradas** na validação prospectiva (S11).
+**Figura S14.** O backlog de 12.196 VUS é triado em **326 para revisão urgente** (PP3, provável patogênica), **9.566 despriorizadas** (BP4, provável benigna) e 2.304 não informativas; **81% recebem evidência acionável**. A confiabilidade não é apenas afirmada: as chamadas de alta confiança são **93% acuradas** na validação prospectiva (S11).
 
 ---
 

@@ -24,6 +24,7 @@ from sklearn.metrics import roc_auc_score
 
 from primevarclass.core import _build_pipeline, build_dataset_from_dataframe, get_feature_subsets
 from primevarclass.esm_scores import attach_esm_scores
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 panel = pd.read_csv("scratch/esm_input/esm2_scores_panel.csv")
@@ -31,12 +32,8 @@ clin = pd.read_csv("data/raw/clinvar/clinvar_brca_missense_live.csv")
 
 
 def truth(s):
-    s = str(s)
-    if "Pathogenic" in s and "Conflicting" not in s:
-        return 1
-    if "Benign" in s and "Conflicting" not in s:
-        return 0
-    return np.nan
+    lab = clinvar_binary_label(s)
+    return np.nan if lab is None else lab
 
 
 clin["label"] = clin.clinsig.map(truth)

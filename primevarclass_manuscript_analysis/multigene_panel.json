@@ -1,34 +1,34 @@
 {
   "TP53": {
-    "n": 204,
-    "n_pathogenic": 181,
+    "n": 311,
+    "n_pathogenic": 211,
     "pct_pathogenic_in_critical": 1.0,
-    "auc_biochem": 0.627,
-    "auc_domain": 0.78,
-    "auc_domain_esm": 0.912
+    "auc_biochem": 0.649,
+    "auc_domain": 0.754,
+    "auc_domain_esm": 0.888
   },
   "PALB2": {
-    "n": 19,
-    "n_pathogenic": 6,
-    "pct_pathogenic_in_critical": 0.167,
-    "auc_biochem": null,
-    "auc_domain": null,
-    "auc_domain_esm": null
+    "n": 40,
+    "n_pathogenic": 8,
+    "pct_pathogenic_in_critical": 0.25,
+    "auc_biochem": 0.535,
+    "auc_domain": 0.441,
+    "auc_domain_esm": 0.605
   },
   "CHEK2": {
-    "n": 6,
-    "n_pathogenic": 4,
-    "pct_pathogenic_in_critical": 0.75,
+    "n": 13,
+    "n_pathogenic": 6,
+    "pct_pathogenic_in_critical": 0.833,
     "auc_biochem": null,
     "auc_domain": null,
     "auc_domain_esm": null
   },
   "ATM": {
-    "n": 75,
-    "n_pathogenic": 42,
-    "pct_pathogenic_in_critical": 0.405,
-    "auc_biochem": 0.486,
-    "auc_domain": 0.481,
-    "auc_domain_esm": 0.72
+    "n": 147,
+    "n_pathogenic": 82,
+    "pct_pathogenic_in_critical": 0.415,
+    "auc_biochem": 0.687,
+    "auc_domain": 0.69,
+    "auc_domain_esm": 0.835
   }
 }

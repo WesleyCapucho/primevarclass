@@ -26,6 +26,9 @@ import pandas as pd
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score
+import os, sys
+sys.path.insert(0, os.path.abspath("src"))
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 FIG = "docs/suplementar/figuras/fig_grey_zone.png"
@@ -46,12 +49,8 @@ df = (clin.merge(am, on=key, how="inner")
 
 
 def truth(s):
-    s = str(s)
-    if "Pathogenic" in s and "Conflicting" not in s:
-        return 1
-    if "Benign" in s and "Conflicting" not in s:
-        return 0
-    return np.nan
+    lab = clinvar_binary_label(s)
+    return np.nan if lab is None else lab
 
 
 df["label"] = df.clinsig.map(truth)

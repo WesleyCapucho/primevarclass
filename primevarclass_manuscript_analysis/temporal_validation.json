@@ -1,32 +1,32 @@
 {
   "2016": {
-    "n_train": 176,
-    "n_test_future": 323,
-    "test_pathogenic": 140,
-    "future_auc": 0.892
+    "n_train": 182,
+    "n_test_future": 1151,
+    "test_pathogenic": 279,
+    "future_auc": 0.908
   },
   "2018": {
-    "n_train": 179,
-    "n_test_future": 320,
-    "test_pathogenic": 138,
-    "future_auc": 0.899
+    "n_train": 194,
+    "n_test_future": 1139,
+    "test_pathogenic": 273,
+    "future_auc": 0.911
   },
   "2019": {
-    "n_train": 279,
-    "n_test_future": 220,
-    "test_pathogenic": 118,
-    "future_auc": 0.926
+    "n_train": 300,
+    "n_test_future": 1033,
+    "test_pathogenic": 249,
+    "future_auc": 0.927
   },
   "2020": {
-    "n_train": 280,
-    "n_test_future": 219,
-    "test_pathogenic": 118,
-    "future_auc": 0.926
+    "n_train": 310,
+    "n_test_future": 1023,
+    "test_pathogenic": 245,
+    "future_auc": 0.93
   },
   "2021": {
-    "n_train": 286,
-    "n_test_future": 213,
-    "test_pathogenic": 113,
-    "future_auc": 0.932
+    "n_train": 339,
+    "n_test_future": 994,
+    "test_pathogenic": 232,
+    "future_auc": 0.931
   }
 }

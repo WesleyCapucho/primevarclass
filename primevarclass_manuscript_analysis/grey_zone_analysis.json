@@ -2,10 +2,10 @@
   "BRCA1": {
     "n_am_ambiguous_total": 325,
     "part1_classified": {
-      "n_classified_ambiguous": 10,
-      "our_auc": 0.938,
-      "n_resolved": 7,
-      "resolved_accuracy": 1.0
+      "n_classified_ambiguous": 30,
+      "our_auc": 0.931,
+      "n_resolved": 16,
+      "resolved_accuracy": 0.938
     },
     "part2_vus": {
       "n": 98,
@@ -24,7 +24,12 @@
   },
   "BRCA2": {
     "n_am_ambiguous_total": 319,
-    "part1_classified": {},
+    "part1_classified": {
+      "n_classified_ambiguous": 23,
+      "our_auc": 0.956,
+      "n_resolved": 14,
+      "resolved_accuracy": 1.0
+    },
     "part2_vus": {
       "n": 166,
       "PP3_Strong": 6,
@@ -43,10 +48,10 @@
   "BRCA1+BRCA2": {
     "n_am_ambiguous_total": 644,
     "part1_classified": {
-      "n_classified_ambiguous": 17,
-      "our_auc": 0.909,
-      "n_resolved": 10,
-      "resolved_accuracy": 1.0
+      "n_classified_ambiguous": 53,
+      "our_auc": 0.938,
+      "n_resolved": 30,
+      "resolved_accuracy": 0.967
     },
     "part2_vus": {
       "n": 264,

@@ -1,51 +1,51 @@
 {
   "holdout_year": 2024,
-  "holdout_n": 195,
+  "holdout_n": 789,
   "learning_curve": [
     {
       "through_year": 2016,
-      "n_feedback": 176,
-      "holdout_auc": 0.8951
+      "n_feedback": 182,
+      "holdout_auc": 0.9157
     },
     {
       "through_year": 2017,
-      "n_feedback": 178,
-      "holdout_auc": 0.8976
+      "n_feedback": 188,
+      "holdout_auc": 0.9162
     },
     {
       "through_year": 2018,
-      "n_feedback": 179,
-      "holdout_auc": 0.8976
+      "n_feedback": 194,
+      "holdout_auc": 0.9155
     },
     {
       "through_year": 2019,
-      "n_feedback": 279,
-      "holdout_auc": 0.9183
+      "n_feedback": 300,
+      "holdout_auc": 0.9278
     },
     {
       "through_year": 2020,
-      "n_feedback": 280,
-      "holdout_auc": 0.9193
+      "n_feedback": 310,
+      "holdout_auc": 0.9305
     },
     {
       "through_year": 2021,
-      "n_feedback": 286,
-      "holdout_auc": 0.9223
+      "n_feedback": 339,
+      "holdout_auc": 0.931
     },
     {
       "through_year": 2022,
-      "n_feedback": 295,
-      "holdout_auc": 0.9206
+      "n_feedback": 374,
+      "holdout_auc": 0.9334
     },
     {
       "through_year": 2023,
-      "n_feedback": 304,
-      "holdout_auc": 0.9191
+      "n_feedback": 544,
+      "holdout_auc": 0.9285
     }
   ],
   "gate": {
-    "clean_auc": 0.9191,
-    "poisoned_auc": 0.7268,
+    "clean_auc": 0.9285,
+    "poisoned_auc": 0.7555,
     "epsilon": 0.005,
     "poisoned_promoted": false
   }

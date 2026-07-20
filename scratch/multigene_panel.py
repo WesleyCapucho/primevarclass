@@ -36,6 +36,7 @@ from sklearn.model_selection import StratifiedGroupKFold
 
 from primevarclass.core import _build_pipeline, build_dataset_from_dataframe, get_feature_subsets
 from primevarclass.esm_scores import attach_esm_scores
+from primevarclass.core import clinvar_binary_label
 
 ANL = "primevarclass_manuscript_analysis"
 FIG = "docs/suplementar/figuras/fig_multigene.png"
@@ -49,14 +50,8 @@ CRITICAL = {"TP53": [(94, 312), (323, 356)], "PALB2": [(9, 44), (853, 1186)],
 
 
 def definitive(s):
-    s = str(s)
-    if "Conflicting" in s:
-        return np.nan
-    if "Pathogenic" in s:
-        return 1
-    if "Benign" in s:
-        return 0
-    return np.nan
+    lab = clinvar_binary_label(s)
+    return np.nan if lab is None else lab
 
 
 rows = []
