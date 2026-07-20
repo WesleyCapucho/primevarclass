@@ -166,7 +166,7 @@ for name in MODELS:
     plt.plot(fpr, tpr, color=COL[name], lw=2, label=f"{name} (AUC={a:.3f})")
 plt.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
 plt.xlabel("Taxa de falsos positivos"); plt.ylabel("Taxa de verdadeiros positivos")
-plt.title("Curva ROC — coortes externas independentes"); plt.legend(loc="lower right", fontsize=8)
+plt.title("Curva ROC — coortes externas independentes"); plt.legend(loc="lower right", fontsize=12)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_roc_external.png")); plt.close()
 
 # Fig B: bootstrap AUC distributions
@@ -174,7 +174,7 @@ plt.figure(figsize=(6, 4))
 for name in MODELS:
     plt.hist(boot[name], bins=40, alpha=0.55, color=COL[name], label=name)
 plt.xlabel("AUC (bootstrap externo)"); plt.ylabel("Frequência")
-plt.title(f"Distribuição bootstrap da AUC externa (B={N_BOOT})"); plt.legend(fontsize=8)
+plt.title(f"Distribuição bootstrap da AUC externa (B={N_BOOT})"); plt.legend(fontsize=12)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_bootstrap_auc.png")); plt.close()
 
 # Fig C: permutation null
@@ -183,7 +183,7 @@ plt.hist(null, bins=40, color="#999999", alpha=0.8, label="AUC sob H0 (rótulos 
 plt.axvline(obs, color="#1b7837", lw=2.5, label=f"AUC observada = {obs:.3f}")
 plt.xlabel("AUC"); plt.ylabel("Frequência")
 plt.title(f"Teste de permutação (N={N_PERM}, p={results['permutation']['p_value']:.1e})")
-plt.legend(fontsize=8); plt.tight_layout()
+plt.legend(fontsize=12); plt.tight_layout()
 plt.savefig(os.path.join(OUT, "fig_permutation.png")); plt.close()
 
 # Fig D: repeated CV boxplot
@@ -201,7 +201,7 @@ plt.figure(figsize=(5, 5))
 plt.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5, label="Perfeitamente calibrado")
 plt.plot(mids, obs_f, "o-", color="#1b7837", lw=2, label=f"Domínio-consciente (Brier={brier:.3f})")
 plt.xlabel("Probabilidade prevista"); plt.ylabel("Frequência observada de patogenicidade")
-plt.title("Curva de calibração — coortes externas"); plt.legend(fontsize=8)
+plt.title("Curva de calibração — coortes externas"); plt.legend(fontsize=12)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_calibration.png")); plt.close()
 
 print(f"\n>> DONE. Wrote {OUT}/results.json and 5 figures.")

@@ -38,7 +38,7 @@ for ax, img, title, sub in panels:
     ax.imshow(img)
     ax.set_axis_off()
     ax.set_title(title, fontsize=12.5, fontweight="bold", color="#1a1a1a", pad=6, loc="left")
-    ax.text(0.0, -0.035, sub, transform=ax.transAxes, fontsize=9.2,
+    ax.text(0.0, -0.035, sub, transform=ax.transAxes, fontsize=12,
             color="#333333", ha="left", va="top")
 
 # shared colour legend along the bottom
@@ -52,7 +52,7 @@ legend_handles = [
            label="Coordenação tiol–Zn²⁺"),
 ]
 fig.legend(handles=legend_handles, loc="lower center", ncol=5, frameon=False,
-           fontsize=8.6, bbox_to_anchor=(0.5, -0.005), handletextpad=0.5,
+           fontsize=12, bbox_to_anchor=(0.5, -0.005), handletextpad=0.5,
            columnspacing=1.4)
 
 fig.subplots_adjust(left=0.008, right=0.992, top=0.93, bottom=0.11, wspace=0.02)

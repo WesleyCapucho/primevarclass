@@ -122,17 +122,17 @@ for yi, r in zip(ys, rows):
     ax.plot([r["ci_lo"], r["ci_hi"]], [yi, yi], "-", color="#333333", lw=1.5)
     ax.plot(r["auc"], yi, "s", color="#1b7837", ms=7)
     ax.text(1.005, yi, f"{r['auc']:.3f} [{r['ci_lo']:.3f}, {r['ci_hi']:.3f}]  (n={r['n']})",
-            va="center", fontsize=8)
+            va="center", fontsize=12)
 # pooled diamond
 yd = -1.2
 ax.add_patch(plt.Polygon([[pooled_lo, yd], [pooled, yd + 0.25], [pooled_hi, yd], [pooled, yd - 0.25]],
                          closed=True, color="#d55e00"))
-ax.text(1.005, yd, f"{pooled:.3f} [{pooled_lo:.3f}, {pooled_hi:.3f}]  (agrupado)", va="center", fontsize=8, fontweight="bold")
+ax.text(1.005, yd, f"{pooled:.3f} [{pooled_lo:.3f}, {pooled_hi:.3f}]  (agrupado)", va="center", fontsize=12, fontweight="bold")
 ax.axvline(pooled, color="#d55e00", ls=":", lw=1, alpha=0.6)
 ax.axvline(0.5, color="gray", ls="--", lw=1, alpha=0.5)
-ax.set_yticks(list(ys) + [yd]); ax.set_yticklabels([r["cohort"] for r in rows] + ["Agrupado (efeitos aleatórios)"], fontsize=8)
+ax.set_yticks(list(ys) + [yd]); ax.set_yticklabels([r["cohort"] for r in rows] + ["Agrupado (efeitos aleatórios)"], fontsize=12)
 ax.set_xlim(0.45, 1.35); ax.set_xlabel("AUC-ROC (IC 95%)")
-ax.set_title(f"Meta-análise de generalização externa — modelo-carro-chefe (domínio + ESM-2)\nAUC agrupada {pooled:.3f} (IC95% {pooled_lo:.3f}–{pooled_hi:.3f}); I²={I2:.0f}%")
+ax.set_title(f"Meta-análise de generalização externa: modelo-carro-chefe (domínio + ESM-2)\nAUC agrupada {pooled:.3f} (IC95% {pooled_lo:.3f}–{pooled_hi:.3f}); I²={I2:.0f}%")
 ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_meta_forest.png")); plt.close()
 print(">> wrote meta_analysis.json and fig_meta_forest.png")
