@@ -2,8 +2,8 @@
 
 Same recipe as scratch/pymol_vhl_detection.py, for two more genes of the expanded
 panel, on REAL structures:
-  MSH2 (Lynch, AUC 0,926) -> PDB 2O8B chain A (human MutS-alpha)
-  RET  (MEN2,  AUC 0,813) -> PDB 2IVT chain A (RET kinase domain)
+  MSH2 (Lynch, AUC 0,885) -> PDB 2O8B chain A (human MutS-alpha)
+  RET  (MEN2,  AUC 0,843) -> PDB 2IVT chain A (RET kinase domain)
 Per-residue ESM-2 detection colours the cartoon blue (tolerant) -> gold (detected);
 real ClinVar-pathogenic residues in the resolved region are drawn as sticks.
 

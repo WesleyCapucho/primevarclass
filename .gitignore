@@ -79,3 +79,6 @@ registro_prospectivo/model_versions.jsonl
 
 # Arquivos de lock do Word/Office (nunca versionar)
 ~$*
+
+# Versao base regenerada pelo build_final_manuscript.py (nao e o artigo submetido)
+docs/manuscrito/_versao_base/

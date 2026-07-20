@@ -69,4 +69,34 @@ for T in [2016, 2018, 2019, 2020, 2021]:
           f"(pat={int(te.label.sum())})  AUC_futuro={auc:.3f}")
 
 json.dump(res, open(os.path.join(ANL, "temporal_validation.json"), "w"), indent=2, ensure_ascii=False)
-print(f">> wrote {ANL}/temporal_validation.json")
+
+# ---- figura (antes era um PNG orfao, sem script que o gerasse) ----------------
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+anos = sorted(res, key=int)
+aucs = [res[a]["future_auc"] for a in anos]
+ns = [res[a]["n_test_future"] for a in anos]
+fig, ax = plt.subplots(figsize=(10.6, 6.0), dpi=200)
+ax.plot([int(a) for a in anos], aucs, "-o", color="#c0392b", lw=2.6, ms=9)
+for a, v, n in zip(anos, aucs, ns):
+    ax.annotate(f"{v:.3f}".replace(".", ","), (int(a), v), textcoords="offset points",
+                xytext=(0, 12), ha="center", fontsize=14, fontweight="bold")
+    ax.annotate(f"n={n}", (int(a), v), textcoords="offset points",
+                xytext=(0, -20), ha="center", fontsize=11.5, color="#555555")
+ax.set_xlabel("ano de corte (treino usa apenas o que era definitivo até ali)", fontsize=13.5)
+ax.set_ylabel("AUC nas variantes classificadas depois do corte", fontsize=13.5)
+ax.set_title("Validação temporal: treinado só com o passado, testado no futuro",
+             fontsize=15.5, fontweight="bold")
+ax.set_xticks([int(a) for a in anos])
+ax.tick_params(labelsize=12.5)
+ax.margins(x=0.10, y=0.20)
+ax.grid(alpha=0.25)
+fig.tight_layout()
+for _fp in ("docs/suplementar/figuras/fig_temporal_validation.png",
+            "docs/manuscrito/figuras/fig_temporal_validation.png",
+            "docs/galeria_resultados/figuras/fig_temporal_validation.png"):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    fig.savefig(_fp, dpi=200, bbox_inches="tight", facecolor="white")
+print(f">> wrote {ANL}/temporal_validation.json and fig_temporal_validation.png (3 pastas)")

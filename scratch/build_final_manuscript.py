@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
-"""Gera o manuscrito final do PrimeVarClass para o 32º Prêmio Jovem Cientista,
-em conformidade com o Edital (item 2.2.2c): A4, Arial 12, espaçamento 1,5,
-estrutura Apresentação / Desenvolvimento / Conclusão / Referências.
+"""Monta a VERSÃO BASE do manuscrito (A4, Arial 12, espaçamento 1,5; estrutura
+Apresentação / Desenvolvimento / Conclusão / Referências, item 2.2.2c do Edital).
 
-Todo o texto é original desta sessão (primeira pessoa, pretérito), e todos os
-números citados foram verificados contra os JSON/CSV reais em
-primevarclass_manuscript_analysis/ e scratch/decisive_results/ antes da escrita.
+ATENÇÃO: ESTE SCRIPT NÃO REPRODUZ O ARTIGO SUBMETIDO.
+O documento em docs/manuscrito/ é o artefato autoritativo e sofreu, depois desta
+montagem, alterações feitas diretamente no DOCX:
+  * quatro figuras e uma tabela migraram para o Material Suplementar, com
+    renumeração sequencial das restantes;
+  * Resumo, Discussão e Considerações Finais foram enxugados;
+  * os números foram corrigidos após a correção do parser de rótulos do ClinVar
+    (ver primevarclass_manuscript_analysis/*.json e src/primevarclass/core.py::
+    clinvar_binary_label). O texto abaixo ainda carrega os valores ANTIGOS.
+
+Por isso a saída vai para docs/manuscrito/_versao_base/, e não sobre o arquivo
+submetido. Os números e figuras continuam integralmente reproduzíveis pelos
+scripts de análise; o que este script não reproduz é a diagramação final.
 
 Run: python scratch/build_final_manuscript.py
 """
@@ -18,7 +27,7 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Inches, Pt, RGBColor
 
 FIG = "docs/manuscrito/figuras"
-OUT = "docs/manuscrito/PrimeVarClass_Artigo_Premio_Jovem_Cientista.docx"
+OUT = "docs/manuscrito/_versao_base/PrimeVarClass_Artigo_versao_base.docx"  # NAO sobrescreve o artigo submetido (ver docstring)
 
 # --------------------------------------------------------------------------- #
 #  Helpers                                                                     #

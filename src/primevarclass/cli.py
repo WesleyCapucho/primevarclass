@@ -190,7 +190,8 @@ def _cmd_update(args: argparse.Namespace) -> int:
     frames = []
     for c in holdout_cfgs:
         df, _, _ = build_dataset_from_source_config(str(root / c), mode="hybrid", keep_metadata=True)
-        y = pd.to_numeric(df["label"], errors="coerce"); keep = y.notna()
+        y = pd.to_numeric(df["label"], errors="coerce")
+        keep = y.notna()
         f = df.loc[keep, ["gene", "position", "aa_ref", "aa_alt"]].copy()
         f["label"] = y.loc[keep].astype(int).to_numpy()
         frames.append(f)

@@ -1,6 +1,6 @@
-"""VHL per-residue detection — computes the ESM-2 detection track that drives VHL
-(AUC 0,966) and a quick matplotlib 3D preview. The CANONICAL supplement figure is
-the ray-traced PyMOL render (scratch/pymol_vhl_detection.py -> scratch/compose_vhl_figure.py);
+"""VHL per-residue detection: computes the ESM-2 detection track that drives VHL
+and a quick matplotlib 3D preview (the AUC shown is read from the panel JSON). The CANONICAL supplement figure is
+the ray-traced PyMOL render (scratch/pymol_vhl_detection.py -> scratch/compose_detection_maps.py);
 this script's job is to produce detected_per_residue_vhl.csv, which PyMOL then reads.
 
 Inputs : scratch/esm_input/esm2_650M_expanded_scores.csv (VHL saturation LLR),
@@ -28,6 +28,7 @@ from scipy.interpolate import splev, splprep
 
 ANL = "primevarclass_manuscript_analysis"
 FIG = "primevarclass_manuscript_analysis/fig_vhl_detection_mpl.png"  # preview; canonical fig is PyMOL
+_AUC_TXT = f"{json.load(open(os.path.join(ANL, 'multigene_panel_expanded.json'), encoding='utf-8'))['VHL']['auc_domain_esm']:.3f}".replace(".", ",")
 CORE_START = 54   # folded β+α core; the disordered N-terminus (1-53) is dropped for clarity
 RAMP = [(0.09, 0.12, 0.36), (0.74, 0.15, 0.42), (1.00, 0.80, 0.22)]
 
@@ -73,11 +74,11 @@ mid = P.mean(0); rng = (P.max(0) - P.min(0)).max() / 2 * 0.82
 for s, c in zip("xyz", mid):
     getattr(ax, f"set_{s}lim")(c - rng, c + rng)
 ax.view_init(elev=14, azim=35)
-fig.text(0.5, 0.965, "VHL (von Hippel-Lindau) — mapa de detecção do PrimeVarClass",
+fig.text(0.5, 0.965, "VHL (von Hippel-Lindau): mapa de detecção do PrimeVarClass",
          ha="center", fontsize=15, fontweight="bold", color="#12203a")
-fig.text(0.5, 0.918, "sinal ESM-2 por resíduo no núcleo dobrado (β+α, AlphaFold P40337) — azul = tolerante · "
-         "dourado = detectado; AUC 0,966 (CV bloqueada, ClinVar real).", ha="center", fontsize=9, color="#7a5a00")
-fig.text(0.5, 0.895, "Esferas com contorno preto = resíduos com variante patogênica real — concentram-se nas zonas douradas.",
+fig.text(0.5, 0.918, "sinal ESM-2 por resíduo no núcleo dobrado (β+α, AlphaFold P40337); azul = tolerante, "
+         f"dourado = detectado; AUC {_AUC_TXT} (CV bloqueada, ClinVar real).", ha="center", fontsize=9, color="#7a5a00")
+fig.text(0.5, 0.895, "Esferas com contorno preto = resíduos com variante patogênica real; concentram-se nas zonas douradas.",
          ha="center", fontsize=9, color="#7a5a00")
 sm = plt.cm.ScalarMappable(cmap=cmap); sm.set_array([0, 1])
 cax = fig.add_axes([0.86, 0.34, 0.02, 0.34])

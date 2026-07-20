@@ -17,8 +17,8 @@ Real, *guarded* online learning (no hand-waving):
 
 Why this is legitimate, not a buzzword: the paper's temporal validation shows that
 as ClinVar accumulates confirmed labels over the years, a model trained only on the
-past classifies *future* variants increasingly well (external AUC 0.892 in 2016 to
-0.932 in 2021). This module operationalises exactly that effect; every confirmed
+past classifies *future* variants increasingly well (external AUC 0.908 in 2016 to
+0.931 in 2021). This module operationalises exactly that effect; every confirmed
 variant a user contributes is one more label that makes the next model better,
 under a safety gate that never lets it get worse.
 """
@@ -92,7 +92,7 @@ class FeedbackStore:
         lab = normalize_label(label)
         sha = self._identity(gene, position, aa_ref, aa_alt, lab)
         if sha in self.existing_ids():
-            return None                              # already recorded — idempotent
+            return None                              # already recorded; idempotent
         rec = FeedbackRecord(gene=gene, position=int(position),
                              aa_ref=str(aa_ref).upper(), aa_alt=str(aa_alt).upper(),
                              label=lab, source=source, submitter=submitter,
@@ -107,7 +107,7 @@ class FeedbackStore:
             return pd.DataFrame(
                 columns=["gene", "position", "aa_ref", "aa_alt", "label",
                          "source", "submitter", "timestamp", "sha256"])
-        rows = [json.loads(l) for l in self.path.read_text(encoding="utf-8").splitlines() if l.strip()]
+        rows = [json.loads(line) for line in self.path.read_text(encoding="utf-8").splitlines() if line.strip()]
         return pd.DataFrame(rows)
 
 
@@ -159,6 +159,7 @@ def _with_hgvs(frame):
 def _engineer(root: Path, frame, esm_path: Path):
     """Feature-engineer a (gene, position, aa_ref, aa_alt, label) frame."""
     import pandas as pd
+
     from .core import build_dataset_from_dataframe
     from .esm_scores import attach_esm_scores
     built, _ = build_dataset_from_dataframe(_with_hgvs(frame), mode="hybrid", keep_metadata=True)
@@ -170,6 +171,7 @@ def _engineer(root: Path, frame, esm_path: Path):
 def _base_frame(root: Path):
     """The internal public training cohort, as (ids + label)."""
     import pandas as pd
+
     from .data_sources import build_dataset_from_source_config
     cfg = root / "configs" / "public_brca_real.toml"
     df, _, _ = build_dataset_from_source_config(str(cfg), mode="hybrid", keep_metadata=True)
