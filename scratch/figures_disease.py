@@ -15,7 +15,7 @@ ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
 def box(x, y, w, h, text, ec, fc):
     ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h,
                  boxstyle="round,pad=0.06,rounding_size=0.12", fc=fc, ec=ec, lw=1.9))
-    ax.text(x, y, text, ha="center", va="center", fontsize=11.5)
+    ax.text(x, y, text, ha="center", va="center", fontsize=15)
 
 
 def arrow(x, y1, y2, color):
@@ -55,7 +55,7 @@ for i in range(len(R) - 1):
 ax.text(5, 0.35,
         "Penetrância elevada: risco cumulativo de câncer de mama ~45–72% e de ovário ~11–44% ao longo da vida em portadoras de BRCA1/BRCA2.\n"
         "A deficiência de recombinação homóloga também confere sensibilidade a inibidores de PARP (letalidade sintética), base de terapias-alvo.",
-        ha="center", va="center", fontsize=9.8, style="italic", color="#333333")
+        ha="center", va="center", fontsize=12.7, style="italic", color="#333333")
 
 import os
 plt.tight_layout()

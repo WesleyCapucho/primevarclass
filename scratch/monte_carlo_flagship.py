@@ -68,8 +68,8 @@ ax.set_xlabel("AUC-ROC (validação bloqueada por posição, teste retido)")
 ax.set_ylabel(f"frequência ({res['n_iter']} divisões Monte Carlo)")
 ax.set_title("Estabilidade Monte Carlo do modelo-carro-chefe (domínio + ESM-2)\n"
              f"{res['n_iter']} divisões aleatórias bloqueadas por posição, reajuste a cada iteração",
-             fontsize=11)
-ax.legend(fontsize=9); ax.grid(axis="y", alpha=0.25)
+             fontsize=14.3)
+ax.legend(fontsize=12); ax.grid(axis="y", alpha=0.25)
 fig.tight_layout()
 os.makedirs(os.path.dirname(FIG), exist_ok=True)
 fig.savefig(FIG, dpi=200, bbox_inches="tight", facecolor="white")

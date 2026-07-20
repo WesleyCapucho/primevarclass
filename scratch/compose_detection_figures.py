@@ -39,8 +39,8 @@ _img(fig.add_subplot(gs[0]), f"{SRC}/ring_detection.png", "A   BRCA1 — domíni
 _img(fig.add_subplot(gs[1]), f"{SRC}/brct_detection.png", "B   BRCA1 — repetições BRCT (PDB 1JNX)")
 cax = fig.add_axes([0.30, 0.07, 0.40, 0.028])
 ColorbarBase(cax, cmap=cm.get_cmap("bwr"), norm=Normalize(0, 1), orientation="horizontal")
-cax.set_title("Fração das 19 substituições detectadas como patogênicas (PP3_Forte)  —  azul: baixa · vermelho: alta",
-              fontsize=8.6, color="#333")
+cax.set_title("Fração das 19 substituições detectadas como patogênicas (PP3_Forte). Azul: baixa; vermelho: alta",
+              fontsize=12, color="#333")
 fig.subplots_adjust(left=0.005, right=0.995, top=0.94, bottom=0.14)
 fig.savefig("docs/manuscrito/figuras/fig_detection_landscape.png", dpi=200,
             bbox_inches="tight", facecolor="white")
@@ -74,7 +74,7 @@ ax.text(0.0, 0.06,
         "As substituições nas cisteínas que coordenam o zinco (Cys24/39/61/64) —\n"
         "núcleo estrutural do RING — são detectadas com probabilidade > 0,99 e\n"
         "confirmadas como patogênicas no ClinVar.",
-        transform=ax.transAxes, fontsize=9, color="#333", va="top")
+        transform=ax.transAxes, fontsize=12, color="#333", va="top")
 fig.subplots_adjust(left=0.005, right=0.985, top=0.93, bottom=0.05)
 fig.savefig("docs/manuscrito/figuras/fig_detected_mutations.png", dpi=200,
             bbox_inches="tight", facecolor="white")

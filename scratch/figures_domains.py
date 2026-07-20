@@ -40,7 +40,7 @@ df = load("configs/public_brca_real.toml")
 plt.rcParams.update({"figure.dpi": 150, "font.size": 11})
 
 # ---------- Fig 1: domain architecture ----------
-fig, axes = plt.subplots(2, 1, figsize=(9, 5.2))
+fig, axes = plt.subplots(2, 1, figsize=(13.0, 6.4))
 for ax, gene in zip(axes, ["BRCA1", "BRCA2"]):
     L = LEN[gene]
     # variant risk marks first (thin, behind), so bold labels sit on top
@@ -55,21 +55,26 @@ for ax, gene in zip(axes, ["BRCA1", "BRCA2"]):
         ax.add_patch(Rectangle((sp.start, 0.34), sp.end - sp.start, 0.32, facecolor=col,
                                edgecolor="black", lw=0.6, alpha=0.9))
         # staggered heights + white halo so adjacent domain names never overlap
-        ylab = 0.72 if i % 2 == 0 else 0.90
+        ylab = (0.70, 0.87, 1.04)[i % 3]   # tres niveis: fontes maiores exigem mais folga
         ax.annotate(sp.name, xy=((sp.start + sp.end) / 2, 0.66),
                     xytext=((sp.start + sp.end) / 2, ylab), ha="center", va="center",
-                    fontsize=9.5, fontweight="bold", color="#111",
+                    fontsize=12.3, fontweight="bold", color="#111",
                     arrowprops=dict(arrowstyle="-", lw=0.5, color="#777"),
                     bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.9, edgecolor="#ccc", lw=0.4))
-    ax.set_xlim(-20, L + 20); ax.set_ylim(0, 1.08)
-    ax.set_yticks([]); ax.set_title(f"{gene} ({'P38398' if gene=='BRCA1' else 'P51587'}, {L} aa) — "
+    ax.set_xlim(-20, L + 20); ax.set_ylim(0, 1.18)
+    ax.set_yticks([]); ax.set_title(f"{gene} ({'P38398' if gene=='BRCA1' else 'P51587'}, {L} aa): "
                                     f"vermelho = região crítica, azul = demais domínios; "
-                                    f"riscos: patogênicas (baixo) vs. benignas (topo)", fontsize=10)
-    ax.set_xlabel("Posição do resíduo (aa)", fontsize=11)
-    ax.tick_params(axis="x", labelsize=10)
+                                    f"riscos: patogênicas (baixo) vs. benignas (topo)", fontsize=13)
+    ax.set_xlabel("Posição do resíduo (aa)", fontsize=14.3)
+    ax.tick_params(axis="x", labelsize=13)
     for s in ["top", "right", "left"]:
         ax.spines[s].set_visible(False)
-plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_domain_architecture.png")); plt.close()
+plt.tight_layout()
+for _fp in (os.path.join(OUT, "fig_domain_architecture.png"),
+            "docs/manuscrito/figuras/fig_domain_architecture.png",
+            "docs/galeria_resultados/figuras/fig_domain_architecture.png"):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True); plt.savefig(_fp, bbox_inches="tight", facecolor="white")
+plt.close()
 
 # ---------- Fig 2: pathogenicity by region ----------
 def region(gene, pos):
@@ -85,11 +90,16 @@ fig, ax = plt.subplots(figsize=(6, 4))
 bars = ax.bar(order, rates["mean"] * 100, color=["#d55e00", "#4c72b0", "#999999"], alpha=0.9)
 for b, (_, row) in zip(bars, rates.iterrows()):
     ax.text(b.get_x() + b.get_width() / 2, b.get_height() + 1,
-            f"{b.get_height():.0f}%\n(n={int(row['count'])})", ha="center", va="bottom", fontsize=9)
+            f"{b.get_height():.0f}%\n(n={int(row['count'])})", ha="center", va="bottom", fontsize=12)
 ax.set_ylabel("Fração de variantes patogênicas (%)")
 ax.set_title("Patogenicidade por região funcional (coorte interna)")
 ax.set_ylim(0, max(rates["mean"] * 100) + 12)
 ax.spines[["top", "right"]].set_visible(False)
-plt.tight_layout(); plt.savefig(os.path.join(OUT, "fig_pathogenicity_by_domain.png")); plt.close()
+plt.tight_layout()
+for _fp in (os.path.join(OUT, "fig_pathogenicity_by_domain.png"),
+            "docs/manuscrito/figuras/fig_pathogenicity_by_domain.png",
+            "docs/galeria_resultados/figuras/fig_pathogenicity_by_domain.png"):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True); plt.savefig(_fp, bbox_inches="tight", facecolor="white")
+plt.close()
 print("wrote fig_domain_architecture.png and fig_pathogenicity_by_domain.png")
 print(rates)

@@ -70,9 +70,14 @@ sv_pos = np.asarray(sv_pos)
 
 plt.figure()
 shap.summary_plot(sv_pos, Xt_df, max_display=15, show=False)
-plt.title("Explicabilidade (SHAP): características que mais influenciam a predição de patogenicidade", fontsize=9)
+plt.title("Explicabilidade (SHAP): características que mais influenciam a predição de patogenicidade", fontsize=12)
 plt.tight_layout()
-plt.savefig(os.path.join(OUT, "fig_shap.png"), dpi=170, bbox_inches="tight")
+for _fp in (os.path.join(OUT, "fig_shap.png"),
+            "docs/suplementar/figuras/fig_shap.png",
+            "docs/manuscrito/figuras/fig_shap.png",
+            "docs/galeria_resultados/figuras/fig_shap.png"):
+    os.makedirs(os.path.dirname(_fp), exist_ok=True)
+    plt.savefig(_fp, dpi=200, bbox_inches="tight", facecolor="white")
 plt.close()
 
 imp = pd.DataFrame({"feature": Xt_df.columns, "mean_abs_shap": np.abs(sv_pos).mean(0)})

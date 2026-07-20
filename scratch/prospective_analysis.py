@@ -139,7 +139,7 @@ a2.tick_params(axis="y", labelsize=12)
 a2.set_title("B · Head-to-head livre de vazamento\n(nenhuma ferramenta viu os rótulos)",
              fontsize=14.5, fontweight="bold")
 a2.grid(axis="y", alpha=0.25)
-fig.suptitle("Validação prospectiva: o modelo prevê como a comunidade reclassifica VUS — "
+fig.suptitle("Validação prospectiva: o modelo prevê como a comunidade reclassifica VUS, "
              "e lidera onde ninguém teve as respostas", fontweight="bold", fontsize=15)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):

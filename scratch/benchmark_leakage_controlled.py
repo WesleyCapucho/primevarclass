@@ -85,7 +85,7 @@ ids = pd.concat([load_ids(c) for c in EXT_CONFIGS], ignore_index=True)
 scores = pd.read_csv(os.path.join(OUT, "benchmark_scores.csv"))
 assert len(ids) == len(scores), f"row mismatch {len(ids)} vs {len(scores)}"
 assert (ids["label"].to_numpy() == scores["label"].to_numpy()).all(), \
-    "label order mismatch — cohort rebuild is not aligned with benchmark_scores.csv"
+    "label order mismatch: cohort rebuild is not aligned with benchmark_scores.csv"
 scores = pd.concat([ids.drop(columns="label"), scores], axis=1)
 
 # attach ClinVar last_evaluated year
@@ -187,7 +187,7 @@ ax.set_ylabel("AUC-ROC (conjunto externo, n = 836)", fontsize=14.5)
 ax.set_ylim(0.5, 1.03); ax.set_yticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
 ax.tick_params(axis="y", labelsize=13)
 # color legend (replaces the cramped per-bar regime tags)
-leg = [Patch(facecolor="#c0392b", edgecolor="white", label="PrimeVarClass — avaliado fora da distribuição (sem circularidade)"),
+leg = [Patch(facecolor="#c0392b", edgecolor="white", label="PrimeVarClass: avaliado fora da distribuição (sem circularidade)"),
        Patch(facecolor="#5a7fb0", edgecolor="white", label="supervisionado / calibrado no ClinVar (circularidade a favor)"),
        Patch(facecolor="#9aa4b2", edgecolor="white", label="não supervisionado no ClinVar")]
 ax.legend(handles=leg, loc="upper center", bbox_to_anchor=(0.5, -0.09), ncol=1,

@@ -48,13 +48,13 @@ for lab, c, col, lw in SERIES:
     bs = [roc_auc_score(y[i], s[i]) for i in (rng.integers(0, n, n) for _ in range(2000))
           if len(np.unique(y[i])) > 1]
     stats[lab] = (a, np.percentile(bs, 2.5), np.percentile(bs, 97.5), col)
-    ax.plot(fpr, tpr, color=col, lw=lw, label=f"{lab} — AUC {a:.3f}",
+    ax.plot(fpr, tpr, color=col, lw=lw, label=f"{lab}: AUC {a:.3f}",
             zorder=6 if c in ("meta", "PrimeVarClass") else 3)
 ax.plot([0, 1], [0, 1], ls="--", color="#bbb", lw=1)
-ax.set_xlabel("1 − especificidade (FPR)", fontsize=11)
-ax.set_ylabel("Sensibilidade (TPR)", fontsize=11)
+ax.set_xlabel("1 − especificidade (FPR)", fontsize=14.3)
+ax.set_ylabel("Sensibilidade (TPR)", fontsize=14.3)
 ax.set_title(f"A   ROC nas coortes externas independentes (n = {n})", fontsize=12, fontweight="bold", loc="left")
-ax.legend(loc="lower right", fontsize=9)
+ax.legend(loc="lower right", fontsize=12)
 ax.set_xlim(-0.01, 1.01); ax.set_ylim(-0.01, 1.01); ax.grid(alpha=0.25)
 
 order = sorted(stats.items(), key=lambda kv: kv[1][0])
@@ -63,11 +63,11 @@ axb.barh(ypos, [v[0] for _, v in order],
          xerr=[[v[0] - v[1] for _, v in order], [v[2] - v[0] for _, v in order]],
          color=[v[3] for _, v in order], alpha=0.9, height=0.6,
          error_kw={"elinewidth": 1.2, "capsize": 3})
-axb.set_yticks(ypos); axb.set_yticklabels([k.split(" (")[0] for k, _ in order], fontsize=9.5)
-axb.set_xlim(0.5, 1.0); axb.set_xlabel("AUC-ROC (IC95% bootstrap)", fontsize=11)
+axb.set_yticks(ypos); axb.set_yticklabels([k.split(" (")[0] for k, _ in order], fontsize=12.3)
+axb.set_xlim(0.5, 1.0); axb.set_xlabel("AUC-ROC (IC95% bootstrap)", fontsize=14.3)
 axb.set_title("B   AUC no conjunto comum", fontsize=12, fontweight="bold", loc="left")
 for i, (_, v) in enumerate(order):
-    axb.text(v[2] + 0.006, i, f"{v[0]:.3f}", va="center", fontsize=8.6)
+    axb.text(v[2] + 0.006, i, f"{v[0]:.3f}", va="center", fontsize=12)
 axb.grid(axis="x", alpha=0.25)
 
 fig.tight_layout()

@@ -142,7 +142,7 @@ b.set_ylim(0.5, 1.0); b.set_ylabel("AUC no conjunto travado", fontsize=12.5)
 b.tick_params(axis="x", labelsize=13.5); b.tick_params(axis="y", labelsize=12)
 b.set_title("B · Feedback ruim não é promovido", fontsize=15, fontweight="bold")
 
-fig.suptitle("Aprendizado contínuo e seguro — o PrimeVarClass melhora com o uso, "
+fig.suptitle("Aprendizado contínuo e seguro: o PrimeVarClass melhora com o uso, "
              "sem nunca piorar", fontweight="bold", fontsize=15.5)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 for _fp in (FIG, FIG.replace("suplementar", "manuscrito")):

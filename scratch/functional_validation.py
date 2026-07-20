@@ -158,12 +158,12 @@ for ax, (name, (urn, gene)) in zip(axes, ASSAYS.items()):
                      "auc_esm_vs_LOF": round(float(auc_esm), 3),
                      "n_LOF": int(lof.sum())}
     ax.scatter(a["prob"], fscore, s=6, alpha=0.35, c="#c0392b", edgecolors="none")
-    ax.set_title(f"{name}\nn={len(a)}  ρ={rho_prob:.2f}  AUC={auc_prob:.2f}", fontsize=9.5)
-    ax.set_xlabel("Prob. patogenicidade (modelo)", fontsize=9)
-    ax.set_ylabel("Escore funcional experimental", fontsize=9)
+    ax.set_title(f"{name}\nn={len(a)}  ρ={rho_prob:.2f}  AUC={auc_prob:.2f}", fontsize=12.3)
+    ax.set_xlabel("Prob. patogenicidade (modelo)", fontsize=12)
+    ax.set_ylabel("Escore funcional experimental", fontsize=12)
     ax.grid(alpha=0.2)
 
-fig.suptitle("Validação funcional ortogonal — predições vs. função medida em laboratório (DMS de BRCA1)",
+fig.suptitle("Validação funcional ortogonal: predições vs. função medida em laboratório (DMS de BRCA1)",
              fontsize=12, fontweight="bold")
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 os.makedirs(os.path.dirname(FIG), exist_ok=True)

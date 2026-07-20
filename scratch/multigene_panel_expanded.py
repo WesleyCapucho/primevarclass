@@ -130,12 +130,12 @@ for i, v in enumerate(vals):
     ax.text(i, min(cis[i][1] + 0.012, 1.015), f"{v:.3f}", ha="center", va="bottom",
             fontsize=12, fontweight="bold")
 ax.axhline(0.5, ls=":", color="#aaa")
-ax.set_xticks(x); ax.set_xticklabels(labs, fontsize=9.5)
+ax.set_xticks(x); ax.set_xticklabels(labs, fontsize=12.3)
 ax.set_ylim(0.5, 1.06); ax.set_yticks([0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
 ax.set_ylabel("AUC-ROC do carro-chefe (CV bloqueada por posição)")
 ax.set_title("A receita generaliza além do câncer de mama/ovário\n"
              "domínio funcional + ESM-2 (mesmo modelo do BRCA) — VHL, Lynch (MLH1/MSH2/MSH6) e MEN2 (RET), "
-             "rótulos reais do ClinVar", fontsize=10.5, pad=14)
+             "rótulos reais do ClinVar", fontsize=13.7, pad=14)
 ax.grid(axis="y", alpha=0.25)
 fig.tight_layout()
 os.makedirs(os.path.dirname(FIG), exist_ok=True)

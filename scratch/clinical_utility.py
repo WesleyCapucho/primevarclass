@@ -70,9 +70,9 @@ for tool, col in TOOLS.items():
     axA.plot(frac * 100, sens * 100, color=col, lw=2.0 if tool == "PrimeVarClass" else 1.3,
              label=f"{NAMES[tool]} (n={cov})", zorder=3 if tool == "PrimeVarClass" else 2)
 axA.plot([0, 100], [0, 100], "--", color="#999", lw=1, label="triagem aleatória")
-axA.set_xlabel("Variantes revisadas (%)"); axA.set_ylabel("Patogênicas capturadas — sensibilidade (%)")
-axA.set_title("A. Eficiência de triagem (coorte externa real, n = 836)", fontsize=11)
-axA.legend(fontsize=8.5, loc="lower right"); axA.grid(alpha=0.22)
+axA.set_xlabel("Variantes revisadas (%)"); axA.set_ylabel("Patogênicas capturadas: sensibilidade (%)")
+axA.set_title("A. Eficiência de triagem (coorte externa real, n = 836)", fontsize=14.3)
+axA.legend(fontsize=12, loc="lower right"); axA.grid(alpha=0.22)
 axA.set_xlim(0, 100); axA.set_ylim(0, 101)
 
 # ---- BP4 rule-out safety operating points (calibrated PrimeVarClass probability) ----
@@ -102,8 +102,8 @@ axB.plot(pts, nb_all, color="#777", lw=1.3, ls="-.", label="revisar todas as VUS
 axB.axhline(0, color="#333", lw=1, ls="--", label="revisar nenhuma")
 axB.set_xlabel("Limiar de probabilidade (custo relativo revisão/erro)")
 axB.set_ylabel("Benefício líquido")
-axB.set_title("B. Curva de decisão clínica (Vickers & Elkin)", fontsize=11)
-axB.legend(fontsize=8.5, loc="upper right"); axB.grid(alpha=0.22)
+axB.set_title("B. Curva de decisão clínica (Vickers & Elkin)", fontsize=14.3)
+axB.legend(fontsize=12, loc="upper right"); axB.grid(alpha=0.22)
 axB.set_xlim(0, 0.5)
 out["decision_curve"] = {f"pt={t:.2f}": {"nb_model": round(float(net_benefit(p, t)), 4),
                                          "nb_review_all": round(float(prev - (1 - prev) * (t / (1 - t))), 4)}

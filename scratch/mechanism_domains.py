@@ -177,11 +177,11 @@ for ax, (dom, gene, df) in zip(axes, frames):
     for mech, g in det.groupby("mechanism"):
         ax.scatter(g.esm2_llr, g.rsa, s=22, alpha=0.7, color=COL.get(mech, "#333"), label=f"{mech} ({len(g)})")
     ax.axhline(0.15, ls="--", color="#ccc", lw=1)
-    ax.set_xlabel("ESM-2 LLR (sequência)", fontsize=9.5)
-    ax.set_ylabel("Exposição RSA (estrutura)", fontsize=9.5)
-    ax.set_title(f"{gene} — {dom} (n={len(det)})", fontsize=11, fontweight="bold")
-    ax.legend(fontsize=7.2, loc="upper right"); ax.grid(alpha=0.2)
-fig.suptitle("Decomposição de mecanismo das variantes detectadas — domínios críticos de BRCA1/BRCA2",
+    ax.set_xlabel("ESM-2 LLR (sequência)", fontsize=12.3)
+    ax.set_ylabel("Exposição RSA (estrutura)", fontsize=12.3)
+    ax.set_title(f"{gene}, {dom} (n={len(det)})", fontsize=14.3, fontweight="bold")
+    ax.legend(fontsize=12, loc="upper right"); ax.grid(alpha=0.2)
+fig.suptitle("Decomposição de mecanismo das variantes detectadas: domínios críticos de BRCA1/BRCA2",
              fontsize=12.5, fontweight="bold")
 fig.tight_layout(rect=[0, 0, 1, 0.96])
 fig.savefig("docs/suplementar/figuras/fig_mechanism_domains.png", dpi=200, bbox_inches="tight", facecolor="white")

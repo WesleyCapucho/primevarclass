@@ -76,12 +76,12 @@ colors = ["#c0392b", "#2e6fb0", "#c8ccd0"]
 bars = ax.bar(cats, vals, color=colors, edgecolor="white")
 for b, v in zip(bars, vals):
     ax.text(b.get_x() + b.get_width()/2, v + n*0.01, f"{v:,}".replace(",", "."),
-            ha="center", va="bottom", fontsize=11, fontweight="bold")
+            ha="center", va="bottom", fontsize=14.3, fontweight="bold")
 ax.set_ylabel("nº de VUS / variantes conflitantes de BRCA1/BRCA2")
 ax.set_title(f"De backlog ininterpretável a worklist acionável: {n:,}".replace(",", ".") +
-             f" VUS triadas\n{resolved/n:.0%} recebem evidência acionável — "
-             "chamadas de alta confiança são 96% acuradas (validação prospectiva)",
-             fontsize=11)
+             f" VUS triadas\n{resolved/n:.0%} recebem evidência acionável; "
+             "chamadas de alta confiança são 93% acuradas (validação prospectiva)",
+             fontsize=14.3)
 ax.grid(axis="y", alpha=0.25)
 fig.tight_layout()
 os.makedirs(os.path.dirname(FIG), exist_ok=True)

@@ -84,7 +84,7 @@ for a, v, n in zip(anos, aucs, ns):
     ax.annotate(f"{v:.3f}".replace(".", ","), (int(a), v), textcoords="offset points",
                 xytext=(0, 12), ha="center", fontsize=14, fontweight="bold")
     ax.annotate(f"n={n}", (int(a), v), textcoords="offset points",
-                xytext=(0, -20), ha="center", fontsize=11.5, color="#555555")
+                xytext=(0, -20), ha="center", fontsize=15, color="#555555")
 ax.set_xlabel("ano de corte (treino usa apenas o que era definitivo até ali)", fontsize=13.5)
 ax.set_ylabel("AUC nas variantes classificadas depois do corte", fontsize=13.5)
 ax.set_title("Validação temporal: treinado só com o passado, testado no futuro",

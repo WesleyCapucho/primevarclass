@@ -132,7 +132,7 @@ ax.axhline(0.5, ls=":", color="#aaa")
 ax.set_ylim(0.5, 1.0); ax.set_ylabel("AUC-ROC (CV bloqueada por posição)")
 ax.set_title(f"O método generaliza para TP53 (n={tp['n']}, {tp['n_pathogenic']} patogênicas)\n"
              "mesma receita do BRCA — a consciência de domínio e o ESM-2 elevam o modelo, gene novo",
-             fontsize=11)
+             fontsize=14.3)
 ax.grid(axis="y", alpha=0.25)
 fig.tight_layout()
 os.makedirs(os.path.dirname(FIG), exist_ok=True)
