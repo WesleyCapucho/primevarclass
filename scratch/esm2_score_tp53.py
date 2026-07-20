@@ -1,3 +1,16 @@
+"""Pontuação ESM-2 (masked-marginal LLR) das variantes missense de TP53 e demais
+genes do painel HBOC, em CPU.
+
+Calcula logP(alt) - logP(ref) com o resíduo mascarado, em janela de +/-511
+posições (Meier et al., 2021). Alimenta o teste de generalização multigênica
+(scratch/multigene_panel.py). Para execução em GPU, use os equivalentes de
+Colab: scratch/colab_esm2_650M_panel.py.
+
+Entrada : data/raw/clinvar/variant_summary_current_HBOC.tsv
+Saída   : scratch/esm_input/esm2_scores_tp53.csv
+
+Run: python scratch/esm2_score_tp53.py
+"""
 import os, re, time, pandas as pd, torch
 from transformers import AutoModelForMaskedLM, AutoTokenizer
 import os, sys

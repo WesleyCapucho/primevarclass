@@ -83,7 +83,7 @@ configs/               Configurações das fontes de dados (coortes BRCA reais)
 data/                  Instantâneos de dados públicos (rastreáveis)
 docs/manuscrito/       Artigo principal (PDF/DOCX/Markdown) + figuras
 docs/suplementar/      Material suplementar (benchmark, meta, ACMG, DMS) + figuras
-scratch/               Scripts de reprodução/análise + escores ESM-2 (esm_input/)
+scratch/               Scripts que geram cada número e figura (ver scratch/README.md)
 primevarclass_manuscript_analysis/   Artefatos gerados (JSON/CSV/figuras)
 .github/workflows/     CI: lint (ruff), testes, auditoria de dependências (pip-audit)
 ```
@@ -104,6 +104,8 @@ python scratch/monte_carlo_robustness.py         # robustez (Monte Carlo)
 ```
 
 Sementes aleatórias fixas garantem reprodutibilidade determinística; artefatos e figuras em alta resolução são gravados em `primevarclass_manuscript_analysis/` e `docs/*/figuras/`.
+
+O índice completo dos scripts, agrupado por etapa do pipeline e indicando qual figura ou tabela cada um produz, está em [`scratch/README.md`](scratch/README.md).
 
 ---
 
