@@ -1,7 +1,7 @@
 """Assemble the six confirmed-pathogenic PyMOL panels into one marketing-quality
 figure: 'O algoritmo capturou mutações patogênicas reais'. Each tile carries a
-large variant name, its domain, and two badges — the real ClinVar verdict and the
-PrimeVarClass call — so a judge sees, at a glance, that every hit is real.
+large variant name, its domain, and two badges (the real ClinVar verdict and the
+PrimeVarClass call), so a judge sees, at a glance, that every hit is real.
 
 Run: python scratch/compose_detected_panel.py
 """
@@ -18,17 +18,17 @@ OUTS = ["docs/galeria_resultados/figuras", "docs/suplementar/figuras",
 RAMP = [(0.10, 0.13, 0.38), (0.74, 0.15, 0.42), (1.00, 0.80, 0.22)]
 
 TILES = [
-    dict(name="C39G", title="BRCA1  p.Cys39Gly", dom="RING — sítio de zinco",
+    dict(name="C39G", title="BRCA1  p.Cys39Gly", dom="RING: sítio de zinco",
          clin="Patogênica / Prov. patogênica", prob="99,7%"),
-    dict(name="C64G", title="BRCA1  p.Cys64Gly", dom="RING — sítio de zinco",
+    dict(name="C64G", title="BRCA1  p.Cys64Gly", dom="RING: sítio de zinco",
          clin="Patogênica", prob="99,7%"),
-    dict(name="C61Y", title="BRCA1  p.Cys61Tyr", dom="RING — sítio de zinco",
+    dict(name="C61Y", title="BRCA1  p.Cys61Tyr", dom="RING: sítio de zinco",
          clin="Patogênica", prob="99,7%"),
-    dict(name="M1689R", title="BRCA1  p.Met1689Arg", dom="BRCT — leitura de dano ao DNA",
+    dict(name="M1689R", title="BRCA1  p.Met1689Arg", dom="BRCT: leitura de dano ao DNA",
          clin="Patogênica / Prov. patogênica", prob="97,9%"),
-    dict(name="L1705P", title="BRCA1  p.Leu1705Pro", dom="BRCT — leitura de dano ao DNA",
+    dict(name="L1705P", title="BRCA1  p.Leu1705Pro", dom="BRCT: leitura de dano ao DNA",
          clin="Patogênica / Prov. patogênica", prob="96,7%"),
-    dict(name="W1837C", title="BRCA1  p.Trp1837Cys", dom="BRCT — leitura de dano ao DNA",
+    dict(name="W1837C", title="BRCA1  p.Trp1837Cys", dom="BRCT: leitura de dano ao DNA",
          clin="Patogênica / Prov. patogênica", prob="96,3%"),
 ]
 
@@ -88,20 +88,21 @@ def make_tile(t, tw, strip):
     x = int(tw * 0.05)
 
     # variant name (top-left of the render, on the dark sky)
-    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.084)),
+    d.text((x, int(tw * 0.045)), t["title"], font=font(int(tw * 0.086)),
            fill=(248, 249, 252))
-    d.text((x + 2, int(tw * 0.045) + int(tw * 0.100)), t["dom"],
-           font=font(int(tw * 0.054), bold=False), fill=(160, 205, 255))
+    d.text((x + 2, int(tw * 0.045) + int(tw * 0.104)), t["dom"],
+           font=font(int(tw * 0.064), bold=True), fill=(150, 202, 255))
 
-    # label strip (two stacked badges) — explicit pixel budget
-    fb = font(int(tw * 0.049), bold=True)          # verdict still fits (abbreviated)
-    fs = font(int(tw * 0.047), bold=False)
-    y = tw + int(strip * 0.05)
-    d.text((x, y), "Verdade (ClinVar)", font=fs, fill=(150, 158, 176))
+    # label strip (two stacked badges). Rotulos maiores e com mais contraste;
+    # o orcamento em pixels do strip foi ampliado (build) para nada estourar.
+    fb = font(int(tw * 0.054), bold=True)          # texto dentro dos badges
+    fs = font(int(tw * 0.052), bold=True)          # rotulos "Verdade"/"detectou"
+    y = tw + int(strip * 0.045)
+    d.text((x, y), "Verdade (ClinVar)", font=fs, fill=(196, 204, 222))
     _, h1 = pill(d, x, y + int(fs.size * 1.15), t["clin"], fb,
                  (10, 28, 15), (86, 200, 120), dot=(16, 38, 20))
-    y = y + int(fs.size * 1.15) + h1 + int(strip * 0.055)
-    d.text((x, y), "PrimeVarClass detectou", font=fs, fill=(150, 158, 176))
+    y = y + int(fs.size * 1.15) + h1 + int(strip * 0.05)
+    d.text((x, y), "PrimeVarClass detectou", font=fs, fill=(196, 204, 222))
     pill(d, x, y + int(fs.size * 1.15), f"{t['prob']} patogênica", fb,
          (34, 22, 3), (240, 196, 74), dot=(58, 38, 5))
     return tile.convert("RGB")
@@ -121,10 +122,10 @@ def legend(draw, x, y, w, h, big):
 
 
 def build():
-    tw, strip, gap = 1180, 440, 28
+    tw, strip, gap = 1180, 520, 28
     cols, rows = 3, 2
-    band = 360                                   # top title band
-    botband = 260                                # bottom legend band
+    band = 470                                   # top title band (2 linhas de subtitulo)
+    botband = 320                                # bottom legend band
     W = cols * tw + (cols + 1) * gap
     H = band + rows * (tw + strip) + (rows + 1) * gap + botband
 
@@ -133,10 +134,10 @@ def build():
     d.text((gap + int(W * 0.008), int(band * 0.22)),
            "O algoritmo capturou mutações patogênicas reais",
            font=font(int(W * 0.033)), fill=(248, 249, 252))
-    d.text((gap + int(W * 0.009), int(band * 0.22) + int(W * 0.040)),
-           "Seis variantes de BRCA1 confirmadas no ClinVar — todas detectadas pelo "
-           "PrimeVarClass com alta confiança",
-           font=font(int(W * 0.019), bold=False), fill=(214, 182, 96))
+    d.text((gap + int(W * 0.009), int(band * 0.20) + int(W * 0.036)),
+           "Seis variantes de BRCA1 confirmadas no ClinVar, todas detectadas\n"
+           "pelo PrimeVarClass com alta confiança",
+           font=font(int(W * 0.022), bold=False), fill=(236, 208, 132), spacing=int(W * 0.010))
 
     for i, t in enumerate(TILES):
         r, c = divmod(i, cols)
@@ -145,8 +146,8 @@ def build():
         canvas.paste(make_tile(t, tw, strip), (x, y))
 
     # large centred colour legend at the bottom (was tiny in the title band)
-    lw, lh = int(W * 0.30), int(botband * 0.15)
-    legend(d, (W - lw) // 2, H - botband + int(botband * 0.45), lw, lh, int(W * 0.0135))
+    lw, lh = int(W * 0.32), int(botband * 0.16)
+    legend(d, (W - lw) // 2, H - botband + int(botband * 0.45), lw, lh, int(W * 0.0165))
 
     for out in OUTS:
         os.makedirs(out, exist_ok=True)
