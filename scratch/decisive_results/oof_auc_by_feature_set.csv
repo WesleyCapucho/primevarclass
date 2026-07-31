@@ -1,0 +1,8 @@
+feature_set,n_features,oof_auc_roc
+onehot_identity,4,0.9024
+prime_only,50,0.7416
+biochemical_only,28,0.834
+hybrid,76,0.8095
+hybrid_plus_conservation_structure,82,0.8115
+hybrid_plus_external,87,0.8316
+external_predictors_only,5,0.6158
