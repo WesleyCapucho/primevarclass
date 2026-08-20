@@ -2,7 +2,7 @@
 
 **Autor:** Wesley Felipe Capucho, Escola de Engenharia de Lorena, Universidade
 de São Paulo (EEL-USP).
-**Data deste registro:** 2026-07-09.
+**Data deste registro:** 2026-08-20.
 
 ## Registro criptográfico de integridade
 
@@ -11,8 +11,8 @@ Este repositório inclui um manifesto (`provenance_manifest.sha256`) com o hash
 completo: uma impressão digital única de todo o conteúdo nesta data:
 
 ```
-ROOT SHA-256: 05e41c499b6e36cdd2904253f3c40fd664163205e218f6566b73238eba086d0e
-arquivos: 149
+ROOT SHA-256: ad3d6029e1c733efd6bb815fd7e3c1fd7c20684d7729ed4184f56030ac29259a
+arquivos: 292
 ```
 
 Qualquer alteração de qualquer arquivo muda essa raiz. Para verificar:

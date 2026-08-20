@@ -12,7 +12,7 @@
 
 PrimeVarClass é um sistema aberto e reprodutível de inteligência artificial para priorizar **variantes de significado incerto (VUS)** em genes de predisposição ao câncer de mama e de ovário. Seu princípio central é o **rigor metodológico e a reprodutibilidade**.
 
-> Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria  Mestre e Doutor; tema *IA para o Bem Comum*, subtema IA & Saúde).
+> Acompanha o trabalho submetido ao **32º Prêmio Jovem Cientista** (categoria Mestre e Doutor; tema *IA para o Bem Comum*, subtema IA & Saúde).
 > 📄 Artigo principal: [`docs/manuscrito/`](docs/manuscrito/).
 > 📎 Material suplementar: [`docs/suplementar/`](docs/suplementar/PrimeVarClass_Material_Suplementar.md)
 
@@ -81,7 +81,7 @@ src/primevarclass/     Núcleo do método (pacote instalável)
 tests/                 Testes automatizados (núcleo, domínio, ESM)
 configs/               Configurações das fontes de dados (coortes BRCA reais)
 data/                  Instantâneos de dados públicos (rastreáveis)
-docs/manuscrito/       Artigo principal (PDF/DOCX/Markdown) + figuras
+docs/manuscrito/       Artigo principal (PDF submetido + referências) + figuras
 docs/suplementar/      Material suplementar (benchmark, meta, ACMG, DMS) + figuras
 scratch/               Scripts que geram cada número e figura (ver scratch/README.md)
 primevarclass_manuscript_analysis/   Artefatos gerados (JSON/CSV/figuras)
